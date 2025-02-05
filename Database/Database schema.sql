@@ -180,12 +180,19 @@ GO
 --- Fetch all scans for an event
 -------------------------------------------------------------------------------
 
-CREATE OR ALTER PROCEDURE Scan.Get_Scans
-    @EventSecret        uniqueidentifier
+CREATE OR ALTER PROCEDURE [Scan].[Get_Scans]
+    @EventSecret        uniqueidentifier,
+    @EncryptionKey      nvarchar(200)=N''
 AS
 
-SELECT i.ID, s.Scanned, s.ReferenceCode AS Code, s.Note
-FROM Scan.Events AS e
+SELECT i.ID, s.Scanned, s.ReferenceCode AS Code, s.Note,
+       CAST(DECRYPTBYPASSPHRASE(@EncryptionKey, i.[Name]) AS nvarchar(max)) AS [name],
+       CAST(DECRYPTBYPASSPHRASE(@EncryptionKey, i.[Description]) AS nvarchar(max)) AS [description],
+       CAST(DECRYPTBYPASSPHRASE(@EncryptionKey, i.JobTitle) AS nvarchar(max)) AS jobTitle,
+       CAST(DECRYPTBYPASSPHRASE(@EncryptionKey, i.Phone) AS nvarchar(max)) AS phone,
+       CAST(DECRYPTBYPASSPHRASE(@EncryptionKey, i.Email) AS nvarchar(max)) AS email,
+       CAST(DECRYPTBYPASSPHRASE(@EncryptionKey, i.[Location]) AS nvarchar(max)) AS [location]
+FROM Scan.[Events] AS e
 INNER JOIN Scan.Identities AS i ON e.EventID=i.EventID
 LEFT JOIN Scan.Scans AS s ON i.ID=s.ID
 WHERE e.EventSecret=@EventSecret
@@ -197,14 +204,16 @@ GO
 --- Fetch a random scans for an event
 -------------------------------------------------------------------------------
 
-CREATE OR ALTER PROCEDURE Scan.Get_Random
+CREATE OR ALTER PROCEDURE [Scan].[Get_Random]
     @EventSecret        uniqueidentifier,
-    @ReferenceCode      varchar(20)
+    @ReferenceCode      varchar(20)=NULL,
+    @EncryptionKey      nvarchar(200)=N''
 AS
 
-SELECT TOP (1) ID, Scanned, Code
+SELECT TOP (1) ID, Scanned, Code,
+       CAST(DECRYPTBYPASSPHRASE(@EncryptionKey, [name]) AS nvarchar(max)) AS [Name]
 FROM (
-    SELECT DISTINCT i.ID, s.Scanned, s.ReferenceCode AS Code
+    SELECT DISTINCT i.ID, s.Scanned, s.ReferenceCode AS Code, i.[Name]
     FROM Scan.Events AS e
     INNER JOIN Scan.Identities AS i ON e.EventID=i.EventID
     INNER JOIN Scan.Scans AS s ON i.ID=s.ID
