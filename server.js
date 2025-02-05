@@ -481,66 +481,72 @@ app.post('/pdf', async function (req, res, next) {
                 const blob=JSON.parse(recordset[0].blob);
                 console.log(blob);
 
-                // Create the event directory if it doesn't already exist
-                const dir=__dirname+'/qr/'+(blob.eventName.toLowerCase());
-                if (!fs.existsSync(dir)) { fs.mkdirSync(dir); }
+                if (blob.identities!==undefined) {
 
-                var pdf = new PDFGenerator(pdfConfig.pageSettings);
-                pdf.fontSize(parseInt(req.body.fontSize || '16'));
-                pdfConfig.documentInfo.Subject=blob.eventName;
-                pdf.info=pdfConfig.documentInfo;
+                    // Create the event directory if it doesn't already exist
+                    const dir=__dirname+'/qr/'+(blob.eventName.toLowerCase());
+                    if (!fs.existsSync(dir)) { fs.mkdirSync(dir); }
 
-                //pdf.pipe(fs.createWriteStream('./pdf/Badges_'+blob.eventId+'.pdf'));
-                pdf.pipe(res) // send back as http response
+                    var pdf = new PDFGenerator(pdfConfig.pageSettings);
+                    pdf.fontSize(parseInt(req.body.fontSize || '16'));
+                    pdfConfig.documentInfo.Subject=blob.eventName;
+                    pdf.info=pdfConfig.documentInfo;
 
-                var badgeWidth=pdfConfig.pageWidth/pdfConfig.badgeHorizontalCount;
-                var badgeHeight=pdfConfig.pageHeight/pdfConfig.badgeVerticalCount;
-                var badgeCounter=0;
+                    //pdf.pipe(fs.createWriteStream('./pdf/Badges_'+blob.eventId+'.pdf'));
+                    pdf.pipe(res) // send back as http response
 
-                for (member of blob.identities) {
+                    var badgeWidth=pdfConfig.pageWidth/pdfConfig.badgeHorizontalCount;
+                    var badgeHeight=pdfConfig.pageHeight/pdfConfig.badgeVerticalCount;
+                    var badgeCounter=0;
 
-                    if (badgeCounter>0 && badgeCounter%(pdfConfig.badgeHorizontalCount*pdfConfig.badgeVerticalCount)==0) {
-                        pdf.addPage(pdfConfig.pageSettings);
+                    for (member of blob.identities) {
+
+                        if (badgeCounter>0 && badgeCounter%(pdfConfig.badgeHorizontalCount*pdfConfig.badgeVerticalCount)==0) {
+                            pdf.addPage(pdfConfig.pageSettings);
+                        }
+
+                        var x=badgeWidth*(badgeCounter%pdfConfig.badgeHorizontalCount);
+                        var y=badgeHeight*Math.floor((badgeCounter%(pdfConfig.badgeHorizontalCount*pdfConfig.badgeVerticalCount))/pdfConfig.badgeHorizontalCount);
+
+                        if (member.id) {
+                            await qr.toFile(dir+'/'+member.id+'.png', 'https://'+pdfConfig.siteName+'/'+member.id, { scale: 10 });
+
+                            // Add the QR code:
+                            pdf.image(dir+'/'+member.id+'.png',
+                                x+badgeWidth/2-badgeHeight*pdfConfig.qrSizePercent/2,
+                                y+badgeHeight*pdfConfig.topPercent-pdfConfig.pageTopMargin,
+                                { width: badgeHeight*pdfConfig.qrSizePercent, height: badgeHeight*pdfConfig.qrSizePercent });
+                        }
+
+                        // Add the name:
+                        if (member.name) {
+                            pdf.text(member.name, x, y+badgeHeight*(pdfConfig.topPercent+pdfConfig.qrSizePercent*1.1)-pdfConfig.pageTopMargin, {
+                                bold: true,
+                                align: 'center',
+                                width: badgeWidth
+                            });
+                        }
+
+                        // Add the description/org/role:
+                        if (member.description) {
+                            pdf.text(member.description, {
+                                align: 'center',
+                                width: badgeWidth
+                            });
+                        }
+
+                        // Add a frame for debugging:
+                        //pdf.rect(x, y, badgeWidth, badgeHeight).stroke();
+
+                        badgeCounter++;
                     }
 
-                    var x=badgeWidth*(badgeCounter%pdfConfig.badgeHorizontalCount);
-                    var y=badgeHeight*Math.floor((badgeCounter%(pdfConfig.badgeHorizontalCount*pdfConfig.badgeVerticalCount))/pdfConfig.badgeHorizontalCount);
-
-                    if (member.id) {
-                        await qr.toFile(dir+'/'+member.id+'.png', 'https://'+pdfConfig.siteName+'/'+member.id, { scale: 10 });
-
-                        // Add the QR code:
-                        pdf.image(dir+'/'+member.id+'.png',
-                            x+badgeWidth/2-badgeHeight*pdfConfig.qrSizePercent/2,
-                            y+badgeHeight*pdfConfig.topPercent-pdfConfig.pageTopMargin,
-                            { width: badgeHeight*pdfConfig.qrSizePercent, height: badgeHeight*pdfConfig.qrSizePercent });
-                    }
-
-                    // Add the name:
-                    if (member.name) {
-                        pdf.text(member.name, x, y+badgeHeight*(pdfConfig.topPercent+pdfConfig.qrSizePercent*1.1)-pdfConfig.pageTopMargin, {
-                            bold: true,
-                            align: 'center',
-                            width: badgeWidth
-                        });
-                    }
-
-                    // Add the description/org/role:
-                    if (member.description) {
-                        pdf.text(member.description, {
-                            align: 'center',
-                            width: badgeWidth
-                        });
-                    }
-
-                    // Add a frame for debugging:
-                    //pdf.rect(x, y, badgeWidth, badgeHeight).stroke();
-
-                    badgeCounter++;
+                    pdf.end();
+                    //res.status(200).json(recordset);
+                } else {
+                    res.status(400).send("No identities found.");
                 }
 
-                pdf.end();
-                //res.status(200).json(recordset);
                 return;
         });
     } catch(e) {
