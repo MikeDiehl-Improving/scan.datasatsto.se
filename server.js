@@ -113,16 +113,28 @@ app.get('/', function (req, res, next) {
 
 
 /*-----------------------------------------------------------------------------
+  Azure Linux App Service Plan health check request:
+  ---------------------------------------------------------------------------*/
+
+app.get('/robots933456.txt', function (req, res, next) {
+    console.log("Azure health check: OK.");
+    res.status(200).send("OK");
+});
+
+
+
+
+/*-----------------------------------------------------------------------------
   Get QR code PNG file
   ---------------------------------------------------------------------------*/
 
-app.get('/:dir/:id([0-9]*).png', function (req, res, next) {
+app.get(/^\/([^\/]+)\/([0-9]*)\.png$/, function (req, res, next) {
 
     httpHeaders(res);
 
     var options = {
         maxAge: 24 * 60 * 60 * 1000,      // Cache the PNG for 24 hours.
-        root: __dirname+'/qr/'+decodeURI(req.params.dir).toLowerCase()+'/',
+        root: __dirname+'/qr/'+decodeURI(req.params[0]).toLowerCase()+'/',
         dotfiles: 'deny',
         headers: {
             'x-timestamp': Date.now(),
@@ -130,7 +142,7 @@ app.get('/:dir/:id([0-9]*).png', function (req, res, next) {
         }
     };
 
-    res.sendFile(decodeURI(req.params.id)+'.png', options, function(err) {
+    res.sendFile(decodeURI(req.params[1])+'.png', options, function(err) {
         if (err) {
             res.sendStatus(404);
             return;
@@ -147,24 +159,27 @@ app.get('/:dir/:id([0-9]*).png', function (req, res, next) {
   Generate a new QR code:
   ---------------------------------------------------------------------------*/
 
-  app.get('/new/:event', newRegistration);      // Generate an ID (default)
-  app.get('/new/:event/:id([0-9]*)', newRegistration);  // Use an existing ID (suitable for simplifying integrations)
+app.get(/^\/new\/([^\/]+)$/, newRegistration);     // Generate an ID (default)
+app.get(/^\/new\/([^\/]+)\/([0-9]*)$/, newRegistration);  // Use an existing ID (suitable for simplifying integrations)
 
 function newRegistration (req, res, next) {
     httpHeaders(res);
 
     // Name the connection after the host:
     connectionString.options.appName=req.headers.host;
-    
+
+    const event = req.params[0];
+    const id = req.params[1] || null;  
+
     // Check if caller provided a specific ID to be used.
     var manualRegistrationId=null;
-    if (req.params.id!='' &!isNaN(req.params.id)) {
-        manualRegistrationId = req.params.id;
+    if (id!='' &!isNaN(id)) {
+        manualRegistrationId = id;
     }
 
     try {
         sqlQuery(connectionString, 'EXECUTE Scan.New_Identity @Event=@Event, @ID=@ID;',
-        [{ "name": 'Event', "type": Types.VarChar, "value": decodeURI(req.params.event) },
+        [{ "name": 'Event', "type": Types.VarChar, "value": decodeURI(event) },
          { "name": 'ID',    "type": Types.BigInt,  "value": manualRegistrationId        }],
 
             async function(recordset) {
@@ -176,7 +191,7 @@ function newRegistration (req, res, next) {
                     if (!fs.existsSync(__dirname+'/qr')) { fs.mkdirSync(__dirname+'/qr'); }
 
                     // Create the event directory if it doesn't already exist
-                    var dir=__dirname+'/qr/'+decodeURI(req.params.event).toLowerCase();
+                    var dir=__dirname+'/qr/'+decodeURI(event).toLowerCase();
                     if (!fs.existsSync(dir)) { fs.mkdirSync(dir); }
 
                     var url='https://'+req.headers.host+'/'+id;
@@ -199,7 +214,7 @@ function newRegistration (req, res, next) {
                             res.status(200).json({
                                 "id": id,
                                 "url": url,
-                                "imgsrc": 'https://'+req.headers.host+'/'+decodeURI(req.params.event.toLowerCase())+'/'+id+'.png',
+                                "imgsrc": 'https://'+req.headers.host+'/'+decodeURI(event.toLowerCase())+'/'+id+'.png',
                                 "data": src
                             });
                         });
@@ -277,22 +292,25 @@ app.post('/setup', function (req, res, next) {
   Scan a code:
   ---------------------------------------------------------------------------*/
 
-app.post('/:id([0-9]*)/:code', newScan);
-app.get('/:id([0-9]*)/:code', newScan);
-app.get('/:id([0-9]*)', newScan);
+app.post(/^\/([0-9]*)\/([^\/]+)$/, newScan);  // POST with ID and code
+app.get(/^\/([0-9]*)\/([^\/]+)$/, newScan);   // GET with ID and code
+app.get(/^\/([0-9]*)$/, newScan);            // GET with ID only
 
 function newScan(req, res, next) {
 
-    if (req.params.code) {
-        if (req.params.code.includes('favicon')) {
+    const id = req.params[0];
+    const code = req.params[1] || null;
+  
+    if (code) {
+        if (code.includes('favicon')) {
             res.status(404).send('');
             return;
         }
     }
 
-    var referenceCode=decodeURI(req.params.code || '') || req.session.vendorCode || "";
+    var referenceCode=decodeURI(code || '') || req.session.vendorCode || "";
     if (!referenceCode) {
-        res.redirect('/setup?id='+parseInt(req.params.id));
+        res.redirect('/setup?id='+parseInt(id));
         return;
     }
 
@@ -304,7 +322,7 @@ function newScan(req, res, next) {
         connectionString.options.appName=req.headers.host;
 
         sqlQuery(connectionString, 'EXECUTE Scan.New_Scan @ID=@ID, @ReferenceCode=@ReferenceCode, @Note=@Note;',
-            [   { "name": 'ID', "type": Types.BigInt, "value": parseInt(req.params.id) },
+            [   { "name": 'ID', "type": Types.BigInt, "value": parseInt(id) },
                 { "name": 'ReferenceCode', "type": Types.VarChar, "value": referenceCode },
                 { "name": 'Note', "type": Types.NVarChar, "value": note }],
 
