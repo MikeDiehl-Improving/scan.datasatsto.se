@@ -25,6 +25,31 @@ field by vendors.
 The solution does not use passwords, with the exception of the EventSecret, which the event owner will need to
 extract reporting data if they don't have database access.
 
+# Setting up the Azure Web App
+
+- Create a new Azure Web App
+  - These instructions are for a Linux-type web app, but they should work with Windows
+- Enviroment variables
+  - Add an environment variable: `PORT`=`8080`
+- Configuration
+  - FTP Basic Auth -> off
+  - FTP state -> Disabled
+  - HTTP version -> 2.0
+- Add a startup command:
+
+```
+npm start
+```
+
+- Deployment Center -> New/Settings
+  - Source: Github
+  - Select your organization and branch
+  - Build Provider: App Service Build Service
+  - Runtime stack: Node, version 22-lts
+- Synchronize the git repo either automatically, or by clicking the "Sync" button. This may take a couple of minutes.
+
+**Important**: Make sure the Build Provider is correctly set. Using the default will break the build for reasons I don't understand.
+
 # Setup
 
 You'll need:
