@@ -29,7 +29,7 @@ extract reporting data if they don't have database access.
 
 - Create a new Azure Web App
   - These instructions are for a Linux-type web app, but they should work with Windows
-- Enviroment variables
+- Enviroment variables (_only on Linux, not on Windows_)
   - Add an environment variable: `PORT`=`8080`
 - Configuration
   - FTP Basic Auth -> off
