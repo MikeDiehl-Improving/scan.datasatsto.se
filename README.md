@@ -233,4 +233,4 @@ Use basic authentication; anything goes in the username field, use your API key 
 
 # Want to contribute?
 
-Pull request welcome. My [DMs are open](https://twitter.com/dhmacher), or create a new issue in the repo.
+Pull request welcome. My [DMs are open](https://bsky.app/profile/dhma.ch), or create a new issue in the repo.
