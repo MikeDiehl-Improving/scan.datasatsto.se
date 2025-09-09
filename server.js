@@ -314,7 +314,8 @@ function newScan(req, res, next) {
         return;
     }
 
-    var note=req.body.note;
+    var note="";
+    if (req.body) { note = req.body.note || "" };
 
     httpHeaders(res);
     try {
