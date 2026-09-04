@@ -516,6 +516,8 @@ app.post('/pdf', async function (req, res, next) {
 
                     var badgeWidth=pdfConfig.pageWidth/pdfConfig.badgeHorizontalCount;
                     var badgeHeight=pdfConfig.pageHeight/pdfConfig.badgeVerticalCount;
+                    var nameFontSize=parseInt(req.body.fontSize || '16');
+                    var descriptionFontSize=Math.max(8, Math.round(nameFontSize*0.6));
                     var badgeCounter=0;
 
                     for (member of blob.identities) {
@@ -539,6 +541,7 @@ app.post('/pdf', async function (req, res, next) {
 
                         // Add the name:
                         if (member.name) {
+                            pdf.fontSize(nameFontSize);
                             pdf.text(member.name, x, y+badgeHeight*(pdfConfig.topPercent+pdfConfig.qrSizePercent*1.1)-pdfConfig.pageTopMargin, {
                                 bold: true,
                                 align: 'center',
@@ -548,6 +551,7 @@ app.post('/pdf', async function (req, res, next) {
 
                         // Add the description/org/role:
                         if (member.description) {
+                            pdf.fontSize(descriptionFontSize);
                             pdf.text(member.description, {
                                 align: 'center',
                                 width: badgeWidth
@@ -937,4 +941,3 @@ function httpHeaders(res) {
 
     return;
 }
-
