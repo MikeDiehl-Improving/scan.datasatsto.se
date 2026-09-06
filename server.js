@@ -573,6 +573,17 @@ app.post('/pdf', async function (req, res, next) {
                     var descriptionFontSize=Math.max(8, Math.round(nameFontSize*0.6));
                     var badgeCounter=0;
                     var isAvery5392=pageSize === 'AVERY_5392';
+                    console.log('PDF renderer:', {
+                        layout: isAvery5392 ? 'AVERY_5392' : 'GENERIC',
+                        pageSize: pageSize,
+                        pageWidth: pdfConfig.pageWidth,
+                        pageHeight: pdfConfig.pageHeight,
+                        badgeWidth: badgeWidth,
+                        badgeHeight: badgeHeight,
+                        badgeHorizontalCount: pdfConfig.badgeHorizontalCount,
+                        badgeVerticalCount: pdfConfig.badgeVerticalCount,
+                        hasAveryZones: Boolean(pdfConfig.avery)
+                    });
 
                     for (member of blob.identities) {
 
@@ -580,10 +591,76 @@ app.post('/pdf', async function (req, res, next) {
                             pdf.addPage(pdfConfig.pageSettings);
                         }
 
-                        var x=badgeWidth*(badgeCounter%pdfConfig.badgeHorizontalCount);
-                        var y=badgeHeight*Math.floor((badgeCounter%(pdfConfig.badgeHorizontalCount*pdfConfig.badgeVerticalCount))/pdfConfig.badgeHorizontalCount);
+                        var column=badgeCounter%pdfConfig.badgeHorizontalCount;
+                        var row=Math.floor((badgeCounter%(pdfConfig.badgeHorizontalCount*pdfConfig.badgeVerticalCount))/
+                            pdfConfig.badgeHorizontalCount);
+                        var x=pdfConfig.badgeLefts ? pdfConfig.badgeLefts[column] : badgeWidth*column;
+                        var y=pdfConfig.badgeTops ? pdfConfig.badgeTops[row] : badgeHeight*row;
 
-                        if (member.id) {
+                        if (badgeCounter < 3) {
+                            console.log('PDF badge placement:', {
+                                badgeNumber: badgeCounter + 1,
+                                renderer: isAvery5392 ? 'AVERY_5392' : 'GENERIC',
+                                column: column,
+                                row: row,
+                                x: x,
+                                y: y,
+                                firstNamePresent: Boolean(member.firstName),
+                                lastNamePresent: Boolean(member.lastName),
+                                fullNamePresent: Boolean(member.name),
+                                hasId: Boolean(member.id)
+                            });
+                        }
+
+                        if (isAvery5392) {
+                            // Keep all variable content below the pre-printed header.
+                            pdf.fontSize(pdfConfig.avery.firstNameFontSize);
+                            pdf.text(member.firstName || member.name || '',
+                                x+pdfConfig.avery.firstNameLeft,
+                                y+pdfConfig.avery.firstNameTop, {
+                                    align: 'center',
+                                    width: pdfConfig.avery.firstNameWidth,
+                                    height: pdfConfig.avery.firstNameHeight
+                                });
+
+                            if (member.lastName) {
+                                pdf.fontSize(pdfConfig.avery.lastNameFontSize);
+                                pdf.text(member.lastName,
+                                    x+pdfConfig.avery.lastNameLeft,
+                                    y+pdfConfig.avery.lastNameTop, {
+                                        align: 'center',
+                                        width: pdfConfig.avery.lastNameWidth,
+                                        height: pdfConfig.avery.lastNameHeight
+                                    });
+                            }
+
+                            if (member.id) {
+                                await qr.toFile(dir+'/'+member.id+'.png',
+                                    'https://'+pdfConfig.siteName+'/'+member.id, { scale: 10 });
+                                pdf.image(dir+'/'+member.id+'.png',
+                                    x+pdfConfig.avery.qrLeft, y+pdfConfig.avery.qrTop,
+                                    { width: pdfConfig.avery.qrSize, height: pdfConfig.avery.qrSize });
+                            }
+
+                            pdf.fontSize(pdfConfig.avery.companyFontSize);
+                            if (member.description) {
+                                pdf.text(member.description.toUpperCase(),
+                                    x+pdfConfig.avery.detailsLeft, y+pdfConfig.avery.detailsTop, {
+                                        width: pdfConfig.avery.detailsWidth,
+                                        height: 16
+                                    });
+                            }
+
+                            if (member.title) {
+                                pdf.fontSize(pdfConfig.avery.jobTitleFontSize);
+                                pdf.text(member.title,
+                                    x+pdfConfig.avery.detailsLeft,
+                                    y+pdfConfig.avery.detailsTop+20, {
+                                        width: pdfConfig.avery.detailsWidth,
+                                        height: pdfConfig.avery.detailsHeight-20
+                                    });
+                            }
+                        } else if (member.id) {
                             await qr.toFile(dir+'/'+member.id+'.png', 'https://'+pdfConfig.siteName+'/'+member.id, { scale: 10 });
 
                             // Add the QR code:
@@ -594,7 +671,7 @@ app.post('/pdf', async function (req, res, next) {
                         }
 
                         // Add the name:
-                        if (member.name) {
+                        if (!isAvery5392 && member.name) {
                             pdf.fontSize(nameFontSize);
                             pdf.text(member.name, x, y+badgeHeight*(pdfConfig.topPercent+pdfConfig.qrSizePercent*1.1)-pdfConfig.pageTopMargin, {
                                 bold: true,
@@ -604,7 +681,7 @@ app.post('/pdf', async function (req, res, next) {
                         }
 
                         // Add the description/org/role:
-                        if (member.description) {
+                        if (!isAvery5392 && member.description) {
                             pdf.fontSize(descriptionFontSize);
                             pdf.text(member.description, {
                                 align: 'center',
@@ -683,17 +760,24 @@ async function parseDelimitedText(dataset) {
     var idHeader=selectHeader(headers, ['id']);
     var emailHeader=selectHeader(headers, ['email']);
     var firstNameHeader=selectHeader(headers, ['firstname', 'givenname']);
-    var lastNameHeader=selectHeader(headers, ['lastname', 'familyname', 'name']);
+    var lastNameHeader=selectHeader(headers, ['lastname', 'familyname']);
+    var nameHeader=selectHeader(headers, ['name']);
     var phoneHeader=selectHeader(headers, ['mobile']);//, 'mobile']);
     var descriptionHeader=selectHeader(headers, ['org', 'company']);
-    var jobTitleHeader=selectHeader(headers, ['jobtitle', 'role', 'title']);
+    var jobTitleHeader=selectHeader(headers, ['jobtitle', 'title']);
     var location=selectHeader(headers, ['location', 'city', 'state', 'country']);
 
     var data=parsedCsv.map(row => {
         var obj={};
         if (idHeader) { obj.id=parseInt(row[idHeader]); }
         if (emailHeader) { obj.email=row[emailHeader]; }
-        if (lastNameHeader) { obj.name=(firstNameHeader ? row[firstNameHeader]+' ' : '')+row[lastNameHeader]; }
+        if (firstNameHeader) { obj.firstName=row[firstNameHeader]; }
+        if (lastNameHeader) { obj.lastName=row[lastNameHeader]; }
+        if (firstNameHeader || lastNameHeader) {
+            obj.name=[obj.firstName, obj.lastName].filter(Boolean).join(' ');
+        } else if (nameHeader) {
+            obj.name=row[nameHeader];
+        }
         if (phoneHeader) { obj.phone=row[phoneHeader]; }
         if (descriptionHeader) { obj.description=row[descriptionHeader]; }
         if (jobTitleHeader) { obj.title=row[jobTitleHeader]; }
