@@ -452,9 +452,45 @@ app.post('/pdf', async function (req, res, next) {
         "EXECUTIVE": { "pageWidth": 521.86, "pageHeight": 756.00 },
         "LEGAL": { "pageWidth": 612.00, "pageHeight": 1008.00 },
         "LETTER": { "pageWidth": 612.00, "pageHeight": 792.00 },
-        "TABLOID": { "pageWidth": 792.00, "pageHeight": 1224.00 }       
+        "TABLOID": { "pageWidth": 792.00, "pageHeight": 1224.00 },
+        "AVERY_5392": {
+            "pageWidth": 612.00,
+            "pageHeight": 792.00,
+            "badgeHorizontalCount": 2,
+            "badgeVerticalCount": 3,
+            "badgeWidth": 288.00,
+            "badgeHeight": 216.00,
+            "badgeLefts": [18.00, 306.00],
+            "badgeTops": [72.00, 288.00, 504.00],
+            "avery": {
+                "reservedTop": 0.00,
+                "reservedBottom": 30.24,
+                "firstNameLeft": 7.20,
+                "firstNameTop": 37.44,
+                "firstNameWidth": 273.60,
+                "firstNameHeight": 36.00,
+                "firstNameFontSize": 28,
+                "lastNameLeft": 7.20,
+                "lastNameTop": 74.88,
+                "lastNameWidth": 273.60,
+                "lastNameHeight": 23.04,
+                "lastNameFontSize": 14,
+                "qrLeft": 12.96,
+                "qrTop": 100.80,
+                "qrSize": 97.20,
+                "detailsLeft": 122.40,
+                "detailsTop": 100.80,
+                "detailsWidth": 152.64,
+                "detailsHeight": 79.20,
+                "companyFontSize": 10,
+                "jobTitleFontSize": 7.5
+            }
+        }
     };
 
+    const requestedPageSize = req.body.paperSize || 'A4';
+    const pageSize = pageSizes[requestedPageSize] ? requestedPageSize : 'A4';
+    const selectedPage = pageSizes[pageSize];
     var pdfConfig={
         "documentInfo": {
             Title: 'Attendee badges',
@@ -466,17 +502,26 @@ app.post('/pdf', async function (req, res, next) {
         // https://pdfkit.org/docs/paper_sizes.html
         "pageSettings": {
             "font": __dirname+'/assets/Montserrat-SemiBold.ttf',
-            "size": (req.body.pageSize || 'A4'),
+            "size": pageSize === 'AVERY_5392'
+                ? [selectedPage.pageWidth, selectedPage.pageHeight]
+                : pageSize,
             "margins": { top: 0, bottom: 0, left: 0, right: 0 }
         },
-        "pageWidth": pageSizes[req.body.pageSize || 'A4'].pageWidth,
-        "pageHeight": pageSizes[req.body.pageSize || 'A4'].pageHeight,
+        "pageWidth": selectedPage.pageWidth,
+        "pageHeight": selectedPage.pageHeight,
         "pageTopMargin": 40,
         "topPercent": 0.5,
 
         "qrSizePercent": parseFloat(req.body.qrSize || '0.15'),
-        "badgeHorizontalCount": parseInt(req.body.badgeCount.split(',')[0] || '2'),
-        "badgeVerticalCount": parseInt(req.body.badgeCount.split(',')[1] || '2'),
+        "badgeHorizontalCount": selectedPage.badgeHorizontalCount ||
+            parseInt((req.body.badgeCount || '2,2').split(',')[0] || '2'),
+        "badgeVerticalCount": selectedPage.badgeVerticalCount ||
+            parseInt((req.body.badgeCount || '2,2').split(',')[1] || '2'),
+        "badgeWidth": selectedPage.badgeWidth,
+        "badgeHeight": selectedPage.badgeHeight,
+        "badgeLefts": selectedPage.badgeLefts,
+        "badgeTops": selectedPage.badgeTops,
+        "avery": selectedPage.avery,
 
         "siteName": req.headers.host
     };
@@ -514,11 +559,14 @@ app.post('/pdf', async function (req, res, next) {
                     //pdf.pipe(fs.createWriteStream('./pdf/Badges_'+blob.eventId+'.pdf'));
                     pdf.pipe(res) // send back as http response
 
-                    var badgeWidth=pdfConfig.pageWidth/pdfConfig.badgeHorizontalCount;
-                    var badgeHeight=pdfConfig.pageHeight/pdfConfig.badgeVerticalCount;
+                    var badgeWidth=pdfConfig.badgeWidth ||
+                        pdfConfig.pageWidth/pdfConfig.badgeHorizontalCount;
+                    var badgeHeight=pdfConfig.badgeHeight ||
+                        pdfConfig.pageHeight/pdfConfig.badgeVerticalCount;
                     var nameFontSize=parseInt(req.body.fontSize || '16');
                     var descriptionFontSize=Math.max(8, Math.round(nameFontSize*0.6));
                     var badgeCounter=0;
+                    var isAvery5392=pageSize === 'AVERY_5392';
 
                     for (member of blob.identities) {
 
