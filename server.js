@@ -660,6 +660,15 @@ app.post('/pdf', async function (req, res, next) {
                                         height: pdfConfig.avery.detailsHeight-20
                                     });
                             }
+
+                            pdf.fontSize(5);
+                            pdf.text('Avery 5392',
+                                x+pdfConfig.avery.detailsLeft,
+                                y+pdfConfig.avery.detailsTop+pdfConfig.avery.detailsHeight-7, {
+                                    align: 'right',
+                                    width: pdfConfig.avery.detailsWidth,
+                                    height: 7
+                                });
                         } else if (member.id) {
                             await qr.toFile(dir+'/'+member.id+'.png', 'https://'+pdfConfig.siteName+'/'+member.id, { scale: 10 });
 
