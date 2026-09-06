@@ -491,6 +491,12 @@ app.post('/pdf', async function (req, res, next) {
     const requestedPageSize = req.body.paperSize || 'A4';
     const pageSize = pageSizes[requestedPageSize] ? requestedPageSize : 'A4';
     const selectedPage = pageSizes[pageSize];
+    console.log('PDF page layout:', {
+        requested: requestedPageSize,
+        resolved: pageSize,
+        badgeColumns: selectedPage.badgeHorizontalCount,
+        badgeRows: selectedPage.badgeVerticalCount
+    });
     var pdfConfig={
         "documentInfo": {
             Title: 'Attendee badges',
