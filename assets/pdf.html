@@ -24,14 +24,14 @@
                 <tr><td>Paper size:</td>
                     <td><select name="paperSize">
                         <option value="A3">ISO A3</option>
-                        <option value="A4" selected>ISO A4</option>
+                        <option value="A4">ISO A4</option>
                         <option value="A5">ISO A5</option>
                         <option value="A6">ISO A6</option>
                         <option value="EXECUTIVE">Executive</option>
                         <option value="LEGAL">Legal</option>
                         <option value="LETTER">Letter</option>
                         <option value="TABLOID">Tabloid</option>                
-                        <option value="AVERY_5392">Avery 5392</option>
+                        <option value="AVERY_5392" selected>Avery 5392</option>
                     </select></td></tr>
                 <tr><td>QR code size</td>
                     <td><select name="qrSize">
@@ -57,6 +57,7 @@
                     </select></td></tr>
                     <tr><td colspan="2"><textarea type="text" name="identities" placeholder="Paste a comma-delimited list of identities here. Column names can include 'id', 'email', 'firstname', 'lastname', 'name', 'description', 'org', 'title', and/or 'location'."></textarea></td></tr>
                     <tr><td colspan="2"><input type="checkbox" name="onlyprintidentities" id="printchkbox"/> <label for="printchkbox">Only print badges for the above identities</label></td></tr>
+                    <tr><td colspan="2"><input type="checkbox" name="updateidentities" id="updatechkbox"/> <label for="updatechkbox">Save the above identity details to the database</label></td></tr>
                     <tr><td colspan="2"><input type="submit" value="Generate printable badges"/></td></tr>
             </table>
         </form>

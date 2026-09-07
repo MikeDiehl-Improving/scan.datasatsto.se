@@ -538,15 +538,51 @@ app.post('/pdf', async function (req, res, next) {
     };
 
     try {
-        var blob=await parseDelimitedText(req.body.identities);
+        var selectedIdentities=[];
+        if (req.body.identities && req.body.identities.trim()) {
+            selectedIdentities=await parseDelimitedText(req.body.identities);
+        }
         console.log('Submitted identities: ' +
-            JSON.stringify(blob.map(identity => ({ id: identity.id, name: identity.name }))));
+            JSON.stringify(selectedIdentities.map(identity => ({ id: identity.id, name: identity.name }))));
 
-        sqlQuery(connectionString, 'EXECUTE Scan.Update_Identities @EventSecret=@EventSecret, @EncryptionKey=@EncryptionKey, @Identities_blob=@blob;\n'+
-                                   'EXECUTE Scan.Get_Identities @EventSecret=@EventSecret, @EncryptionKey=@EncryptionKey;',
+        const shouldUpdateIdentities=req.body.updateidentities === 'on';
+        const shouldOnlyPrintIdentities=req.body.onlyprintidentities === 'on';
+        if (selectedIdentities.length > 0 && selectedIdentities.some(identity =>
+            !Number.isInteger(identity.id))) {
+            res.status(400).send('Each submitted identity must have a valid id.');
+            return;
+        }
+        if (shouldUpdateIdentities) {
+            const requiredUpdateFields=[
+                'id', 'email', 'firstName', 'lastName', 'name',
+                'description', 'title', 'phone', 'location'
+            ];
+            const invalidRow=selectedIdentities.find(identity =>
+                !requiredUpdateFields.every(field =>
+                    Object.prototype.hasOwnProperty.call(identity, field)) ||
+                !Number.isInteger(identity.id));
+
+            if (invalidRow) {
+                res.status(400).send(
+                    'Saving identity details requires columns: id, email, firstname, lastname, ' +
+                    'name, description, title, phone, and location. Each row must have a valid id.'
+                );
+                return;
+            }
+        }
+        const getIdentities=shouldUpdateIdentities
+            ? 'EXECUTE Scan.Update_Identities @EventSecret=@EventSecret, @EncryptionKey=@EncryptionKey, @Identities_blob=@blob;\n'
+            : '';
+        const identityIDs=shouldOnlyPrintIdentities
+            ? JSON.stringify(selectedIdentities.map(identity => identity.id))
+            : null;
+
+        sqlQuery(connectionString, getIdentities+
+                                   'EXECUTE Scan.Get_Identities @EventSecret=@EventSecret, @EncryptionKey=@EncryptionKey, @IdentityIDs=@IdentityIDs;',
             [   { "name": 'EventSecret', "type": Types.UniqueIdentifier, "value": req.body.secret },
                 { "name": 'EncryptionKey', "type": Types.NVarChar, "value": req.body.encryptionKey },
-                { "name": 'blob', "type": Types.NVarChar, "value": JSON.stringify(blob) }],
+                { "name": 'blob', "type": Types.NVarChar, "value": JSON.stringify(selectedIdentities) },
+                { "name": 'IdentityIDs', "type": Types.NVarChar, "value": identityIDs }],
 
             async function(recordset) {
                 if (!recordset) {
@@ -555,6 +591,7 @@ app.post('/pdf', async function (req, res, next) {
                 }
 
                 const blob=JSON.parse(recordset[0].blob);
+
 
                 if (blob.identities!==undefined) {
                     console.log('Loaded identities:',
@@ -804,7 +841,7 @@ async function parseDelimitedText(dataset) {
     var firstNameHeader=selectHeader(headers, ['firstname', 'givenname']);
     var lastNameHeader=selectHeader(headers, ['lastname', 'familyname']);
     var nameHeader=selectHeader(headers, ['name']);
-    var phoneHeader=selectHeader(headers, ['mobile']);//, 'mobile']);
+    var phoneHeader=selectHeader(headers, ['phone', 'mobile']);
     var descriptionHeader=selectHeader(headers, ['org', 'company']);
     var jobTitleHeader=selectHeader(headers, ['jobtitle', 'title']);
     var location=selectHeader(headers, ['location', 'city', 'state', 'country']);
