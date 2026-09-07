@@ -535,8 +535,8 @@ app.post('/pdf', async function (req, res, next) {
 
     try {
         var blob=await parseDelimitedText(req.body.identities);
-        console.log('Submitted identities:',
-            blob.map(identity => ({ id: identity.id, name: identity.name })));
+        console.log('Submitted identities: ' +
+            JSON.stringify(blob.map(identity => ({ id: identity.id, name: identity.name }))));
 
         sqlQuery(connectionString, 'EXECUTE Scan.Update_Identities @EventSecret=@EventSecret, @EncryptionKey=@EncryptionKey, @Identities_blob=@blob;\n'+
                                    'EXECUTE Scan.Get_Identities @EventSecret=@EventSecret, @EncryptionKey=@EncryptionKey;',
@@ -554,7 +554,8 @@ app.post('/pdf', async function (req, res, next) {
 
                 if (blob.identities!==undefined) {
                     console.log('Loaded identities:',
-                        blob.identities.map(identity => ({ id: identity.id, name: identity.name })));
+                        JSON.stringify(blob.identities.map(identity =>
+                            ({ id: identity.id, name: identity.name }))));
 
                     // Create the event directory if it doesn't already exist
                     const dir=__dirname+'/qr/'+(blob.eventName.toLowerCase());
