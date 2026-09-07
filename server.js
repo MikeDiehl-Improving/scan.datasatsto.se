@@ -483,7 +483,7 @@ app.post('/pdf', async function (req, res, next) {
                 "qrTop": 93.60,
                 "qrSize": 97.20,
                 "detailsLeft": 122.40,
-                "detailsTop": 93.60,
+                "detailsTop": 108.00,
                 "detailsWidth": 152.64,
                 "detailsHeight": 79.20,
                 "detailsRoleReserve": 18.00,
