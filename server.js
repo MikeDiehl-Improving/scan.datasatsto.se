@@ -645,10 +645,11 @@ app.post('/pdf', async function (req, res, next) {
 
                             var details=[];
                             if (member.description) {
-                                details.push(member.description.toUpperCase());
+                                details.push(member.description);
                             }
-                            if (member.title) {
-                                details.push(member.title);
+                            var jobTitle=member.jobTitle || member.title;
+                            if (jobTitle) {
+                                details.push(jobTitle);
                             }
                             if (details.length > 0) {
                                 pdf.fontSize(pdfConfig.avery.companyFontSize);
