@@ -463,8 +463,12 @@ app.post('/pdf', async function (req, res, next) {
             "badgeLefts": [18.00, 306.00],
             "badgeTops": [72.00, 288.00, 504.00],
             "avery": {
-                "reservedTop": 0.00,
-                "reservedBottom": 30.24,
+                "reservedZones": [
+                    { "top": 0.00, "bottom": 30.24 },
+                    { "top": 192.96, "bottom": 216.00 }
+                ],
+                "usableTop": 30.24,
+                "usableBottom": 191.52,
                 "firstNameLeft": 7.20,
                 "firstNameTop": 37.44,
                 "firstNameWidth": 273.60,
@@ -476,10 +480,10 @@ app.post('/pdf', async function (req, res, next) {
                 "lastNameHeight": 23.04,
                 "lastNameFontSize": 14,
                 "qrLeft": 12.96,
-                "qrTop": 100.80,
+                "qrTop": 93.60,
                 "qrSize": 97.20,
                 "detailsLeft": 122.40,
-                "detailsTop": 100.80,
+                "detailsTop": 93.60,
                 "detailsWidth": 152.64,
                 "detailsHeight": 79.20,
                 "detailsRoleReserve": 18.00,
@@ -619,6 +623,11 @@ app.post('/pdf', async function (req, res, next) {
                         if (isAvery5392) {
                             // Keep all variable content below the pre-printed header.
                             pdf.fontSize(pdfConfig.avery.firstNameFontSize);
+                            validateAveryElement(pdfConfig.avery, 'first_name',
+                                pdfConfig.avery.firstNameLeft,
+                                pdfConfig.avery.firstNameTop,
+                                pdfConfig.avery.firstNameWidth,
+                                pdfConfig.avery.firstNameHeight);
                             pdf.text(member.firstName || member.name || '',
                                 x+pdfConfig.avery.firstNameLeft,
                                 y+pdfConfig.avery.firstNameTop, {
@@ -629,6 +638,11 @@ app.post('/pdf', async function (req, res, next) {
 
                             if (member.lastName) {
                                 pdf.fontSize(pdfConfig.avery.lastNameFontSize);
+                                validateAveryElement(pdfConfig.avery, 'last_name',
+                                    pdfConfig.avery.lastNameLeft,
+                                    pdfConfig.avery.lastNameTop,
+                                    pdfConfig.avery.lastNameWidth,
+                                    pdfConfig.avery.lastNameHeight);
                                 pdf.text(member.lastName,
                                     x+pdfConfig.avery.lastNameLeft,
                                     y+pdfConfig.avery.lastNameTop, {
@@ -641,6 +655,11 @@ app.post('/pdf', async function (req, res, next) {
                             if (member.id) {
                                 await qr.toFile(dir+'/'+member.id+'.png',
                                     'https://'+pdfConfig.siteName+'/'+member.id, { scale: 10 });
+                                validateAveryElement(pdfConfig.avery, 'qr_code',
+                                    pdfConfig.avery.qrLeft,
+                                    pdfConfig.avery.qrTop,
+                                    pdfConfig.avery.qrSize,
+                                    pdfConfig.avery.qrSize);
                                 pdf.image(dir+'/'+member.id+'.png',
                                     x+pdfConfig.avery.qrLeft, y+pdfConfig.avery.qrTop,
                                     { width: pdfConfig.avery.qrSize, height: pdfConfig.avery.qrSize });
@@ -656,6 +675,12 @@ app.post('/pdf', async function (req, res, next) {
                             }
                             if (details.length > 0) {
                                 pdf.fontSize(pdfConfig.avery.companyFontSize);
+                                validateAveryElement(pdfConfig.avery, 'details',
+                                    pdfConfig.avery.detailsLeft,
+                                    pdfConfig.avery.detailsTop,
+                                    pdfConfig.avery.detailsWidth,
+                                    pdfConfig.avery.detailsHeight -
+                                        pdfConfig.avery.detailsRoleReserve);
                                 pdf.text(details.join('\n'),
                                     x+pdfConfig.avery.detailsLeft,
                                     y+pdfConfig.avery.detailsTop, {
@@ -720,6 +745,16 @@ app.post('/pdf', async function (req, res, next) {
 });
 
 
+function validateAveryElement(averyConfig, elementName, x, y, width, height) {
+    var elementBottom=y+height;
+    var reservedZone=averyConfig.reservedZones.find(zone =>
+        y<zone.bottom && elementBottom>zone.top);
+
+    if (reservedZone) {
+        throw new Error('Avery element "'+elementName+
+            '" intersects a reserved zone.');
+    }
+}
 
 
 // Function to parse the text
