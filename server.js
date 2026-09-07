@@ -482,6 +482,7 @@ app.post('/pdf', async function (req, res, next) {
                 "detailsTop": 100.80,
                 "detailsWidth": 152.64,
                 "detailsHeight": 79.20,
+                "detailsRoleReserve": 18.00,
                 "companyFontSize": 10,
                 "jobTitleFontSize": 7.5
             }
@@ -642,22 +643,23 @@ app.post('/pdf', async function (req, res, next) {
                                     { width: pdfConfig.avery.qrSize, height: pdfConfig.avery.qrSize });
                             }
 
-                            pdf.fontSize(pdfConfig.avery.companyFontSize);
+                            var details=[];
                             if (member.description) {
-                                pdf.text(member.description.toUpperCase(),
-                                    x+pdfConfig.avery.detailsLeft, y+pdfConfig.avery.detailsTop, {
-                                        width: pdfConfig.avery.detailsWidth,
-                                        height: 16
-                                    });
+                                details.push(member.description.toUpperCase());
                             }
-
                             if (member.title) {
-                                pdf.fontSize(pdfConfig.avery.jobTitleFontSize);
-                                pdf.text(member.title,
+                                details.push(member.title);
+                            }
+                            if (details.length > 0) {
+                                pdf.fontSize(pdfConfig.avery.companyFontSize);
+                                pdf.text(details.join('\n'),
                                     x+pdfConfig.avery.detailsLeft,
-                                    y+pdfConfig.avery.detailsTop+20, {
+                                    y+pdfConfig.avery.detailsTop, {
+                                        align: 'left',
                                         width: pdfConfig.avery.detailsWidth,
-                                        height: pdfConfig.avery.detailsHeight-20
+                                        height: pdfConfig.avery.detailsHeight -
+                                            pdfConfig.avery.detailsRoleReserve,
+                                        lineGap: 1
                                     });
                             }
 
