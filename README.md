@@ -146,14 +146,16 @@ EXECUTE Scan.Update_Identities
     @EventSecret='{secret}',
     @EncryptionKey='',
     @Identities_blob=N'[
-        {"id": 1000012345, "name": "Name goes here", "description": "This is a demo"},
+        {"id": 1000012345, "firstName": "First", "lastName": "Last", "description": "This is a demo"},
         {"id": 1000012346, "name": "Another name"}
     ]';
 ```
 
 Valid attributes for the JSON blob are:
 - id (**required**)
-- name (200 characters)
+- name (200 characters; retained for backwards compatibility)
+- firstName (250 characters)
+- lastName (250 characters)
 - description (400 characters)
 - jobTitle (150 characters)
 - phone (150 characters)

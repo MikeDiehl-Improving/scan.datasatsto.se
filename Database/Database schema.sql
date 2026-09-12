@@ -18,11 +18,13 @@ CREATE TABLE Scan.Identities (
     ID          bigint NOT NULL,
     Created     datetime2(3) NOT NULL,
 	[Name]      varbinary(250) NULL,
+	[FirstName] varbinary(250) NULL,
+	[LastName]  varbinary(250) NULL,
 	[Description] varbinary(500) NULL,
 	JobTitle    varbinary(200) NULL,
 	Email       varbinary(200) NULL,
 	Phone       varbinary(50) NULL,
-	[Location]  varbinary(200) NULL
+	[Location]  varbinary(200) NULL,
     CONSTRAINT PK_Scan_Identities PRIMARY KEY CLUSTERED (ID),
     CONSTRAINT FK_Scan_Identities_Events FOREIGN KEY (EventID) REFERENCES Scan.Events (EventID)
 );
@@ -193,6 +195,8 @@ AS
 
 SELECT i.ID, s.Scanned, s.ReferenceCode AS Code, s.Note,
        CAST(DECRYPTBYPASSPHRASE(@EncryptionKey, i.[Name]) AS nvarchar(max)) AS [name],
+       CAST(DECRYPTBYPASSPHRASE(@EncryptionKey, i.[FirstName]) AS nvarchar(max)) AS firstName,
+       CAST(DECRYPTBYPASSPHRASE(@EncryptionKey, i.[LastName]) AS nvarchar(max)) AS lastName,
        CAST(DECRYPTBYPASSPHRASE(@EncryptionKey, i.[Description]) AS nvarchar(max)) AS [description],
        CAST(DECRYPTBYPASSPHRASE(@EncryptionKey, i.JobTitle) AS nvarchar(max)) AS jobTitle,
        CAST(DECRYPTBYPASSPHRASE(@EncryptionKey, i.Phone) AS nvarchar(max)) AS phone,
@@ -226,6 +230,8 @@ SELECT (
         e.Event AS eventName,
         (SELECT i.ID AS id,
                 CONVERT(nvarchar(250), DECRYPTBYPASSPHRASE(@EncryptionKey, [Name])) AS [name],
+                CONVERT(nvarchar(250), DECRYPTBYPASSPHRASE(@EncryptionKey, [FirstName])) AS firstName,
+                CONVERT(nvarchar(250), DECRYPTBYPASSPHRASE(@EncryptionKey, [LastName])) AS lastName,
                 CONVERT(nvarchar(500), DECRYPTBYPASSPHRASE(@EncryptionKey, [Description])) AS [description],
                 CONVERT(nvarchar(200), DECRYPTBYPASSPHRASE(@EncryptionKey, JobTitle)) AS jobTitle,
                 CONVERT(nvarchar(50),  DECRYPTBYPASSPHRASE(@EncryptionKey, Phone)) AS phone,
@@ -253,9 +259,12 @@ CREATE OR ALTER PROCEDURE [Scan].[Get_Random]
 AS
 
 SELECT TOP (1) ID, Scanned, Code,
-       CAST(DECRYPTBYPASSPHRASE(@EncryptionKey, [name]) AS nvarchar(max)) AS [Name]
+       CAST(DECRYPTBYPASSPHRASE(@EncryptionKey, [name]) AS nvarchar(max)) AS [Name],
+       CAST(DECRYPTBYPASSPHRASE(@EncryptionKey, [FirstName]) AS nvarchar(max)) AS firstName,
+       CAST(DECRYPTBYPASSPHRASE(@EncryptionKey, [LastName]) AS nvarchar(max)) AS lastName
 FROM (
-    SELECT DISTINCT i.ID, s.Scanned, s.ReferenceCode AS Code, i.[Name]
+    SELECT DISTINCT i.ID, s.Scanned, s.ReferenceCode AS Code,
+                    i.[Name], i.[FirstName], i.[LastName]
     FROM Scan.Events AS e
     INNER JOIN Scan.Identities AS i ON e.EventID=i.EventID
     INNER JOIN Scan.Scans AS s ON i.ID=s.ID
@@ -312,12 +321,14 @@ GO
 --- encryption key can be applied using the @EncryptionKey parameter.
 ---
 --- The JSON blob should look like this:
---- [{ "id": 123456, "name": "Firstname Lastname", "description: "Company" }, ...]
+--- [{ "id": 123456, "firstName": "Firstname", "lastName": "Lastname", "description: "Company" }, ...]
 ---
 --- Valid attributes are:
 ---
 --- * id: the unique identity (int)
 --- * name: nvarchar(200)
+--- * firstName: nvarchar(250)
+--- * lastName: nvarchar(250)
 --- * description: nvarchar(400)
 --- * jobTitle: nvarchar(150)
 --- * phone: nvarchar(150)
@@ -352,7 +363,7 @@ WHERE ID NOT IN (SELECT ID FROM Scan.Identities);
 
 
 WITH i AS (
-    SELECT EventID, ID, [Name], [Description], JobTitle, Email, Phone, [Location], Created
+    SELECT EventID, ID, [Name], [FirstName], [LastName], [Description], JobTitle, Email, Phone, [Location], Created
     FROM Scan.Identities
     WHERE EventID=@EventID),
 
@@ -360,6 +371,8 @@ j AS (
     SELECT ROW_NUMBER() OVER (ORDER BY id) AS _rowno,
            id AS ID,
            ENCRYPTBYPASSPHRASE(@EncryptionKey, NULLIF([name], N'')) AS [Name],
+           ENCRYPTBYPASSPHRASE(@EncryptionKey, NULLIF([firstName], N'')) AS [FirstName],
+           ENCRYPTBYPASSPHRASE(@EncryptionKey, NULLIF([lastName], N'')) AS [LastName],
            ENCRYPTBYPASSPHRASE(@EncryptionKey, NULLIF([description], N'')) AS [Description],
            ENCRYPTBYPASSPHRASE(@EncryptionKey, NULLIF(jobTitle, N'')) AS JobTitle,
            ENCRYPTBYPASSPHRASE(@EncryptionKey, NULLIF(phone, N'')) AS Phone,
@@ -369,6 +382,8 @@ j AS (
     FROM OPENJSON(NULLIF(@Identities_blob, N'')) WITH (
         id              bigint          '$.id',
         [name]          nvarchar(max)   '$.name',
+        [firstName]     nvarchar(max)   '$.firstName',
+        [lastName]      nvarchar(max)   '$.lastName',
         [description]   nvarchar(max)   '$.description',
         jobTitle        nvarchar(max)   '$.jobTitle',
         phone           nvarchar(max)   '$.phone',
@@ -377,13 +392,15 @@ j AS (
 
 blob AS (
     SELECT ISNULL(j.ID, id.ID) AS ID,
-           j.[Name], j.[Description],
+           j.[Name], j.[FirstName], j.[LastName], j.[Description],
            j.JobTitle, j.Phone, j.Email, j.[Location]
     FROM j
     LEFT JOIN #idents AS id ON j._rowno=id._rowno
     WHERE j._duplicate=1
       AND (j.ID IS NOT NULL OR
            j.[Name] IS NOT NULL OR
+           j.[FirstName] IS NOT NULL OR
+           j.[LastName] IS NOT NULL OR
            j.[Description] IS NOT NULL OR
            j.JobTitle IS NOT NULL OR
            j.Phone IS NOT NULL OR
@@ -394,13 +411,15 @@ MERGE INTO i
 USING blob ON (i.ID=blob.ID OR blob.ID IS NULL AND i.Email=blob.Email)
 
 WHEN NOT MATCHED BY TARGET THEN
-    INSERT (EventID, ID, [Name], [Description], JobTitle, Email, Phone, [Location], Created)
-    VALUES (@EventID, blob.ID, blob.[Name], blob.[Description], blob.JobTitle, blob.Email, blob.Phone, blob.[Location], SYSDATETIME())
+    INSERT (EventID, ID, [Name], [FirstName], [LastName], [Description], JobTitle, Email, Phone, [Location], Created)
+    VALUES (@EventID, blob.ID, blob.[Name], blob.[FirstName], blob.[LastName], blob.[Description], blob.JobTitle, blob.Email, blob.Phone, blob.[Location], SYSDATETIME())
 
 WHEN MATCHED THEN
     UPDATE
     SET i.ID=blob.ID,
         i.[Name]=blob.[Name],
+        i.[FirstName]=blob.[FirstName],
+        i.[LastName]=blob.[LastName],
         i.[Description]=blob.[Description],
         i.JobTitle=blob.JobTitle,
         i.Email=blob.Email,
