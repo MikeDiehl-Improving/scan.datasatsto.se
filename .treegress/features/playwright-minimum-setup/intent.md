@@ -1,0 +1,1 @@
+Configure the repository for minimal Playwright browser testing: register an e2e-playwright Treegress runner, start the existing app for browser tests, add a Playwright config and one browser smoke test, and install/run Chromium in CI.

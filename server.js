@@ -282,7 +282,7 @@ app.get('/setup', function (req, res, next) {
         // This creates/renews a session cookie, used to create/maintain the user session:
         req.session.dummy=Date.now();        // Prevent the session from expiring.
 
-        res.status(200).send(createHTML('assets/setup.html', { "Code": (req.session.vendorCode || "") }));
+        res.status(200).send(createHTML('assets/setup.html', { "VendorCode": (req.session.vendorCode || "") }));
     }
 
 
@@ -290,8 +290,8 @@ app.get('/setup', function (req, res, next) {
 
 app.post('/setup', function (req, res, next) {
 
-    req.session.vendorCode = req.body.code;
-    res.status(200).send(createHTML('assets/ok.html', { "Code": req.body.code }));
+    req.session.vendorCode = req.body.vendorCode;
+    res.status(200).send(createHTML('assets/ok.html', { "VendorCode": req.body.vendorCode }));
 
 });
 
@@ -305,26 +305,26 @@ app.post('/setup', function (req, res, next) {
 
 
 /*-----------------------------------------------------------------------------
-  Scan a code:
+  Scan using a vendor code:
   ---------------------------------------------------------------------------*/
 
-app.post(/^\/([0-9]*)\/([^\/]+)$/, newScan);  // POST with ID and code
-app.get(/^\/([0-9]*)\/([^\/]+)$/, newScan);   // GET with ID and code
+app.post(/^\/([0-9]*)\/([^\/]+)$/, newScan);  // POST with ID and vendorCode
+app.get(/^\/([0-9]*)\/([^\/]+)$/, newScan);   // GET with ID and vendorCode
 app.get(/^\/([0-9]*)$/, newScan);            // GET with ID only
 
 function newScan(req, res, next) {
 
     const id = req.params[0];
-    const code = req.params[1] || null;
+    const vendorCode = req.params[1] || null;
   
-    if (code) {
-        if (code.includes('favicon')) {
+    if (vendorCode) {
+        if (vendorCode.includes('favicon')) {
             res.status(404).send('');
             return;
         }
     }
 
-    var referenceCode=decodeURI(code || '') || req.session.vendorCode || "";
+    var referenceCode=decodeURI(vendorCode || '') || req.session.vendorCode || "";
     if (!referenceCode) {
         res.redirect('/setup?id='+parseInt(id));
         return;
@@ -348,7 +348,7 @@ function newScan(req, res, next) {
                     // Set the exhibitor code to the one we're using now:
                     req.session.vendorCode = referenceCode;
 
-                    res.status(200).send(createHTML('assets/ok.html', { "Code": (referenceCode || '(No exhibitor code)') }));
+                    res.status(200).send(createHTML('assets/ok.html', { "VendorCode": (referenceCode || '(No exhibitor code)') }));
                     return;
                 } else {
                     res.status(500).send(createHTML('assets/error.html', { "Msg": "That code didn't look right." }));
@@ -370,7 +370,7 @@ function newScan(req, res, next) {
   View all scans:
   ---------------------------------------------------------------------------*/
 
-app.get('/report/:secret', function (req, res, next) {
+app.get('/report/:event', function (req, res, next) {
     
       httpHeaders(res);
       try {
@@ -378,7 +378,7 @@ app.get('/report/:secret', function (req, res, next) {
           connectionString.options.appName=req.headers.host;
   
           sqlQuery(connectionString, 'EXECUTE Scan.Get_Scans @EventSecret=@EventSecret;',
-              [   { "name": 'EventSecret', "type": Types.UniqueIdentifier, "value": decodeURI(req.params.secret) }],
+              [   { "name": 'EventSecret', "type": Types.UniqueIdentifier, "value": decodeURI(req.params.event) }],
   
               async function(recordset) {
                 if (!recordset || recordset.length === 0) {
@@ -403,13 +403,13 @@ app.get('/report/:secret', function (req, res, next) {
   View one random scan:
   ---------------------------------------------------------------------------*/
 
-app.get('/random/:secret/:code', randomScan);
-app.get('/random/:secret', randomScan);
+app.get('/random/:event/:vendorCode', randomScan);
+app.get('/random/:event', randomScan);
 
 function randomScan (req, res, next) {
 
     // If we passed a vendor code, use that, otherwise, set referenceCode=null (any/no vendor)
-    var referenceCode=decodeURI(req.params.code || '');
+    var referenceCode=decodeURI(req.params.vendorCode || '');
 
     httpHeaders(res);
     try {
@@ -417,7 +417,7 @@ function randomScan (req, res, next) {
         connectionString.options.appName=req.headers.host;
 
         sqlQuery(connectionString, 'EXECUTE Scan.Get_Random @ReferenceCode=@ReferenceCode, @EventSecret=@EventSecret;',
-            [   { "name": 'EventSecret', "type": Types.UniqueIdentifier, "value": decodeURI(req.params.secret) },
+            [   { "name": 'EventSecret', "type": Types.UniqueIdentifier, "value": decodeURI(req.params.event) },
                 { "name": 'ReferenceCode', "type": Types.NVarChar, "value": referenceCode }],
 
             async function(recordset) {
@@ -450,9 +450,12 @@ function randomScan (req, res, next) {
 
 
 // Input form to generate the PDF document:
-app.get('/pdf/:secret', async function (req, res, next) {
-    res.status(200).send(createHTML('assets/pdf.html', { "Secret": (decodeURI(req.params.secret) || '') }));
-});
+app.get('/pdf', pdfForm);
+app.get('/pdf/:event', pdfForm);
+
+function pdfForm (req, res, next) {
+    res.status(200).send(createHTML('assets/pdf.html', { "Event": (decodeURI(req.params.event) || '') }));
+}
 
 
 // Generate the PDF document:
@@ -599,14 +602,14 @@ app.post('/pdf', async function (req, res, next) {
 
         sqlQuery(connectionString, getIdentities+
                                    'EXECUTE Scan.Get_Identities @EventSecret=@EventSecret, @EncryptionKey=@EncryptionKey, @IdentityIDs=@IdentityIDs;',
-            [   { "name": 'EventSecret', "type": Types.UniqueIdentifier, "value": req.body.secret },
+            [   { "name": 'EventSecret', "type": Types.UniqueIdentifier, "value": req.body.event },
                 { "name": 'EncryptionKey', "type": Types.NVarChar, "value": req.body.encryptionKey },
                 { "name": 'blob', "type": Types.NVarChar, "value": JSON.stringify(selectedIdentities) },
                 { "name": 'IdentityIDs', "type": Types.NVarChar, "value": identityIDs }],
 
             async function(recordset) {
                 if (!recordset) {
-                    res.status(401).send('Invalid or missing event secret.');
+                    res.status(401).send('Invalid or missing event.');
                     return;
                 }
 

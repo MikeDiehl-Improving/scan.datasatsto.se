@@ -1,0 +1,87 @@
+{
+  "feature_id": "playwright-minimum-setup",
+  "version": 1,
+  "status": "approved",
+  "approval": {
+    "hash": "sha256:c267f2798c336818ab9d2103bba5623644490039abacf3dfa38d0ff394846205",
+    "approved_at": "2026-09-13T19:37:04.585Z"
+  },
+  "scenarios": [
+    {
+      "id": "playwright.smokepass",
+      "title": "Browser smoke test successfully loads the application in Chromium",
+      "given": [
+        "the application is available for testing",
+        "Playwright is configured to run tests using Chromium"
+      ],
+      "when": "the browser smoke test is executed against the application",
+      "then": [
+        "a Chromium browser instance launches and navigates to the application entry point (e.g. /)",
+        "the application page loads and renders successfully",
+        "the browser smoke test passes"
+      ],
+      "priority": "critical",
+      "negative": false
+    },
+    {
+      "id": "playwright.runnerexecution",
+      "title": "Treegress e2e-playwright runner starts application and executes browser tests",
+      "given": [
+        "the e2e-playwright runner is registered with Treegress",
+        "the repository is configured to start the web application during test execution"
+      ],
+      "when": "the e2e-playwright runner is invoked",
+      "then": [
+        "the web application is automatically started",
+        "the browser test suite is run against the active application",
+        "the runner reports successful test completion"
+      ],
+      "priority": "critical",
+      "negative": false
+    },
+    {
+      "id": "playwright.cirun",
+      "title": "CI workflow installs Chromium and executes the e2e-playwright runner",
+      "given": [
+        "the continuous integration pipeline is configured for browser testing"
+      ],
+      "when": "the CI pipeline runs the browser test job",
+      "then": [
+        "Chromium and necessary browser dependencies are installed in the environment",
+        "the e2e-playwright runner executes within CI",
+        "the CI test job completes with a passing status"
+      ],
+      "priority": "high",
+      "negative": false
+    },
+    {
+      "id": "playwright.smokefail",
+      "title": "Runner reports failure when a browser smoke test assertion fails",
+      "given": [
+        "the e2e-playwright runner is executed",
+        "a browser test encounters an assertion mismatch or application failure"
+      ],
+      "when": "the test run finishes",
+      "then": [
+        "the runner reports the specific test failure",
+        "the runner exits with a non-zero failure status"
+      ],
+      "priority": "normal",
+      "negative": true
+    },
+    {
+      "id": "playwright.appstartupfailure",
+      "title": "Runner reports an error when the application server fails to start",
+      "given": [
+        "the application server fails to start or does not become ready within the timeout period"
+      ],
+      "when": "the e2e-playwright runner is invoked",
+      "then": [
+        "the runner detects that the application server is unavailable",
+        "the runner terminates and reports a failure indicating the web server failed to start"
+      ],
+      "priority": "normal",
+      "negative": true
+    }
+  ]
+}

@@ -9,7 +9,7 @@ describe('scanner setup form with no prior session vendor code', () => {
         const res = await request(app).get('/setup');
 
         expect(res.status).toBe(200);
-        expect(res.text).toContain('name="code"');
+        expect(res.text).toContain('name="vendorCode"');
         expect(res.text).toContain('value=""');
     });
 });

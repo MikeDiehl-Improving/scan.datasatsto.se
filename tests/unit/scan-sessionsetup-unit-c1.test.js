@@ -13,7 +13,7 @@ describe('scan request reusing a vendor code established via /setup', () => {
     it('shows the confirmation page displaying the setup-established vendor code', async () => {
         const agent = request.agent(app);
 
-        await agent.post('/setup').send({ code: 'BOOTH77' });
+        await agent.post('/setup').send({ vendorCode: 'BOOTH77' });
 
         queueTediousRows([{ ID: 1 }]);
         const res = await agent.get('/12345');

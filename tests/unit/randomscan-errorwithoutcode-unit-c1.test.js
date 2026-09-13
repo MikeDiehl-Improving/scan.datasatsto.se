@@ -13,7 +13,7 @@ describe('random scan lookup without reference code when the SQL statement fails
     it('returns an HTTP 200 response with an empty body', async () => {
         queueTediousError(new Error('simulated statement failure'));
 
-        const res = await request(app).get('/random/validsecret');
+        const res = await request(app).get('/random/validevent');
 
         expect(res.status).toBe(200);
         expect(res.text).toBe('');

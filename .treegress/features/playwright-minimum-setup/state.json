@@ -1,0 +1,20 @@
+{
+  "feature_id": "playwright-minimum-setup",
+  "state": "VERIFYING",
+  "plan_version": 2,
+  "strategy_version": 2,
+  "approvals": {
+    "test_plan": {
+      "version": 2,
+      "hash": "sha256:c267f2798c336818ab9d2103bba5623644490039abacf3dfa38d0ff394846205",
+      "approved_at": "2026-09-13T19:37:56.353Z"
+    },
+    "test_strategy": {
+      "version": 2,
+      "hash": "sha256:947306c13d5a514528af30b0cc86d1ac54e23a046f0f4e3008c9b54112358e32",
+      "approved_at": "2026-09-13T19:38:55.318Z",
+      "self_approved": true
+    }
+  },
+  "updated_at": "2026-09-13T19:40:15.165Z"
+}

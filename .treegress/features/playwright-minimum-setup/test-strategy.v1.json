@@ -1,0 +1,63 @@
+{
+  "feature_id": "playwright-minimum-setup",
+  "plan_version": 1,
+  "version": 1,
+  "status": "stale",
+  "scenario_strategies": [
+    {
+      "scenario_id": "playwright.smokepass",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Validate browser smoke test runner configuration and successful launch/navigation verification logic.",
+          "reason": "Only unit runner is available in this repository; verifies smoke test execution logic in isolation. Would gain e2e-playwright coverage at thorough."
+        }
+      ]
+    },
+    {
+      "scenario_id": "playwright.runnerexecution",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Validate runner orchestration logic for starting application web server and reporting test completion.",
+          "reason": "Only unit runner is configured; proves lifecycle orchestration and process execution logic in isolation. Would gain e2e-playwright coverage at thorough."
+        }
+      ]
+    },
+    {
+      "scenario_id": "playwright.cirun",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Validate CI configuration and execution scripts for dependency setup and runner invocation.",
+          "reason": "Unit testing validates CI workflow definitions and command invocations given only unit runner is available. Would gain e2e-playwright coverage at thorough."
+        }
+      ]
+    },
+    {
+      "scenario_id": "playwright.smokefail",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Validate runner failure reporting and non-zero exit code dispatch upon test assertion failure.",
+          "reason": "Unit test proves assertion error handling and process exit code propagation in isolation without needing live browsers."
+        }
+      ]
+    },
+    {
+      "scenario_id": "playwright.appstartupfailure",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Validate server readiness detection, startup timeout handling, and runner failure termination reporting.",
+          "reason": "Unit test verifies timeout handling and server availability error detection logic in isolation."
+        }
+      ]
+    }
+  ]
+}

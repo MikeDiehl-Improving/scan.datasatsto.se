@@ -17,8 +17,8 @@
     <div class="msgbox">
         <form action="/pdf" method="post" autocomplete="false">
             <table>
-                <tr><td>Event secret:</td>
-                    <td><input type="text" name="secret" placeholder="Event secret (required)" value="<%=Secret%>"></td></tr>
+                <tr><td>Event:</td>
+                    <td><input type="text" name="event" placeholder="Event (required)" value="<%=Event%>"></td></tr>
                 <tr><td>Encryption key:</td>
                     <td><input type="text" name="encryptionKey" placeholder="Encryption pass phrase"></td></tr>
                 <tr><td>Paper size:</td>
@@ -30,7 +30,7 @@
                         <option value="EXECUTIVE">Executive</option>
                         <option value="LEGAL">Legal</option>
                         <option value="LETTER">Letter</option>
-                        <option value="TABLOID">Tabloid</option>                
+                        <option value="TABLOID">Tabloid</option>
                         <option value="AVERY_5392" selected>Avery 5392</option>
                     </select></td></tr>
                 <tr><td>QR code size</td>

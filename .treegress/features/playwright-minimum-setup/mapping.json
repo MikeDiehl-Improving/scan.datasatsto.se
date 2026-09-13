@@ -1,0 +1,73 @@
+{
+  "feature_id": "playwright-minimum-setup",
+  "plan_version": 2,
+  "strategy_version": 2,
+  "entries": [
+    {
+      "scenario_id": "playwright.smokepass",
+      "obligations": [
+        {
+          "skill": "e2e-playwright",
+          "obligation_id": "playwright.smokepass.e2e-playwright.c1",
+          "test_ids": [
+            "e2e:api-page-smoke"
+          ],
+          "evidence_ids": [],
+          "reused": true,
+          "user_authored": true
+        }
+      ]
+    },
+    {
+      "scenario_id": "playwright.runnerexecution",
+      "obligations": [
+        {
+          "skill": "e2e-playwright",
+          "obligation_id": "playwright.runnerexecution.e2e-playwright.c1",
+          "test_ids": [
+            "e2e:playwright-runnerexecution-e2e-playwright-c1"
+          ],
+          "evidence_ids": [],
+          "reused": true,
+          "user_authored": true
+        }
+      ]
+    },
+    {
+      "scenario_id": "playwright.cirun",
+      "obligations": [
+        {
+          "skill": "unit",
+          "obligation_id": "playwright.cirun.unit.c1",
+          "test_ids": [],
+          "evidence_ids": [],
+          "reused": false
+        }
+      ]
+    },
+    {
+      "scenario_id": "playwright.smokefail",
+      "obligations": [
+        {
+          "skill": "unit",
+          "obligation_id": "playwright.smokefail.unit.c1",
+          "test_ids": [],
+          "evidence_ids": [],
+          "reused": false
+        }
+      ]
+    },
+    {
+      "scenario_id": "playwright.appstartupfailure",
+      "obligations": [
+        {
+          "skill": "unit",
+          "obligation_id": "playwright.appstartupfailure.unit.c1",
+          "test_ids": [],
+          "evidence_ids": [],
+          "reused": false
+        }
+      ]
+    }
+  ]
+}

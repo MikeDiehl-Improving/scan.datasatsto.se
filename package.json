@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "start": "node ./server.js",
-    "test": "npx vitest run"
+    "test": "npx vitest run",
+    "test:e2e": "playwright test"
   },
   "dependencies": {
     "cookie-session": "*",
@@ -19,6 +20,7 @@
     "treegress-local": "^0.1.26"
   },
   "devDependencies": {
+    "@playwright/test": "^1.55.0",
     "supertest": "^7.2.2",
     "vitest": "^5.0.0"
   }

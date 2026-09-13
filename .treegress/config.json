@@ -8,7 +8,19 @@
     "unit": {
       "adapter": "vitest",
       "command": "npx vitest run"
+    },
+    "e2e-playwright": {
+      "adapter": "playwright",
+      "command": "npx playwright test",
+      "configPath": "playwright.config.js"
     }
+  },
+  "webServer": {
+    "command": "npm start",
+    "url": "http://localhost:3000",
+    "healthcheckPath": "/",
+    "timeoutMs": 60000,
+    "reuseExisting": true
   },
   "envPassthrough": [],
   "docs": [

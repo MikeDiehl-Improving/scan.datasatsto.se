@@ -13,7 +13,7 @@ if (!csvPath) {
     process.exit(1);
 }
 
-const requiredEnvironment = ['dbserver', 'dbname', 'dblogin', 'dbpassword', 'EVENT_SECRET'];
+const requiredEnvironment = ['dbserver', 'dbname', 'dblogin', 'dbpassword', 'EVENT'];
 const missingEnvironment = requiredEnvironment.filter((name) => !process.env[name]);
 if (missingEnvironment.length > 0) {
     console.error(`Missing environment variables: ${missingEnvironment.join(', ')}`);
@@ -149,7 +149,7 @@ function updateIdentities(identities) {
                 '@Identities_blob=@Identities_blob;',
                 finish
             );
-            request.addParameter('EventSecret', Types.UniqueIdentifier, process.env.EVENT_SECRET);
+            request.addParameter('EventSecret', Types.UniqueIdentifier, process.env.EVENT);
             request.addParameter('EncryptionKey', Types.NVarChar, process.env.ENCRYPTION_KEY || '');
             request.addParameter('Identities_blob', Types.NVarChar, JSON.stringify(identities));
             connection.execSql(request);

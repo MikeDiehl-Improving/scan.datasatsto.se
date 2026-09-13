@@ -8,8 +8,8 @@ describe('interactive API inputs', () => {
     it('renders parameter input fields', async () => {
         const res = await request(app).get('/');
         expect(res.text).toContain('name="event"');
-        expect(res.text).toContain('name="secret"');
-        expect(res.text).toContain('name="code"');
+        expect(res.text).toContain('name="event"');
+        expect(res.text).toContain('name="vendorCode"');
         expect(res.text).toContain('type="submit"');
     });
 });

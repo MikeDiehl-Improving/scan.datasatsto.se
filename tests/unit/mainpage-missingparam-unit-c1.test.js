@@ -8,12 +8,12 @@ describe('missing API parameters', () => {
     it('displays a required indication and prevents execution', () => {
         let error;
         try {
-            buildApiRequest(row('/report/:secret'), new TestFormData({ secret: '' }));
+            buildApiRequest(row('/report/:event'), new TestFormData({ event: '' }));
         } catch (caught) {
             error = caught;
         }
-        expect(formatApiError(error)).toContain('secret is required');
-        expect(() => buildApiRequest(row('/report/:secret'), new TestFormData({ secret: '' }))).toThrow();
+        expect(formatApiError(error)).toContain('event is required');
+        expect(() => buildApiRequest(row('/report/:event'), new TestFormData({ event: '' }))).toThrow();
         expect(formatApiError(error)).not.toContain('200 OK');
     });
 });

@@ -22,8 +22,8 @@ This means that you'll have to connect those IDs to your attendee records yourse
 No IP addresses, locations, etc, are used or checked or stored, unless specifically entered in the note
 field by vendors.
 
-The solution does not use passwords, with the exception of the EventSecret, which the event owner will need to
-extract reporting data if they don't have database access.
+The solution does not use passwords. The event GUID is used to extract reporting data when the event owner
+doesn't have database access.
 
 # Setup
 
@@ -113,7 +113,7 @@ Not supported in the API.
 EXECUTE Scan.New_Event @Event;
 ```
 
-The stored procedure returns an "EventSecret", which acts like an API key or password, used to access event data. Store this event secret if you don't have access to the production database.
+The stored procedure returns an event GUID used to access event data. Store this event GUID if you don't have access to the production database.
 
 ## Add a new identity (attendee)
 
@@ -143,7 +143,7 @@ Currently only available in the database, you can store the names, titles and co
 
 ```
 EXECUTE Scan.Update_Identities
-    @EventSecret='{secret}',
+    @EventSecret='{event}',
     @EncryptionKey='',
     @Identities_blob=N'[
         {"id": 1000012345, "firstName": "First", "lastName": "Last", "description": "This is a demo"},
@@ -170,13 +170,13 @@ If you do not specify the `@EncryptionKey` parameter, a blank string is used as 
 
 `GET /{identity}`
 
-`GET /{identity}/{code}`
+`GET /{identity}/{vendorCode}`
 
-`POST /{identity}/{code}` with `note` parameter
+`POST /{identity}/{vendorCode}` with `note` parameter
 
 Scans the identity. Code is optional, and can be added to re-use the identity
 for multiple purposes/exhibitors/etc. Remember that the QR URL only contains
-the identity, not the code.
+the identity, not the vendorCode.
 
 Displays a very brief status to the user to indicate if the scan was successful.
 
@@ -200,11 +200,11 @@ When the cookie is set in the browser, all scans made with that browser will
 include this code. The cookie expires after 24 hours.
 
 You programmatically set the cookie by using a POST request to /setup, with
-the exhibitor code in the "code" parameter.
+the vendor code in the "vendorCode" parameter.
 
 ## Retrieve a list of scans
 
-`GET /report/{secret}`
+`GET /report/{event}`
 
 Returns a JSON report of all identities, whether scanned or not. If the identity was
 not scanned, the "Scanned" property is blank.
@@ -226,9 +226,9 @@ Example output:
 
 ## View one random scan
 
-`GET /random/{secret}/{code}`
+`GET /random/{event}/{vendorCode}`
 
-`GET /random/{secret}`
+`GET /random/{event}`
 
 Returns a single, random scan.
 

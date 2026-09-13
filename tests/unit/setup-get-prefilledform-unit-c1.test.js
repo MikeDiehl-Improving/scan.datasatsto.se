@@ -7,7 +7,7 @@ describe('scanner setup form with an existing session vendor code', () => {
        authored via treegress_author_tests (SPEC §7.4 amendment #53); assert EXACTLY the then-clauses below. Keep this marker and do not rename the file (run-result correlation is by the obligation id, SPEC §12.3 amendment #34). */
     it('displays the scanner setup page prefilled with the previously submitted vendor code', async () => {
         const agent = request.agent(app);
-        await agent.post('/setup').send({ code: 'VENDOR99' });
+        await agent.post('/setup').send({ vendorCode: 'VENDOR99' });
 
         const res = await agent.get('/setup');
 

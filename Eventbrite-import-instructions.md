@@ -45,7 +45,7 @@ $env:dbserver = "your-server.database.windows.net"
 $env:dbname = "your-database"
 $env:dblogin = "your-sql-login"
 $env:dbpassword = "your-sql-password"
-$env:EVENT_SECRET = "event-secret-guid"
+$env:EVENT = "event-guid"
 $env:ENCRYPTION_KEY = ""  # Optional; blank matches the normal scan behavior
 ```
 

@@ -8,7 +8,7 @@ describe('scanner setup vendor code submission', () => {
     it('shows a confirmation page with the submitted code and retains it in the session', async () => {
         const agent = request.agent(app);
 
-        const postRes = await agent.post('/setup').send({ code: 'VENDOR99' });
+        const postRes = await agent.post('/setup').send({ vendorCode: 'VENDOR99' });
 
         expect(postRes.status).toBe(200);
         expect(postRes.text).toContain('VENDOR99');
