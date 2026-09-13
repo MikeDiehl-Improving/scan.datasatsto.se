@@ -1,0 +1,37 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type"/>
+    <meta content="utf-8" http-equiv="encoding"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="shortcut icon" href="/assets/favicon.png" type="image/png">
+    <link rel="icon" href="/assets/favicon.png" type="image/png">
+    <link rel="stylesheet" href="/assets/style.css"/>
+
+    <title>Stored procedures - scan.datasatsto.se</title>
+</head>
+<body class="index">
+    <h1>Database stored procedures</h1>
+    <p><a href="/">Back to the API welcome page</a></p>
+    <%=DatabaseDetails%>
+
+    <p>This application uses the following stored procedures in the <code>Scan</code> schema:</p>
+    <table>
+        <thead>
+            <tr><th>Procedure</th><th>Purpose</th><th>Parameters</th></tr>
+        </thead>
+        <tbody>
+            <tr><td><code>Scan.New_Event</code></td><td>Create a new event.</td><td><code>@Event varchar(50)</code></td></tr>
+            <tr><td><code>Scan.New_Identity</code></td><td>Create an identity for an event.</td><td><code>@Event varchar(50)</code>, <code>@ID bigint = NULL</code></td></tr>
+            <tr><td><code>Scan.New_Scan</code></td><td>Record a scan for an identity.</td><td><code>@ID bigint</code>, <code>@ReferenceCode varchar(20) = NULL</code>, <code>@Note nvarchar(max) = NULL</code></td></tr>
+            <tr><td><code>Scan.Get_Codes</code></td><td>List exhibitor codes for an identity.</td><td><code>@ID bigint</code></td></tr>
+            <tr><td><code>Scan.Get_Scans</code></td><td>Fetch all scans for an event.</td><td><code>@EventSecret uniqueidentifier</code>, <code>@EncryptionKey nvarchar(200) = N''</code></td></tr>
+            <tr><td><code>Scan.Get_Identities</code></td><td>List identities associated with an event.</td><td><code>@EventSecret uniqueidentifier</code>, <code>@EncryptionKey nvarchar(200) = NULL</code></td></tr>
+            <tr><td><code>Scan.Get_Random</code></td><td>Fetch a random scan for an event.</td><td><code>@EventSecret uniqueidentifier</code>, <code>@ReferenceCode varchar(20) = NULL</code>, <code>@EncryptionKey nvarchar(200) = N''</code></td></tr>
+            <tr><td><code>Scan.Expire</code></td><td>Evict expired events, identities, and scans.</td><td>None</td></tr>
+            <tr><td><code>Scan.Update_Identities</code></td><td>Apply names and descriptions to event identities.</td><td><code>@EventSecret uniqueidentifier</code>, <code>@EncryptionKey nvarchar(200) = N''</code>, <code>@Identities_blob nvarchar(max)</code></td></tr>
+        </tbody>
+    </table>
+</body>
+</html>

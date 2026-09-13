@@ -1,0 +1,22 @@
+{
+  "feature_id": "stored-procedure-reference-page",
+  "state": "VERIFIED",
+  "plan_version": 1,
+  "strategy_version": 1,
+  "approvals": {
+    "test_plan": {
+      "version": 1,
+      "hash": "sha256:debbdebc93a2a16798e187cace31a63173ff2f84e953ef1b00cd0cfa452ee93d",
+      "approved_at": "2026-09-13T18:35:58.824Z",
+      "self_approved": true
+    },
+    "test_strategy": {
+      "version": 1,
+      "hash": "sha256:945f067e59b82b687910c4f30a9aef66aad6d81725db5c532cc4721a44032c48",
+      "approved_at": "2026-09-13T18:36:14.174Z",
+      "self_approved": true
+    }
+  },
+  "last_run_id": "run-001",
+  "updated_at": "2026-09-13T18:38:25.103Z"
+}

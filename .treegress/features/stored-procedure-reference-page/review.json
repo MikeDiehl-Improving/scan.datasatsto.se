@@ -1,0 +1,106 @@
+{
+  "feature_id": "stored-procedure-reference-page",
+  "plan_version": 1,
+  "plan_hash": "sha256:debbdebc93a2a16798e187cace31a63173ff2f84e953ef1b00cd0cfa452ee93d",
+  "strategy_version": 1,
+  "strategy_hash": "sha256:945f067e59b82b687910c4f30a9aef66aad6d81725db5c532cc4721a44032c48",
+  "run_id": "run-001",
+  "reviewed_at": "2026-09-13T18:38:20.990Z",
+  "scenario_verdicts": [
+    {
+      "scenario_id": "welcomepage.storedprocedureslink",
+      "status": "COVERED",
+      "then_coverage": [
+        {
+          "clause_index": 0,
+          "covered": true,
+          "test_id": "unit:tests/unit/welcomepage-storedprocedureslink-unit-c1#displays-a-navigable-stored-procedures-reference-link",
+          "evidence_id": "run-001:test-39"
+        }
+      ],
+      "rationale": "The passing unit test asserts that a hyperlink to /stored-procedures is rendered on the welcome page."
+    },
+    {
+      "scenario_id": "storedprocedures.navigatedfromwelcome",
+      "status": "COVERED",
+      "then_coverage": [
+        {
+          "clause_index": 0,
+          "covered": true,
+          "test_id": "unit:tests/unit/storedprocedures-navigatedfromwelcome-unit-c1#displays-the-stored-procedures-reference-page",
+          "evidence_id": "run-001:test-36"
+        },
+        {
+          "clause_index": 1,
+          "covered": true,
+          "test_id": "unit:tests/unit/storedprocedures-navigatedfromwelcome-unit-c1#displays-the-stored-procedures-reference-page",
+          "evidence_id": "run-001:test-36"
+        }
+      ],
+      "rationale": "The passing unit test verifies that the stored procedures route responds with HTTP 200 and renders procedure documentation content."
+    },
+    {
+      "scenario_id": "storedprocedures.serveranddatabaseinfo",
+      "status": "COVERED",
+      "then_coverage": [
+        {
+          "clause_index": 0,
+          "covered": true,
+          "test_id": "unit:tests/unit/storedprocedures-serveranddatabaseinfo-unit-c1#renders-configured-database-connection-details-with-the-reference",
+          "evidence_id": "run-001:test-37"
+        },
+        {
+          "clause_index": 1,
+          "covered": true,
+          "test_id": "unit:tests/unit/storedprocedures-serveranddatabaseinfo-unit-c1#renders-configured-database-connection-details-with-the-reference",
+          "evidence_id": "run-001:test-37"
+        },
+        {
+          "clause_index": 2,
+          "covered": true,
+          "test_id": "unit:tests/unit/storedprocedures-serveranddatabaseinfo-unit-c1#renders-configured-database-connection-details-with-the-reference",
+          "evidence_id": "run-001:test-37"
+        }
+      ],
+      "rationale": "The passing unit test asserts that the configured server name, database name, and reference procedure documentation are rendered on the page."
+    },
+    {
+      "scenario_id": "storedprocedures.directaccess",
+      "status": "COVERED",
+      "then_coverage": [
+        {
+          "clause_index": 0,
+          "covered": true,
+          "test_id": "unit:tests/unit/storedprocedures-directaccess-unit-c1#loads-successfully-and-presents-database-connection-information",
+          "evidence_id": "run-001:test-35"
+        },
+        {
+          "clause_index": 1,
+          "covered": true,
+          "test_id": "unit:tests/unit/storedprocedures-directaccess-unit-c1#loads-successfully-and-presents-database-connection-information",
+          "evidence_id": "run-001:test-35"
+        }
+      ],
+      "rationale": "The passing unit test performs a direct GET request and asserts that the page loads successfully with the server and database details displayed."
+    },
+    {
+      "scenario_id": "storedprocedures.unconfiguredserverdetails",
+      "status": "COVERED",
+      "then_coverage": [
+        {
+          "clause_index": 0,
+          "covered": true,
+          "test_id": "unit:tests/unit/storedprocedures-unconfiguredserverdetails-unit-c1#shows-a-friendly-unavailable-details-notice-and-welcome-link",
+          "evidence_id": "run-001:test-38"
+        },
+        {
+          "clause_index": 1,
+          "covered": true,
+          "test_id": "unit:tests/unit/storedprocedures-unconfiguredserverdetails-unit-c1#shows-a-friendly-unavailable-details-notice-and-welcome-link",
+          "evidence_id": "run-001:test-38"
+        }
+      ],
+      "rationale": "The passing unit test confirms that unconfigured database settings produce the unavailable connection notice and include a link navigating back to the welcome page."
+    }
+  ]
+}

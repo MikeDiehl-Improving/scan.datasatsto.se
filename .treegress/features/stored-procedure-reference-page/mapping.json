@@ -1,0 +1,97 @@
+{
+  "feature_id": "stored-procedure-reference-page",
+  "plan_version": 1,
+  "strategy_version": 1,
+  "entries": [
+    {
+      "scenario_id": "welcomepage.storedprocedureslink",
+      "obligations": [
+        {
+          "skill": "unit",
+          "obligation_id": "welcomepage.storedprocedureslink.unit.c1",
+          "test_ids": [
+            "unit:tests/unit/welcomepage-storedprocedureslink-unit-c1#displays-a-navigable-stored-procedures-reference-link"
+          ],
+          "evidence_ids": [
+            "run-001:test-39"
+          ],
+          "reused": true,
+          "user_authored": true
+        }
+      ],
+      "review_status": "COVERED"
+    },
+    {
+      "scenario_id": "storedprocedures.navigatedfromwelcome",
+      "obligations": [
+        {
+          "skill": "unit",
+          "obligation_id": "storedprocedures.navigatedfromwelcome.unit.c1",
+          "test_ids": [
+            "unit:tests/unit/storedprocedures-navigatedfromwelcome-unit-c1#displays-the-stored-procedures-reference-page"
+          ],
+          "evidence_ids": [
+            "run-001:test-36"
+          ],
+          "reused": true,
+          "user_authored": true
+        }
+      ],
+      "review_status": "COVERED"
+    },
+    {
+      "scenario_id": "storedprocedures.serveranddatabaseinfo",
+      "obligations": [
+        {
+          "skill": "unit",
+          "obligation_id": "storedprocedures.serveranddatabaseinfo.unit.c1",
+          "test_ids": [
+            "unit:tests/unit/storedprocedures-serveranddatabaseinfo-unit-c1#renders-configured-database-connection-details-with-the-reference"
+          ],
+          "evidence_ids": [
+            "run-001:test-37"
+          ],
+          "reused": true,
+          "user_authored": true
+        }
+      ],
+      "review_status": "COVERED"
+    },
+    {
+      "scenario_id": "storedprocedures.directaccess",
+      "obligations": [
+        {
+          "skill": "unit",
+          "obligation_id": "storedprocedures.directaccess.unit.c1",
+          "test_ids": [
+            "unit:tests/unit/storedprocedures-directaccess-unit-c1#loads-successfully-and-presents-database-connection-information"
+          ],
+          "evidence_ids": [
+            "run-001:test-35"
+          ],
+          "reused": true,
+          "user_authored": true
+        }
+      ],
+      "review_status": "COVERED"
+    },
+    {
+      "scenario_id": "storedprocedures.unconfiguredserverdetails",
+      "obligations": [
+        {
+          "skill": "unit",
+          "obligation_id": "storedprocedures.unconfiguredserverdetails.unit.c1",
+          "test_ids": [
+            "unit:tests/unit/storedprocedures-unconfiguredserverdetails-unit-c1#shows-a-friendly-unavailable-details-notice-and-welcome-link"
+          ],
+          "evidence_ids": [
+            "run-001:test-38"
+          ],
+          "reused": true,
+          "user_authored": true
+        }
+      ],
+      "review_status": "COVERED"
+    }
+  ]
+}

@@ -1,0 +1,68 @@
+{
+  "feature_id": "stored-procedure-reference-page",
+  "plan_version": 1,
+  "version": 1,
+  "status": "approved",
+  "approval": {
+    "hash": "sha256:945f067e59b82b687910c4f30a9aef66aad6d81725db5c532cc4721a44032c48",
+    "plan_hash": "sha256:debbdebc93a2a16798e187cace31a63173ff2f84e953ef1b00cd0cfa452ee93d",
+    "approved_at": "2026-09-13T18:36:14.174Z"
+  },
+  "scenario_strategies": [
+    {
+      "scenario_id": "welcomepage.storedprocedureslink",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "welcome page route and template render a navigable reference link to the stored procedures page",
+          "reason": "Verifies that the welcome page response contains the expected navigation hyperlink targeting the stored procedures reference route."
+        }
+      ]
+    },
+    {
+      "scenario_id": "storedprocedures.navigatedfromwelcome",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "stored procedures reference endpoint returns 200 and renders procedure documentation",
+          "reason": "Proves that the stored procedures reference route handles requests from navigation and serves the stored procedure documentation."
+        }
+      ]
+    },
+    {
+      "scenario_id": "storedprocedures.serveranddatabaseinfo",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "stored procedures view renders configured database server name, database name, and reference details",
+          "reason": "Proves that the handler extracts configured database connection details and includes server and database names in the rendered view alongside procedures."
+        }
+      ]
+    },
+    {
+      "scenario_id": "storedprocedures.directaccess",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "direct GET request to stored procedures endpoint responds successfully with database connection info",
+          "reason": "Validates direct HTTP access to the stored procedures reference route, confirming successful loading and presentation of server and database info."
+        }
+      ]
+    },
+    {
+      "scenario_id": "storedprocedures.unconfiguredserverdetails",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "stored procedures endpoint presents fallback notification and back link when connection configuration is missing",
+          "reason": "Ensures graceful degradation when server or database settings are unconfigured, showing a user-friendly notice and return link to welcome page."
+        }
+      ]
+    }
+  ]
+}

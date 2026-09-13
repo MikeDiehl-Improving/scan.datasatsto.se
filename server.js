@@ -103,6 +103,27 @@ app.get('/', function (req, res, next) {
 
 });
 
+/*-----------------------------------------------------------------------------
+  Stored procedure reference:
+  ---------------------------------------------------------------------------*/
+
+app.get('/stored-procedures', function (req, res, next) {
+
+    httpHeaders(res);
+
+    const databaseServer = process.env.dbserver || '';
+    const databaseName = process.env.dbname || '';
+    const hasDatabaseDetails = databaseServer && databaseName;
+
+    res.status(200).send(createHTML('assets/stored-procedures.html', {
+        "DatabaseDetails": hasDatabaseDetails
+            ? '<p><strong>Database server:</strong> <code>' + simpleHtmlEncode(databaseServer) + '</code><br><strong>Database name:</strong> <code>' + simpleHtmlEncode(databaseName) + '</code></p>'
+            : '<p class="notice">Database connection details are unavailable.</p>'
+    }));
+    return;
+
+});
+
 
 
 

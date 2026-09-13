@@ -1,0 +1,81 @@
+{
+  "feature_id": "stored-procedure-reference-page",
+  "version": 1,
+  "status": "approved",
+  "approval": {
+    "hash": "sha256:debbdebc93a2a16798e187cace31a63173ff2f84e953ef1b00cd0cfa452ee93d",
+    "approved_at": "2026-09-13T18:35:58.824Z"
+  },
+  "scenarios": [
+    {
+      "id": "welcomepage.storedprocedureslink",
+      "title": "Welcome page provides a navigable reference link to database stored procedures",
+      "given": [
+        "the user is viewing the welcome page"
+      ],
+      "when": "the user inspects the navigation options on the welcome page",
+      "then": [
+        "a navigable link pointing to the stored procedures reference page is clearly displayed to the user"
+      ],
+      "priority": "high",
+      "negative": false
+    },
+    {
+      "id": "storedprocedures.navigatedfromwelcome",
+      "title": "Navigating to the stored procedures reference from the welcome page",
+      "given": [
+        "the user is on the welcome page"
+      ],
+      "when": "the user selects the stored procedures reference link",
+      "then": [
+        "the stored procedures reference page is displayed",
+        "the user can view the stored procedures documentation and details"
+      ],
+      "priority": "critical",
+      "negative": false
+    },
+    {
+      "id": "storedprocedures.serveranddatabaseinfo",
+      "title": "Stored procedures reference page displays server and database details",
+      "given": [
+        "the application is configured with target database server and database information"
+      ],
+      "when": "the user views the stored procedures reference page",
+      "then": [
+        "the database server name is displayed on the page",
+        "the database name is displayed on the page",
+        "the stored procedures reference content is shown alongside the connection details"
+      ],
+      "priority": "critical",
+      "negative": false
+    },
+    {
+      "id": "storedprocedures.directaccess",
+      "title": "Directly accessing the stored procedures reference page",
+      "given": [
+        "the application is available"
+      ],
+      "when": "the user opens the stored procedures reference page directly",
+      "then": [
+        "the stored procedures reference page loads successfully",
+        "the database server name and database name are presented to the user"
+      ],
+      "priority": "normal",
+      "negative": false
+    },
+    {
+      "id": "storedprocedures.unconfiguredserverdetails",
+      "title": "Accessing reference page when database configuration is unavailable",
+      "given": [
+        "the database connection settings such as server or database name are unconfigured or unavailable"
+      ],
+      "when": "the user visits the stored procedures reference page",
+      "then": [
+        "a user-friendly notification stating that database connection details are unavailable is presented",
+        "the user can navigate back to the welcome page"
+      ],
+      "priority": "normal",
+      "negative": true
+    }
+  ]
+}
