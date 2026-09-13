@@ -1,0 +1,22 @@
+{
+  "feature_id": "interactive-api-parameters-ui",
+  "state": "VERIFIED",
+  "plan_version": 1,
+  "strategy_version": 1,
+  "approvals": {
+    "test_plan": {
+      "version": 1,
+      "hash": "sha256:70117507ad2d8529e97a2d03a876838719b7c545b1cbef45b49c559aa51aff8f",
+      "approved_at": "2026-09-13T19:25:50.808Z",
+      "self_approved": true
+    },
+    "test_strategy": {
+      "version": 1,
+      "hash": "sha256:9338f2bbc44ccfa536538691d28cf2a1df3488dae19a81bf08fba2c7044846ac",
+      "approved_at": "2026-09-13T19:26:06.549Z",
+      "self_approved": true
+    }
+  },
+  "last_run_id": "run-001",
+  "updated_at": "2026-09-13T19:27:07.038Z"
+}

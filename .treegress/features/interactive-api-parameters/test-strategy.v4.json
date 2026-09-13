@@ -1,0 +1,79 @@
+{
+  "feature_id": "interactive-api-parameters",
+  "plan_version": 4,
+  "version": 4,
+  "status": "approved",
+  "approval": {
+    "hash": "sha256:10d5ee7776186ec5f13bf336fb5a5226d8b08a7cb9cda1721add899183942fd7",
+    "plan_hash": "sha256:d64f3de70bb0a52e6b0206dd757dd474c1358648ed327e241c87c473e851c1f2",
+    "approved_at": "2026-09-13T19:24:49.198Z"
+  },
+  "scenario_strategies": [
+    {
+      "scenario_id": "mainpage.displayinputs",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Prove that input fields for entering parameter values are rendered alongside API calls that accept parameters",
+          "reason": "Unit testing the main page rendering logic verifies that parameter inputs are generated for endpoints supporting parameters."
+        }
+      ]
+    },
+    {
+      "scenario_id": "mainpage.runsingleparam",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Prove that an API call executes using a user-supplied parameter value and returns the resulting output",
+          "reason": "Unit testing verifies parameter extraction and execution logic handles single user-supplied values accurately."
+        }
+      ]
+    },
+    {
+      "scenario_id": "mainpage.runmultipleparams",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Prove that an API call executes incorporating multiple supplied parameter values and displays the result",
+          "reason": "Unit testing verifies request handling and parameter parsing when multiple inputs are supplied simultaneously."
+        }
+      ]
+    },
+    {
+      "scenario_id": "mainpage.missingparam",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Prove that missing required parameters trigger a visible requirement indication and prevent call execution",
+          "reason": "Unit testing input validation logic ensures required parameters are enforced before triggering API execution."
+        }
+      ]
+    },
+    {
+      "scenario_id": "mainpage.updateparams",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Prove that updating parameter values and re-running the API call uses the updated input and displays new results",
+          "reason": "Unit testing verifies that subsequent executions correctly use updated parameter state instead of stale values."
+        }
+      ]
+    },
+    {
+      "scenario_id": "mainpage.specialcharacters",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Prove that parameter values containing spaces and special characters are properly handled and executed",
+          "reason": "Unit testing validates character encoding and handling for parameter values containing special characters."
+        }
+      ]
+    }
+  ]
+}

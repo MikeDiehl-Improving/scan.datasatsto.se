@@ -1,0 +1,97 @@
+{
+  "feature_id": "interactive-api-parameters-ui",
+  "version": 1,
+  "status": "approved",
+  "approval": {
+    "hash": "sha256:70117507ad2d8529e97a2d03a876838719b7c545b1cbef45b49c559aa51aff8f",
+    "approved_at": "2026-09-13T19:25:50.808Z"
+  },
+  "scenarios": [
+    {
+      "id": "mainpage.inputdisplay",
+      "title": "Main page displays parameter input fields for API operations",
+      "given": [
+        "The user navigates to the application",
+        "The root main page is accessed"
+      ],
+      "when": "The user views the main page",
+      "then": [
+        "Input controls for specifying API call parameters are visible on the page",
+        "An execution control to trigger the API call with the specified parameters is available"
+      ],
+      "priority": "high",
+      "negative": false
+    },
+    {
+      "id": "mainpage.runsingleparam",
+      "title": "Execute an API call with a single custom parameter value",
+      "given": [
+        "The user is on the main page",
+        "An API call option requiring a parameter is available"
+      ],
+      "when": "The user enters a specific parameter value (e.g. \"12345\") and runs the API call",
+      "then": [
+        "The execution result reflecting the specified parameter value is displayed to the user"
+      ],
+      "priority": "critical",
+      "negative": false
+    },
+    {
+      "id": "mainpage.runmultipleparams",
+      "title": "Execute an API call with multiple custom parameter values",
+      "given": [
+        "The user is on the main page",
+        "An API call option accepting multiple parameters is available"
+      ],
+      "when": "The user enters specific values into each parameter field (e.g. a count \"5\" and a category \"badge\") and runs the API call",
+      "then": [
+        "The execution result reflecting all supplied parameter values is displayed to the user"
+      ],
+      "priority": "high",
+      "negative": false
+    },
+    {
+      "id": "mainpage.missingrequiredparam",
+      "title": "Attempting to run an API call without providing required parameter values",
+      "given": [
+        "The user is on the main page",
+        "An API call with required parameters is targeted"
+      ],
+      "when": "The user leaves a required parameter field empty and attempts to run the API call",
+      "then": [
+        "A validation message or indicator is shown prompting the user to supply the required parameter",
+        "The call result area does not present a successful operation outcome"
+      ],
+      "priority": "high",
+      "negative": true
+    },
+    {
+      "id": "mainpage.invalidparamvalue",
+      "title": "Attempting to run an API call with an invalid parameter format",
+      "given": [
+        "The user is on the main page",
+        "An API call requiring a specific parameter format is targeted"
+      ],
+      "when": "The user enters a value that violates the expected format (e.g. letters in a field expecting an integer count) and triggers the call",
+      "then": [
+        "An error message or validation indicator alerting the user about the invalid input is displayed"
+      ],
+      "priority": "normal",
+      "negative": true
+    },
+    {
+      "id": "mainpage.rerunwithnewparams",
+      "title": "Re-executing an API call after updating parameter values",
+      "given": [
+        "The user is on the main page",
+        "The user has previously entered parameter values and executed the API call with visible results"
+      ],
+      "when": "The user updates the parameter value (e.g. changing \"10\" to \"25\") and triggers the API call again",
+      "then": [
+        "The displayed result updates to reflect the newly supplied parameter value"
+      ],
+      "priority": "normal",
+      "negative": false
+    }
+  ]
+}

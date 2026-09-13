@@ -1,0 +1,79 @@
+{
+  "feature_id": "interactive-api-parameters-ui",
+  "plan_version": 1,
+  "version": 1,
+  "status": "approved",
+  "approval": {
+    "hash": "sha256:9338f2bbc44ccfa536538691d28cf2a1df3488dae19a81bf08fba2c7044846ac",
+    "plan_hash": "sha256:70117507ad2d8529e97a2d03a876838719b7c545b1cbef45b49c559aa51aff8f",
+    "approved_at": "2026-09-13T19:26:06.549Z"
+  },
+  "scenario_strategies": [
+    {
+      "scenario_id": "mainpage.inputdisplay",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Prove that the main page view or template renders input parameter fields and execution controls for API operations.",
+          "reason": "Unit tests on the page rendering logic verify that input controls and the execution trigger are present in the response markup. Would gain e2e-playwright coverage at thorough."
+        }
+      ]
+    },
+    {
+      "scenario_id": "mainpage.runsingleparam",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Prove that running an API call with a single custom parameter value executes correctly and yields results reflecting the parameter.",
+          "reason": "Unit tests verify request handling, parameter forwarding, and response rendering for a single parameter value. Would gain e2e-playwright coverage at thorough."
+        }
+      ]
+    },
+    {
+      "scenario_id": "mainpage.runmultipleparams",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Prove that running an API call with multiple custom parameter values executes properly and reflects all supplied values in the result.",
+          "reason": "Unit tests verify multi-parameter parsing, invocation, and response formatting. Would gain e2e-playwright coverage at thorough."
+        }
+      ]
+    },
+    {
+      "scenario_id": "mainpage.missingrequiredparam",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Prove that omitting a required parameter triggers a validation error message and halts successful execution.",
+          "reason": "Unit tests verify parameter presence validation rules and negative response or error rendering. Would gain e2e-playwright coverage at thorough."
+        }
+      ]
+    },
+    {
+      "scenario_id": "mainpage.invalidparamvalue",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Prove that providing an invalid parameter format displays an error message or validation indicator alerting the user.",
+          "reason": "Unit tests verify format validation routines and error message output when parameter constraints are violated. Would gain e2e-playwright coverage at thorough."
+        }
+      ]
+    },
+    {
+      "scenario_id": "mainpage.rerunwithnewparams",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Prove that updating parameter values and re-triggering the call produces an updated result reflecting the new inputs.",
+          "reason": "Unit tests verify that changing input values and re-executing updates the output state with new parameter data. Would gain e2e-playwright coverage at thorough."
+        }
+      ]
+    }
+  ]
+}

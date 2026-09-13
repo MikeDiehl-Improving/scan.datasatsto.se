@@ -15,28 +15,29 @@
 <body class="index">
 
     <h1>scan.datasatsto.se</h1>
-    <p>This service exposes the following API endpoints:</p>
+    <p>This service exposes the following API endpoints. Enter values and run a call directly from this page.</p>
     <p><a href="/stored-procedures">View the database stored procedure reference</a></p>
 
-    <table>
+    <table class="api-table">
         <thead>
             <tr><th>Method</th><th>Path</th><th>Description</th></tr>
         </thead>
         <tbody>
-            <tr><td class="method">GET</td><td><code>/new/:event</code></td><td>Register a new identity and generate its QR code for the given event.</td></tr>
-            <tr><td class="method">GET</td><td><code>/new/:event/:id</code></td><td>Register using a specific existing ID (for integrations).</td></tr>
-            <tr><td class="method">GET</td><td><code>/setup</code></td><td>Configure the scanning client's vendor code, or look up the codes for an ID.</td></tr>
-            <tr><td class="method">POST</td><td><code>/setup</code></td><td>Save the vendor code to the session.</td></tr>
-            <tr><td class="method">GET / POST</td><td><code>/:id/:code</code></td><td>Record a scan for the given ID and vendor code.</td></tr>
-            <tr><td class="method">GET</td><td><code>/:id</code></td><td>Record a scan for the given ID (no vendor code).</td></tr>
-            <tr><td class="method">GET</td><td><code>/report/:secret</code></td><td>View the scan report for an event, identified by its secret.</td></tr>
-            <tr><td class="method">GET</td><td><code>/random/:secret</code></td><td>View one random scan for an event.</td></tr>
-            <tr><td class="method">GET</td><td><code>/random/:secret/:code</code></td><td>View one random scan for an event, filtered by vendor code.</td></tr>
-            <tr><td class="method">GET</td><td><code>/pdf/:secret</code></td><td>Show the form to generate a PDF badge/report.</td></tr>
-            <tr><td class="method">POST</td><td><code>/pdf</code></td><td>Generate the PDF document.</td></tr>
-            <tr><td class="method">GET</td><td><code>/expire</code></td><td>Expire old events and remove their cached QR codes.</td></tr>
+            <tr data-method="GET" data-path="/new/:event"><td class="method">GET</td><td><code>/new/:event</code></td><td>Register a new identity and generate its QR code for the given event.<form class="api-call"><label>Event <input name="event" required></label><button type="submit">Run call</button><pre class="api-result" aria-live="polite"></pre></form></td></tr>
+            <tr data-method="GET" data-path="/new/:event/:id"><td class="method">GET</td><td><code>/new/:event/:id</code></td><td>Register using a specific existing ID (for integrations).<form class="api-call"><label>Event <input name="event" required></label><label>ID <input name="id" required></label><button type="submit">Run call</button><pre class="api-result" aria-live="polite"></pre></form></td></tr>
+            <tr data-method="GET" data-path="/setup"><td class="method">GET</td><td><code>/setup</code></td><td>Configure the scanning client's vendor code, or look up the codes for an ID.<form class="api-call"><label>ID (optional) <input name="id"></label><button type="submit">Run call</button><pre class="api-result" aria-live="polite"></pre></form></td></tr>
+            <tr data-method="POST" data-path="/setup"><td class="method">POST</td><td><code>/setup</code></td><td>Save the vendor code to the session.<form class="api-call"><label>Vendor code <input name="code" required></label><button type="submit">Run call</button><pre class="api-result" aria-live="polite"></pre></form></td></tr>
+            <tr data-method="GET / POST" data-path="/:id/:code"><td class="method">GET / POST</td><td><code>/:id/:code</code></td><td>Record a scan for the given ID and vendor code.<form class="api-call"><label>Method <select name="method"><option>GET</option><option>POST</option></select></label><label>ID <input name="id" required></label><label>Vendor code <input name="code" required></label><label>Note (POST only) <input name="note"></label><button type="submit">Run call</button><pre class="api-result" aria-live="polite"></pre></form></td></tr>
+            <tr data-method="GET" data-path="/:id"><td class="method">GET</td><td><code>/:id</code></td><td>Record a scan for the given ID (no vendor code).<form class="api-call"><label>ID <input name="id" required></label><button type="submit">Run call</button><pre class="api-result" aria-live="polite"></pre></form></td></tr>
+            <tr data-method="GET" data-path="/report/:secret"><td class="method">GET</td><td><code>/report/:secret</code></td><td>View the scan report for an event, identified by its secret.<form class="api-call"><label>Event secret <input name="secret" required></label><button type="submit">Run call</button><pre class="api-result" aria-live="polite"></pre></form></td></tr>
+            <tr data-method="GET" data-path="/random/:secret"><td class="method">GET</td><td><code>/random/:secret</code></td><td>View one random scan for an event.<form class="api-call"><label>Event secret <input name="secret" required></label><button type="submit">Run call</button><pre class="api-result" aria-live="polite"></pre></form></td></tr>
+            <tr data-method="GET" data-path="/random/:secret/:code"><td class="method">GET</td><td><code>/random/:secret/:code</code></td><td>View one random scan for an event, filtered by vendor code.<form class="api-call"><label>Event secret <input name="secret" required></label><label>Vendor code <input name="code" required></label><button type="submit">Run call</button><pre class="api-result" aria-live="polite"></pre></form></td></tr>
+            <tr data-method="GET" data-path="/pdf/:secret"><td class="method">GET</td><td><code>/pdf/:secret</code></td><td>Show the form to generate a PDF badge/report.<form class="api-call"><label>Event secret <input name="secret" required></label><button type="submit">Run call</button><pre class="api-result" aria-live="polite"></pre></form></td></tr>
+            <tr data-method="POST" data-path="/pdf"><td class="method">POST</td><td><code>/pdf</code></td><td>Generate the PDF document.<form class="api-call"><label>Event secret <input name="secret" required></label><label>Encryption key <input name="encryptionKey"></label><label>Paper size <input name="paperSize" value="A4"></label><label>QR size <input name="qrSize" value="0.15"></label><label>Badge count <input name="badgeCount" value="2,2"></label><label>Font size <input name="fontSize" value="16"></label><label>Identities <textarea name="identities"></textarea></label><button type="submit">Run call</button><pre class="api-result" aria-live="polite"></pre></form></td></tr>
+            <tr data-method="GET" data-path="/expire"><td class="method">GET</td><td><code>/expire</code></td><td>Expire old events and remove their cached QR codes.<form class="api-call"><button type="submit">Run call</button><pre class="api-result" aria-live="polite"></pre></form></td></tr>
         </tbody>
     </table>
 
+    <script type="module" src="/assets/index.js"></script>
 </body>
 </html>

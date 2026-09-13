@@ -1,0 +1,103 @@
+{
+  "feature_id": "interactive-api-parameters",
+  "plan_version": 4,
+  "strategy_version": 4,
+  "entries": [
+    {
+      "scenario_id": "mainpage.displayinputs",
+      "obligations": [
+        {
+          "skill": "unit",
+          "obligation_id": "mainpage.displayinputs.unit.c1",
+          "test_ids": [
+            "unit:tests/unit/mainpage-interactive-api-unit-c1#displays-input-fields-alongside-parameterised-api-calls"
+          ],
+          "evidence_ids": [
+            "run-007:test-5"
+          ],
+          "reused": true
+        }
+      ]
+    },
+    {
+      "scenario_id": "mainpage.runsingleparam",
+      "obligations": [
+        {
+          "skill": "unit",
+          "obligation_id": "mainpage.runsingleparam.unit.c1",
+          "test_ids": [
+            "unit:tests/unit/mainpage-interactive-api-unit-c1#executes-a-call-with-a-supplied-parameter-and-returns-its-output"
+          ],
+          "evidence_ids": [
+            "run-007:test-6"
+          ],
+          "reused": true
+        }
+      ]
+    },
+    {
+      "scenario_id": "mainpage.runmultipleparams",
+      "obligations": [
+        {
+          "skill": "unit",
+          "obligation_id": "mainpage.runmultipleparams.unit.c1",
+          "test_ids": [
+            "unit:tests/unit/mainpage-interactive-api-unit-c1#includes-all-supplied-path-parameters-in-the-request"
+          ],
+          "evidence_ids": [
+            "run-001:test-6"
+          ],
+          "reused": true
+        }
+      ]
+    },
+    {
+      "scenario_id": "mainpage.missingparam",
+      "obligations": [
+        {
+          "skill": "unit",
+          "obligation_id": "mainpage.missingparam.unit.c1",
+          "test_ids": [
+            "unit:tests/unit/mainpage-interactive-api-unit-c1#rejects-a-call-when-a-required-parameter-is-missing"
+          ],
+          "evidence_ids": [
+            "run-007:test-8"
+          ],
+          "reused": true
+        }
+      ]
+    },
+    {
+      "scenario_id": "mainpage.updateparams",
+      "obligations": [
+        {
+          "skill": "unit",
+          "obligation_id": "mainpage.updateparams.unit.c1",
+          "test_ids": [
+            "unit:tests/unit/mainpage-interactive-api-unit-c1#uses-updated-parameter-values-when-a-call-is-run-again"
+          ],
+          "evidence_ids": [
+            "run-001:test-8"
+          ],
+          "reused": true
+        }
+      ]
+    },
+    {
+      "scenario_id": "mainpage.specialcharacters",
+      "obligations": [
+        {
+          "skill": "unit",
+          "obligation_id": "mainpage.specialcharacters.unit.c1",
+          "test_ids": [
+            "unit:tests/unit/mainpage-interactive-api-unit-c1#encodes-special-characters-and-spaces-in-supplied-parameters"
+          ],
+          "evidence_ids": [
+            "run-001:test-9"
+          ],
+          "reused": true
+        }
+      ]
+    }
+  ]
+}

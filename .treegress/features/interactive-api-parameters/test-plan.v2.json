@@ -1,0 +1,99 @@
+{
+  "feature_id": "interactive-api-parameters",
+  "version": 2,
+  "status": "approved",
+  "approval": {
+    "hash": "sha256:d64f3de70bb0a52e6b0206dd757dd474c1358648ed327e241c87c473e851c1f2",
+    "approved_at": "2026-09-13T19:22:14.295Z"
+  },
+  "scenarios": [
+    {
+      "id": "mainpage.displayinputs",
+      "title": "Display parameter inputs for API calls on the main page",
+      "given": [
+        "The user visits the main page."
+      ],
+      "when": "The user views the interface options for triggering API calls.",
+      "then": [
+        "Input fields for entering parameter values are displayed alongside API calls that support parameters."
+      ],
+      "priority": "high",
+      "negative": false
+    },
+    {
+      "id": "mainpage.runsingleparam",
+      "title": "Execute an API call with a user-supplied parameter value",
+      "given": [
+        "The user is on the main page.",
+        "An API call that accepts a parameter is present."
+      ],
+      "when": "The user enters a specific parameter value (e.g. 'val123') into the input field and runs the call.",
+      "then": [
+        "The API call executes using the supplied parameter value.",
+        "The output or response content from the executed call is displayed to the user."
+      ],
+      "priority": "critical",
+      "negative": false
+    },
+    {
+      "id": "mainpage.runmultipleparams",
+      "title": "Execute an API call with multiple user-supplied parameter values",
+      "given": [
+        "The user is on the main page.",
+        "An API call that accepts multiple parameters is present."
+      ],
+      "when": "The user enters values into each corresponding parameter field (e.g. 'firstvalue' and 'secondvalue') and runs the call.",
+      "then": [
+        "The API call executes incorporating all supplied parameter values.",
+        "The resulting data reflecting the combined parameters is displayed."
+      ],
+      "priority": "high",
+      "negative": false
+    },
+    {
+      "id": "mainpage.missingparam",
+      "title": "Attempting to run an API call without supplying a required parameter",
+      "given": [
+        "The user is on the main page.",
+        "An API call requiring a parameter is present."
+      ],
+      "when": "The user attempts to trigger the API call while leaving the parameter field empty.",
+      "then": [
+        "A visible indication is presented stating that the parameter value is required.",
+        "The call is prevented from executing with missing required input."
+      ],
+      "priority": "normal",
+      "negative": true
+    },
+    {
+      "id": "mainpage.updateparams",
+      "title": "Update parameter values and re-run the API call",
+      "given": [
+        "The user is on the main page.",
+        "The user has executed an API call with an initial parameter value."
+      ],
+      "when": "The user replaces the parameter value with a new value (e.g. 'updated456') and triggers the call again.",
+      "then": [
+        "The API call runs with the updated parameter value.",
+        "The displayed result reflects the outcome of the new execution."
+      ],
+      "priority": "normal",
+      "negative": false
+    },
+    {
+      "id": "mainpage.specialcharacters",
+      "title": "Execute an API call with special characters in parameter values",
+      "given": [
+        "The user is on the main page.",
+        "An API call parameter input field is displayed."
+      ],
+      "when": "The user enters a parameter value containing special characters or spaces (e.g. 'item 123-test') and executes the call.",
+      "then": [
+        "The API call is run with the entered parameter value.",
+        "The resulting response is displayed to the user."
+      ],
+      "priority": "normal",
+      "negative": false
+    }
+  ]
+}

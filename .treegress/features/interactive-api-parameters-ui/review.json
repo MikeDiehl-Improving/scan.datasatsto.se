@@ -1,0 +1,101 @@
+{
+  "feature_id": "interactive-api-parameters-ui",
+  "plan_version": 1,
+  "plan_hash": "sha256:70117507ad2d8529e97a2d03a876838719b7c545b1cbef45b49c559aa51aff8f",
+  "strategy_version": 1,
+  "strategy_hash": "sha256:9338f2bbc44ccfa536538691d28cf2a1df3488dae19a81bf08fba2c7044846ac",
+  "run_id": "run-001",
+  "reviewed_at": "2026-09-13T19:27:03.708Z",
+  "scenario_verdicts": [
+    {
+      "scenario_id": "mainpage.inputdisplay",
+      "status": "COVERED",
+      "then_coverage": [
+        {
+          "clause_index": 0,
+          "covered": true,
+          "test_id": "unit:tests/unit/mainpage-displayinputs-unit-c1#renders-parameter-input-fields",
+          "evidence_id": "run-001:test-4"
+        },
+        {
+          "clause_index": 1,
+          "covered": true,
+          "test_id": "unit:tests/unit/mainpage-displayinputs-unit-c1#renders-parameter-input-fields",
+          "evidence_id": "run-001:test-4"
+        }
+      ],
+      "rationale": "The unit test asserts that parameter input controls (such as event, secret, and code) as well as the submit button for triggering calls are rendered on the main page."
+    },
+    {
+      "scenario_id": "mainpage.runsingleparam",
+      "status": "COVERED",
+      "then_coverage": [
+        {
+          "clause_index": 0,
+          "covered": true,
+          "test_id": "unit:tests/unit/mainpage-runsingleparam-unit-c1#executes-with-the-supplied-value-and-returns-output",
+          "evidence_id": "run-001:test-8"
+        }
+      ],
+      "rationale": "The unit test verifies that executing an API call with a custom single parameter value reflects that parameter in the request path and presents the returned response."
+    },
+    {
+      "scenario_id": "mainpage.runmultipleparams",
+      "status": "COVERED",
+      "then_coverage": [
+        {
+          "clause_index": 0,
+          "covered": true,
+          "test_id": "unit:tests/unit/mainpage-runmultipleparams-unit-c1#executes-with-all-values-and-displays-the-result",
+          "evidence_id": "run-001:test-7"
+        }
+      ],
+      "rationale": "The unit test verifies that executing an API call with multiple parameters incorporates all supplied values into the call and displays the combined result."
+    },
+    {
+      "scenario_id": "mainpage.missingrequiredparam",
+      "status": "COVERED",
+      "then_coverage": [
+        {
+          "clause_index": 0,
+          "covered": true,
+          "test_id": "unit:tests/unit/mainpage-missingparam-unit-c1#displays-a-required-indication-and-prevents-execution",
+          "evidence_id": "run-001:test-6"
+        },
+        {
+          "clause_index": 1,
+          "covered": true,
+          "test_id": "unit:tests/unit/mainpage-missingparam-unit-c1#displays-a-required-indication-and-prevents-execution",
+          "evidence_id": "run-001:test-6"
+        }
+      ],
+      "rationale": "The test asserts that omitting a required parameter throws a validation error indicating the parameter is required and halts execution without presenting a successful operation outcome."
+    },
+    {
+      "scenario_id": "mainpage.invalidparamvalue",
+      "status": "COVERED",
+      "then_coverage": [
+        {
+          "clause_index": 0,
+          "covered": true,
+          "test_id": "unit:tests/unit/mainpage-invalidparamvalue-unit-c1#displays-an-invalid-input-indication",
+          "evidence_id": "run-001:test-5"
+        }
+      ],
+      "rationale": "The unit test verifies that supplying an invalid value format triggers an explicit validation error message alerting the user."
+    },
+    {
+      "scenario_id": "mainpage.rerunwithnewparams",
+      "status": "COVERED",
+      "then_coverage": [
+        {
+          "clause_index": 0,
+          "covered": true,
+          "test_id": "unit:tests/unit/mainpage-updateparams-unit-c1#runs-with-the-updated-value-and-displays-the-new-result",
+          "evidence_id": "run-001:test-10"
+        }
+      ],
+      "rationale": "The unit test asserts that re-executing the API call with updated parameter values updates the target URL and renders the new output reflecting the changed input."
+    }
+  ]
+}

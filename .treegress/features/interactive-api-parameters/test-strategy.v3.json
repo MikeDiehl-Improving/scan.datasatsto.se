@@ -1,0 +1,79 @@
+{
+  "feature_id": "interactive-api-parameters",
+  "plan_version": 3,
+  "version": 3,
+  "status": "stale",
+  "approval": {
+    "hash": "sha256:0166a64b0bbff8f7254aa3830bcbdd264dee904d18e20360d3bea331a4ae9b5a",
+    "plan_hash": "sha256:d64f3de70bb0a52e6b0206dd757dd474c1358648ed327e241c87c473e851c1f2",
+    "approved_at": "2026-09-13T19:24:09.105Z"
+  },
+  "scenario_strategies": [
+    {
+      "scenario_id": "mainpage.displayinputs",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Verify that parameter input fields are rendered alongside API calls that accept parameters on the main landing page view.",
+          "reason": "Vitest unit tests evaluate the landing page view rendering logic to ensure parameter input fields are present for parameterized endpoints."
+        }
+      ]
+    },
+    {
+      "scenario_id": "mainpage.runsingleparam",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Verify that executing an API call with a user-supplied parameter uses the provided value and displays the resulting response.",
+          "reason": "Vitest unit tests verify the interactive API execution logic and output presentation handler with a supplied parameter value."
+        }
+      ]
+    },
+    {
+      "scenario_id": "mainpage.runmultipleparams",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Verify that executing an API call with multiple parameters incorporates all supplied values into the request and presents the combined result.",
+          "reason": "Vitest unit tests assert parameter binding and request dispatching across multiple inputs and check that the resulting data is displayed."
+        }
+      ]
+    },
+    {
+      "scenario_id": "mainpage.missingparam",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Verify that submitting an API call with missing required parameter input triggers validation messaging and halts execution.",
+          "reason": "Vitest unit tests prove the client-side validation logic blocks request submission and surfaces a required-field notification when inputs are empty."
+        }
+      ]
+    },
+    {
+      "scenario_id": "mainpage.updateparams",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Verify that updating parameter values and re-triggering the API call dispatches with updated values and updates the displayed response.",
+          "reason": "Vitest unit tests confirm state handling and re-execution behavior when parameter values are replaced and executed again."
+        }
+      ]
+    },
+    {
+      "scenario_id": "mainpage.specialcharacters",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Verify that parameter values containing special characters and spaces are correctly handled, encoded, and reflected in the response output.",
+          "reason": "Vitest unit tests prove parameter sanitization and URI encoding logic when executing API calls with special characters."
+        }
+      ]
+    }
+  ]
+}

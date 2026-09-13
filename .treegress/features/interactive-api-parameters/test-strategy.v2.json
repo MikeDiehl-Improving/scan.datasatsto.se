@@ -1,0 +1,79 @@
+{
+  "feature_id": "interactive-api-parameters",
+  "plan_version": 2,
+  "version": 2,
+  "status": "stale",
+  "approval": {
+    "hash": "sha256:68facc89938ef1ebe38513e2211b8c186faf01f3cafe32cc8f2d4c5c68d56aea",
+    "plan_hash": "sha256:d64f3de70bb0a52e6b0206dd757dd474c1358648ed327e241c87c473e851c1f2",
+    "approved_at": "2026-09-13T19:22:31.711Z"
+  },
+  "scenario_strategies": [
+    {
+      "scenario_id": "mainpage.displayinputs",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Verify parameter input fields are generated alongside interactive API call definitions on the main page",
+          "reason": "Vitest is the configured test runner in this repository; unit tests verify that the HTML view rendering logic presents input fields for parameterised endpoints."
+        }
+      ]
+    },
+    {
+      "scenario_id": "mainpage.runsingleparam",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Verify API call execution using a user-supplied parameter value and rendering of the resulting output",
+          "reason": "Unit testing validates endpoint resolution, parameter insertion, and response rendering for a single parameterised API call."
+        }
+      ]
+    },
+    {
+      "scenario_id": "mainpage.runmultipleparams",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Verify API call execution incorporating multiple supplied parameter values and display of the returned data",
+          "reason": "Unit tests ensure all provided parameter fields are correctly substituted into the target API call and combined results are presented."
+        }
+      ]
+    },
+    {
+      "scenario_id": "mainpage.missingparam",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Verify validation prevents execution and displays an indication when a required parameter is missing",
+          "reason": "Unit tests verify input validation logic that halts request triggering and provides user feedback when required parameter values are blank."
+        }
+      ]
+    },
+    {
+      "scenario_id": "mainpage.updateparams",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Verify API re-execution with updated parameter values and rendering of the updated response",
+          "reason": "Unit tests ensure changing parameter inputs and re-running executes the request with the new values and refreshes the displayed response."
+        }
+      ]
+    },
+    {
+      "scenario_id": "mainpage.specialcharacters",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Verify parameter handling, encoding, and response display when parameter values contain special characters or spaces",
+          "reason": "Unit testing verifies that special characters and spaces are safely handled and encoded during API request triggering and output rendering."
+        }
+      ]
+    }
+  ]
+}

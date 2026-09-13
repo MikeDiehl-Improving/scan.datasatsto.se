@@ -1,0 +1,115 @@
+{
+  "feature_id": "interactive-api-parameters-ui",
+  "plan_version": 1,
+  "strategy_version": 1,
+  "entries": [
+    {
+      "scenario_id": "mainpage.inputdisplay",
+      "obligations": [
+        {
+          "skill": "unit",
+          "obligation_id": "mainpage.inputdisplay.unit.c1",
+          "test_ids": [
+            "unit:tests/unit/mainpage-displayinputs-unit-c1#renders-parameter-input-fields"
+          ],
+          "evidence_ids": [
+            "run-001:test-4"
+          ],
+          "reused": true,
+          "user_authored": true
+        }
+      ],
+      "review_status": "COVERED"
+    },
+    {
+      "scenario_id": "mainpage.runsingleparam",
+      "obligations": [
+        {
+          "skill": "unit",
+          "obligation_id": "mainpage.runsingleparam.unit.c1",
+          "test_ids": [
+            "unit:tests/unit/mainpage-runsingleparam-unit-c1#executes-with-the-supplied-value-and-returns-output"
+          ],
+          "evidence_ids": [
+            "run-001:test-8"
+          ],
+          "reused": true,
+          "user_authored": true
+        }
+      ],
+      "review_status": "COVERED"
+    },
+    {
+      "scenario_id": "mainpage.runmultipleparams",
+      "obligations": [
+        {
+          "skill": "unit",
+          "obligation_id": "mainpage.runmultipleparams.unit.c1",
+          "test_ids": [
+            "unit:tests/unit/mainpage-runmultipleparams-unit-c1#executes-with-all-values-and-displays-the-result"
+          ],
+          "evidence_ids": [
+            "run-001:test-7"
+          ],
+          "reused": true,
+          "user_authored": true
+        }
+      ],
+      "review_status": "COVERED"
+    },
+    {
+      "scenario_id": "mainpage.missingrequiredparam",
+      "obligations": [
+        {
+          "skill": "unit",
+          "obligation_id": "mainpage.missingrequiredparam.unit.c1",
+          "test_ids": [
+            "unit:tests/unit/mainpage-missingparam-unit-c1#displays-a-required-indication-and-prevents-execution"
+          ],
+          "evidence_ids": [
+            "run-001:test-6"
+          ],
+          "reused": true,
+          "user_authored": true
+        }
+      ],
+      "review_status": "COVERED"
+    },
+    {
+      "scenario_id": "mainpage.invalidparamvalue",
+      "obligations": [
+        {
+          "skill": "unit",
+          "obligation_id": "mainpage.invalidparamvalue.unit.c1",
+          "test_ids": [
+            "unit:tests/unit/mainpage-invalidparamvalue-unit-c1#displays-an-invalid-input-indication"
+          ],
+          "evidence_ids": [
+            "run-001:test-5"
+          ],
+          "reused": true,
+          "user_authored": true
+        }
+      ],
+      "review_status": "COVERED"
+    },
+    {
+      "scenario_id": "mainpage.rerunwithnewparams",
+      "obligations": [
+        {
+          "skill": "unit",
+          "obligation_id": "mainpage.rerunwithnewparams.unit.c1",
+          "test_ids": [
+            "unit:tests/unit/mainpage-updateparams-unit-c1#runs-with-the-updated-value-and-displays-the-new-result"
+          ],
+          "evidence_ids": [
+            "run-001:test-10"
+          ],
+          "reused": true,
+          "user_authored": true
+        }
+      ],
+      "review_status": "COVERED"
+    }
+  ]
+}

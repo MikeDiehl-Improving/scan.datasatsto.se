@@ -1,0 +1,79 @@
+{
+  "feature_id": "interactive-api-parameters",
+  "plan_version": 1,
+  "version": 1,
+  "status": "stale",
+  "approval": {
+    "hash": "sha256:6f6bcc8f8132f721eaa4ac60f8c4041b66fa305df968e1be6cc7e603c55a7a29",
+    "plan_hash": "sha256:d64f3de70bb0a52e6b0206dd757dd474c1358648ed327e241c87c473e851c1f2",
+    "approved_at": "2026-09-13T19:18:27.994Z"
+  },
+  "scenario_strategies": [
+    {
+      "scenario_id": "mainpage.displayinputs",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Rendered main page view displaying parameter input fields for parameterised endpoints",
+          "reason": "Proves that the main page view generates input fields alongside API calls that support parameters."
+        }
+      ]
+    },
+    {
+      "scenario_id": "mainpage.runsingleparam",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "API call execution handler with a user-supplied parameter and response output rendering",
+          "reason": "Proves that executing an API call with a single parameter passes the parameter value and returns the resulting content."
+        }
+      ]
+    },
+    {
+      "scenario_id": "mainpage.runmultipleparams",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "API call execution handler incorporating multiple parameters and response rendering",
+          "reason": "Proves that executing an endpoint with multiple parameters includes all provided parameters and presents the combined results."
+        }
+      ]
+    },
+    {
+      "scenario_id": "mainpage.missingparam",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Validation logic preventing execution and displaying required parameter error",
+          "reason": "Proves that triggering an API call missing a required parameter prevents execution and shows a required validation indication."
+        }
+      ]
+    },
+    {
+      "scenario_id": "mainpage.updateparams",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Execution handler processing updated parameter values and refreshing output",
+          "reason": "Proves that modifying the parameter value and re-running executes with the new parameter and displays the updated result."
+        }
+      ]
+    },
+    {
+      "scenario_id": "mainpage.specialcharacters",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Encoding and parameter handling for inputs containing special characters and spaces",
+          "reason": "Proves that special characters and spaces within parameter inputs are correctly preserved during execution and displayed in the response."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,112 @@
+{
+  "feature_id": "interactive-api-parameters",
+  "plan_version": 1,
+  "plan_hash": "sha256:d64f3de70bb0a52e6b0206dd757dd474c1358648ed327e241c87c473e851c1f2",
+  "strategy_version": 1,
+  "strategy_hash": "sha256:6f6bcc8f8132f721eaa4ac60f8c4041b66fa305df968e1be6cc7e603c55a7a29",
+  "run_id": "run-001",
+  "reviewed_at": "2026-09-13T19:20:57.003Z",
+  "scenario_verdicts": [
+    {
+      "scenario_id": "mainpage.displayinputs",
+      "status": "COVERED",
+      "then_coverage": [
+        {
+          "clause_index": 0,
+          "covered": true,
+          "test_id": "unit:tests/unit/mainpage-interactive-api-unit-c1#displays-input-fields-alongside-parameterised-api-calls",
+          "evidence_id": "run-001:test-4"
+        }
+      ],
+      "rationale": "The test requests the root page and verifies that parameter input elements are rendered alongside endpoint definitions."
+    },
+    {
+      "scenario_id": "mainpage.runsingleparam",
+      "status": "COVERED",
+      "then_coverage": [
+        {
+          "clause_index": 0,
+          "covered": true,
+          "test_id": "unit:tests/unit/mainpage-interactive-api-unit-c1#executes-a-call-with-a-supplied-parameter-and-returns-its-output",
+          "evidence_id": "run-001:test-5"
+        },
+        {
+          "clause_index": 1,
+          "covered": true,
+          "test_id": "unit:tests/unit/mainpage-interactive-api-unit-c1#executes-a-call-with-a-supplied-parameter-and-returns-its-output",
+          "evidence_id": "run-001:test-5"
+        }
+      ],
+      "rationale": "The test executes executeApiCall with a parameter value and verifies that the call executes with the parameter and returns the response output."
+    },
+    {
+      "scenario_id": "mainpage.runmultipleparams",
+      "status": "PARTIAL",
+      "then_coverage": [
+        {
+          "clause_index": 0,
+          "covered": false,
+          "note": "The test only asserts request URL construction via buildApiRequest without executing the API call."
+        },
+        {
+          "clause_index": 1,
+          "covered": false,
+          "note": "The test does not execute the API call and asserts nothing about displaying resulting data."
+        }
+      ],
+      "rationale": "then-clause(s) not traced to a passing assertion: [0, 1]. The mapped test only checks URL formatting in buildApiRequest and does not execute the call or assert displayed results."
+    },
+    {
+      "scenario_id": "mainpage.missingparam",
+      "status": "PARTIAL",
+      "then_coverage": [
+        {
+          "clause_index": 0,
+          "covered": false,
+          "note": "The test verifies an error is thrown by buildApiRequest but does not assert any visible indication presented in the UI."
+        },
+        {
+          "clause_index": 1,
+          "covered": true,
+          "test_id": "unit:tests/unit/mainpage-interactive-api-unit-c1#rejects-a-call-when-a-required-parameter-is-missing",
+          "evidence_id": "run-001:test-7"
+        }
+      ],
+      "rationale": "then-clause(s) not traced to a passing assertion: [0]. The test proves execution is prevented by throwing when a required parameter is missing, but does not assert a visible UI indication."
+    },
+    {
+      "scenario_id": "mainpage.updateparams",
+      "status": "PARTIAL",
+      "then_coverage": [
+        {
+          "clause_index": 0,
+          "covered": false,
+          "note": "The test only constructs a request URL via buildApiRequest and does not execute the API call."
+        },
+        {
+          "clause_index": 1,
+          "covered": false,
+          "note": "The test does not execute the API call and asserts nothing about displaying updated execution results."
+        }
+      ],
+      "rationale": "then-clause(s) not traced to a passing assertion: [0, 1]. The mapped test only checks URL string generation with buildApiRequest; it neither re-runs the API call nor asserts displayed results."
+    },
+    {
+      "scenario_id": "mainpage.specialcharacters",
+      "status": "PARTIAL",
+      "then_coverage": [
+        {
+          "clause_index": 0,
+          "covered": false,
+          "note": "The test only asserts URL encoding via buildApiRequest without executing the API call."
+        },
+        {
+          "clause_index": 1,
+          "covered": false,
+          "note": "The test does not execute the API call and asserts nothing about displaying the resulting response."
+        }
+      ],
+      "rationale": "then-clause(s) not traced to a passing assertion: [0, 1]. The test validates URL encoding of special characters in buildApiRequest, but does not run the API call or assert response display."
+    }
+  ]
+}
