@@ -1,0 +1,175 @@
+{
+  "feature_id": "run-call-navigation",
+  "plan_version": 1,
+  "strategy_version": 1,
+  "entries": [
+    {
+      "scenario_id": "apidocs.navigatestatic",
+      "obligations": [
+        {
+          "skill": "unit",
+          "obligation_id": "apidocs.navigatestatic.unit.c1",
+          "test_ids": [
+            "unit:tests/unit/apidocs-run-call-navigation-unit-c1#navigates-a-parameterless-endpoint-without-fetching-a-response"
+          ],
+          "evidence_ids": [
+            "run-003:test-0"
+          ],
+          "reused": true
+        },
+        {
+          "skill": "e2e-playwright",
+          "obligation_id": "apidocs.navigatestatic.e2e-playwright.c2",
+          "test_ids": [
+            "e2e-playwright:apidocs-run-call-navigation-e2e#navigates-a-parameterless-endpoint"
+          ],
+          "evidence_ids": [
+            "run-003:test-63"
+          ],
+          "reused": true
+        }
+      ],
+      "review_status": "COVERED"
+    },
+    {
+      "scenario_id": "apidocs.navigatewithparams",
+      "obligations": [
+        {
+          "skill": "unit",
+          "obligation_id": "apidocs.navigatewithparams.unit.c1",
+          "test_ids": [
+            "unit:tests/unit/apidocs-run-call-navigation-unit-c1#navigates-with-a-supplied-parameter"
+          ],
+          "evidence_ids": [
+            "run-003:test-1"
+          ],
+          "reused": true
+        },
+        {
+          "skill": "e2e-playwright",
+          "obligation_id": "apidocs.navigatewithparams.e2e-playwright.c2",
+          "test_ids": [
+            "e2e-playwright:apidocs-run-call-navigation-e2e#navigates-to-a-parameterized-endpoint"
+          ],
+          "evidence_ids": [
+            "run-003:test-64"
+          ],
+          "reused": true
+        }
+      ],
+      "review_status": "COVERED"
+    },
+    {
+      "scenario_id": "apidocs.navigatemultipleparams",
+      "obligations": [
+        {
+          "skill": "unit",
+          "obligation_id": "apidocs.navigatemultipleparams.unit.c1",
+          "test_ids": [
+            "unit:tests/unit/apidocs-run-call-navigation-unit-c1#navigates-with-multiple-supplied-parameters"
+          ],
+          "evidence_ids": [
+            "run-003:test-2"
+          ],
+          "reused": true
+        },
+        {
+          "skill": "e2e-playwright",
+          "obligation_id": "apidocs.navigatemultipleparams.e2e-playwright.c2",
+          "test_ids": [
+            "e2e-playwright:apidocs-run-call-navigation-e2e#navigates-to-a-composite-parameterized-endpoint"
+          ],
+          "evidence_ids": [
+            "run-003:test-65"
+          ],
+          "reused": true
+        }
+      ],
+      "review_status": "COVERED"
+    },
+    {
+      "scenario_id": "apidocs.navigateencodedparams",
+      "obligations": [
+        {
+          "skill": "unit",
+          "obligation_id": "apidocs.navigateencodedparams.unit.c1",
+          "test_ids": [
+            "unit:tests/unit/apidocs-run-call-navigation-unit-c1#encodes-parameter-values-before-navigation"
+          ],
+          "evidence_ids": [
+            "run-003:test-3"
+          ],
+          "reused": true
+        },
+        {
+          "skill": "e2e-playwright",
+          "obligation_id": "apidocs.navigateencodedparams.e2e-playwright.c2",
+          "test_ids": [
+            "e2e-playwright:apidocs-run-call-navigation-e2e#encodes-parameters-in-the-navigated-url"
+          ],
+          "evidence_ids": [
+            "run-003:test-66"
+          ],
+          "reused": true
+        }
+      ],
+      "review_status": "COVERED"
+    },
+    {
+      "scenario_id": "apidocs.emptyparams",
+      "obligations": [
+        {
+          "skill": "unit",
+          "obligation_id": "apidocs.emptyparams.unit.c1",
+          "test_ids": [
+            "unit:tests/unit/apidocs-run-call-navigation-unit-c1#does-not-navigate-or-fetch-when-a-required-parameter-is-omitted"
+          ],
+          "evidence_ids": [
+            "run-003:test-4"
+          ],
+          "reused": true
+        },
+        {
+          "skill": "e2e-playwright",
+          "obligation_id": "apidocs.emptyparams.e2e-playwright.c2",
+          "test_ids": [
+            "e2e-playwright:apidocs-run-call-navigation-e2e#does-not-submit-when-a-required-parameter-is-empty"
+          ],
+          "evidence_ids": [
+            "run-003:test-67"
+          ],
+          "reused": true
+        }
+      ],
+      "review_status": "COVERED"
+    },
+    {
+      "scenario_id": "apidocs.everyendpointbutton",
+      "obligations": [
+        {
+          "skill": "unit",
+          "obligation_id": "apidocs.everyendpointbutton.unit.c1",
+          "test_ids": [
+            "unit:tests/unit/apidocs-run-call-navigation-unit-c1#uses-navigation-for-every-endpoint-method"
+          ],
+          "evidence_ids": [
+            "run-003:test-5"
+          ],
+          "reused": true
+        },
+        {
+          "skill": "e2e-playwright",
+          "obligation_id": "apidocs.everyendpointbutton.e2e-playwright.c2",
+          "test_ids": [
+            "e2e-playwright:apidocs-run-call-navigation-e2e#uses-navigation-for-endpoint-buttons"
+          ],
+          "evidence_ids": [
+            "run-003:test-68"
+          ],
+          "reused": true
+        }
+      ],
+      "review_status": "COVERED"
+    }
+  ]
+}

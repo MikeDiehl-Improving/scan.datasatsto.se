@@ -1,0 +1,1 @@
+On the main API documentation page, every Run call button should navigate the browser to the URL represented by its endpoint and entered parameters, instead of fetching the endpoint and displaying the response in the inline output textbox.

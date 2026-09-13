@@ -1,0 +1,22 @@
+{
+  "feature_id": "run-call-navigation",
+  "state": "VERIFIED",
+  "plan_version": 1,
+  "strategy_version": 1,
+  "approvals": {
+    "test_plan": {
+      "version": 1,
+      "hash": "sha256:69e0c3e0c414b8ff0636b7161fd804f8b5fc2d42f1625531f17e64558f6db920",
+      "approved_at": "2026-09-13T20:54:19.752Z",
+      "self_approved": true
+    },
+    "test_strategy": {
+      "version": 1,
+      "hash": "sha256:6475a23ebc7333c0a597dba8101a77ec8bb592445d8d2296de3b3c2ff226185a",
+      "approved_at": "2026-09-13T20:54:38.048Z",
+      "self_approved": true
+    }
+  },
+  "last_run_id": "run-003",
+  "updated_at": "2026-09-13T21:01:33.716Z"
+}

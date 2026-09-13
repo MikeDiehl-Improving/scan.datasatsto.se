@@ -1,0 +1,115 @@
+{
+  "feature_id": "run-call-navigation",
+  "plan_version": 1,
+  "version": 1,
+  "status": "approved",
+  "approval": {
+    "hash": "sha256:6475a23ebc7333c0a597dba8101a77ec8bb592445d8d2296de3b3c2ff226185a",
+    "plan_hash": "sha256:69e0c3e0c414b8ff0636b7161fd804f8b5fc2d42f1625531f17e64558f6db920",
+    "approved_at": "2026-09-13T20:54:38.048Z"
+  },
+  "scenario_strategies": [
+    {
+      "scenario_id": "apidocs.navigatestatic",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Verify client logic binds parameterless endpoint Run call button to direct navigation instead of inline response fetching",
+          "reason": "Vitest unit tests verify the endpoint action handler configures direct navigation to the endpoint URL and leaves the response textbox unpopulated."
+        },
+        {
+          "skill": "e2e-playwright",
+          "required": true,
+          "target": "Verify clicking Run call for parameterless endpoint navigates browser directly to endpoint URL without populating inline textbox",
+          "reason": "Playwright tests exercise the actual browser navigation and assert the destination URL matches while verifying the inline output textbox is not updated."
+        }
+      ]
+    },
+    {
+      "scenario_id": "apidocs.navigatewithparams",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Verify client URL construction and navigation triggering for single parameterized endpoint",
+          "reason": "Vitest unit tests verify entered parameter values are correctly substituted into the target endpoint URL and inline fetching is bypassed."
+        },
+        {
+          "skill": "e2e-playwright",
+          "required": true,
+          "target": "Verify entering a parameter and clicking Run call navigates browser to the parameterized URL",
+          "reason": "Playwright tests verify input interaction and subsequent browser navigation to the target path without inline output textbox population."
+        }
+      ]
+    },
+    {
+      "scenario_id": "apidocs.navigatemultipleparams",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Verify composite URL resolution and navigation dispatch when handling multiple endpoint parameters",
+          "reason": "Vitest unit tests verify that all parameter values are mapped to their respective route segments in the URL and no inline textbox update occurs."
+        },
+        {
+          "skill": "e2e-playwright",
+          "required": true,
+          "target": "Verify browser navigates to the composite URL containing multiple entered parameters upon clicking Run call",
+          "reason": "Playwright validates multi-input form filling and proves the browser navigates to the composite URL without updating the documentation page output textbox."
+        }
+      ]
+    },
+    {
+      "scenario_id": "apidocs.navigateencodedparams",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Verify URL encoding logic for parameter values containing spaces and special characters prior to navigation",
+          "reason": "Vitest unit tests verify that special characters and spaces are properly percent-encoded when constructing the navigation target URL."
+        },
+        {
+          "skill": "e2e-playwright",
+          "required": true,
+          "target": "Verify browser navigates to correctly encoded URL when special characters are entered in endpoint parameter inputs",
+          "reason": "Playwright tests confirm that entering special characters navigates the real browser to the properly encoded endpoint URL with no inline fetch rendered."
+        }
+      ]
+    },
+    {
+      "scenario_id": "apidocs.emptyparams",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Verify handling of omitted parameter inputs ensures no inline fetch is executed or displayed in output textbox",
+          "reason": "Vitest unit tests verify that clicking Run call with empty parameter inputs avoids asynchronous inline response population."
+        },
+        {
+          "skill": "e2e-playwright",
+          "required": true,
+          "target": "Verify clicking Run call with blank parameter inputs does not execute inline fetch to populate the response textbox",
+          "reason": "Playwright tests ensure user interaction with blank inputs does not render any fetched response data in the output textbox."
+        }
+      ]
+    },
+    {
+      "scenario_id": "apidocs.everyendpointbutton",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Verify consistent navigation binding across all endpoint Run call buttons rendered on the documentation page",
+          "reason": "Vitest unit tests iterate over the documentation endpoint definitions and DOM elements to ensure all Run call buttons are configured for navigation."
+        },
+        {
+          "skill": "e2e-playwright",
+          "required": true,
+          "target": "Verify Run call buttons across distinct documentation endpoints consistently trigger browser navigation rather than inline fetch",
+          "reason": "Playwright tests verify across multiple endpoints that clicking Run call triggers browser navigation rather than an inline fetch."
+        }
+      ]
+    }
+  ]
+}

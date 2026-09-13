@@ -1,9 +1,9 @@
 {
-  "version": 4,
+  "version": 5,
   "status": "approved",
   "approval": {
-    "hash": "sha256:201ba6a86c5dc3505cc489f2229c8583816f92882b1a57cf0bb9d9578a3b05ec",
-    "approved_at": "2026-09-13T18:38:25.096Z"
+    "hash": "sha256:b6564f2018e7b2f4a0b4c9f5c07ffe301e6c8866aa2d6580a6c07329e04e8cac",
+    "approved_at": "2026-09-13T21:01:33.712Z"
   },
   "interactionSegments": [
     {
@@ -51,7 +51,7 @@
         "path": "/pdf",
         "handler": null,
         "source": "server.js",
-        "line": 459,
+        "line": 462,
         "surface": "service"
       },
       "guards": {
@@ -61,43 +61,16 @@
       },
       "operations": [
         {
-          "id": "OP-bdfc78b1b07e",
+          "id": "OP-a5c75e9a436b",
           "kind": "trigger",
           "confidence": "observed",
           "symbol": "<entrypoint>",
-          "line": 459
-        },
-        {
-          "id": "OP-859fb04498ef",
-          "kind": "decide",
-          "confidence": "candidate",
-          "symbol": "<anonymous>",
-          "line": 462,
-          "evidence": "if (!fs.existsSync(__dirname+'/pdf')) { fs.mkdirSync(__dirna"
-        },
-        {
-          "id": "OP-746aa1bd6225",
-          "kind": "decide",
-          "confidence": "candidate",
-          "symbol": "<anonymous>",
-          "line": 465,
-          "evidence": "if (!fs.existsSync(__dirname+'/qr')) { fs.mkdirSync(__dirnam"
+          "line": 462
         }
       ],
-      "operationRelations": [
-        {
-          "fromOperationId": "OP-bdfc78b1b07e",
-          "toOperationId": "OP-859fb04498ef",
-          "kind": "dispatches_to_handler"
-        },
-        {
-          "fromOperationId": "OP-859fb04498ef",
-          "toOperationId": "OP-746aa1bd6225",
-          "kind": "lexical_order"
-        }
-      ],
+      "operationRelations": [],
       "trace": {
-        "status": "bounded_to_observed_operations",
+        "status": "entrypoint_only",
         "maxHops": 0,
         "limitations": [
           "bounded_window"
@@ -255,6 +228,43 @@
       "confidence": "high"
     },
     {
+      "id": "FLOW-842438d78ead",
+      "entrypoint": {
+        "kind": "http_route",
+        "method": "GET",
+        "path": "/pdf",
+        "handler": "pdfForm",
+        "source": "server.js",
+        "line": 453,
+        "surface": "service"
+      },
+      "guards": {
+        "auth": "not_observed",
+        "permission": "not_observed",
+        "markers": []
+      },
+      "operations": [
+        {
+          "id": "OP-d2d54302b1e6",
+          "kind": "trigger",
+          "confidence": "observed",
+          "symbol": "pdfForm",
+          "line": 453
+        }
+      ],
+      "operationRelations": [],
+      "trace": {
+        "status": "entrypoint_only",
+        "maxHops": 1,
+        "limitations": []
+      },
+      "label": {
+        "title": "GET /pdf",
+        "description": ""
+      },
+      "confidence": "high"
+    },
+    {
       "id": "FLOW-84346dfa3d14",
       "entrypoint": {
         "kind": "http_route",
@@ -292,14 +302,14 @@
       "confidence": "high"
     },
     {
-      "id": "FLOW-aa96c63d4ba0",
+      "id": "FLOW-a8c704c9df8e",
       "entrypoint": {
         "kind": "http_route",
         "method": "GET",
         "path": "/pdf/{}",
-        "handler": null,
+        "handler": "pdfForm",
         "source": "server.js",
-        "line": 453,
+        "line": 454,
         "surface": "service"
       },
       "guards": {
@@ -309,51 +319,22 @@
       },
       "operations": [
         {
-          "id": "OP-5e6b6bb2556f",
+          "id": "OP-12bbd1039655",
           "kind": "trigger",
           "confidence": "observed",
-          "symbol": "<entrypoint>",
-          "line": 453
-        },
-        {
-          "id": "OP-280ea470023f",
-          "kind": "decide",
-          "confidence": "candidate",
-          "symbol": "<anonymous>",
-          "line": 462,
-          "evidence": "if (!fs.existsSync(__dirname+'/pdf')) { fs.mkdirSync(__dirna"
-        },
-        {
-          "id": "OP-50f63547c37b",
-          "kind": "decide",
-          "confidence": "candidate",
-          "symbol": "<anonymous>",
-          "line": 465,
-          "evidence": "if (!fs.existsSync(__dirname+'/qr')) { fs.mkdirSync(__dirnam"
+          "symbol": "pdfForm",
+          "line": 454
         }
       ],
-      "operationRelations": [
-        {
-          "fromOperationId": "OP-5e6b6bb2556f",
-          "toOperationId": "OP-280ea470023f",
-          "kind": "dispatches_to_handler"
-        },
-        {
-          "fromOperationId": "OP-280ea470023f",
-          "toOperationId": "OP-50f63547c37b",
-          "kind": "lexical_order"
-        }
-      ],
+      "operationRelations": [],
       "trace": {
-        "status": "bounded_to_observed_operations",
-        "maxHops": 0,
-        "limitations": [
-          "bounded_window"
-        ]
+        "status": "entrypoint_only",
+        "maxHops": 1,
+        "limitations": []
       },
       "label": {
-        "title": "Badge PDF Generator Page",
-        "description": "Badge PDF configuration interface populated with an event secret."
+        "title": "GET /pdf/{}",
+        "description": ""
       },
       "confidence": "high"
     },
@@ -470,7 +451,7 @@
         "path": "/expire",
         "handler": null,
         "source": "server.js",
-        "line": 924,
+        "line": 928,
         "surface": "service"
       },
       "guards": {
@@ -480,51 +461,51 @@
       },
       "operations": [
         {
-          "id": "OP-3becefcdc945",
+          "id": "OP-5b44c042aaae",
           "kind": "trigger",
           "confidence": "observed",
           "symbol": "<entrypoint>",
-          "line": 924
+          "line": 928
         },
         {
-          "id": "OP-8e75583279e2",
+          "id": "OP-25e1bccd88c3",
           "kind": "decide",
           "confidence": "candidate",
           "symbol": "<anonymous>",
-          "line": 935,
+          "line": 939,
           "evidence": "if (recordset) {"
         },
         {
-          "id": "OP-93eb7524a88c",
-          "kind": "decide",
-          "confidence": "candidate",
-          "symbol": "<anonymous>",
-          "line": 957,
-          "evidence": "if (fs.existsSync(path)) {"
-        },
-        {
-          "id": "OP-6180c3eb3158",
+          "id": "OP-6e75c718d98e",
           "kind": "decide",
           "confidence": "candidate",
           "symbol": "<anonymous>",
           "line": 961,
+          "evidence": "if (fs.existsSync(path)) {"
+        },
+        {
+          "id": "OP-1a32a6aa6139",
+          "kind": "decide",
+          "confidence": "candidate",
+          "symbol": "<anonymous>",
+          "line": 965,
           "evidence": "if (fs.statSync(path + \"/\" + filename).isDirectory()) {"
         }
       ],
       "operationRelations": [
         {
-          "fromOperationId": "OP-3becefcdc945",
-          "toOperationId": "OP-8e75583279e2",
+          "fromOperationId": "OP-5b44c042aaae",
+          "toOperationId": "OP-25e1bccd88c3",
           "kind": "dispatches_to_handler"
         },
         {
-          "fromOperationId": "OP-8e75583279e2",
-          "toOperationId": "OP-93eb7524a88c",
+          "fromOperationId": "OP-25e1bccd88c3",
+          "toOperationId": "OP-6e75c718d98e",
           "kind": "lexical_order"
         },
         {
-          "fromOperationId": "OP-93eb7524a88c",
-          "toOperationId": "OP-6180c3eb3158",
+          "fromOperationId": "OP-6e75c718d98e",
+          "toOperationId": "OP-1a32a6aa6139",
           "kind": "lexical_order"
         }
       ],
@@ -549,7 +530,7 @@
         "path": "/assets/{}",
         "handler": null,
         "source": "server.js",
-        "line": 981,
+        "line": 985,
         "surface": "service"
       },
       "guards": {
@@ -559,25 +540,25 @@
       },
       "operations": [
         {
-          "id": "OP-e65672ab7ac5",
+          "id": "OP-41b674c0311a",
           "kind": "trigger",
           "confidence": "observed",
           "symbol": "<entrypoint>",
-          "line": 981
+          "line": 985
         },
         {
-          "id": "OP-290520290b18",
+          "id": "OP-7f5a2beecca3",
           "kind": "decide",
           "confidence": "candidate",
           "symbol": "<anonymous>",
-          "line": 996,
+          "line": 1000,
           "evidence": "if (err) {"
         }
       ],
       "operationRelations": [
         {
-          "fromOperationId": "OP-e65672ab7ac5",
-          "toOperationId": "OP-290520290b18",
+          "fromOperationId": "OP-41b674c0311a",
+          "toOperationId": "OP-7f5a2beecca3",
           "kind": "dispatches_to_handler"
         }
       ],
@@ -624,7 +605,7 @@
           "confidence": "candidate",
           "symbol": "<anonymous>",
           "line": 320,
-          "evidence": "if (code) {"
+          "evidence": "if (vendorCode) {"
         },
         {
           "id": "OP-69c1b3179dc4",
@@ -632,7 +613,7 @@
           "confidence": "candidate",
           "symbol": "<anonymous>",
           "line": 321,
-          "evidence": "if (code.includes('favicon')) {"
+          "evidence": "if (vendorCode.includes('favicon')) {"
         },
         {
           "id": "OP-ea98f530e4b7",
@@ -768,6 +749,30 @@
       "label": {
         "name": "Download Event Report",
         "description": "Extracting scanned attendee badge logs using the event secret."
+      },
+      "confidence": "high"
+    },
+    {
+      "id": "BFLOW-7ea0e5ee162f",
+      "coverageStatus": "isolated_segment",
+      "isCausallyComposed": false,
+      "verifiedEdgeCount": 0,
+      "segmentRefs": [
+        "FLOW-842438d78ead"
+      ],
+      "entrySegmentRefs": [
+        "FLOW-842438d78ead"
+      ],
+      "terminalSegmentRefs": [
+        "FLOW-842438d78ead"
+      ],
+      "edges": [],
+      "surfaces": [
+        "service"
+      ],
+      "label": {
+        "name": "GET /pdf",
+        "description": ""
       },
       "confidence": "high"
     },
@@ -916,26 +921,26 @@
       "confidence": "high"
     },
     {
-      "id": "BFLOW-d83347b98904",
+      "id": "BFLOW-c8a019e1b849",
       "coverageStatus": "isolated_segment",
       "isCausallyComposed": false,
       "verifiedEdgeCount": 0,
       "segmentRefs": [
-        "FLOW-aa96c63d4ba0"
+        "FLOW-a8c704c9df8e"
       ],
       "entrySegmentRefs": [
-        "FLOW-aa96c63d4ba0"
+        "FLOW-a8c704c9df8e"
       ],
       "terminalSegmentRefs": [
-        "FLOW-aa96c63d4ba0"
+        "FLOW-a8c704c9df8e"
       ],
       "edges": [],
       "surfaces": [
         "service"
       ],
       "label": {
-        "name": "Access Badge Generation Form",
-        "description": "Opening the badge generation form with a pre-populated event secret."
+        "name": "GET /pdf/{}",
+        "description": ""
       },
       "confidence": "high"
     },

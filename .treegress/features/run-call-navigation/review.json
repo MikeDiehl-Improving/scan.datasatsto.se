@@ -1,0 +1,119 @@
+{
+  "feature_id": "run-call-navigation",
+  "plan_version": 1,
+  "plan_hash": "sha256:69e0c3e0c414b8ff0636b7161fd804f8b5fc2d42f1625531f17e64558f6db920",
+  "strategy_version": 1,
+  "strategy_hash": "sha256:6475a23ebc7333c0a597dba8101a77ec8bb592445d8d2296de3b3c2ff226185a",
+  "run_id": "run-003",
+  "reviewed_at": "2026-09-13T21:01:30.562Z",
+  "scenario_verdicts": [
+    {
+      "scenario_id": "apidocs.navigatestatic",
+      "status": "COVERED",
+      "then_coverage": [
+        {
+          "clause_index": 0,
+          "covered": true,
+          "test_id": "e2e-playwright:apidocs-run-call-navigation-e2e#navigates-a-parameterless-endpoint",
+          "evidence_id": "run-003:test-63"
+        },
+        {
+          "clause_index": 1,
+          "covered": true,
+          "test_id": "e2e-playwright:apidocs-run-call-navigation-e2e#navigates-a-parameterless-endpoint",
+          "evidence_id": "run-003:test-63"
+        }
+      ],
+      "rationale": "The passing Playwright test asserts browser URL navigation directly to the endpoint and confirms no inline fetch or XHR requests were executed."
+    },
+    {
+      "scenario_id": "apidocs.navigatewithparams",
+      "status": "COVERED",
+      "then_coverage": [
+        {
+          "clause_index": 0,
+          "covered": true,
+          "test_id": "e2e-playwright:apidocs-run-call-navigation-e2e#navigates-to-a-parameterized-endpoint",
+          "evidence_id": "run-003:test-64"
+        },
+        {
+          "clause_index": 1,
+          "covered": true,
+          "test_id": "e2e-playwright:apidocs-run-call-navigation-e2e#navigates-to-a-parameterized-endpoint",
+          "evidence_id": "run-003:test-64"
+        }
+      ],
+      "rationale": "The passing Playwright test fills the parameter, asserts the browser navigates to the parameterized URL, and verifies no inline fetch requests occur."
+    },
+    {
+      "scenario_id": "apidocs.navigatemultipleparams",
+      "status": "COVERED",
+      "then_coverage": [
+        {
+          "clause_index": 0,
+          "covered": true,
+          "test_id": "e2e-playwright:apidocs-run-call-navigation-e2e#navigates-to-a-composite-parameterized-endpoint",
+          "evidence_id": "run-003:test-65"
+        },
+        {
+          "clause_index": 1,
+          "covered": true,
+          "test_id": "e2e-playwright:apidocs-run-call-navigation-e2e#navigates-to-a-composite-parameterized-endpoint",
+          "evidence_id": "run-003:test-65"
+        }
+      ],
+      "rationale": "The passing Playwright test inputs multiple parameters, verifies navigation to the composite path, and ensures no inline requests or textbox updates occur."
+    },
+    {
+      "scenario_id": "apidocs.navigateencodedparams",
+      "status": "COVERED",
+      "then_coverage": [
+        {
+          "clause_index": 0,
+          "covered": true,
+          "test_id": "e2e-playwright:apidocs-run-call-navigation-e2e#encodes-parameters-in-the-navigated-url",
+          "evidence_id": "run-003:test-66"
+        },
+        {
+          "clause_index": 1,
+          "covered": true,
+          "test_id": "e2e-playwright:apidocs-run-call-navigation-e2e#encodes-parameters-in-the-navigated-url",
+          "evidence_id": "run-003:test-66"
+        }
+      ],
+      "rationale": "The passing Playwright test enters spaces and special characters, asserts the target URL is percent-encoded, and confirms no inline fetch is performed."
+    },
+    {
+      "scenario_id": "apidocs.emptyparams",
+      "status": "COVERED",
+      "then_coverage": [
+        {
+          "clause_index": 0,
+          "covered": true,
+          "test_id": "e2e-playwright:apidocs-run-call-navigation-e2e#does-not-submit-when-a-required-parameter-is-empty",
+          "evidence_id": "run-003:test-67"
+        },
+        {
+          "clause_index": 1,
+          "covered": true,
+          "test_id": "e2e-playwright:apidocs-run-call-navigation-e2e#does-not-submit-when-a-required-parameter-is-empty",
+          "evidence_id": "run-003:test-67"
+        }
+      ],
+      "rationale": "The passing Playwright test submits empty parameters, verifies the inline output textbox remains empty, and checks that no endpoint network request is executed."
+    },
+    {
+      "scenario_id": "apidocs.everyendpointbutton",
+      "status": "COVERED",
+      "then_coverage": [
+        {
+          "clause_index": 0,
+          "covered": true,
+          "test_id": "e2e-playwright:apidocs-run-call-navigation-e2e#uses-navigation-for-endpoint-buttons",
+          "evidence_id": "run-003:test-68"
+        }
+      ],
+      "rationale": "The passing Playwright test iterates across all documented endpoints and confirms each Run call button navigates directly to the expected endpoint URL."
+    }
+  ]
+}

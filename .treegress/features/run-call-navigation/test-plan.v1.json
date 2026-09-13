@@ -1,0 +1,103 @@
+{
+  "feature_id": "run-call-navigation",
+  "version": 1,
+  "status": "approved",
+  "approval": {
+    "hash": "sha256:69e0c3e0c414b8ff0636b7161fd804f8b5fc2d42f1625531f17e64558f6db920",
+    "approved_at": "2026-09-13T20:54:19.752Z"
+  },
+  "scenarios": [
+    {
+      "id": "apidocs.navigatestatic",
+      "title": "Navigate browser on Run call for endpoint without parameters",
+      "given": [
+        "The user is viewing the main API documentation page",
+        "An API endpoint without parameters (e.g. /stored-procedures) is displayed with a Run call button"
+      ],
+      "when": "The user clicks the Run call button for the parameterless endpoint",
+      "then": [
+        "The browser navigates directly to the endpoint URL (e.g. /stored-procedures)",
+        "The inline output textbox is not populated with fetched response content"
+      ],
+      "priority": "critical",
+      "negative": false
+    },
+    {
+      "id": "apidocs.navigatewithparams",
+      "title": "Navigate browser on Run call with entered parameters",
+      "given": [
+        "The user is viewing the main API documentation page",
+        "An API endpoint with a parameter input field (e.g. /report/{id}) is displayed",
+        "The user enters a valid parameter value (e.g. 101) into the input field"
+      ],
+      "when": "The user clicks the Run call button for that endpoint",
+      "then": [
+        "The browser navigates to the URL reflecting the endpoint and entered parameter (e.g. /report/101)",
+        "The response is not displayed in the inline output textbox"
+      ],
+      "priority": "critical",
+      "negative": false
+    },
+    {
+      "id": "apidocs.navigatemultipleparams",
+      "title": "Navigate browser on Run call with multiple entered parameters",
+      "given": [
+        "The user is viewing the main API documentation page",
+        "An API endpoint requiring multiple parameters (e.g. /random/{count}/{type}) is displayed",
+        "The user fills in all required parameter inputs (e.g. 5 and test)"
+      ],
+      "when": "The user clicks the Run call button for that endpoint",
+      "then": [
+        "The browser navigates to the composite URL containing all entered parameters in their respective positions (e.g. /random/5/test)",
+        "No inline output textbox update occurs on the documentation page"
+      ],
+      "priority": "high",
+      "negative": false
+    },
+    {
+      "id": "apidocs.navigateencodedparams",
+      "title": "Navigate browser with special characters in parameter values",
+      "given": [
+        "The user is viewing the main API documentation page",
+        "An API endpoint with parameter inputs is displayed",
+        "The user enters parameter values containing spaces or special characters (e.g. badge alpha/1)"
+      ],
+      "when": "The user clicks the Run call button for that endpoint",
+      "then": [
+        "The browser navigates to the endpoint URL with the parameter values properly URL-encoded (e.g. badge%20alpha%2F1)",
+        "No inline response fetch is rendered in the output textbox"
+      ],
+      "priority": "normal",
+      "negative": false
+    },
+    {
+      "id": "apidocs.emptyparams",
+      "title": "Run call when endpoint parameter inputs are omitted",
+      "given": [
+        "The user is viewing the main API documentation page",
+        "An API endpoint with parameter input fields is displayed",
+        "The user leaves the parameter inputs blank"
+      ],
+      "when": "The user clicks the Run call button for that endpoint",
+      "then": [
+        "The inline output textbox is not populated with a fetched API response",
+        "The browser does not execute an inline asynchronous fetch to display results in the output textbox"
+      ],
+      "priority": "normal",
+      "negative": true
+    },
+    {
+      "id": "apidocs.everyendpointbutton",
+      "title": "Consistent navigation behavior across all endpoint Run call buttons",
+      "given": [
+        "The user is viewing the main API documentation page containing multiple distinct endpoints"
+      ],
+      "when": "The user clicks the Run call button on any endpoint listed on the page",
+      "then": [
+        "The browser initiates navigation to the respective endpoint URL rather than an inline fetch to the response textbox"
+      ],
+      "priority": "high",
+      "negative": false
+    }
+  ]
+}

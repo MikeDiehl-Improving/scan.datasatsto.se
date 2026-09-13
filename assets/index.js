@@ -31,6 +31,7 @@ export function buildApiRequest(row, formData) {
     }
 
     return {
+        method,
         url: query.toString() ? `${path}?${query}` : path,
         options: method === 'GET'
             ? { method }
@@ -58,11 +59,31 @@ export function formatApiError(error) {
     return error.message;
 }
 
+export function navigateApiCall(row, formData, navigate = url => window.location.assign(url)) {
+    const request = buildApiRequest(row, formData);
+    if (request.method === 'GET') {
+        navigate(request.url);
+        return;
+    }
+
+    const submission = document.createElement('form');
+    submission.method = request.options.method;
+    submission.action = request.url;
+    for (const [name, value] of request.options.body.entries()) {
+        const input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = name;
+        input.value = value;
+        submission.append(input);
+    }
+    document.body.append(submission);
+    submission.submit();
+}
+
 async function runApiCall(form) {
     const result = form.querySelector('.api-result');
-    result.textContent = 'Loading...';
     try {
-        result.textContent = await executeApiCall(form.closest('tr'), new FormData(form));
+        navigateApiCall(form.closest('tr'), new FormData(form));
     } catch (error) {
         result.textContent = formatApiError(error);
     }
