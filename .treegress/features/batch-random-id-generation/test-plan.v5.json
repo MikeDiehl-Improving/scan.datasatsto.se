@@ -1,0 +1,87 @@
+{
+  "feature_id": "batch-random-id-generation",
+  "version": 5,
+  "status": "approved",
+  "approval": {
+    "hash": "sha256:1a6ad543e53b6373a2328f357ed65751446f259fd9eff1ca8e0447c78a3719df",
+    "approved_at": "2026-09-13T16:36:16.453Z"
+  },
+  "scenarios": [
+    {
+      "id": "randomscan.withoutcode",
+      "title": "Random scan lookup using event secret without reference code",
+      "given": [
+        "an event exists with a secret e.g. validsecret",
+        "scan records exist for the event in the database"
+      ],
+      "when": "a client sends a request to retrieve random scans using only the event secret e.g. /random/validsecret",
+      "then": [
+        "the client receives a successful response",
+        "the response body contains the scan records formatted as a JSON array"
+      ],
+      "priority": "critical",
+      "negative": false
+    },
+    {
+      "id": "randomscan.withcode",
+      "title": "Random scan lookup using event secret and reference code filter",
+      "given": [
+        "an event exists with a secret e.g. validsecret",
+        "a reference code filter e.g. vendor123 is specified",
+        "matching scan records exist for the event and reference code in the database"
+      ],
+      "when": "a client sends a request to retrieve random scans using both the event secret and reference code e.g. /random/validsecret/vendor123",
+      "then": [
+        "the client receives a successful response",
+        "the response body contains the matching scan records formatted as a JSON array"
+      ],
+      "priority": "critical",
+      "negative": false
+    },
+    {
+      "id": "randomscan.emptyrecordset",
+      "title": "Random scan lookup when no matching records exist",
+      "given": [
+        "an event exists with a secret e.g. validsecret",
+        "the database yields an empty recordset for the lookup"
+      ],
+      "when": "a client sends a request to retrieve random scans for the event secret e.g. /random/validsecret",
+      "then": [
+        "the client receives a successful response",
+        "the response body contains an empty JSON array"
+      ],
+      "priority": "high",
+      "negative": false
+    },
+    {
+      "id": "randomscan.errorwithoutcode",
+      "title": "Database error during random scan lookup without reference code is swallowed",
+      "given": [
+        "an event secret e.g. validsecret is provided",
+        "the underlying SQL statement fails during the lookup"
+      ],
+      "when": "a client sends a request to retrieve random scans using the event secret e.g. /random/validsecret",
+      "then": [
+        "the client receives an HTTP 200 response",
+        "the response body is empty"
+      ],
+      "priority": "high",
+      "negative": true
+    },
+    {
+      "id": "randomscan.errorwithcode",
+      "title": "Database error during random scan lookup with reference code is swallowed",
+      "given": [
+        "an event secret e.g. validsecret and a reference code e.g. vendor123 are provided",
+        "the underlying SQL statement fails during the lookup"
+      ],
+      "when": "a client sends a request to retrieve random scans using the event secret and reference code e.g. /random/validsecret/vendor123",
+      "then": [
+        "the client receives an HTTP 200 response",
+        "the response body is empty"
+      ],
+      "priority": "normal",
+      "negative": true
+    }
+  ]
+}

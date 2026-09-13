@@ -1,0 +1,36 @@
+{
+  "version": 1,
+  "stack": { "language": "typescript", "packageManager": "npm" },
+  "runners": {
+    // adapter: "vitest" | "jest" | "project-native"
+    "unit": { "adapter": "vitest", "command": "npx vitest run" },
+    // Component tests run on the same native runner; needs a DOM env (jsdom/happy-dom).
+    "component": { "adapter": "vitest", "command": "npx vitest run" },
+    // Integration tests run the REAL query against a lightweight/disposable DB
+    // (e.g. pg-mem or a throwaway Postgres). For DB/persistence-truth outcomes so a
+    // unit test isn't forced to re-implement the production query (amendment #59).
+    "integration": { "adapter": "project-native", "command": "npx vitest run tests/integration" },
+    "e2e-playwright": {
+      "adapter": "playwright",
+      "command": "npx playwright test",
+      "configPath": "playwright.config.ts"
+    }
+  },
+  // Required for e2e: Treegress starts (or reuses) this server before Playwright runs.
+  // command runs WITHOUT a shell (SPEC §18) — a single argv, no "&&"/"|"/";". If you
+  // need a build first, put it in a package script ("start:e2e": "npm run build && node server.mjs")
+  // and set command to "npm run start:e2e".
+  "webServer": {
+    "command": "npm run dev",
+    "url": "http://localhost:3000",
+    "healthcheckPath": "/",
+    "timeoutMs": 60000,
+    "reuseExisting": true
+  },
+  // Env var names passed through to runners (never LLM context); values are read from the environment.
+  "envPassthrough": [],
+  // Onboarding (amendment #49): init installs missing test deps + Chromium unless disabled.
+  // Set false to skip installation (env TREEGRESS_NO_AUTOINSTALL opts out the first run).
+  "init": { "autoInstall": true },
+  "testDirs": { "unit": "tests/unit", "component": "tests/component", "e2e": "tests/e2e" }
+}

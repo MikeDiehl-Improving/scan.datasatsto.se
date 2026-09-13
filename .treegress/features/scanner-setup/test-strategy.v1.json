@@ -1,0 +1,68 @@
+{
+  "feature_id": "scanner-setup",
+  "plan_version": 1,
+  "version": 1,
+  "status": "approved",
+  "approval": {
+    "hash": "sha256:ecb159c79bb6b09dc66d4c4cb89f7d820699fb8dc8e7cd6515b1589b0a65c6d4",
+    "plan_hash": "sha256:d44c6271383dfe16a747f19f34ab5d27766f406aa511bce737d4d2ed6d9bbe1d",
+    "approved_at": "2026-09-13T17:28:13.386Z"
+  },
+  "scenario_strategies": [
+    {
+      "scenario_id": "setup.get.blankform",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Verify scanner setup GET handler renders the setup page with an empty vendor code input when no session code exists",
+          "reason": "Vitest unit test validates route handler logic and rendered output when request session lacks vendor code; would gain e2e-playwright coverage at thorough."
+        }
+      ]
+    },
+    {
+      "scenario_id": "setup.get.prefilledform",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Verify scanner setup GET handler renders the setup page prefilled with previously submitted session vendor code",
+          "reason": "Vitest unit test validates session data extraction and view population with existing vendor code; would gain e2e-playwright coverage at thorough."
+        }
+      ]
+    },
+    {
+      "scenario_id": "setup.get.selectcodes",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Verify scanner setup GET handler with identifier renders selectable options for matching codes with HTML escaping",
+          "reason": "Vitest unit test validates query lookup by identifier, selection page rendering, and safe HTML encoding of reference code values."
+        }
+      ]
+    },
+    {
+      "scenario_id": "setup.get.nocodes",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Verify scanner setup GET handler with non-matching identifier renders error page with 'That code didn't look right.'",
+          "reason": "Vitest unit test validates error handling branch when identifier lookup yields no matching records."
+        }
+      ]
+    },
+    {
+      "scenario_id": "setup.post.submitcode",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Verify scanner setup POST handler persists vendor code into session and renders confirmation view",
+          "reason": "Vitest unit test verifies POST payload handling, session state persistence, and confirmation response rendering; would gain e2e-playwright coverage at thorough."
+        }
+      ]
+    }
+  ]
+}

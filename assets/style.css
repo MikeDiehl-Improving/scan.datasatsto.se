@@ -37,6 +37,48 @@ body.pdf {
     background: radial-gradient(#ffffff, #ffffff, #d8d8d8);
 }
 
+body.index {
+    min-height: 100vh;
+    padding: 2rem;
+    font-size: 1rem;
+    font-weight: 400;
+    color: #222831;
+    background-color: #ffffff;
+}
+
+body.index h1 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+}
+
+body.index table {
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 900px;
+    margin-top: 1rem;
+}
+
+body.index th,
+body.index td {
+    text-align: left;
+    padding: 0.5rem 1rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    vertical-align: top;
+}
+
+body.index code {
+    background: rgba(0, 0, 0, 0.05);
+    padding: 0.1rem 0.4rem;
+    border-radius: 0.25rem;
+    font-family: 'Courier New', monospace;
+}
+
+body.index td.method {
+    font-weight: 700;
+    white-space: nowrap;
+}
+
 ::placeholder,
 ::-ms-input-placeholder {
     opacity: 0.5;

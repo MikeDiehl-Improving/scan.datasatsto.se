@@ -1,0 +1,138 @@
+{
+  "feature_id": "scanner-setup",
+  "version": 1,
+  "approval": {
+    "hash": "sha256:f375f0eda9013e02b8663f7d4c4f2fc025f04d817b6e646966ba1ef4d18d2329",
+    "strategy_hash": "sha256:ecb159c79bb6b09dc66d4c4cb89f7d820699fb8dc8e7cd6515b1589b0a65c6d4",
+    "approved_at": "2026-09-13T17:28:13.386Z"
+  },
+  "testids": [],
+  "roles": [],
+  "strings": [
+    "/:id",
+    "/:id/:code",
+    "/expire",
+    "/new/:event",
+    "/new/:event/:id",
+    "/pdf",
+    "/pdf/:secret",
+    "/random/:secret",
+    "/random/:secret/:code",
+    "/report/:secret",
+    "/setup",
+    "12pt",
+    "18pt",
+    "24pt",
+    "2x2",
+    "3x3",
+    "4x4",
+    "8pt",
+    "An error occurred",
+    "Avery 5392",
+    "Badges per sheet:",
+    "Choose exhibitor code",
+    "Configure the scanning client's vendor code, or look up the codes for an ID.",
+    "Description",
+    "Encryption key:",
+    "Encryption pass phrase",
+    "Event secret (required)",
+    "Event secret:",
+    "Executive",
+    "Expire old events and remove their cached QR codes.",
+    "Font size:",
+    "Generate PDF document",
+    "Generate the PDF document.",
+    "GET",
+    "GET / POST",
+    "Huge",
+    "ISO A3",
+    "ISO A4",
+    "ISO A5",
+    "ISO A6",
+    "Large",
+    "Legal",
+    "Letter",
+    "Medium",
+    "Method",
+    "Notes",
+    "OK",
+    "Only print badges for the above identities",
+    "Paper size:",
+    "Paste a comma-delimited list of identities here. Column names can include",
+    "Path",
+    "POST",
+    "QR code size",
+    "Record a scan for the given ID (no vendor code).",
+    "Record a scan for the given ID and vendor code.",
+    "Register a new identity and generate its QR code for the given event.",
+    "Register using a specific existing ID (for integrations).",
+    "Save the above identity details to the database",
+    "Save the vendor code to the session.",
+    "scan.datasatsto.se",
+    "scan.datasatsto.se API",
+    "Scanner set up",
+    "Show the form to generate a PDF badge/report.",
+    "Small",
+    "Tabloid",
+    "This service exposes the following API endpoints:",
+    "Tiny",
+    "Vendor code",
+    "View one random scan for an event, filtered by vendor code.",
+    "View one random scan for an event.",
+    "View the scan report for an event, identified by its secret."
+  ],
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/"
+    },
+    {
+      "method": "GET",
+      "path": "/assets/:asset"
+    },
+    {
+      "method": "GET",
+      "path": "/expire"
+    },
+    {
+      "method": "POST",
+      "path": "/pdf"
+    },
+    {
+      "method": "GET",
+      "path": "/pdf/:secret"
+    },
+    {
+      "method": "GET",
+      "path": "/random/:secret"
+    },
+    {
+      "method": "GET",
+      "path": "/random/:secret/:code"
+    },
+    {
+      "method": "GET",
+      "path": "/report/:secret"
+    },
+    {
+      "method": "GET",
+      "path": "/robots933456.txt"
+    },
+    {
+      "method": "GET",
+      "path": "/setup"
+    },
+    {
+      "method": "POST",
+      "path": "/setup"
+    }
+  ],
+  "cookies": [],
+  "statusCodes": [
+    200,
+    400,
+    401,
+    404,
+    500
+  ]
+}

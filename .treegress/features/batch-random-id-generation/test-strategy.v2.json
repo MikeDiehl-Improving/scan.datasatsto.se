@@ -1,0 +1,63 @@
+{
+  "feature_id": "batch-random-id-generation",
+  "plan_version": 4,
+  "version": 2,
+  "status": "stale",
+  "scenario_strategies": [
+    {
+      "scenario_id": "randomscan.withoutcode",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Verify /random/:secret route handler returns HTTP 200 and JSON array of scan records when matching records exist",
+          "reason": "Unit testing the endpoint handler with mocked data service verifies response status and JSON serialization."
+        }
+      ]
+    },
+    {
+      "scenario_id": "randomscan.withcode",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Verify /random/:secret/:referenceCode route handler queries with reference code filter and returns HTTP 200 with matching scan records in JSON format",
+          "reason": "Unit testing the endpoint handler with mocked data service confirms reference code parameter filtering and JSON serialization."
+        }
+      ]
+    },
+    {
+      "scenario_id": "randomscan.emptyrecordset",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Verify /random/:secret route handler returns HTTP 200 and an empty JSON array when no records match",
+          "reason": "Unit test confirms empty recordsets are serialized as an empty JSON array rather than failing or returning null."
+        }
+      ]
+    },
+    {
+      "scenario_id": "randomscan.errorwithoutcode",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Verify /random/:secret route handler responds with 500 internal server error and HTML error page when database lookup fails",
+          "reason": "Unit test with simulated database failure ensures error handling middleware renders an HTML error page."
+        }
+      ]
+    },
+    {
+      "scenario_id": "randomscan.errorwithcode",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Verify /random/:secret/:referenceCode route handler responds with 500 internal server error and HTML error page when database lookup fails",
+          "reason": "Unit test with simulated database failure confirms error handling middleware renders an HTML error page for filtered lookups."
+        }
+      ]
+    }
+  ]
+}

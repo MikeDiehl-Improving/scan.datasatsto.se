@@ -1,0 +1,23 @@
+import { describe, it, expect, beforeEach } from 'vitest';
+import request from 'supertest';
+import { queueTediousRows, resetTediousQueue } from './fixtures/tedious-mock.js';
+import app from '../../server.js';
+
+describe('POST scan request with a vendor code and an optional note', () => {
+    beforeEach(() => {
+        resetTediousQueue();
+    });
+
+    /* treegress:obligation scan.postwithnote.unit.c1 do-not-regenerate — for: Verify POST scan request with vendor code and optional note renders confirmation page
+       authored via treegress_author_tests (SPEC §7.4 amendment #53); assert EXACTLY the then-clauses below. Keep this marker and do not rename the file (run-result correlation is by the obligation id, SPEC §12.3 amendment #34). */
+    it('shows the confirmation page displaying the vendor code', async () => {
+        queueTediousRows([{ ID: 1 }]);
+
+        const res = await request(app)
+            .post('/12345/EXHIBIT200')
+            .send({ note: 'Follow up regarding quote' });
+
+        expect(res.status).toBe(200);
+        expect(res.text).toContain('EXHIBIT200');
+    });
+});

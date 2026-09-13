@@ -1,0 +1,41 @@
+{
+  "run_id": "run-001",
+  "feature_id": "home-page-api-index",
+  "trigger": "verify",
+  "started_at": "2026-09-13T15:50:58.993Z",
+  "finished_at": "2026-09-13T15:51:01.196Z",
+  "results": [
+    {
+      "evidence_id": "run-001:test-0",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/landingpage-endpoints-unit-c1#documents-the-new-event-setup-id-code-report-secret-random-secret-pdf-secret-and-expire-endpoints",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 26
+    },
+    {
+      "evidence_id": "run-001:test-1",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/landingpage-queryparams-unit-c1#returns-the-successful-html-landing-page-documenting-the-available-api-endpoints",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 27
+    },
+    {
+      "evidence_id": "run-001:test-2",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/landingpage-unknownroute-unit-c1#returns-a-not-found-indication-and-does-not-render-the-api-documentation-landing-page",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 24
+    },
+    {
+      "evidence_id": "run-001:test-3",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/landingpage-view-unit-c1#returns-a-successful-html-landing-page-instead-of-a-not-found-error",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 25
+    }
+  ]
+}

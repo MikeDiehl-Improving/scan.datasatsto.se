@@ -1,0 +1,82 @@
+{
+  "feature_id": "scanner-setup",
+  "version": 1,
+  "status": "approved",
+  "approval": {
+    "hash": "sha256:d44c6271383dfe16a747f19f34ab5d27766f406aa511bce737d4d2ed6d9bbe1d",
+    "approved_at": "2026-09-13T17:27:51.654Z"
+  },
+  "scenarios": [
+    {
+      "id": "setup.get.blankform",
+      "title": "Access scanner setup form without prior session code",
+      "given": [
+        "the user has no previously saved vendor code in their session"
+      ],
+      "when": "the user requests the scanner setup page without an identifier",
+      "then": [
+        "the scanner setup page is displayed",
+        "the vendor code input field is empty"
+      ],
+      "priority": "high",
+      "negative": false
+    },
+    {
+      "id": "setup.get.prefilledform",
+      "title": "Access scanner setup form with existing vendor code from prior submission",
+      "given": [
+        "the user has previously submitted a vendor code (e.g. VENDOR99) in their session"
+      ],
+      "when": "the user requests the scanner setup page without an identifier",
+      "then": [
+        "the scanner setup page is displayed",
+        "the vendor code input field is prefilled with the previously submitted vendor code (e.g. VENDOR99)"
+      ],
+      "priority": "high",
+      "negative": false
+    },
+    {
+      "id": "setup.get.selectcodes",
+      "title": "Access scanner setup with identifier returning matching codes",
+      "given": [
+        "an identifier (e.g. 101) is associated with one or more reference codes (e.g. CODEA, CODEB)"
+      ],
+      "when": "the user requests the scanner setup page with the identifier (e.g. 101)",
+      "then": [
+        "the code selection page is displayed",
+        "each matching reference code is presented as a selectable option",
+        "any HTML special characters in reference codes are safely encoded"
+      ],
+      "priority": "critical",
+      "negative": false
+    },
+    {
+      "id": "setup.get.nocodes",
+      "title": "Access scanner setup with identifier returning no codes",
+      "given": [
+        "an identifier (e.g. 999) has no matching reference codes"
+      ],
+      "when": "the user requests the scanner setup page with the identifier (e.g. 999)",
+      "then": [
+        "an error page is displayed indicating that the request failed",
+        "the error page displays the message 'That code didn't look right.'"
+      ],
+      "priority": "normal",
+      "negative": true
+    },
+    {
+      "id": "setup.post.submitcode",
+      "title": "Submit vendor code configuration",
+      "given": [
+        "the user is configuring scanner settings"
+      ],
+      "when": "the user submits a vendor code (e.g. VENDOR99) to the scanner setup",
+      "then": [
+        "a confirmation page is displayed showing the submitted vendor code (e.g. VENDOR99)",
+        "the submitted vendor code is retained in the user's session for subsequent setup visits"
+      ],
+      "priority": "critical",
+      "negative": false
+    }
+  ]
+}

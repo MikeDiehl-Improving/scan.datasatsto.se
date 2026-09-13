@@ -1,0 +1,97 @@
+{
+  "feature_id": "batch-random-id-generation",
+  "plan_version": 6,
+  "strategy_version": 4,
+  "entries": [
+    {
+      "scenario_id": "randomscan.withoutcode",
+      "obligations": [
+        {
+          "skill": "unit",
+          "obligation_id": "randomscan.withoutcode.unit.c1",
+          "test_ids": [
+            "unit:tests/unit/randomscan-withoutcode-unit-c1#returns-a-successful-response-with-the-scan-records-formatted-as-a-json-array"
+          ],
+          "evidence_ids": [
+            "run-001:test-8"
+          ],
+          "reused": true,
+          "user_authored": true
+        }
+      ],
+      "review_status": "COVERED"
+    },
+    {
+      "scenario_id": "randomscan.withcode",
+      "obligations": [
+        {
+          "skill": "unit",
+          "obligation_id": "randomscan.withcode.unit.c1",
+          "test_ids": [
+            "unit:tests/unit/randomscan-withcode-unit-c1#returns-a-successful-response-with-the-matching-scan-records-formatted-as-a-json-array"
+          ],
+          "evidence_ids": [
+            "run-001:test-7"
+          ],
+          "reused": true,
+          "user_authored": true
+        }
+      ],
+      "review_status": "COVERED"
+    },
+    {
+      "scenario_id": "randomscan.emptyrecordset",
+      "obligations": [
+        {
+          "skill": "unit",
+          "obligation_id": "randomscan.emptyrecordset.unit.c1",
+          "test_ids": [
+            "unit:tests/unit/randomscan-emptyrecordset-unit-c1#returns-a-successful-response-with-an-empty-json-array"
+          ],
+          "evidence_ids": [
+            "run-001:test-4"
+          ],
+          "reused": true,
+          "user_authored": true
+        }
+      ],
+      "review_status": "COVERED"
+    },
+    {
+      "scenario_id": "randomscan.errorwithoutcode",
+      "obligations": [
+        {
+          "skill": "unit",
+          "obligation_id": "randomscan.errorwithoutcode.unit.c1",
+          "test_ids": [
+            "unit:tests/unit/randomscan-errorwithoutcode-unit-c1#returns-an-http-200-response-with-an-empty-body"
+          ],
+          "evidence_ids": [
+            "run-001:test-6"
+          ],
+          "reused": true,
+          "user_authored": true
+        }
+      ],
+      "review_status": "COVERED"
+    },
+    {
+      "scenario_id": "randomscan.errorwithcode",
+      "obligations": [
+        {
+          "skill": "unit",
+          "obligation_id": "randomscan.errorwithcode.unit.c1",
+          "test_ids": [
+            "unit:tests/unit/randomscan-errorwithcode-unit-c1#returns-an-http-200-response-with-an-empty-body"
+          ],
+          "evidence_ids": [
+            "run-001:test-5"
+          ],
+          "reused": true,
+          "user_authored": true
+        }
+      ],
+      "review_status": "COVERED"
+    }
+  ]
+}

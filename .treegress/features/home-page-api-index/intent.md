@@ -1,0 +1,1 @@
+Replace the base "/" route's 404 "Nothing to see here" response with a 200 HTML landing page that lists and documents the app's current API endpoints (e.g. /new/:event, /setup, /:id/:code scan, /report/:secret, /random/:secret, /pdf/:secret, /expire), so a visitor to the root URL sees a guide to the available API calls instead of an error.

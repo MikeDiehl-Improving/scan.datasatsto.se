@@ -1,0 +1,22 @@
+{
+  "feature_id": "home-page-api-index",
+  "state": "VERIFIED",
+  "plan_version": 1,
+  "strategy_version": 1,
+  "approvals": {
+    "test_plan": {
+      "version": 1,
+      "hash": "sha256:3c482a1d1c59db169ffc44a6bef6cb385239361b5b92eca558679578086b4aea",
+      "approved_at": "2026-09-13T15:47:51.062Z",
+      "self_approved": true
+    },
+    "test_strategy": {
+      "version": 1,
+      "hash": "sha256:14c0046f329af095b064a5e6512d3612af62b44d9aa1eade9c157032ee72d87b",
+      "approved_at": "2026-09-13T15:48:11.849Z",
+      "self_approved": true
+    }
+  },
+  "last_run_id": "run-001",
+  "updated_at": "2026-09-13T15:51:18.001Z"
+}

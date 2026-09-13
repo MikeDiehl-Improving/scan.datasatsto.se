@@ -1,0 +1,78 @@
+{
+  "feature_id": "batch-random-id-generation",
+  "version": 2,
+  "status": "draft",
+  "scenarios": [
+    {
+      "id": "randombatch.validcount",
+      "title": "Generate multiple random badge IDs for a valid event",
+      "given": [
+        "an existing event configured with a valid secret (e.g. VALIDEVENT123)"
+      ],
+      "when": "a client requests random badge IDs with a positive count (e.g. 5) via the batch random endpoint",
+      "then": [
+        "the client receives a collection containing exactly the requested count of attendee badge IDs",
+        "all badge IDs within the returned collection are unique",
+        "each badge ID is a valid attendee badge identifier for the event"
+      ],
+      "priority": "critical",
+      "negative": false
+    },
+    {
+      "id": "randombatch.singlecount",
+      "title": "Generate a single random badge ID using the batch endpoint",
+      "given": [
+        "an existing event configured with a valid secret (e.g. VALIDEVENT123)"
+      ],
+      "when": "a client requests random badge IDs specifying a count of 1 via the batch random endpoint",
+      "then": [
+        "the client receives a collection containing exactly one attendee badge ID",
+        "the badge ID is a valid attendee badge identifier for the event"
+      ],
+      "priority": "high",
+      "negative": false
+    },
+    {
+      "id": "randombatch.invalidsecret",
+      "title": "Request batch random badge IDs with an invalid event secret",
+      "given": [
+        "the event secret does not match any registered event (e.g. UNKNOWNEVENTSECRET)"
+      ],
+      "when": "a client requests random badge IDs with the invalid secret and a positive count (e.g. 5) via the batch random endpoint",
+      "then": [
+        "an error indicating that the event secret is invalid or not found is returned",
+        "no attendee badge IDs are generated"
+      ],
+      "priority": "critical",
+      "negative": true
+    },
+    {
+      "id": "randombatch.nonnumericcount",
+      "title": "Request batch random badge IDs with a non-numeric count",
+      "given": [
+        "an existing event configured with a valid secret (e.g. VALIDEVENT123)"
+      ],
+      "when": "a client requests random badge IDs with a non-numeric count parameter (e.g. 'abc') via the batch random endpoint",
+      "then": [
+        "an error indicating an invalid count parameter is returned",
+        "no attendee badge IDs are generated"
+      ],
+      "priority": "normal",
+      "negative": true
+    },
+    {
+      "id": "randombatch.nonpositivecount",
+      "title": "Request batch random badge IDs with a non-positive count",
+      "given": [
+        "an existing event configured with a valid secret (e.g. VALIDEVENT123)"
+      ],
+      "when": "a client requests random badge IDs with a count of zero or negative (e.g. 0) via the batch random endpoint",
+      "then": [
+        "the client receives an error indicating the count is invalid or an empty collection of badge IDs",
+        "no new attendee badge IDs are generated"
+      ],
+      "priority": "normal",
+      "negative": true
+    }
+  ]
+}

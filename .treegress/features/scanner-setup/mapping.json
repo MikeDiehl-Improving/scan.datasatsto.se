@@ -1,0 +1,97 @@
+{
+  "feature_id": "scanner-setup",
+  "plan_version": 1,
+  "strategy_version": 1,
+  "entries": [
+    {
+      "scenario_id": "setup.get.blankform",
+      "obligations": [
+        {
+          "skill": "unit",
+          "obligation_id": "setup.get.blankform.unit.c1",
+          "test_ids": [
+            "unit:tests/unit/setup-get-blankform-unit-c1#displays-the-scanner-setup-page-with-an-empty-vendor-code-input"
+          ],
+          "evidence_ids": [
+            "run-001:test-22"
+          ],
+          "reused": true,
+          "user_authored": true
+        }
+      ],
+      "review_status": "COVERED"
+    },
+    {
+      "scenario_id": "setup.get.prefilledform",
+      "obligations": [
+        {
+          "skill": "unit",
+          "obligation_id": "setup.get.prefilledform.unit.c1",
+          "test_ids": [
+            "unit:tests/unit/setup-get-prefilledform-unit-c1#displays-the-scanner-setup-page-prefilled-with-the-previously-submitted-vendor-code"
+          ],
+          "evidence_ids": [
+            "run-001:test-24"
+          ],
+          "reused": true,
+          "user_authored": true
+        }
+      ],
+      "review_status": "COVERED"
+    },
+    {
+      "scenario_id": "setup.get.selectcodes",
+      "obligations": [
+        {
+          "skill": "unit",
+          "obligation_id": "setup.get.selectcodes.unit.c1",
+          "test_ids": [
+            "unit:tests/unit/setup-get-selectcodes-unit-c1#displays-the-code-selection-page-with-each-matching-code-presented-as-a-selectable-safely-encoded-option"
+          ],
+          "evidence_ids": [
+            "run-001:test-25"
+          ],
+          "reused": true,
+          "user_authored": true
+        }
+      ],
+      "review_status": "COVERED"
+    },
+    {
+      "scenario_id": "setup.get.nocodes",
+      "obligations": [
+        {
+          "skill": "unit",
+          "obligation_id": "setup.get.nocodes.unit.c1",
+          "test_ids": [
+            "unit:tests/unit/setup-get-nocodes-unit-c1#displays-an-error-page-with-the-message-that-code-didn-t-look-right"
+          ],
+          "evidence_ids": [
+            "run-001:test-23"
+          ],
+          "reused": true,
+          "user_authored": true
+        }
+      ],
+      "review_status": "COVERED"
+    },
+    {
+      "scenario_id": "setup.post.submitcode",
+      "obligations": [
+        {
+          "skill": "unit",
+          "obligation_id": "setup.post.submitcode.unit.c1",
+          "test_ids": [
+            "unit:tests/unit/setup-post-submitcode-unit-c1#shows-a-confirmation-page-with-the-submitted-code-and-retains-it-in-the-session"
+          ],
+          "evidence_ids": [
+            "run-001:test-26"
+          ],
+          "reused": true,
+          "user_authored": true
+        }
+      ],
+      "review_status": "COVERED"
+    }
+  ]
+}

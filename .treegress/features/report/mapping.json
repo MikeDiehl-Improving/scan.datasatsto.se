@@ -1,0 +1,151 @@
+{
+  "feature_id": "report",
+  "plan_version": 1,
+  "strategy_version": 1,
+  "entries": [
+    {
+      "scenario_id": "report.validwithscans",
+      "obligations": [
+        {
+          "skill": "unit",
+          "obligation_id": "report.validwithscans.unit.c1",
+          "test_ids": [
+            "unit:tests/unit/report-validwithscans-unit-c1#returns-a-report-containing-every-recorded-scan-detail"
+          ],
+          "evidence_ids": [
+            "run-001:test-22"
+          ],
+          "reused": true,
+          "user_authored": true
+        }
+      ],
+      "review_status": "COVERED"
+    },
+    {
+      "scenario_id": "report.emptyevent",
+      "obligations": [
+        {
+          "skill": "unit",
+          "obligation_id": "report.emptyevent.unit.c1",
+          "test_ids": [
+            "unit:tests/unit/report-emptyevent-unit-c1#returns-an-empty-report-when-the-event-has-no-scans"
+          ],
+          "evidence_ids": [
+            "run-001:test-15"
+          ],
+          "reused": true,
+          "user_authored": true
+        }
+      ],
+      "review_status": "COVERED"
+    },
+    {
+      "scenario_id": "report.notfound",
+      "obligations": [
+        {
+          "skill": "unit",
+          "obligation_id": "report.notfound.unit.c1",
+          "test_ids": [
+            "unit:tests/unit/report-notfound-unit-c1#rejects-an-event-that-has-no-report"
+          ],
+          "evidence_ids": [
+            "run-001:test-21"
+          ],
+          "reused": true,
+          "user_authored": true
+        }
+      ],
+      "review_status": "COVERED"
+    },
+    {
+      "scenario_id": "report.eventisolation",
+      "obligations": [
+        {
+          "skill": "unit",
+          "obligation_id": "report.eventisolation.unit.c1",
+          "test_ids": [
+            "unit:tests/unit/report-eventisolation-unit-c1#returns-only-scans-supplied-for-the-requested-event"
+          ],
+          "evidence_ids": [
+            "run-001:test-16"
+          ],
+          "reused": true,
+          "user_authored": true
+        }
+      ],
+      "review_status": "COVERED"
+    },
+    {
+      "scenario_id": "report.multiplescans",
+      "obligations": [
+        {
+          "skill": "unit",
+          "obligation_id": "report.multiplescans.unit.c1",
+          "test_ids": [
+            "unit:tests/unit/report-multiplescans-unit-c1#preserves-every-scan-in-recorded-order"
+          ],
+          "evidence_ids": [
+            "run-001:test-20"
+          ],
+          "reused": true,
+          "user_authored": true
+        }
+      ],
+      "review_status": "COVERED"
+    },
+    {
+      "scenario_id": "report.expired",
+      "obligations": [
+        {
+          "skill": "unit",
+          "obligation_id": "report.expired.unit.c1",
+          "test_ids": [
+            "unit:tests/unit/report-expired-unit-c1#reports-that-purged-event-data-is-unavailable"
+          ],
+          "evidence_ids": [
+            "run-001:test-17"
+          ],
+          "reused": true,
+          "user_authored": true
+        }
+      ],
+      "review_status": "COVERED"
+    },
+    {
+      "scenario_id": "report.malformedid",
+      "obligations": [
+        {
+          "skill": "unit",
+          "obligation_id": "report.malformedid.unit.c1",
+          "test_ids": [
+            "unit:tests/unit/report-malformedid-unit-c1#rejects-traversal-identifiers-without-exposing-a-file-or-system-resource"
+          ],
+          "evidence_ids": [
+            "run-001:test-18"
+          ],
+          "reused": true,
+          "user_authored": true
+        }
+      ],
+      "review_status": "COVERED"
+    },
+    {
+      "scenario_id": "report.missingid",
+      "obligations": [
+        {
+          "skill": "unit",
+          "obligation_id": "report.missingid.unit.c1",
+          "test_ids": [
+            "unit:tests/unit/report-missingid-unit-c1#requires-an-event-identifier"
+          ],
+          "evidence_ids": [
+            "run-001:test-19"
+          ],
+          "reused": true,
+          "user_authored": true
+        }
+      ],
+      "review_status": "COVERED"
+    }
+  ]
+}

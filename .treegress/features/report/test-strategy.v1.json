@@ -1,0 +1,101 @@
+{
+  "feature_id": "report",
+  "plan_version": 1,
+  "version": 1,
+  "status": "approved",
+  "approval": {
+    "hash": "sha256:ae407eeea811e35ab0a38664f2c9f9b0dddd3debd11b5e4c12a6f5087c26340d",
+    "plan_hash": "sha256:d4a8193b9cca7106dda5c14d706730f65b6e261119f1587cad77e96bb9e0a9cf",
+    "approved_at": "2026-09-13T17:40:08.461Z"
+  },
+  "scenario_strategies": [
+    {
+      "scenario_id": "report.validwithscans",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Verify scan report generation returns document containing all recorded badge scan details for an event",
+          "reason": "Handler unit test verifies report formatting, scan record details, and successful response structure"
+        }
+      ]
+    },
+    {
+      "scenario_id": "report.emptyevent",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Verify report document indicates no scan records are present when an event has zero scans",
+          "reason": "Handler unit test verifies empty scan record state handling without runtime exceptions"
+        }
+      ]
+    },
+    {
+      "scenario_id": "report.notfound",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Verify request for non-existent event report rejects with a not found indication",
+          "reason": "Handler unit test verifies missing event identifier returns appropriate 404 or error response"
+        }
+      ]
+    },
+    {
+      "scenario_id": "report.eventisolation",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Verify report data is strictly isolated to the specified event and excludes scans belonging to other events",
+          "reason": "Unit test on data filtering and report assembly logic proves multi-tenant event scan boundary integrity"
+        }
+      ]
+    },
+    {
+      "scenario_id": "report.multiplescans",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Verify report preserves all scan entries and their sequential or chronological ordering",
+          "reason": "Unit test proves ordering and complete inclusion of multiple recorded scans"
+        }
+      ]
+    },
+    {
+      "scenario_id": "report.expired",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Verify requesting report for an expired or purged event returns not found or unavailable error",
+          "reason": "Handler unit test verifies expired record handling and rejection logic"
+        }
+      ]
+    },
+    {
+      "scenario_id": "report.malformedid",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Verify malformed identifiers and traversal attempts are rejected without exposing system resources",
+          "reason": "Route handler unit test verifies input validation and path sanitization rules"
+        }
+      ]
+    },
+    {
+      "scenario_id": "report.missingid",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Verify request without an event identifier is rejected or redirected requiring a valid ID",
+          "reason": "Route handler unit test verifies parameter requirement validation and rejection"
+        }
+      ]
+    }
+  ]
+}

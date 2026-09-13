@@ -1,0 +1,22 @@
+{
+  "feature_id": "scanner-setup",
+  "state": "VERIFIED",
+  "plan_version": 1,
+  "strategy_version": 1,
+  "approvals": {
+    "test_plan": {
+      "version": 1,
+      "hash": "sha256:d44c6271383dfe16a747f19f34ab5d27766f406aa511bce737d4d2ed6d9bbe1d",
+      "approved_at": "2026-09-13T17:27:51.654Z",
+      "self_approved": true
+    },
+    "test_strategy": {
+      "version": 1,
+      "hash": "sha256:ecb159c79bb6b09dc66d4c4cb89f7d820699fb8dc8e7cd6515b1589b0a65c6d4",
+      "approved_at": "2026-09-13T17:28:13.386Z",
+      "self_approved": true
+    }
+  },
+  "last_run_id": "run-001",
+  "updated_at": "2026-09-13T17:30:03.246Z"
+}

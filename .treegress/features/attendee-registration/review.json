@@ -1,0 +1,179 @@
+{
+  "feature_id": "attendee-registration",
+  "plan_version": 2,
+  "plan_hash": "sha256:697c9c37f2bb030cb5d66846ce039f5ce0bdb7a26da285f3bd16adcc652c56dc",
+  "strategy_version": 1,
+  "strategy_hash": "sha256:1a71061c6bc5fa7624bef09ff510b74a3835db4ea2299262df3eca7ff3e5be9e",
+  "run_id": "run-001",
+  "reviewed_at": "2026-09-13T17:22:25.786Z",
+  "scenario_verdicts": [
+    {
+      "scenario_id": "registration.autoid",
+      "status": "COVERED",
+      "then_coverage": [
+        {
+          "clause_index": 0,
+          "covered": true,
+          "test_id": "unit:tests/unit/registration-autoid-unit-c1#returns-a-successful-json-response-with-the-assigned-id-url-imgsrc-and-qr-data",
+          "evidence_id": "run-001:test-9"
+        },
+        {
+          "clause_index": 1,
+          "covered": true,
+          "test_id": "unit:tests/unit/registration-autoid-unit-c1#returns-a-successful-json-response-with-the-assigned-id-url-imgsrc-and-qr-data",
+          "evidence_id": "run-001:test-9"
+        },
+        {
+          "clause_index": 2,
+          "covered": true,
+          "test_id": "unit:tests/unit/registration-autoid-unit-c1#returns-a-successful-json-response-with-the-assigned-id-url-imgsrc-and-qr-data",
+          "evidence_id": "run-001:test-9"
+        },
+        {
+          "clause_index": 3,
+          "covered": true,
+          "test_id": "unit:tests/unit/registration-autoid-unit-c1#returns-a-successful-json-response-with-the-assigned-id-url-imgsrc-and-qr-data",
+          "evidence_id": "run-001:test-9"
+        },
+        {
+          "clause_index": 4,
+          "covered": true,
+          "test_id": "unit:tests/unit/registration-autoid-unit-c1#returns-a-successful-json-response-with-the-assigned-id-url-imgsrc-and-qr-data",
+          "evidence_id": "run-001:test-9"
+        }
+      ],
+      "rationale": "The unit test asserts a successful response containing id 1001 matching the generated ID, the host-formatted URL, the lowercased event image source path, and the base64 QR data URL."
+    },
+    {
+      "scenario_id": "registration.manualid",
+      "status": "COVERED",
+      "then_coverage": [
+        {
+          "clause_index": 0,
+          "covered": true,
+          "test_id": "unit:tests/unit/registration-manualid-unit-c1#returns-a-successful-json-response-with-the-manual-id-url-imgsrc-and-qr-data",
+          "evidence_id": "run-001:test-12"
+        },
+        {
+          "clause_index": 1,
+          "covered": true,
+          "test_id": "unit:tests/unit/registration-manualid-unit-c1#returns-a-successful-json-response-with-the-manual-id-url-imgsrc-and-qr-data",
+          "evidence_id": "run-001:test-12"
+        },
+        {
+          "clause_index": 2,
+          "covered": true,
+          "test_id": "unit:tests/unit/registration-manualid-unit-c1#returns-a-successful-json-response-with-the-manual-id-url-imgsrc-and-qr-data",
+          "evidence_id": "run-001:test-12"
+        },
+        {
+          "clause_index": 3,
+          "covered": true,
+          "test_id": "unit:tests/unit/registration-manualid-unit-c1#returns-a-successful-json-response-with-the-manual-id-url-imgsrc-and-qr-data",
+          "evidence_id": "run-001:test-12"
+        },
+        {
+          "clause_index": 4,
+          "covered": true,
+          "test_id": "unit:tests/unit/registration-manualid-unit-c1#returns-a-successful-json-response-with-the-manual-id-url-imgsrc-and-qr-data",
+          "evidence_id": "run-001:test-12"
+        }
+      ],
+      "rationale": "The unit test asserts a successful response preserving the manually supplied ID 2048, along with host-formatted URL, lowercased image source path, and base64 QR data."
+    },
+    {
+      "scenario_id": "registration.invalidid",
+      "status": "COVERED",
+      "then_coverage": [
+        {
+          "clause_index": 0,
+          "covered": true,
+          "test_id": "unit:tests/unit/registration-invalidid-unit-c1#returns-an-http-401-html-error-page-with-the-invalid-id-message-and-no-json-body",
+          "evidence_id": "run-001:test-11"
+        },
+        {
+          "clause_index": 1,
+          "covered": true,
+          "test_id": "unit:tests/unit/registration-invalidid-unit-c1#returns-an-http-401-html-error-page-with-the-invalid-id-message-and-no-json-body",
+          "evidence_id": "run-001:test-11"
+        },
+        {
+          "clause_index": 2,
+          "covered": true,
+          "test_id": "unit:tests/unit/registration-invalidid-unit-c1#returns-an-http-401-html-error-page-with-the-invalid-id-message-and-no-json-body",
+          "evidence_id": "run-001:test-11"
+        }
+      ],
+      "rationale": "The unit test simulates database failure/empty identity records and confirms an HTTP 401 unauthorized status, the 'Invalid ID.' message in HTML, and an empty JSON body."
+    },
+    {
+      "scenario_id": "registration.pngerror",
+      "status": "COVERED",
+      "then_coverage": [
+        {
+          "clause_index": 0,
+          "covered": true,
+          "test_id": "unit:tests/unit/registration-pngerror-unit-c1#returns-an-http-500-html-error-page-with-the-couldn-t-create-png-file-message-and-no-json-body",
+          "evidence_id": "run-001:test-14"
+        },
+        {
+          "clause_index": 1,
+          "covered": true,
+          "test_id": "unit:tests/unit/registration-pngerror-unit-c1#returns-an-http-500-html-error-page-with-the-couldn-t-create-png-file-message-and-no-json-body",
+          "evidence_id": "run-001:test-14"
+        },
+        {
+          "clause_index": 2,
+          "covered": true,
+          "test_id": "unit:tests/unit/registration-pngerror-unit-c1#returns-an-http-500-html-error-page-with-the-couldn-t-create-png-file-message-and-no-json-body",
+          "evidence_id": "run-001:test-14"
+        }
+      ],
+      "rationale": "The unit test simulates a QR PNG write error and verifies an HTTP 500 server error status, the 'Couldn't create .png file.' error message, and no JSON response body."
+    },
+    {
+      "scenario_id": "registration.dataurlerror",
+      "status": "COVERED",
+      "then_coverage": [
+        {
+          "clause_index": 0,
+          "covered": true,
+          "test_id": "unit:tests/unit/registration-dataurlerror-unit-c1#returns-an-http-500-html-error-page-with-the-couldn-t-create-the-data-blob-message-and-no-json-body",
+          "evidence_id": "run-001:test-10"
+        },
+        {
+          "clause_index": 1,
+          "covered": true,
+          "test_id": "unit:tests/unit/registration-dataurlerror-unit-c1#returns-an-http-500-html-error-page-with-the-couldn-t-create-the-data-blob-message-and-no-json-body",
+          "evidence_id": "run-001:test-10"
+        },
+        {
+          "clause_index": 2,
+          "covered": true,
+          "test_id": "unit:tests/unit/registration-dataurlerror-unit-c1#returns-an-http-500-html-error-page-with-the-couldn-t-create-the-data-blob-message-and-no-json-body",
+          "evidence_id": "run-001:test-10"
+        }
+      ],
+      "rationale": "The unit test simulates QR data URL failure following PNG creation and confirms an HTTP 500 error status, the 'Couldn't create the data blob.' message, and no JSON output."
+    },
+    {
+      "scenario_id": "registration.nonnumericid",
+      "status": "COVERED",
+      "then_coverage": [
+        {
+          "clause_index": 0,
+          "covered": true,
+          "test_id": "unit:tests/unit/registration-nonnumericid-unit-c1#returns-a-404-not-found-response-instead-of-processing-the-registration",
+          "evidence_id": "run-001:test-13"
+        },
+        {
+          "clause_index": 1,
+          "covered": true,
+          "test_id": "unit:tests/unit/registration-nonnumericid-unit-c1#returns-a-404-not-found-response-instead-of-processing-the-registration",
+          "evidence_id": "run-001:test-13"
+        }
+      ],
+      "rationale": "The unit test sends a request with a non-numeric second path segment ('/vip') and asserts an HTTP 404 response, proving that Express route parameter constraints prevented execution by the registration handler."
+    }
+  ]
+}

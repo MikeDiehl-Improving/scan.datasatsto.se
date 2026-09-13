@@ -1,0 +1,89 @@
+{
+  "feature_id": "batch-random-id-generation",
+  "version": 1,
+  "status": "draft",
+  "scenarios": [
+    {
+      "id": "randomid.generatesuccess",
+      "title": "Generate expected number of random badge IDs with valid secret and count",
+      "given": [
+        "an event exists with a valid secret (e.g. validsecret123)"
+      ],
+      "when": "the client requests batch random IDs using the valid secret and a count of attendee badge IDs (e.g. 5)",
+      "then": [
+        "the client receives a collection containing exactly the requested count of attendee badge IDs",
+        "each generated badge ID in the collection is unique and properly formatted"
+      ],
+      "priority": "critical",
+      "negative": false
+    },
+    {
+      "id": "randomid.singlecount",
+      "title": "Generate a single badge ID using batch endpoint",
+      "given": [
+        "an event exists with a valid secret (e.g. validsecret123)"
+      ],
+      "when": "the client requests batch random IDs using the valid secret and a count of 1",
+      "then": [
+        "the client receives a collection containing exactly 1 attendee badge ID"
+      ],
+      "priority": "high",
+      "negative": false
+    },
+    {
+      "id": "randomid.invalidsecret",
+      "title": "Request batch random IDs with an invalid secret",
+      "given": [
+        "an event secret is unknown or invalid (e.g. invalidsecret999)"
+      ],
+      "when": "the client requests batch random IDs with the invalid secret and a positive count",
+      "then": [
+        "the request is rejected with an error indicating the event secret is invalid or unauthorized",
+        "no attendee badge IDs are returned"
+      ],
+      "priority": "critical",
+      "negative": true
+    },
+    {
+      "id": "randomid.invalidcountformat",
+      "title": "Request batch random IDs with a non-numeric count",
+      "given": [
+        "an event exists with a valid secret (e.g. validsecret123)"
+      ],
+      "when": "the client requests batch random IDs with a non-numeric count parameter (e.g. abc)",
+      "then": [
+        "the request is rejected with an error indicating an invalid count parameter",
+        "no attendee badge IDs are returned"
+      ],
+      "priority": "high",
+      "negative": true
+    },
+    {
+      "id": "randomid.negativecount",
+      "title": "Request batch random IDs with a negative count",
+      "given": [
+        "an event exists with a valid secret (e.g. validsecret123)"
+      ],
+      "when": "the client requests batch random IDs with a negative count parameter (e.g. -5)",
+      "then": [
+        "the request is rejected with an error indicating an invalid count parameter",
+        "no attendee badge IDs are returned"
+      ],
+      "priority": "normal",
+      "negative": true
+    },
+    {
+      "id": "randomid.zerocount",
+      "title": "Request batch random IDs with a count of zero",
+      "given": [
+        "an event exists with a valid secret (e.g. validsecret123)"
+      ],
+      "when": "the client requests batch random IDs with a count of 0",
+      "then": [
+        "the request is either rejected with a validation error or returns an empty collection of badge IDs without generating attendee badges"
+      ],
+      "priority": "normal",
+      "negative": true
+    }
+  ]
+}

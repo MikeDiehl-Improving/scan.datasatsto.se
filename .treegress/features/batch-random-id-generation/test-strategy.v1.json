@@ -1,0 +1,68 @@
+{
+  "feature_id": "batch-random-id-generation",
+  "plan_version": 3,
+  "version": 1,
+  "status": "stale",
+  "approval": {
+    "hash": "sha256:a0fd55b0615c8dc86a17552b790f85dc0b29ec8150b6b20d96b39be086a74422",
+    "plan_hash": "sha256:1a6ad543e53b6373a2328f357ed65751446f259fd9eff1ca8e0447c78a3719df",
+    "approved_at": "2026-09-13T16:33:55.223Z"
+  },
+  "scenario_strategies": [
+    {
+      "scenario_id": "randomscan.withoutcode",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Route handler for GET /random/:secret returns 200 OK with scan records formatted as a JSON array",
+          "reason": "Unit test against the route handler with a mocked repository verifies successful response code and JSON array body formatting."
+        }
+      ]
+    },
+    {
+      "scenario_id": "randomscan.withcode",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Route handler for GET /random/:secret/:referenceCode returns 200 OK with filtered scan records as a JSON array",
+          "reason": "Unit test against the route handler verifies that reference code filter parameter is applied and matching scan records are returned as JSON."
+        }
+      ]
+    },
+    {
+      "scenario_id": "randomscan.emptyrecordset",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Route handler for GET /random/:secret returns 200 OK with an empty JSON array when lookup yields no records",
+          "reason": "Unit test verifies that when the lookup returns an empty set, the endpoint still responds successfully with an empty JSON array."
+        }
+      ]
+    },
+    {
+      "scenario_id": "randomscan.errorwithoutcode",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Route handler for GET /random/:secret returns 500 error and renders an HTML error page when lookup fails",
+          "reason": "Unit test verifies that database errors during the lookup without reference code are caught and result in an internal server failure response with HTML error content."
+        }
+      ]
+    },
+    {
+      "scenario_id": "randomscan.errorwithcode",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Route handler for GET /random/:secret/:referenceCode returns 500 error and renders an HTML error page when lookup fails",
+          "reason": "Unit test verifies that database errors during the filtered lookup are caught and result in an internal server failure response with HTML error content."
+        }
+      ]
+    }
+  ]
+}

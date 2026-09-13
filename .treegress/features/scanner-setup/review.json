@@ -1,0 +1,112 @@
+{
+  "feature_id": "scanner-setup",
+  "plan_version": 1,
+  "plan_hash": "sha256:d44c6271383dfe16a747f19f34ab5d27766f406aa511bce737d4d2ed6d9bbe1d",
+  "strategy_version": 1,
+  "strategy_hash": "sha256:ecb159c79bb6b09dc66d4c4cb89f7d820699fb8dc8e7cd6515b1589b0a65c6d4",
+  "run_id": "run-001",
+  "reviewed_at": "2026-09-13T17:29:58.201Z",
+  "scenario_verdicts": [
+    {
+      "scenario_id": "setup.get.blankform",
+      "status": "COVERED",
+      "then_coverage": [
+        {
+          "clause_index": 0,
+          "covered": true,
+          "test_id": "unit:tests/unit/setup-get-blankform-unit-c1#displays-the-scanner-setup-page-with-an-empty-vendor-code-input",
+          "evidence_id": "run-001:test-22"
+        },
+        {
+          "clause_index": 1,
+          "covered": true,
+          "test_id": "unit:tests/unit/setup-get-blankform-unit-c1#displays-the-scanner-setup-page-with-an-empty-vendor-code-input",
+          "evidence_id": "run-001:test-22"
+        }
+      ],
+      "rationale": "The unit test asserts HTTP 200 and that the vendor code input field is rendered with an empty value attribute when no prior session exists."
+    },
+    {
+      "scenario_id": "setup.get.prefilledform",
+      "status": "COVERED",
+      "then_coverage": [
+        {
+          "clause_index": 0,
+          "covered": true,
+          "test_id": "unit:tests/unit/setup-get-prefilledform-unit-c1#displays-the-scanner-setup-page-prefilled-with-the-previously-submitted-vendor-code",
+          "evidence_id": "run-001:test-24"
+        },
+        {
+          "clause_index": 1,
+          "covered": true,
+          "test_id": "unit:tests/unit/setup-get-prefilledform-unit-c1#displays-the-scanner-setup-page-prefilled-with-the-previously-submitted-vendor-code",
+          "evidence_id": "run-001:test-24"
+        }
+      ],
+      "rationale": "The unit test asserts HTTP 200 and confirms the code input field is prefilled with VENDOR99 from the active session."
+    },
+    {
+      "scenario_id": "setup.get.selectcodes",
+      "status": "COVERED",
+      "then_coverage": [
+        {
+          "clause_index": 0,
+          "covered": true,
+          "test_id": "unit:tests/unit/setup-get-selectcodes-unit-c1#displays-the-code-selection-page-with-each-matching-code-presented-as-a-selectable-safely-encoded-option",
+          "evidence_id": "run-001:test-25"
+        },
+        {
+          "clause_index": 1,
+          "covered": true,
+          "test_id": "unit:tests/unit/setup-get-selectcodes-unit-c1#displays-the-code-selection-page-with-each-matching-code-presented-as-a-selectable-safely-encoded-option",
+          "evidence_id": "run-001:test-25"
+        },
+        {
+          "clause_index": 2,
+          "covered": true,
+          "test_id": "unit:tests/unit/setup-get-selectcodes-unit-c1#displays-the-code-selection-page-with-each-matching-code-presented-as-a-selectable-safely-encoded-option",
+          "evidence_id": "run-001:test-25"
+        }
+      ],
+      "rationale": "The unit test asserts HTTP 200, rendering of selectable option elements for returned codes, and HTML escaping of special characters."
+    },
+    {
+      "scenario_id": "setup.get.nocodes",
+      "status": "COVERED",
+      "then_coverage": [
+        {
+          "clause_index": 0,
+          "covered": true,
+          "test_id": "unit:tests/unit/setup-get-nocodes-unit-c1#displays-an-error-page-with-the-message-that-code-didn-t-look-right",
+          "evidence_id": "run-001:test-23"
+        },
+        {
+          "clause_index": 1,
+          "covered": true,
+          "test_id": "unit:tests/unit/setup-get-nocodes-unit-c1#displays-an-error-page-with-the-message-that-code-didn-t-look-right",
+          "evidence_id": "run-001:test-23"
+        }
+      ],
+      "rationale": "The unit test asserts HTTP 500 error response status and verifies the presence of the message That code didn't look right."
+    },
+    {
+      "scenario_id": "setup.post.submitcode",
+      "status": "COVERED",
+      "then_coverage": [
+        {
+          "clause_index": 0,
+          "covered": true,
+          "test_id": "unit:tests/unit/setup-post-submitcode-unit-c1#shows-a-confirmation-page-with-the-submitted-code-and-retains-it-in-the-session",
+          "evidence_id": "run-001:test-26"
+        },
+        {
+          "clause_index": 1,
+          "covered": true,
+          "test_id": "unit:tests/unit/setup-post-submitcode-unit-c1#shows-a-confirmation-page-with-the-submitted-code-and-retains-it-in-the-session",
+          "evidence_id": "run-001:test-26"
+        }
+      ],
+      "rationale": "The unit test verifies HTTP 200 with the submitted code in the confirmation body and confirms session retention on a subsequent GET request."
+    }
+  ]
+}

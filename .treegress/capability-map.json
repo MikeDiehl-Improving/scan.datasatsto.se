@@ -1,0 +1,905 @@
+{
+  "version": 3,
+  "status": "approved",
+  "approval": {
+    "hash": "sha256:5a54748d5965ed3f3a9382931a2766cab5aa9f141da1a541148b969c7ecf667b",
+    "approved_at": "2026-09-13T17:42:20.493Z"
+  },
+  "interactionSegments": [
+    {
+      "id": "FLOW-2032e07dc0de",
+      "entrypoint": {
+        "kind": "http_route",
+        "method": "GET",
+        "path": "/random/{}/{}",
+        "handler": "randomScan",
+        "source": "server.js",
+        "line": 385,
+        "surface": "service"
+      },
+      "guards": {
+        "auth": "not_observed",
+        "permission": "not_observed",
+        "markers": []
+      },
+      "operations": [
+        {
+          "id": "OP-a159698171fc",
+          "kind": "trigger",
+          "confidence": "observed",
+          "symbol": "randomScan",
+          "line": 385
+        }
+      ],
+      "operationRelations": [],
+      "trace": {
+        "status": "entrypoint_only",
+        "maxHops": 1,
+        "limitations": []
+      },
+      "label": {
+        "title": "Batch Random ID Generation",
+        "description": "Endpoint for requesting multiple random attendee badge IDs for an event secret."
+      },
+      "confidence": "high"
+    },
+    {
+      "id": "FLOW-38ce949441c4",
+      "entrypoint": {
+        "kind": "http_route",
+        "method": "POST",
+        "path": "/pdf",
+        "handler": null,
+        "source": "server.js",
+        "line": 438,
+        "surface": "service"
+      },
+      "guards": {
+        "auth": "not_observed",
+        "permission": "not_observed",
+        "markers": []
+      },
+      "operations": [
+        {
+          "id": "OP-ae9ef95ac2e4",
+          "kind": "trigger",
+          "confidence": "observed",
+          "symbol": "<entrypoint>",
+          "line": 438
+        },
+        {
+          "id": "OP-ce1db3bc8b3f",
+          "kind": "decide",
+          "confidence": "candidate",
+          "symbol": "<anonymous>",
+          "line": 441,
+          "evidence": "if (!fs.existsSync(__dirname+'/pdf')) { fs.mkdirSync(__dirna"
+        },
+        {
+          "id": "OP-f91c017b1787",
+          "kind": "decide",
+          "confidence": "candidate",
+          "symbol": "<anonymous>",
+          "line": 444,
+          "evidence": "if (!fs.existsSync(__dirname+'/qr')) { fs.mkdirSync(__dirnam"
+        }
+      ],
+      "operationRelations": [
+        {
+          "fromOperationId": "OP-ae9ef95ac2e4",
+          "toOperationId": "OP-ce1db3bc8b3f",
+          "kind": "dispatches_to_handler"
+        },
+        {
+          "fromOperationId": "OP-ce1db3bc8b3f",
+          "toOperationId": "OP-f91c017b1787",
+          "kind": "lexical_order"
+        }
+      ],
+      "trace": {
+        "status": "bounded_to_observed_operations",
+        "maxHops": 0,
+        "limitations": [
+          "bounded_window"
+        ]
+      },
+      "label": {
+        "title": "Badge PDF Generation Submission",
+        "description": "Form submission endpoint for generating printable attendee badge PDF documents."
+      },
+      "confidence": "high"
+    },
+    {
+      "id": "FLOW-46df4e6a6505",
+      "entrypoint": {
+        "kind": "http_route",
+        "method": "GET",
+        "path": "/robots933456.txt",
+        "handler": null,
+        "source": "server.js",
+        "line": 114,
+        "surface": "service"
+      },
+      "guards": {
+        "auth": "not_observed",
+        "permission": "not_observed",
+        "markers": []
+      },
+      "operations": [
+        {
+          "id": "OP-68c4eeb37624",
+          "kind": "trigger",
+          "confidence": "observed",
+          "symbol": "<entrypoint>",
+          "line": 114
+        },
+        {
+          "id": "OP-c1eec881e272",
+          "kind": "decide",
+          "confidence": "candidate",
+          "symbol": "<anonymous>",
+          "line": 141,
+          "evidence": "if (err) {"
+        }
+      ],
+      "operationRelations": [
+        {
+          "fromOperationId": "OP-68c4eeb37624",
+          "toOperationId": "OP-c1eec881e272",
+          "kind": "dispatches_to_handler"
+        }
+      ],
+      "trace": {
+        "status": "bounded_to_observed_operations",
+        "maxHops": 0,
+        "limitations": [
+          "bounded_window"
+        ]
+      },
+      "label": {
+        "title": "Platform Health Check",
+        "description": "Azure App Service health probe endpoint."
+      },
+      "confidence": "high"
+    },
+    {
+      "id": "FLOW-7ba682910628",
+      "entrypoint": {
+        "kind": "http_route",
+        "method": "GET",
+        "path": "/report/{}",
+        "handler": null,
+        "source": "server.js",
+        "line": 352,
+        "surface": "service"
+      },
+      "guards": {
+        "auth": "not_observed",
+        "permission": "not_observed",
+        "markers": []
+      },
+      "operations": [
+        {
+          "id": "OP-8031164544f6",
+          "kind": "trigger",
+          "confidence": "observed",
+          "symbol": "<entrypoint>",
+          "line": 352
+        },
+        {
+          "id": "OP-010d4be77dba",
+          "kind": "decide",
+          "confidence": "candidate",
+          "symbol": "<anonymous>",
+          "line": 363,
+          "evidence": "if (!recordset || recordset.length === 0) {"
+        }
+      ],
+      "operationRelations": [
+        {
+          "fromOperationId": "OP-8031164544f6",
+          "toOperationId": "OP-010d4be77dba",
+          "kind": "dispatches_to_handler"
+        }
+      ],
+      "trace": {
+        "status": "bounded_to_observed_operations",
+        "maxHops": 0,
+        "limitations": [
+          "bounded_window"
+        ]
+      },
+      "label": {
+        "title": "Event Scan Report",
+        "description": "Endpoint for extracting scanned QR badge report data using an event secret."
+      },
+      "confidence": "high"
+    },
+    {
+      "id": "FLOW-84346dfa3d14",
+      "entrypoint": {
+        "kind": "http_route",
+        "method": "GET",
+        "path": "/random/{}",
+        "handler": "randomScan",
+        "source": "server.js",
+        "line": 386,
+        "surface": "service"
+      },
+      "guards": {
+        "auth": "not_observed",
+        "permission": "not_observed",
+        "markers": []
+      },
+      "operations": [
+        {
+          "id": "OP-a038f7180026",
+          "kind": "trigger",
+          "confidence": "observed",
+          "symbol": "randomScan",
+          "line": 386
+        }
+      ],
+      "operationRelations": [],
+      "trace": {
+        "status": "entrypoint_only",
+        "maxHops": 1,
+        "limitations": []
+      },
+      "label": {
+        "title": "Single Random ID Generation",
+        "description": "Endpoint for generating a single random attendee badge ID for an event secret."
+      },
+      "confidence": "high"
+    },
+    {
+      "id": "FLOW-aa96c63d4ba0",
+      "entrypoint": {
+        "kind": "http_route",
+        "method": "GET",
+        "path": "/pdf/{}",
+        "handler": null,
+        "source": "server.js",
+        "line": 432,
+        "surface": "service"
+      },
+      "guards": {
+        "auth": "not_observed",
+        "permission": "not_observed",
+        "markers": []
+      },
+      "operations": [
+        {
+          "id": "OP-7401f34379b1",
+          "kind": "trigger",
+          "confidence": "observed",
+          "symbol": "<entrypoint>",
+          "line": 432
+        },
+        {
+          "id": "OP-00eab286075b",
+          "kind": "decide",
+          "confidence": "candidate",
+          "symbol": "<anonymous>",
+          "line": 441,
+          "evidence": "if (!fs.existsSync(__dirname+'/pdf')) { fs.mkdirSync(__dirna"
+        },
+        {
+          "id": "OP-b0333d13e92a",
+          "kind": "decide",
+          "confidence": "candidate",
+          "symbol": "<anonymous>",
+          "line": 444,
+          "evidence": "if (!fs.existsSync(__dirname+'/qr')) { fs.mkdirSync(__dirnam"
+        }
+      ],
+      "operationRelations": [
+        {
+          "fromOperationId": "OP-7401f34379b1",
+          "toOperationId": "OP-00eab286075b",
+          "kind": "dispatches_to_handler"
+        },
+        {
+          "fromOperationId": "OP-00eab286075b",
+          "toOperationId": "OP-b0333d13e92a",
+          "kind": "lexical_order"
+        }
+      ],
+      "trace": {
+        "status": "bounded_to_observed_operations",
+        "maxHops": 0,
+        "limitations": [
+          "bounded_window"
+        ]
+      },
+      "label": {
+        "title": "Badge PDF Generator Page",
+        "description": "Badge PDF configuration interface populated with an event secret."
+      },
+      "confidence": "high"
+    },
+    {
+      "id": "FLOW-ae3f1c1616bd",
+      "entrypoint": {
+        "kind": "http_route",
+        "method": "GET",
+        "path": "/",
+        "handler": null,
+        "source": "server.js",
+        "line": 97,
+        "surface": "service"
+      },
+      "guards": {
+        "auth": "not_observed",
+        "permission": "not_observed",
+        "markers": []
+      },
+      "operations": [
+        {
+          "id": "OP-3385cea57177",
+          "kind": "trigger",
+          "confidence": "observed",
+          "symbol": "<entrypoint>",
+          "line": 97
+        }
+      ],
+      "operationRelations": [],
+      "trace": {
+        "status": "entrypoint_only",
+        "maxHops": 0,
+        "limitations": [
+          "bounded_window"
+        ]
+      },
+      "label": {
+        "title": "Default Root Endpoint",
+        "description": "Application root landing endpoint."
+      },
+      "confidence": "high"
+    },
+    {
+      "id": "FLOW-b711dbf696ca",
+      "entrypoint": {
+        "kind": "http_route",
+        "method": "GET",
+        "path": "/setup",
+        "handler": null,
+        "source": "server.js",
+        "line": 238,
+        "surface": "service"
+      },
+      "guards": {
+        "auth": "not_observed",
+        "permission": "not_observed",
+        "markers": []
+      },
+      "operations": [
+        {
+          "id": "OP-ed93a4a43bb7",
+          "kind": "trigger",
+          "confidence": "observed",
+          "symbol": "<entrypoint>",
+          "line": 238
+        },
+        {
+          "id": "OP-28793d29a5fa",
+          "kind": "decide",
+          "confidence": "candidate",
+          "symbol": "<anonymous>",
+          "line": 242,
+          "evidence": "if (req.query.id) {"
+        },
+        {
+          "id": "OP-59a22077700d",
+          "kind": "decide",
+          "confidence": "candidate",
+          "symbol": "<anonymous>",
+          "line": 252,
+          "evidence": "if (!codes) {"
+        }
+      ],
+      "operationRelations": [
+        {
+          "fromOperationId": "OP-ed93a4a43bb7",
+          "toOperationId": "OP-28793d29a5fa",
+          "kind": "dispatches_to_handler"
+        },
+        {
+          "fromOperationId": "OP-28793d29a5fa",
+          "toOperationId": "OP-59a22077700d",
+          "kind": "lexical_order"
+        }
+      ],
+      "trace": {
+        "status": "bounded_to_observed_operations",
+        "maxHops": 0,
+        "limitations": [
+          "bounded_window"
+        ]
+      },
+      "label": {
+        "title": "Scanner Setup Interface",
+        "description": "Configuration page to set up scanner terminal exhibitor codes."
+      },
+      "confidence": "high"
+    },
+    {
+      "id": "FLOW-b932846e861d",
+      "entrypoint": {
+        "kind": "http_route",
+        "method": "GET",
+        "path": "/expire",
+        "handler": null,
+        "source": "server.js",
+        "line": 903,
+        "surface": "service"
+      },
+      "guards": {
+        "auth": "not_observed",
+        "permission": "not_observed",
+        "markers": []
+      },
+      "operations": [
+        {
+          "id": "OP-0e7caf9ac37f",
+          "kind": "trigger",
+          "confidence": "observed",
+          "symbol": "<entrypoint>",
+          "line": 903
+        },
+        {
+          "id": "OP-c2f54a00e53f",
+          "kind": "decide",
+          "confidence": "candidate",
+          "symbol": "<anonymous>",
+          "line": 914,
+          "evidence": "if (recordset) {"
+        },
+        {
+          "id": "OP-13143f83a44a",
+          "kind": "decide",
+          "confidence": "candidate",
+          "symbol": "<anonymous>",
+          "line": 936,
+          "evidence": "if (fs.existsSync(path)) {"
+        },
+        {
+          "id": "OP-03ffb8d299e3",
+          "kind": "decide",
+          "confidence": "candidate",
+          "symbol": "<anonymous>",
+          "line": 940,
+          "evidence": "if (fs.statSync(path + \"/\" + filename).isDirectory()) {"
+        }
+      ],
+      "operationRelations": [
+        {
+          "fromOperationId": "OP-0e7caf9ac37f",
+          "toOperationId": "OP-c2f54a00e53f",
+          "kind": "dispatches_to_handler"
+        },
+        {
+          "fromOperationId": "OP-c2f54a00e53f",
+          "toOperationId": "OP-13143f83a44a",
+          "kind": "lexical_order"
+        },
+        {
+          "fromOperationId": "OP-13143f83a44a",
+          "toOperationId": "OP-03ffb8d299e3",
+          "kind": "lexical_order"
+        }
+      ],
+      "trace": {
+        "status": "bounded_to_observed_operations",
+        "maxHops": 0,
+        "limitations": [
+          "bounded_window"
+        ]
+      },
+      "label": {
+        "title": "Purge Expired Events",
+        "description": "Administrative maintenance endpoint for purging records from expired events."
+      },
+      "confidence": "high"
+    },
+    {
+      "id": "FLOW-bb40ee97a4d4",
+      "entrypoint": {
+        "kind": "http_route",
+        "method": "GET",
+        "path": "/assets/{}",
+        "handler": null,
+        "source": "server.js",
+        "line": 960,
+        "surface": "service"
+      },
+      "guards": {
+        "auth": "not_observed",
+        "permission": "not_observed",
+        "markers": []
+      },
+      "operations": [
+        {
+          "id": "OP-ce416174e4c9",
+          "kind": "trigger",
+          "confidence": "observed",
+          "symbol": "<entrypoint>",
+          "line": 960
+        },
+        {
+          "id": "OP-701b0f4a1833",
+          "kind": "decide",
+          "confidence": "candidate",
+          "symbol": "<anonymous>",
+          "line": 975,
+          "evidence": "if (err) {"
+        }
+      ],
+      "operationRelations": [
+        {
+          "fromOperationId": "OP-ce416174e4c9",
+          "toOperationId": "OP-701b0f4a1833",
+          "kind": "dispatches_to_handler"
+        }
+      ],
+      "trace": {
+        "status": "bounded_to_observed_operations",
+        "maxHops": 0,
+        "limitations": [
+          "bounded_window"
+        ]
+      },
+      "label": {
+        "title": "Static Assets",
+        "description": "Static file delivery endpoint for stylesheets, scripts, and images."
+      },
+      "confidence": "high"
+    },
+    {
+      "id": "FLOW-c78a3df44e92",
+      "entrypoint": {
+        "kind": "http_route",
+        "method": "POST",
+        "path": "/setup",
+        "handler": null,
+        "source": "server.js",
+        "line": 270,
+        "surface": "service"
+      },
+      "guards": {
+        "auth": "not_observed",
+        "permission": "not_observed",
+        "markers": []
+      },
+      "operations": [
+        {
+          "id": "OP-75f2499bc3c9",
+          "kind": "trigger",
+          "confidence": "observed",
+          "symbol": "<entrypoint>",
+          "line": 270
+        },
+        {
+          "id": "OP-693d18d1ccee",
+          "kind": "decide",
+          "confidence": "candidate",
+          "symbol": "<anonymous>",
+          "line": 299,
+          "evidence": "if (code) {"
+        },
+        {
+          "id": "OP-2a889bfa8ae1",
+          "kind": "decide",
+          "confidence": "candidate",
+          "symbol": "<anonymous>",
+          "line": 300,
+          "evidence": "if (code.includes('favicon')) {"
+        },
+        {
+          "id": "OP-6c3d48b32c7e",
+          "kind": "decide",
+          "confidence": "candidate",
+          "symbol": "<anonymous>",
+          "line": 307,
+          "evidence": "if (!referenceCode) {"
+        }
+      ],
+      "operationRelations": [
+        {
+          "fromOperationId": "OP-75f2499bc3c9",
+          "toOperationId": "OP-693d18d1ccee",
+          "kind": "dispatches_to_handler"
+        },
+        {
+          "fromOperationId": "OP-693d18d1ccee",
+          "toOperationId": "OP-2a889bfa8ae1",
+          "kind": "lexical_order"
+        },
+        {
+          "fromOperationId": "OP-2a889bfa8ae1",
+          "toOperationId": "OP-6c3d48b32c7e",
+          "kind": "lexical_order"
+        }
+      ],
+      "trace": {
+        "status": "bounded_to_observed_operations",
+        "maxHops": 0,
+        "limitations": [
+          "bounded_window"
+        ]
+      },
+      "label": {
+        "title": "Scanner Setup Submission",
+        "description": "Form submission endpoint for associating a scanner terminal with an exhibitor code."
+      },
+      "confidence": "high"
+    }
+  ],
+  "journeys": [
+    {
+      "id": "BFLOW-0fd659be6c3a",
+      "coverageStatus": "isolated_segment",
+      "isCausallyComposed": false,
+      "verifiedEdgeCount": 0,
+      "segmentRefs": [
+        "FLOW-b711dbf696ca"
+      ],
+      "entrySegmentRefs": [
+        "FLOW-b711dbf696ca"
+      ],
+      "terminalSegmentRefs": [
+        "FLOW-b711dbf696ca"
+      ],
+      "edges": [],
+      "surfaces": [
+        "service"
+      ],
+      "label": {
+        "name": "Access Scanner Setup",
+        "description": "Opening the scanner setup view to configure exhibitor terminal identification."
+      },
+      "confidence": "high"
+    },
+    {
+      "id": "BFLOW-6dca3f688cf0",
+      "coverageStatus": "isolated_segment",
+      "isCausallyComposed": false,
+      "verifiedEdgeCount": 0,
+      "segmentRefs": [
+        "FLOW-c78a3df44e92"
+      ],
+      "entrySegmentRefs": [
+        "FLOW-c78a3df44e92"
+      ],
+      "terminalSegmentRefs": [
+        "FLOW-c78a3df44e92"
+      ],
+      "edges": [],
+      "surfaces": [
+        "service"
+      ],
+      "label": {
+        "name": "Configure Exhibitor Code",
+        "description": "Submitting exhibitor details to store terminal vendor identification."
+      },
+      "confidence": "high"
+    },
+    {
+      "id": "BFLOW-743705474bf3",
+      "coverageStatus": "isolated_segment",
+      "isCausallyComposed": false,
+      "verifiedEdgeCount": 0,
+      "segmentRefs": [
+        "FLOW-7ba682910628"
+      ],
+      "entrySegmentRefs": [
+        "FLOW-7ba682910628"
+      ],
+      "terminalSegmentRefs": [
+        "FLOW-7ba682910628"
+      ],
+      "edges": [],
+      "surfaces": [
+        "service"
+      ],
+      "label": {
+        "name": "Download Event Report",
+        "description": "Extracting scanned attendee badge logs using the event secret."
+      },
+      "confidence": "high"
+    },
+    {
+      "id": "BFLOW-a03638b07e29",
+      "coverageStatus": "isolated_segment",
+      "isCausallyComposed": false,
+      "verifiedEdgeCount": 0,
+      "segmentRefs": [
+        "FLOW-b932846e861d"
+      ],
+      "entrySegmentRefs": [
+        "FLOW-b932846e861d"
+      ],
+      "terminalSegmentRefs": [
+        "FLOW-b932846e861d"
+      ],
+      "edges": [],
+      "surfaces": [
+        "service"
+      ],
+      "label": {
+        "name": "Purge Expired Event Data",
+        "description": "Running the automated data cleanup routine for concluded events."
+      },
+      "confidence": "high"
+    },
+    {
+      "id": "BFLOW-ab2246cff317",
+      "coverageStatus": "isolated_segment",
+      "isCausallyComposed": false,
+      "verifiedEdgeCount": 0,
+      "segmentRefs": [
+        "FLOW-2032e07dc0de"
+      ],
+      "entrySegmentRefs": [
+        "FLOW-2032e07dc0de"
+      ],
+      "terminalSegmentRefs": [
+        "FLOW-2032e07dc0de"
+      ],
+      "edges": [],
+      "surfaces": [
+        "service"
+      ],
+      "label": {
+        "name": "Generate Random Badge Batches",
+        "description": "Requesting batches of random attendee identifiers for badge pre-generation."
+      },
+      "confidence": "high"
+    },
+    {
+      "id": "BFLOW-b8d14498561c",
+      "coverageStatus": "isolated_segment",
+      "isCausallyComposed": false,
+      "verifiedEdgeCount": 0,
+      "segmentRefs": [
+        "FLOW-38ce949441c4"
+      ],
+      "entrySegmentRefs": [
+        "FLOW-38ce949441c4"
+      ],
+      "terminalSegmentRefs": [
+        "FLOW-38ce949441c4"
+      ],
+      "edges": [],
+      "surfaces": [
+        "service"
+      ],
+      "label": {
+        "name": "Create Badge PDF Documents",
+        "description": "Submitting layout settings and identity lists to produce printable badge sheets."
+      },
+      "confidence": "high"
+    },
+    {
+      "id": "BFLOW-b8fe437e27ad",
+      "coverageStatus": "isolated_segment",
+      "isCausallyComposed": false,
+      "verifiedEdgeCount": 0,
+      "segmentRefs": [
+        "FLOW-ae3f1c1616bd"
+      ],
+      "entrySegmentRefs": [
+        "FLOW-ae3f1c1616bd"
+      ],
+      "terminalSegmentRefs": [
+        "FLOW-ae3f1c1616bd"
+      ],
+      "edges": [],
+      "surfaces": [
+        "service"
+      ],
+      "label": {
+        "name": "Access Root Page",
+        "description": "Visiting the root path of the scanning service."
+      },
+      "confidence": "high"
+    },
+    {
+      "id": "BFLOW-be49530dce3a",
+      "coverageStatus": "isolated_segment",
+      "isCausallyComposed": false,
+      "verifiedEdgeCount": 0,
+      "segmentRefs": [
+        "FLOW-bb40ee97a4d4"
+      ],
+      "entrySegmentRefs": [
+        "FLOW-bb40ee97a4d4"
+      ],
+      "terminalSegmentRefs": [
+        "FLOW-bb40ee97a4d4"
+      ],
+      "edges": [],
+      "surfaces": [
+        "service"
+      ],
+      "label": {
+        "name": "Load Static Resources",
+        "description": "Serving client-side styling, icon, and logic assets."
+      },
+      "confidence": "high"
+    },
+    {
+      "id": "BFLOW-c87861ce2ee1",
+      "coverageStatus": "isolated_segment",
+      "isCausallyComposed": false,
+      "verifiedEdgeCount": 0,
+      "segmentRefs": [
+        "FLOW-46df4e6a6505"
+      ],
+      "entrySegmentRefs": [
+        "FLOW-46df4e6a6505"
+      ],
+      "terminalSegmentRefs": [
+        "FLOW-46df4e6a6505"
+      ],
+      "edges": [],
+      "surfaces": [
+        "service"
+      ],
+      "label": {
+        "name": "Azure Service Monitoring",
+        "description": "Verifying application availability via the platform health check route."
+      },
+      "confidence": "high"
+    },
+    {
+      "id": "BFLOW-d83347b98904",
+      "coverageStatus": "isolated_segment",
+      "isCausallyComposed": false,
+      "verifiedEdgeCount": 0,
+      "segmentRefs": [
+        "FLOW-aa96c63d4ba0"
+      ],
+      "entrySegmentRefs": [
+        "FLOW-aa96c63d4ba0"
+      ],
+      "terminalSegmentRefs": [
+        "FLOW-aa96c63d4ba0"
+      ],
+      "edges": [],
+      "surfaces": [
+        "service"
+      ],
+      "label": {
+        "name": "Access Badge Generation Form",
+        "description": "Opening the badge generation form with a pre-populated event secret."
+      },
+      "confidence": "high"
+    },
+    {
+      "id": "BFLOW-f92f68dc578d",
+      "coverageStatus": "isolated_segment",
+      "isCausallyComposed": false,
+      "verifiedEdgeCount": 0,
+      "segmentRefs": [
+        "FLOW-84346dfa3d14"
+      ],
+      "entrySegmentRefs": [
+        "FLOW-84346dfa3d14"
+      ],
+      "terminalSegmentRefs": [
+        "FLOW-84346dfa3d14"
+      ],
+      "edges": [],
+      "surfaces": [
+        "service"
+      ],
+      "label": {
+        "name": "Generate Single Random Badge",
+        "description": "Requesting a single random attendee identifier using an event secret."
+      },
+      "confidence": "high"
+    }
+  ],
+  "handoffResolutions": []
+}

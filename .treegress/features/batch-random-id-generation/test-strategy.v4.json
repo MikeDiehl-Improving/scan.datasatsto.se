@@ -1,0 +1,68 @@
+{
+  "feature_id": "batch-random-id-generation",
+  "plan_version": 6,
+  "version": 4,
+  "status": "approved",
+  "approval": {
+    "hash": "sha256:86076b1e0ea87841125d5c38073e6c4fb1c274514d56ea68aa2b82502748d170",
+    "plan_hash": "sha256:47aec79ca3b29f130afd66278ee5bbf77c413e50bd2130109795c650ccce56b7",
+    "approved_at": "2026-09-13T16:37:59.948Z"
+  },
+  "scenario_strategies": [
+    {
+      "scenario_id": "randomscan.withoutcode",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Verify random scans endpoint returns 200 and a JSON array of scan records when called with only an event secret",
+          "reason": "Vitest unit tests verify route handler logic with mocked database client to prove response formatting and status code"
+        }
+      ]
+    },
+    {
+      "scenario_id": "randomscan.withcode",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Verify random scans endpoint returns 200 and matching scan records as a JSON array when called with both event secret and reference code filter",
+          "reason": "Vitest unit tests verify route handler logic and filtering with mocked database client"
+        }
+      ]
+    },
+    {
+      "scenario_id": "randomscan.emptyrecordset",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Verify random scans endpoint returns 200 and an empty JSON array when no records match the event secret",
+          "reason": "Vitest unit tests verify route handler response handling when database yields an empty recordset"
+        }
+      ]
+    },
+    {
+      "scenario_id": "randomscan.errorwithoutcode",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Verify random scans endpoint returns HTTP 200 and an empty response body when the SQL statement fails during lookup without reference code",
+          "reason": "Vitest unit tests verify error-swallowing behavior when the database query throws an error"
+        }
+      ]
+    },
+    {
+      "scenario_id": "randomscan.errorwithcode",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Verify random scans endpoint returns HTTP 200 and an empty response body when the SQL statement fails during lookup with reference code",
+          "reason": "Vitest unit tests verify error-swallowing behavior when the filtered database query throws an error"
+        }
+      ]
+    }
+  ]
+}

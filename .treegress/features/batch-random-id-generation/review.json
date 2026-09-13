@@ -1,0 +1,106 @@
+{
+  "feature_id": "batch-random-id-generation",
+  "plan_version": 6,
+  "plan_hash": "sha256:47aec79ca3b29f130afd66278ee5bbf77c413e50bd2130109795c650ccce56b7",
+  "strategy_version": 4,
+  "strategy_hash": "sha256:86076b1e0ea87841125d5c38073e6c4fb1c274514d56ea68aa2b82502748d170",
+  "run_id": "run-001",
+  "reviewed_at": "2026-09-13T16:47:11.096Z",
+  "scenario_verdicts": [
+    {
+      "scenario_id": "randomscan.withoutcode",
+      "status": "COVERED",
+      "then_coverage": [
+        {
+          "clause_index": 0,
+          "covered": true,
+          "test_id": "unit:tests/unit/randomscan-withoutcode-unit-c1#returns-a-successful-response-with-the-scan-records-formatted-as-a-json-array",
+          "evidence_id": "run-001:test-8"
+        },
+        {
+          "clause_index": 1,
+          "covered": true,
+          "test_id": "unit:tests/unit/randomscan-withoutcode-unit-c1#returns-a-successful-response-with-the-scan-records-formatted-as-a-json-array",
+          "evidence_id": "run-001:test-8"
+        }
+      ],
+      "rationale": "The unit test verifies both the successful 2xx response status and that the response body contains the scanned database records as a JSON array."
+    },
+    {
+      "scenario_id": "randomscan.withcode",
+      "status": "COVERED",
+      "then_coverage": [
+        {
+          "clause_index": 0,
+          "covered": true,
+          "test_id": "unit:tests/unit/randomscan-withcode-unit-c1#returns-a-successful-response-with-the-matching-scan-records-formatted-as-a-json-array",
+          "evidence_id": "run-001:test-7"
+        },
+        {
+          "clause_index": 1,
+          "covered": true,
+          "test_id": "unit:tests/unit/randomscan-withcode-unit-c1#returns-a-successful-response-with-the-matching-scan-records-formatted-as-a-json-array",
+          "evidence_id": "run-001:test-7"
+        }
+      ],
+      "rationale": "The unit test checks that querying with secret and reference code filter yields a successful status and a JSON array of matching records."
+    },
+    {
+      "scenario_id": "randomscan.emptyrecordset",
+      "status": "COVERED",
+      "then_coverage": [
+        {
+          "clause_index": 0,
+          "covered": true,
+          "test_id": "unit:tests/unit/randomscan-emptyrecordset-unit-c1#returns-a-successful-response-with-an-empty-json-array",
+          "evidence_id": "run-001:test-4"
+        },
+        {
+          "clause_index": 1,
+          "covered": true,
+          "test_id": "unit:tests/unit/randomscan-emptyrecordset-unit-c1#returns-a-successful-response-with-an-empty-json-array",
+          "evidence_id": "run-001:test-4"
+        }
+      ],
+      "rationale": "The unit test asserts that an empty database result set produces a successful HTTP response with an empty JSON array."
+    },
+    {
+      "scenario_id": "randomscan.errorwithoutcode",
+      "status": "COVERED",
+      "then_coverage": [
+        {
+          "clause_index": 0,
+          "covered": true,
+          "test_id": "unit:tests/unit/randomscan-errorwithoutcode-unit-c1#returns-an-http-200-response-with-an-empty-body",
+          "evidence_id": "run-001:test-6"
+        },
+        {
+          "clause_index": 1,
+          "covered": true,
+          "test_id": "unit:tests/unit/randomscan-errorwithoutcode-unit-c1#returns-an-http-200-response-with-an-empty-body",
+          "evidence_id": "run-001:test-6"
+        }
+      ],
+      "rationale": "The unit test verifies that a database error during lookup without reference code is swallowed, returning HTTP 200 with an empty body."
+    },
+    {
+      "scenario_id": "randomscan.errorwithcode",
+      "status": "COVERED",
+      "then_coverage": [
+        {
+          "clause_index": 0,
+          "covered": true,
+          "test_id": "unit:tests/unit/randomscan-errorwithcode-unit-c1#returns-an-http-200-response-with-an-empty-body",
+          "evidence_id": "run-001:test-5"
+        },
+        {
+          "clause_index": 1,
+          "covered": true,
+          "test_id": "unit:tests/unit/randomscan-errorwithcode-unit-c1#returns-an-http-200-response-with-an-empty-body",
+          "evidence_id": "run-001:test-5"
+        }
+      ],
+      "rationale": "The unit test verifies that a database error during lookup with reference code is swallowed, returning HTTP 200 with an empty body."
+    }
+  ]
+}

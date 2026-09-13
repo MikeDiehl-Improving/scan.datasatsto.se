@@ -1,0 +1,90 @@
+{
+  "feature_id": "scan-recording",
+  "plan_version": 1,
+  "version": 1,
+  "status": "approved",
+  "approval": {
+    "hash": "sha256:853265e7367b3ee08559628b693e6ff655bf59a9b5fe6fb2141bbabde10321b3",
+    "plan_hash": "sha256:f71d864a6837e4c9146d7bc88b4028b39b3440b764d5574ba0d8fed2b8b1ee94",
+    "approved_at": "2026-09-13T17:24:41.413Z"
+  },
+  "scenario_strategies": [
+    {
+      "scenario_id": "scan.favicon",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Verify scan route short-circuits requests containing 'favicon' by responding with 404 and empty body",
+          "reason": "Unit tests against the route handler can directly verify the status code and empty body response when favicon is requested."
+        }
+      ]
+    },
+    {
+      "scenario_id": "scan.redirectsetup",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Verify scan requests lacking vendor code and active session redirect to /setup with badge id parameter",
+          "reason": "Route handler unit test verifies redirect status and location header. Navigation flow would gain e2e-playwright coverage at thorough."
+        }
+      ]
+    },
+    {
+      "scenario_id": "scan.explicitcode",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Verify scan with explicit vendor code renders confirmation and stores code in session for subsequent requests",
+          "reason": "Unit test validates response content and session persistence across consecutive handler calls. Multi-step browser flow would gain e2e-playwright coverage at thorough."
+        }
+      ]
+    },
+    {
+      "scenario_id": "scan.sessionsetup",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Verify scan without explicit code succeeds by reusing vendor code saved in session from setup",
+          "reason": "Unit test verifies that the handler resolves vendor code from session context and outputs the confirmation view. Cross-endpoint user flow would gain e2e-playwright coverage at thorough."
+        }
+      ]
+    },
+    {
+      "scenario_id": "scan.mismatchedrecord",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Verify scan error page and message \"That code didn't look right.\" when query returns zero records",
+          "reason": "Unit test isolates query response returning zero records and asserts error view rendering with the exact error message."
+        }
+      ]
+    },
+    {
+      "scenario_id": "scan.urldecodedcode",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Verify URL-encoded vendor code segment is correctly decoded and rendered in confirmation page",
+          "reason": "Unit test verifies parameter decoding logic and checks decoded string in template rendering output."
+        }
+      ]
+    },
+    {
+      "scenario_id": "scan.postwithnote",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Verify POST scan request with vendor code and optional note renders confirmation page",
+          "reason": "Unit test verifies POST body parsing with optional note and asserts confirmation view output."
+        }
+      ]
+    }
+  ]
+}

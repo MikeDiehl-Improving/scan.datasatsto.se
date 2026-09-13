@@ -1,0 +1,41 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type"/>
+    <meta content="utf-8" http-equiv="encoding"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="shortcut icon" href="/assets/favicon.png" type="image/png">
+    <link rel="icon" href="/assets/favicon.png" type="image/png">
+
+    <link rel="stylesheet" href="/assets/style.css"/>
+
+    <title>scan.datasatsto.se API</title>
+</head>
+<body class="index">
+
+    <h1>scan.datasatsto.se</h1>
+    <p>This service exposes the following API endpoints:</p>
+
+    <table>
+        <thead>
+            <tr><th>Method</th><th>Path</th><th>Description</th></tr>
+        </thead>
+        <tbody>
+            <tr><td class="method">GET</td><td><code>/new/:event</code></td><td>Register a new identity and generate its QR code for the given event.</td></tr>
+            <tr><td class="method">GET</td><td><code>/new/:event/:id</code></td><td>Register using a specific existing ID (for integrations).</td></tr>
+            <tr><td class="method">GET</td><td><code>/setup</code></td><td>Configure the scanning client's vendor code, or look up the codes for an ID.</td></tr>
+            <tr><td class="method">POST</td><td><code>/setup</code></td><td>Save the vendor code to the session.</td></tr>
+            <tr><td class="method">GET / POST</td><td><code>/:id/:code</code></td><td>Record a scan for the given ID and vendor code.</td></tr>
+            <tr><td class="method">GET</td><td><code>/:id</code></td><td>Record a scan for the given ID (no vendor code).</td></tr>
+            <tr><td class="method">GET</td><td><code>/report/:secret</code></td><td>View the scan report for an event, identified by its secret.</td></tr>
+            <tr><td class="method">GET</td><td><code>/random/:secret</code></td><td>View one random scan for an event.</td></tr>
+            <tr><td class="method">GET</td><td><code>/random/:secret/:code</code></td><td>View one random scan for an event, filtered by vendor code.</td></tr>
+            <tr><td class="method">GET</td><td><code>/pdf/:secret</code></td><td>Show the form to generate a PDF badge/report.</td></tr>
+            <tr><td class="method">POST</td><td><code>/pdf</code></td><td>Generate the PDF document.</td></tr>
+            <tr><td class="method">GET</td><td><code>/expire</code></td><td>Expire old events and remove their cached QR codes.</td></tr>
+        </tbody>
+    </table>
+
+</body>
+</html>

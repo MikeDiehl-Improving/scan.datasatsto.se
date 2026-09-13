@@ -1,0 +1,79 @@
+{
+  "feature_id": "platform-health-check",
+  "version": 1,
+  "status": "draft",
+  "scenarios": [
+    {
+      "id": "healthcheck.standard",
+      "title": "Azure health check probe responds successfully",
+      "given": [
+        "the service is running"
+      ],
+      "when": "a GET request is sent to /robots933456.txt",
+      "then": [
+        "the health check probe succeeds",
+        "the response body is the plain text \"OK\""
+      ],
+      "priority": "critical",
+      "negative": false
+    },
+    {
+      "id": "healthcheck.databasedown",
+      "title": "Azure health check probe succeeds when database is unavailable",
+      "given": [
+        "the service is running",
+        "the database is unreachable or disconnected"
+      ],
+      "when": "a GET request is sent to /robots933456.txt",
+      "then": [
+        "the health check probe succeeds without database dependency",
+        "the response body is the plain text \"OK\""
+      ],
+      "priority": "high",
+      "negative": false
+    },
+    {
+      "id": "healthcheck.missingsecrets",
+      "title": "Azure health check probe succeeds when event secrets are not configured",
+      "given": [
+        "the service is running",
+        "event secrets are absent or unconfigured"
+      ],
+      "when": "a GET request is sent to /robots933456.txt",
+      "then": [
+        "the health check probe succeeds without depending on event secrets",
+        "the response body is the plain text \"OK\""
+      ],
+      "priority": "high",
+      "negative": false
+    },
+    {
+      "id": "healthcheck.isolatedstate",
+      "title": "Azure health check probe succeeds regardless of application state",
+      "given": [
+        "the service is running",
+        "application state is uninitialized or in an error condition"
+      ],
+      "when": "a GET request is sent to /robots933456.txt",
+      "then": [
+        "the health check probe succeeds without depending on application state",
+        "the response body is the plain text \"OK\""
+      ],
+      "priority": "normal",
+      "negative": false
+    },
+    {
+      "id": "healthcheck.unsupportedmethod",
+      "title": "Health check endpoint rejects unsupported HTTP request method",
+      "given": [
+        "the service is running"
+      ],
+      "when": "a client submits an unsupported HTTP method (e.g. POST) to /robots933456.txt",
+      "then": [
+        "the request does not succeed as a valid health check"
+      ],
+      "priority": "normal",
+      "negative": true
+    }
+  ]
+}

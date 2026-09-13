@@ -1,0 +1,63 @@
+{
+  "feature_id": "batch-random-id-generation",
+  "plan_version": 5,
+  "version": 3,
+  "status": "stale",
+  "scenario_strategies": [
+    {
+      "scenario_id": "randomscan.withoutcode",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Random scan route handler returns HTTP 200 with formatted JSON array of scan records when querying by event secret without reference code",
+          "reason": "Unit testing the endpoint handler with mocked database responses verifies the HTTP response status, headers, and formatted JSON payload."
+        }
+      ]
+    },
+    {
+      "scenario_id": "randomscan.withcode",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Random scan route handler returns HTTP 200 with formatted JSON array of matching scan records when querying by event secret and reference code",
+          "reason": "Unit testing the endpoint handler verifies that the reference code parameter is correctly passed to the query and matching records are returned as JSON."
+        }
+      ]
+    },
+    {
+      "scenario_id": "randomscan.emptyrecordset",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Random scan route handler returns HTTP 200 with an empty JSON array when query results in no records",
+          "reason": "Unit testing the endpoint handler verifies proper serialization of an empty recordset to an empty JSON array."
+        }
+      ]
+    },
+    {
+      "scenario_id": "randomscan.errorwithoutcode",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Random scan route handler swallows database query errors when queried without reference code, responding with HTTP 200 and empty body",
+          "reason": "Unit testing the endpoint handler with a simulated database rejection confirms error swallowing behavior and empty HTTP 200 response."
+        }
+      ]
+    },
+    {
+      "scenario_id": "randomscan.errorwithcode",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Random scan route handler swallows database query errors when queried with reference code, responding with HTTP 200 and empty body",
+          "reason": "Unit testing the endpoint handler with reference code parameter and simulated database rejection verifies error handling and empty HTTP 200 response."
+        }
+      ]
+    }
+  ]
+}

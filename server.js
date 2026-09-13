@@ -81,29 +81,24 @@ console.log('Database server: '+process.env.dbserver);
 console.log('Express env:     '+app.settings.env);
 console.log('');
 
-app.listen(serverPort, () => console.log('READY.'));
+if (require.main === module) {
+    app.listen(serverPort, () => console.log('READY.'));
+}
+
+module.exports = app;
 
 
 
 
 /*-----------------------------------------------------------------------------
-  Default URL: returns a 404
+  Default URL: returns an API landing page
   ---------------------------------------------------------------------------*/
 
 app.get('/', function (req, res, next) {
 
     httpHeaders(res);
 
-    var options = {
-        root: __dirname + '/',
-        dotfiles: 'deny',
-        headers: {
-            'x-timestamp': Date.now(),
-            'x-sent': true
-        }
-    };
-
-    res.status(404).send(createHTML('assets/error.html', { "Msg": "Nothing to see here." }));
+    res.status(200).send(createHTML('assets/index.html', {}));
     return;
 
 });
@@ -365,6 +360,10 @@ app.get('/report/:secret', function (req, res, next) {
               [   { "name": 'EventSecret', "type": Types.UniqueIdentifier, "value": decodeURI(req.params.secret) }],
   
               async function(recordset) {
+                if (!recordset || recordset.length === 0) {
+                    res.status(404).send(createHTML('assets/error.html', { "Msg": "Report not found." }));
+                    return;
+                }
                 res.status(200).json(recordset);
                 return;
               });

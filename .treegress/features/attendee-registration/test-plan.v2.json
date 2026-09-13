@@ -1,0 +1,109 @@
+{
+  "feature_id": "attendee-registration",
+  "version": 2,
+  "status": "approved",
+  "approval": {
+    "hash": "sha256:697c9c37f2bb030cb5d66846ce039f5ce0bdb7a26da285f3bd16adcc652c56dc",
+    "approved_at": "2026-09-13T17:17:52.775Z"
+  },
+  "scenarios": [
+    {
+      "id": "registration.autoid",
+      "title": "Register attendee without manual ID auto-assigns ID and returns QR data",
+      "given": [
+        "an event name (e.g. 'TechConf')",
+        "identity generation succeeds and assigns a new attendee ID (e.g. 1001)"
+      ],
+      "when": "an attendee registration request is sent to the event path without an ID (e.g. GET /new/TechConf)",
+      "then": [
+        "a successful JSON response is returned containing id, url, imgsrc, and data",
+        "the response id matches the assigned attendee ID (e.g. 1001)",
+        "the response url is formatted with the request host and attendee ID (e.g. 'https://example.com/1001')",
+        "the response imgsrc is formatted with the lowercased event name and attendee ID (e.g. 'https://example.com/techconf/1001.png')",
+        "the response data contains the base64 QR code data URL"
+      ],
+      "priority": "critical",
+      "negative": false
+    },
+    {
+      "id": "registration.manualid",
+      "title": "Register attendee with manual numeric ID preserves ID and returns QR data",
+      "given": [
+        "an event name (e.g. 'TechConf')",
+        "a manually supplied numeric ID in the URL (e.g. 2048)",
+        "identity generation succeeds for the specified attendee ID"
+      ],
+      "when": "an attendee registration request is sent with the numeric ID (e.g. GET /new/TechConf/2048)",
+      "then": [
+        "a successful JSON response is returned containing id, url, imgsrc, and data",
+        "the response id matches the manual attendee ID (e.g. 2048)",
+        "the response url is formatted with the request host and manual attendee ID (e.g. 'https://example.com/2048')",
+        "the response imgsrc is formatted with the lowercased event name and manual attendee ID (e.g. 'https://example.com/techconf/2048.png')",
+        "the response data contains the base64 QR code data URL"
+      ],
+      "priority": "high",
+      "negative": false
+    },
+    {
+      "id": "registration.invalidid",
+      "title": "Registration fails with unauthorized error when database returns falsy identity",
+      "given": [
+        "an event registration request where the identity lookup or underlying query returns no recordset"
+      ],
+      "when": "an attendee registration request is sent (e.g. GET /new/TechConf or GET /new/TechConf/999)",
+      "then": [
+        "an unauthorized HTML error response is returned",
+        "the error page displays the message 'Invalid ID.'",
+        "no JSON response body is returned"
+      ],
+      "priority": "high",
+      "negative": true
+    },
+    {
+      "id": "registration.pngerror",
+      "title": "Registration fails with server error when QR image file generation fails",
+      "given": [
+        "an event name and successful attendee identity assignment",
+        "QR PNG image file generation encounters an error"
+      ],
+      "when": "an attendee registration request is sent (e.g. GET /new/TechConf)",
+      "then": [
+        "a server error HTML response is returned",
+        "the error page displays the message 'Couldn't create .png file.'",
+        "no JSON response body is returned"
+      ],
+      "priority": "normal",
+      "negative": true
+    },
+    {
+      "id": "registration.dataurlerror",
+      "title": "Registration fails with server error when QR data URL generation fails",
+      "given": [
+        "an event name and successful attendee identity assignment",
+        "QR PNG image file generation succeeds but QR data URL generation encounters an error"
+      ],
+      "when": "an attendee registration request is sent (e.g. GET /new/TechConf)",
+      "then": [
+        "a server error HTML response is returned",
+        "the error page displays the message 'Couldn't create the data blob.'",
+        "no JSON response body is returned"
+      ],
+      "priority": "normal",
+      "negative": true
+    },
+    {
+      "id": "registration.nonnumericid",
+      "title": "Registration request with non-numeric second segment results in not found",
+      "given": [
+        "an event name and a non-numeric second URL segment (e.g. GET /new/TechConf/vip)"
+      ],
+      "when": "a request is sent to the non-numeric path",
+      "then": [
+        "a not found response is returned",
+        "the request is not processed by the registration handler"
+      ],
+      "priority": "low",
+      "negative": true
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "servers": {
+    "treegress": {
+      "command": "node",
+      "args": [
+        "C:\\Users\\MikeDiehl\\repos\\Treegress\\treegress-agents-local\\dist\\cli\\bin.js",
+        "serve",
+        "--root",
+        "C:\\Users\\MikeDiehl\\repos\\scan.datasatsto.se"
+      ],
+      "env": {
+        "GEMINI_API_KEY": "${env:GEMINI_API_KEY}"
+      }
+    }
+  }
+}

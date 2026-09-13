@@ -1,0 +1,22 @@
+{
+  "feature_id": "scan-recording",
+  "state": "VERIFIED",
+  "plan_version": 1,
+  "strategy_version": 1,
+  "approvals": {
+    "test_plan": {
+      "version": 1,
+      "hash": "sha256:f71d864a6837e4c9146d7bc88b4028b39b3440b764d5574ba0d8fed2b8b1ee94",
+      "approved_at": "2026-09-13T17:24:15.162Z",
+      "self_approved": true
+    },
+    "test_strategy": {
+      "version": 1,
+      "hash": "sha256:853265e7367b3ee08559628b693e6ff655bf59a9b5fe6fb2141bbabde10321b3",
+      "approved_at": "2026-09-13T17:24:41.413Z",
+      "self_approved": true
+    }
+  },
+  "last_run_id": "run-001",
+  "updated_at": "2026-09-13T17:26:50.950Z"
+}

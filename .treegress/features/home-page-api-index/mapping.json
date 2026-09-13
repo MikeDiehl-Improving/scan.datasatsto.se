@@ -1,0 +1,79 @@
+{
+  "feature_id": "home-page-api-index",
+  "plan_version": 1,
+  "strategy_version": 1,
+  "entries": [
+    {
+      "scenario_id": "landingpage.view",
+      "obligations": [
+        {
+          "skill": "unit",
+          "obligation_id": "landingpage.view.unit.c1",
+          "test_ids": [
+            "unit:tests/unit/landingpage-view-unit-c1#returns-a-successful-html-landing-page-instead-of-a-not-found-error"
+          ],
+          "evidence_ids": [
+            "run-001:test-3"
+          ],
+          "reused": true,
+          "user_authored": true
+        }
+      ],
+      "review_status": "COVERED"
+    },
+    {
+      "scenario_id": "landingpage.endpoints",
+      "obligations": [
+        {
+          "skill": "unit",
+          "obligation_id": "landingpage.endpoints.unit.c1",
+          "test_ids": [
+            "unit:tests/unit/landingpage-endpoints-unit-c1#documents-the-new-event-setup-id-code-report-secret-random-secret-pdf-secret-and-expire-endpoints"
+          ],
+          "evidence_ids": [
+            "run-001:test-0"
+          ],
+          "reused": true,
+          "user_authored": true
+        }
+      ],
+      "review_status": "COVERED"
+    },
+    {
+      "scenario_id": "landingpage.unknownroute",
+      "obligations": [
+        {
+          "skill": "unit",
+          "obligation_id": "landingpage.unknownroute.unit.c1",
+          "test_ids": [
+            "unit:tests/unit/landingpage-unknownroute-unit-c1#returns-a-not-found-indication-and-does-not-render-the-api-documentation-landing-page"
+          ],
+          "evidence_ids": [
+            "run-001:test-2"
+          ],
+          "reused": true,
+          "user_authored": true
+        }
+      ],
+      "review_status": "COVERED"
+    },
+    {
+      "scenario_id": "landingpage.queryparams",
+      "obligations": [
+        {
+          "skill": "unit",
+          "obligation_id": "landingpage.queryparams.unit.c1",
+          "test_ids": [
+            "unit:tests/unit/landingpage-queryparams-unit-c1#returns-the-successful-html-landing-page-documenting-the-available-api-endpoints"
+          ],
+          "evidence_ids": [
+            "run-001:test-1"
+          ],
+          "reused": true,
+          "user_authored": true
+        }
+      ],
+      "review_status": "COVERED"
+    }
+  ]
+}

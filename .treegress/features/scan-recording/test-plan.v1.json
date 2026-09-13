@@ -1,0 +1,110 @@
+{
+  "feature_id": "scan-recording",
+  "version": 1,
+  "status": "approved",
+  "approval": {
+    "hash": "sha256:f71d864a6837e4c9146d7bc88b4028b39b3440b764d5574ba0d8fed2b8b1ee94",
+    "approved_at": "2026-09-13T17:24:15.162Z"
+  },
+  "scenarios": [
+    {
+      "id": "scan.favicon",
+      "title": "Short-circuit favicon requests without processing",
+      "given": [
+        "A scan route request where the code segment contains the substring \"favicon\" (e.g. `/12345/favicon.ico`)"
+      ],
+      "when": "The client requests the scan endpoint",
+      "then": [
+        "The request is rejected as not found",
+        "The response body is empty"
+      ],
+      "priority": "normal",
+      "negative": true
+    },
+    {
+      "id": "scan.redirectsetup",
+      "title": "Redirect to setup when no vendor code is supplied or present in session",
+      "given": [
+        "A client without an active exhibitor session"
+      ],
+      "when": "The client requests a scan for a numeric badge identifier without a code segment (e.g. `GET /12345`)",
+      "then": [
+        "The client is redirected to the setup page with the badge identifier parameter (e.g. `/setup?id=12345`)"
+      ],
+      "priority": "high",
+      "negative": true
+    },
+    {
+      "id": "scan.explicitcode",
+      "title": "Record scan with an explicit vendor code segment and save code to session",
+      "given": [
+        "A numeric badge identifier (e.g. `12345`) and an explicit vendor code segment (e.g. `EXHIBIT100`)",
+        "The scan query returns exactly one matching record"
+      ],
+      "when": "The client scans the badge with the explicit vendor code segment (e.g. `GET /12345/EXHIBIT100`)",
+      "then": [
+        "The client receives the scan confirmation page displaying the vendor code",
+        "A subsequent scan request without an explicit code succeeds using the saved vendor code"
+      ],
+      "priority": "critical",
+      "negative": false
+    },
+    {
+      "id": "scan.sessionsetup",
+      "title": "Record scan reusing vendor code established from setup submission",
+      "given": [
+        "A client establishes an exhibitor code session by submitting the setup form (e.g. `POST /setup` with code `BOOTH77`)",
+        "The scan query returns exactly one matching record"
+      ],
+      "when": "The client scans a numeric badge identifier with no code segment (e.g. `GET /12345`) using the established session",
+      "then": [
+        "The client receives the scan confirmation page displaying the vendor code configured during setup"
+      ],
+      "priority": "high",
+      "negative": false
+    },
+    {
+      "id": "scan.mismatchedrecord",
+      "title": "Display error message when scan query does not return exactly one record",
+      "given": [
+        "A numeric badge identifier and a vendor code (e.g. `UNKNOWN99`)",
+        "The scan query returns zero matching records"
+      ],
+      "when": "The client submits a scan request",
+      "then": [
+        "The client receives an error page",
+        "The error message \"That code didn't look right.\" is displayed"
+      ],
+      "priority": "high",
+      "negative": true
+    },
+    {
+      "id": "scan.urldecodedcode",
+      "title": "Record scan with URL-encoded vendor code segment",
+      "given": [
+        "A numeric badge identifier and a URL-encoded vendor code segment (e.g. `EXHIBITOR%20ONE` decoding to `EXHIBITOR ONE`)",
+        "The scan query returns exactly one matching record"
+      ],
+      "when": "The client submits the scan request with the encoded code",
+      "then": [
+        "The client receives the scan confirmation page displaying the decoded vendor code (e.g. `EXHIBITOR ONE`)"
+      ],
+      "priority": "normal",
+      "negative": false
+    },
+    {
+      "id": "scan.postwithnote",
+      "title": "Record scan via POST submission with vendor code and optional note",
+      "given": [
+        "A numeric badge identifier, an explicit vendor code, and a note in the submission body (e.g. `Follow up regarding quote`)",
+        "The scan query returns exactly one matching record"
+      ],
+      "when": "The client submits a POST scan request to the endpoint",
+      "then": [
+        "The client receives the scan confirmation page displaying the vendor code"
+      ],
+      "priority": "normal",
+      "negative": false
+    }
+  ]
+}

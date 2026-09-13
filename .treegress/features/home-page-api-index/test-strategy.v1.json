@@ -1,0 +1,57 @@
+{
+  "feature_id": "home-page-api-index",
+  "plan_version": 1,
+  "version": 1,
+  "status": "approved",
+  "approval": {
+    "hash": "sha256:14c0046f329af095b064a5e6512d3612af62b44d9aa1eade9c157032ee72d87b",
+    "plan_hash": "sha256:3c482a1d1c59db169ffc44a6bef6cb385239361b5b92eca558679578086b4aea",
+    "approved_at": "2026-09-13T15:48:11.849Z"
+  },
+  "scenario_strategies": [
+    {
+      "scenario_id": "landingpage.view",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Verify that the root path request handler returns a successful status and HTML landing page containing introductory API documentation instead of the 'Nothing to see here' error message.",
+          "reason": "Validates the root route response and payload using Vitest; this user-visible navigation flow would gain e2e-playwright coverage at thorough."
+        }
+      ]
+    },
+    {
+      "scenario_id": "landingpage.endpoints",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Verify that the root landing page output includes documentation for /new/:event, /setup, /:id/:code, /report/:secret, /random/:secret, /pdf/:secret, and /expire endpoints.",
+          "reason": "Validates API endpoint documentation content rendering in the handler output using Vitest."
+        }
+      ]
+    },
+    {
+      "scenario_id": "landingpage.unknownroute",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Verify that requesting an unrecognized path returns a not found indication and does not render the API documentation landing page.",
+          "reason": "Validates fallback 404 routing behavior for non-existent paths using Vitest."
+        }
+      ]
+    },
+    {
+      "scenario_id": "landingpage.queryparams",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Verify that root path requests with query parameters successfully return the HTML API documentation landing page.",
+          "reason": "Validates route handling robustness against query parameters on the root URL using Vitest."
+        }
+      ]
+    }
+  ]
+}

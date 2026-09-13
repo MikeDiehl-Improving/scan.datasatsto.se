@@ -1,0 +1,1 @@
+Preserve the Azure health check endpoint behavior: GET /robots933456.txt (server.js) responds with HTTP 200 and the plain text body "OK", with no dependencies on the database, event secrets, or other application state. This is the exact route Azure App Service pings for health probing.

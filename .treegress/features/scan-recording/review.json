@@ -1,0 +1,120 @@
+{
+  "feature_id": "scan-recording",
+  "plan_version": 1,
+  "plan_hash": "sha256:f71d864a6837e4c9146d7bc88b4028b39b3440b764d5574ba0d8fed2b8b1ee94",
+  "strategy_version": 1,
+  "strategy_hash": "sha256:853265e7367b3ee08559628b693e6ff655bf59a9b5fe6fb2141bbabde10321b3",
+  "run_id": "run-001",
+  "reviewed_at": "2026-09-13T17:26:46.614Z",
+  "scenario_verdicts": [
+    {
+      "scenario_id": "scan.favicon",
+      "status": "COVERED",
+      "then_coverage": [
+        {
+          "clause_index": 0,
+          "covered": true,
+          "test_id": "unit:tests/unit/scan-favicon-unit-c1#responds-with-404-and-an-empty-body",
+          "evidence_id": "run-001:test-16"
+        },
+        {
+          "clause_index": 1,
+          "covered": true,
+          "test_id": "unit:tests/unit/scan-favicon-unit-c1#responds-with-404-and-an-empty-body",
+          "evidence_id": "run-001:test-16"
+        }
+      ],
+      "rationale": "The unit test asserts a 404 status code and an empty string body when a favicon URL is requested."
+    },
+    {
+      "scenario_id": "scan.redirectsetup",
+      "status": "COVERED",
+      "then_coverage": [
+        {
+          "clause_index": 0,
+          "covered": true,
+          "test_id": "unit:tests/unit/scan-redirectsetup-unit-c1#redirects-to-setup-with-the-badge-id-parameter",
+          "evidence_id": "run-001:test-19"
+        }
+      ],
+      "rationale": "The unit test asserts a 302 redirect status and location header pointing to /setup?id=12345 when no vendor code is present."
+    },
+    {
+      "scenario_id": "scan.explicitcode",
+      "status": "COVERED",
+      "then_coverage": [
+        {
+          "clause_index": 0,
+          "covered": true,
+          "test_id": "unit:tests/unit/scan-explicitcode-unit-c1#shows-the-confirmation-page-and-reuses-the-code-on-a-later-session-request",
+          "evidence_id": "run-001:test-15"
+        },
+        {
+          "clause_index": 1,
+          "covered": true,
+          "test_id": "unit:tests/unit/scan-explicitcode-unit-c1#shows-the-confirmation-page-and-reuses-the-code-on-a-later-session-request",
+          "evidence_id": "run-001:test-15"
+        }
+      ],
+      "rationale": "The unit test verifies that the initial scan returns a 200 confirmation containing the explicit code and a subsequent scan without a code also succeeds with the saved code."
+    },
+    {
+      "scenario_id": "scan.sessionsetup",
+      "status": "COVERED",
+      "then_coverage": [
+        {
+          "clause_index": 0,
+          "covered": true,
+          "test_id": "unit:tests/unit/scan-sessionsetup-unit-c1#shows-the-confirmation-page-displaying-the-setup-established-vendor-code",
+          "evidence_id": "run-001:test-20"
+        }
+      ],
+      "rationale": "The unit test submits setup configuration and verifies that a subsequent badge scan returns a 200 confirmation displaying the setup code."
+    },
+    {
+      "scenario_id": "scan.mismatchedrecord",
+      "status": "COVERED",
+      "then_coverage": [
+        {
+          "clause_index": 0,
+          "covered": true,
+          "test_id": "unit:tests/unit/scan-mismatchedrecord-unit-c1#shows-an-error-page-with-the-message-that-code-didn-t-look-right",
+          "evidence_id": "run-001:test-17"
+        },
+        {
+          "clause_index": 1,
+          "covered": true,
+          "test_id": "unit:tests/unit/scan-mismatchedrecord-unit-c1#shows-an-error-page-with-the-message-that-code-didn-t-look-right",
+          "evidence_id": "run-001:test-17"
+        }
+      ],
+      "rationale": "The unit test mocks zero matching query rows and asserts a 500 error status along with the message That code didn't look right."
+    },
+    {
+      "scenario_id": "scan.urldecodedcode",
+      "status": "COVERED",
+      "then_coverage": [
+        {
+          "clause_index": 0,
+          "covered": true,
+          "test_id": "unit:tests/unit/scan-urldecodedcode-unit-c1#shows-the-confirmation-page-with-the-decoded-vendor-code",
+          "evidence_id": "run-001:test-21"
+        }
+      ],
+      "rationale": "The unit test sends an encoded vendor code segment and asserts a 200 confirmation displaying the decoded code string."
+    },
+    {
+      "scenario_id": "scan.postwithnote",
+      "status": "COVERED",
+      "then_coverage": [
+        {
+          "clause_index": 0,
+          "covered": true,
+          "test_id": "unit:tests/unit/scan-postwithnote-unit-c1#shows-the-confirmation-page-displaying-the-vendor-code",
+          "evidence_id": "run-001:test-18"
+        }
+      ],
+      "rationale": "The unit test submits a POST scan request with note data and asserts a 200 status displaying the vendor code."
+    }
+  ]
+}

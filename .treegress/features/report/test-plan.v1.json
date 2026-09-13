@@ -1,0 +1,119 @@
+{
+  "feature_id": "report",
+  "version": 1,
+  "status": "approved",
+  "approval": {
+    "hash": "sha256:d4a8193b9cca7106dda5c14d706730f65b6e261119f1587cad77e96bb9e0a9cf",
+    "approved_at": "2026-09-13T17:39:46.772Z"
+  },
+  "scenarios": [
+    {
+      "id": "report.validwithscans",
+      "title": "Download scan report for an event with recorded scans",
+      "given": [
+        "an event exists with recorded badge scan entries (e.g. event ID EVENT123)"
+      ],
+      "when": "the user requests the scan report for the event (e.g. GET /report/EVENT123)",
+      "then": [
+        "a downloadable report document containing the scan records for the specified event is received",
+        "the report contents include the details of each recorded badge scan"
+      ],
+      "priority": "critical",
+      "negative": false
+    },
+    {
+      "id": "report.emptyevent",
+      "title": "Download scan report for an event with no recorded scans",
+      "given": [
+        "an event exists with no recorded badge scan entries (e.g. event ID EVENTEMPTY)"
+      ],
+      "when": "the user requests the scan report for the empty event (e.g. GET /report/EVENTEMPTY)",
+      "then": [
+        "a report document is received indicating that no scan records are present"
+      ],
+      "priority": "high",
+      "negative": false
+    },
+    {
+      "id": "report.notfound",
+      "title": "Request scan report for a non-existent event",
+      "given": [
+        "no event exists matching the requested identifier (e.g. event ID NONEXISTENT999)"
+      ],
+      "when": "the user requests the scan report for the unknown event (e.g. GET /report/NONEXISTENT999)",
+      "then": [
+        "the request is rejected with an indication that the event or report was not found"
+      ],
+      "priority": "high",
+      "negative": true
+    },
+    {
+      "id": "report.eventisolation",
+      "title": "Ensure scan report contains only scans belonging to the requested event",
+      "given": [
+        "two distinct events exist each having their own badge scan entries (e.g. EVENTA and EVENTB)"
+      ],
+      "when": "the user requests the scan report for the first event (e.g. GET /report/EVENTA)",
+      "then": [
+        "the report contains only the scans recorded for the requested event",
+        "no scan records belonging to the other event (e.g. EVENTB) appear in the report"
+      ],
+      "priority": "high",
+      "negative": false
+    },
+    {
+      "id": "report.multiplescans",
+      "title": "Preserve all entries and ordering for an event with multiple scans",
+      "given": [
+        "an event exists with multiple badge scans recorded sequentially (e.g. event ID EVENTMULTI)"
+      ],
+      "when": "the user requests the scan report for the event",
+      "then": [
+        "all recorded scan entries are present in the report",
+        "the sequential or chronological order of the recorded scans is preserved in the report data"
+      ],
+      "priority": "normal",
+      "negative": false
+    },
+    {
+      "id": "report.expired",
+      "title": "Request scan report for an expired or purged event",
+      "given": [
+        "an event existed whose scan data has been expired or purged"
+      ],
+      "when": "the user requests the scan report for the expired event (e.g. GET /report/EXPIRED123)",
+      "then": [
+        "the user is informed that the event report is no longer available or not found"
+      ],
+      "priority": "normal",
+      "negative": true
+    },
+    {
+      "id": "report.malformedid",
+      "title": "Request scan report with an invalid or malformed event identifier",
+      "given": [
+        "an invalid event identifier containing unsupported path characters or traversal attempts (e.g. ../invalid)"
+      ],
+      "when": "the user requests the scan report using the invalid identifier",
+      "then": [
+        "the request is rejected with an error or not found indication",
+        "no unintended files or system resources are exposed"
+      ],
+      "priority": "normal",
+      "negative": true
+    },
+    {
+      "id": "report.missingid",
+      "title": "Request scan report without providing an event identifier",
+      "given": [
+        "the report endpoint is accessed without specifying an event identifier"
+      ],
+      "when": "the report request is submitted without an identifier parameter",
+      "then": [
+        "the request is rejected or redirected with an indication that a valid event identifier is required"
+      ],
+      "priority": "normal",
+      "negative": true
+    }
+  ]
+}

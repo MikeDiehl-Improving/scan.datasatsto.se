@@ -1,0 +1,79 @@
+{
+  "feature_id": "attendee-registration",
+  "plan_version": 2,
+  "version": 1,
+  "status": "approved",
+  "approval": {
+    "hash": "sha256:1a71061c6bc5fa7624bef09ff510b74a3835db4ea2299262df3eca7ff3e5be9e",
+    "plan_hash": "sha256:697c9c37f2bb030cb5d66846ce039f5ce0bdb7a26da285f3bd16adcc652c56dc",
+    "approved_at": "2026-09-13T17:18:13.042Z"
+  },
+  "scenario_strategies": [
+    {
+      "scenario_id": "registration.autoid",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Prove the registration endpoint handler auto-assigns an attendee ID and responds with JSON containing matching id, formatted url, formatted imgsrc, and base64 QR data URL when no manual ID is provided.",
+          "reason": "The repository uses vitest for isolated unit testing of route handlers and controller logic; unit tests can directly invoke the handler or express app with mocked identity and QR generation services."
+        }
+      ]
+    },
+    {
+      "scenario_id": "registration.manualid",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Prove the registration endpoint handler preserves the manual numeric ID parameter and returns JSON containing matching id, formatted url, formatted imgsrc, and base64 QR data URL.",
+          "reason": "The repository runner is vitest, enabling unit verification of route parameter handling and response payload formatting with mocked generation services."
+        }
+      ]
+    },
+    {
+      "scenario_id": "registration.invalidid",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Prove that when identity lookup returns an empty recordset or falsy identity, the handler renders an unauthorized HTML error response with 'Invalid ID.' and returns no JSON payload.",
+          "reason": "Unit tests in vitest can simulate empty query recordsets from the database layer and assert the resulting unauthorized HTTP status, HTML view, and error message."
+        }
+      ]
+    },
+    {
+      "scenario_id": "registration.pngerror",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Prove that when QR PNG image file generation throws or returns an error, the handler returns a server error HTML response with 'Couldn\\'t create .png file.' and omits JSON output.",
+          "reason": "Simulating a QR file generation failure in a vitest unit test verifies error handling and appropriate HTML error response rendering."
+        }
+      ]
+    },
+    {
+      "scenario_id": "registration.dataurlerror",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Prove that when QR data URL generation encounters an error after PNG creation, the handler renders a server error HTML response with 'Couldn\\'t create the data blob.' and returns no JSON.",
+          "reason": "Vitest unit tests can mock successful PNG creation followed by data URL failure to verify the specific error handling branch."
+        }
+      ]
+    },
+    {
+      "scenario_id": "registration.nonnumericid",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Prove that route definitions matching registration routes with non-numeric second segments do not invoke the registration handler and return a 404 not found response.",
+          "reason": "Routing rules and parameter constraints can be validated in vitest by making requests to the Express application with non-numeric path segments."
+        }
+      ]
+    }
+  ]
+}

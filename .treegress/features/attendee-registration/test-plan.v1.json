@@ -1,0 +1,106 @@
+{
+  "feature_id": "attendee-registration",
+  "version": 1,
+  "status": "draft",
+  "scenarios": [
+    {
+      "id": "registration.autoid",
+      "title": "Register an attendee without specifying an ID",
+      "given": [
+        "an event exists (e.g. TECHCONF)",
+        "qr code generation succeeds for both the png image file and data url"
+      ],
+      "when": "an attendee registration request is sent for the event without specifying an id",
+      "then": [
+        "the client receives a successful registration response containing an assigned attendee id (e.g. 101)",
+        "the response contains a target url pointing to the assigned attendee id (e.g. https://<host>/101)",
+        "the response contains an image source url with the lowercased event name and attendee id (e.g. https://<host>/techconf/101.png)",
+        "the response contains the generated qr code data url"
+      ],
+      "priority": "critical",
+      "negative": false
+    },
+    {
+      "id": "registration.manualid",
+      "title": "Register an attendee with a manual numeric ID",
+      "given": [
+        "an event exists (e.g. TECHCONF)",
+        "a manual numeric id is specified (e.g. 456)",
+        "qr code generation succeeds for both the png image file and data url"
+      ],
+      "when": "an attendee registration request is sent for the event with the manual numeric id",
+      "then": [
+        "the client receives a successful registration response containing the requested attendee id (e.g. 456)",
+        "the response contains a target url pointing to the requested attendee id (e.g. https://<host>/456)",
+        "the response contains an image source url with the lowercased event name and requested attendee id (e.g. https://<host>/techconf/456.png)",
+        "the response contains the generated qr code data url"
+      ],
+      "priority": "high",
+      "negative": false
+    },
+    {
+      "id": "registration.nonnumericid",
+      "title": "Register an attendee when the ID route segment is non-numeric",
+      "given": [
+        "an event exists (e.g. TECHCONF)",
+        "a non-numeric id segment is provided in the registration path (e.g. vip)",
+        "qr code generation succeeds for both the png image file and data url"
+      ],
+      "when": "an attendee registration request is sent with the non-numeric id segment",
+      "then": [
+        "the client receives a successful registration response containing a system-assigned attendee id rather than the non-numeric value",
+        "the response contains a target url pointing to the system-assigned attendee id",
+        "the response contains an image source url with the lowercased event name and system-assigned attendee id",
+        "the response contains the generated qr code data url"
+      ],
+      "priority": "normal",
+      "negative": false
+    },
+    {
+      "id": "registration.invalidid",
+      "title": "Registration fails when database identity creation produces no recordset",
+      "given": [
+        "an event registration is requested",
+        "the database does not return a valid identity recordset"
+      ],
+      "when": "an attendee registration request is sent",
+      "then": [
+        "an error page displaying the message \"Invalid ID.\" is returned to the client",
+        "no registration json payload is returned"
+      ],
+      "priority": "high",
+      "negative": true
+    },
+    {
+      "id": "registration.pngfailed",
+      "title": "Registration fails when QR PNG file creation encounters an error",
+      "given": [
+        "an event exists and identity creation succeeds in the database",
+        "qr png file creation fails with an error"
+      ],
+      "when": "an attendee registration request is sent",
+      "then": [
+        "an error page displaying the message \"Couldn't create .png file.\" is returned to the client",
+        "no registration json payload is returned"
+      ],
+      "priority": "high",
+      "negative": true
+    },
+    {
+      "id": "registration.datafailed",
+      "title": "Registration fails when QR data URL creation encounters an error",
+      "given": [
+        "an event exists and identity creation succeeds in the database",
+        "qr png file creation succeeds",
+        "qr data url creation fails with an error"
+      ],
+      "when": "an attendee registration request is sent",
+      "then": [
+        "an error page displaying the message \"Couldn't create the data blob.\" is returned to the client",
+        "no registration json payload is returned"
+      ],
+      "priority": "high",
+      "negative": true
+    }
+  ]
+}

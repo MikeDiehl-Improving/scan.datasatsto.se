@@ -1,0 +1,30 @@
+{
+  "version": 1,
+  "stack": {
+    "language": "javascript",
+    "packageManager": "npm"
+  },
+  "runners": {
+    "unit": {
+      "adapter": "vitest",
+      "command": "npx vitest run"
+    }
+  },
+  "envPassthrough": [],
+  "docs": [
+    "README.md",
+    "README.*",
+    "docs/**"
+  ],
+  "labelBatchSize": 50,
+  "testDirs": {
+    "unit": "tests/unit",
+    "component": "tests/component",
+    "e2e": "tests/e2e"
+  },
+  "llm": {
+    "provider": "google",
+    "model": "gemini-3.8-flash",
+    "apiKeyEnv": "GEMINI_API_KEY"
+  }
+}

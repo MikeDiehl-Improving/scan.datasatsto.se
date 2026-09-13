@@ -1,0 +1,73 @@
+{
+  "feature_id": "home-page-api-index",
+  "version": 1,
+  "status": "approved",
+  "approval": {
+    "hash": "sha256:3c482a1d1c59db169ffc44a6bef6cb385239361b5b92eca558679578086b4aea",
+    "approved_at": "2026-09-13T15:47:51.062Z"
+  },
+  "scenarios": [
+    {
+      "id": "landingpage.view",
+      "title": "Visitor navigates to the root URL",
+      "given": [
+        "the application is running"
+      ],
+      "when": "a visitor requests the base root path",
+      "then": [
+        "the visitor receives a successful HTML landing page instead of a not found error",
+        "the page does not display the previous not found message stating 'Nothing to see here'",
+        "the page presents documentation introducing the available API endpoints"
+      ],
+      "priority": "critical",
+      "negative": false
+    },
+    {
+      "id": "landingpage.endpoints",
+      "title": "Root landing page lists and documents available API endpoints",
+      "given": [
+        "the application is running",
+        "a visitor is viewing the base root HTML landing page"
+      ],
+      "when": "the visitor reads the documented API endpoints",
+      "then": [
+        "documentation for creating an event (e.g. /new/:event) is displayed",
+        "documentation for setup (e.g. /setup) is displayed",
+        "documentation for scanning an item code (e.g. /:id/:code) is displayed",
+        "documentation for viewing reports (e.g. /report/:secret) is displayed",
+        "documentation for generating random codes (e.g. /random/:secret) is displayed",
+        "documentation for generating PDF documents (e.g. /pdf/:secret) is displayed",
+        "documentation for expiration handling (e.g. /expire) is displayed"
+      ],
+      "priority": "high",
+      "negative": false
+    },
+    {
+      "id": "landingpage.unknownroute",
+      "title": "Visitor requests an undefined route",
+      "given": [
+        "the application is running"
+      ],
+      "when": "a visitor requests an unrecognized path (e.g. /nonexistent)",
+      "then": [
+        "the visitor receives a not found error indication",
+        "the API documentation landing page is not displayed"
+      ],
+      "priority": "normal",
+      "negative": true
+    },
+    {
+      "id": "landingpage.queryparams",
+      "title": "Visitor requests the root URL with query parameters",
+      "given": [
+        "the application is running"
+      ],
+      "when": "a visitor requests the base root path with query parameters (e.g. /?format=html)",
+      "then": [
+        "the visitor receives the successful HTML landing page documenting the available API endpoints"
+      ],
+      "priority": "low",
+      "negative": false
+    }
+  ]
+}

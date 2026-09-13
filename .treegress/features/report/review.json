@@ -1,0 +1,139 @@
+{
+  "feature_id": "report",
+  "plan_version": 1,
+  "plan_hash": "sha256:d4a8193b9cca7106dda5c14d706730f65b6e261119f1587cad77e96bb9e0a9cf",
+  "strategy_version": 1,
+  "strategy_hash": "sha256:ae407eeea811e35ab0a38664f2c9f9b0dddd3debd11b5e4c12a6f5087c26340d",
+  "run_id": "run-001",
+  "reviewed_at": "2026-09-13T17:42:16.035Z",
+  "scenario_verdicts": [
+    {
+      "scenario_id": "report.validwithscans",
+      "status": "COVERED",
+      "then_coverage": [
+        {
+          "clause_index": 0,
+          "covered": true,
+          "test_id": "unit:tests/unit/report-validwithscans-unit-c1#returns-a-report-containing-every-recorded-scan-detail",
+          "evidence_id": "run-001:test-22"
+        },
+        {
+          "clause_index": 1,
+          "covered": true,
+          "test_id": "unit:tests/unit/report-validwithscans-unit-c1#returns-a-report-containing-every-recorded-scan-detail",
+          "evidence_id": "run-001:test-22"
+        }
+      ],
+      "rationale": "Passing unit test asserts 200 response status and full badge scan details matching the event."
+    },
+    {
+      "scenario_id": "report.emptyevent",
+      "status": "COVERED",
+      "then_coverage": [
+        {
+          "clause_index": 0,
+          "covered": true,
+          "test_id": "unit:tests/unit/report-emptyevent-unit-c1#returns-an-empty-report-when-the-event-has-no-scans",
+          "evidence_id": "run-001:test-15"
+        }
+      ],
+      "rationale": "Passing unit test verifies report document returned indicates no scan records are present for the empty event."
+    },
+    {
+      "scenario_id": "report.notfound",
+      "status": "COVERED",
+      "then_coverage": [
+        {
+          "clause_index": 0,
+          "covered": true,
+          "test_id": "unit:tests/unit/report-notfound-unit-c1#rejects-an-event-that-has-no-report",
+          "evidence_id": "run-001:test-21"
+        }
+      ],
+      "rationale": "Passing unit test verifies 404 rejection and not found indication when event has no report."
+    },
+    {
+      "scenario_id": "report.eventisolation",
+      "status": "COVERED",
+      "then_coverage": [
+        {
+          "clause_index": 0,
+          "covered": true,
+          "test_id": "unit:tests/unit/report-eventisolation-unit-c1#returns-only-scans-supplied-for-the-requested-event",
+          "evidence_id": "run-001:test-16"
+        },
+        {
+          "clause_index": 1,
+          "covered": true,
+          "test_id": "unit:tests/unit/report-eventisolation-unit-c1#returns-only-scans-supplied-for-the-requested-event",
+          "evidence_id": "run-001:test-16"
+        }
+      ],
+      "rationale": "Passing unit test asserts only the requested event scans are present and other event records are excluded."
+    },
+    {
+      "scenario_id": "report.multiplescans",
+      "status": "COVERED",
+      "then_coverage": [
+        {
+          "clause_index": 0,
+          "covered": true,
+          "test_id": "unit:tests/unit/report-multiplescans-unit-c1#preserves-every-scan-in-recorded-order",
+          "evidence_id": "run-001:test-20"
+        },
+        {
+          "clause_index": 1,
+          "covered": true,
+          "test_id": "unit:tests/unit/report-multiplescans-unit-c1#preserves-every-scan-in-recorded-order",
+          "evidence_id": "run-001:test-20"
+        }
+      ],
+      "rationale": "Passing unit test verifies all scan entries are returned in their recorded chronological sequence."
+    },
+    {
+      "scenario_id": "report.expired",
+      "status": "COVERED",
+      "then_coverage": [
+        {
+          "clause_index": 0,
+          "covered": true,
+          "test_id": "unit:tests/unit/report-expired-unit-c1#reports-that-purged-event-data-is-unavailable",
+          "evidence_id": "run-001:test-17"
+        }
+      ],
+      "rationale": "Passing unit test asserts 404 response with an indication that the report data is unavailable or not found."
+    },
+    {
+      "scenario_id": "report.malformedid",
+      "status": "COVERED",
+      "then_coverage": [
+        {
+          "clause_index": 0,
+          "covered": true,
+          "test_id": "unit:tests/unit/report-malformedid-unit-c1#rejects-traversal-identifiers-without-exposing-a-file-or-system-resource",
+          "evidence_id": "run-001:test-18"
+        },
+        {
+          "clause_index": 1,
+          "covered": true,
+          "test_id": "unit:tests/unit/report-malformedid-unit-c1#rejects-traversal-identifiers-without-exposing-a-file-or-system-resource",
+          "evidence_id": "run-001:test-18"
+        }
+      ],
+      "rationale": "Passing unit test verifies traversal path identifier is rejected with error status and does not leak system files."
+    },
+    {
+      "scenario_id": "report.missingid",
+      "status": "COVERED",
+      "then_coverage": [
+        {
+          "clause_index": 0,
+          "covered": true,
+          "test_id": "unit:tests/unit/report-missingid-unit-c1#requires-an-event-identifier",
+          "evidence_id": "run-001:test-19"
+        }
+      ],
+      "rationale": "Passing unit test confirms request without event identifier rejects or redirects with an error indication."
+    }
+  ]
+}

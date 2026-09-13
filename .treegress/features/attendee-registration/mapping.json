@@ -1,0 +1,115 @@
+{
+  "feature_id": "attendee-registration",
+  "plan_version": 2,
+  "strategy_version": 1,
+  "entries": [
+    {
+      "scenario_id": "registration.autoid",
+      "obligations": [
+        {
+          "skill": "unit",
+          "obligation_id": "registration.autoid.unit.c1",
+          "test_ids": [
+            "unit:tests/unit/registration-autoid-unit-c1#returns-a-successful-json-response-with-the-assigned-id-url-imgsrc-and-qr-data"
+          ],
+          "evidence_ids": [
+            "run-001:test-9"
+          ],
+          "reused": true,
+          "user_authored": true
+        }
+      ],
+      "review_status": "COVERED"
+    },
+    {
+      "scenario_id": "registration.manualid",
+      "obligations": [
+        {
+          "skill": "unit",
+          "obligation_id": "registration.manualid.unit.c1",
+          "test_ids": [
+            "unit:tests/unit/registration-manualid-unit-c1#returns-a-successful-json-response-with-the-manual-id-url-imgsrc-and-qr-data"
+          ],
+          "evidence_ids": [
+            "run-001:test-12"
+          ],
+          "reused": true,
+          "user_authored": true
+        }
+      ],
+      "review_status": "COVERED"
+    },
+    {
+      "scenario_id": "registration.invalidid",
+      "obligations": [
+        {
+          "skill": "unit",
+          "obligation_id": "registration.invalidid.unit.c1",
+          "test_ids": [
+            "unit:tests/unit/registration-invalidid-unit-c1#returns-an-http-401-html-error-page-with-the-invalid-id-message-and-no-json-body"
+          ],
+          "evidence_ids": [
+            "run-001:test-11"
+          ],
+          "reused": true,
+          "user_authored": true
+        }
+      ],
+      "review_status": "COVERED"
+    },
+    {
+      "scenario_id": "registration.pngerror",
+      "obligations": [
+        {
+          "skill": "unit",
+          "obligation_id": "registration.pngerror.unit.c1",
+          "test_ids": [
+            "unit:tests/unit/registration-pngerror-unit-c1#returns-an-http-500-html-error-page-with-the-couldn-t-create-png-file-message-and-no-json-body"
+          ],
+          "evidence_ids": [
+            "run-001:test-14"
+          ],
+          "reused": true,
+          "user_authored": true
+        }
+      ],
+      "review_status": "COVERED"
+    },
+    {
+      "scenario_id": "registration.dataurlerror",
+      "obligations": [
+        {
+          "skill": "unit",
+          "obligation_id": "registration.dataurlerror.unit.c1",
+          "test_ids": [
+            "unit:tests/unit/registration-dataurlerror-unit-c1#returns-an-http-500-html-error-page-with-the-couldn-t-create-the-data-blob-message-and-no-json-body"
+          ],
+          "evidence_ids": [
+            "run-001:test-10"
+          ],
+          "reused": true,
+          "user_authored": true
+        }
+      ],
+      "review_status": "COVERED"
+    },
+    {
+      "scenario_id": "registration.nonnumericid",
+      "obligations": [
+        {
+          "skill": "unit",
+          "obligation_id": "registration.nonnumericid.unit.c1",
+          "test_ids": [
+            "unit:tests/unit/registration-nonnumericid-unit-c1#returns-a-404-not-found-response-instead-of-processing-the-registration"
+          ],
+          "evidence_ids": [
+            "run-001:test-13"
+          ],
+          "reused": true,
+          "user_authored": true
+        }
+      ],
+      "review_status": "COVERED"
+    }
+  ]
+}

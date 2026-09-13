@@ -1,0 +1,22 @@
+{
+  "feature_id": "attendee-registration",
+  "state": "VERIFIED",
+  "plan_version": 2,
+  "strategy_version": 1,
+  "approvals": {
+    "test_plan": {
+      "version": 2,
+      "hash": "sha256:697c9c37f2bb030cb5d66846ce039f5ce0bdb7a26da285f3bd16adcc652c56dc",
+      "approved_at": "2026-09-13T17:17:52.775Z",
+      "self_approved": true
+    },
+    "test_strategy": {
+      "version": 1,
+      "hash": "sha256:1a71061c6bc5fa7624bef09ff510b74a3835db4ea2299262df3eca7ff3e5be9e",
+      "approved_at": "2026-09-13T17:18:13.042Z",
+      "self_approved": true
+    }
+  },
+  "last_run_id": "run-001",
+  "updated_at": "2026-09-13T17:22:29.882Z"
+}

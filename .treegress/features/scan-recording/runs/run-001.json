@@ -1,0 +1,185 @@
+{
+  "run_id": "run-001",
+  "feature_id": "scan-recording",
+  "trigger": "verify",
+  "started_at": "2026-09-13T17:26:26.130Z",
+  "finished_at": "2026-09-13T17:26:29.748Z",
+  "results": [
+    {
+      "evidence_id": "run-001:test-0",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/landingpage-endpoints-unit-c1#documents-the-new-event-setup-id-code-report-secret-random-secret-pdf-secret-and-expire-endpoints",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 32
+    },
+    {
+      "evidence_id": "run-001:test-1",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/landingpage-queryparams-unit-c1#returns-the-successful-html-landing-page-documenting-the-available-api-endpoints",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 23
+    },
+    {
+      "evidence_id": "run-001:test-2",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/landingpage-unknownroute-unit-c1#returns-a-not-found-indication-and-does-not-render-the-api-documentation-landing-page",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 27
+    },
+    {
+      "evidence_id": "run-001:test-3",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/landingpage-view-unit-c1#returns-a-successful-html-landing-page-instead-of-a-not-found-error",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 21
+    },
+    {
+      "evidence_id": "run-001:test-4",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/randomscan-emptyrecordset-unit-c1#returns-a-successful-response-with-an-empty-json-array",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 32
+    },
+    {
+      "evidence_id": "run-001:test-5",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/randomscan-errorwithcode-unit-c1#returns-an-http-200-response-with-an-empty-body",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 27
+    },
+    {
+      "evidence_id": "run-001:test-6",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/randomscan-errorwithoutcode-unit-c1#returns-an-http-200-response-with-an-empty-body",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 38
+    },
+    {
+      "evidence_id": "run-001:test-7",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/randomscan-withcode-unit-c1#returns-a-successful-response-with-the-matching-scan-records-formatted-as-a-json-array",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 46
+    },
+    {
+      "evidence_id": "run-001:test-8",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/randomscan-withoutcode-unit-c1#returns-a-successful-response-with-the-scan-records-formatted-as-a-json-array",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 28
+    },
+    {
+      "evidence_id": "run-001:test-9",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/registration-autoid-unit-c1#returns-a-successful-json-response-with-the-assigned-id-url-imgsrc-and-qr-data",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 34
+    },
+    {
+      "evidence_id": "run-001:test-10",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/registration-dataurlerror-unit-c1#returns-an-http-500-html-error-page-with-the-couldn-t-create-the-data-blob-message-and-no-json-body",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 52
+    },
+    {
+      "evidence_id": "run-001:test-11",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/registration-invalidid-unit-c1#returns-an-http-401-html-error-page-with-the-invalid-id-message-and-no-json-body",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 74
+    },
+    {
+      "evidence_id": "run-001:test-12",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/registration-manualid-unit-c1#returns-a-successful-json-response-with-the-manual-id-url-imgsrc-and-qr-data",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 44
+    },
+    {
+      "evidence_id": "run-001:test-13",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/registration-nonnumericid-unit-c1#returns-a-404-not-found-response-instead-of-processing-the-registration",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 20
+    },
+    {
+      "evidence_id": "run-001:test-14",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/registration-pngerror-unit-c1#returns-an-http-500-html-error-page-with-the-couldn-t-create-png-file-message-and-no-json-body",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 58
+    },
+    {
+      "evidence_id": "run-001:test-15",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/scan-explicitcode-unit-c1#shows-the-confirmation-page-and-reuses-the-code-on-a-later-session-request",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 60
+    },
+    {
+      "evidence_id": "run-001:test-16",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/scan-favicon-unit-c1#responds-with-404-and-an-empty-body",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 25
+    },
+    {
+      "evidence_id": "run-001:test-17",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/scan-mismatchedrecord-unit-c1#shows-an-error-page-with-the-message-that-code-didn-t-look-right",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 30
+    },
+    {
+      "evidence_id": "run-001:test-18",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/scan-postwithnote-unit-c1#shows-the-confirmation-page-displaying-the-vendor-code",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 49
+    },
+    {
+      "evidence_id": "run-001:test-19",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/scan-redirectsetup-unit-c1#redirects-to-setup-with-the-badge-id-parameter",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 33
+    },
+    {
+      "evidence_id": "run-001:test-20",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/scan-sessionsetup-unit-c1#shows-the-confirmation-page-displaying-the-setup-established-vendor-code",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 110
+    },
+    {
+      "evidence_id": "run-001:test-21",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/scan-urldecodedcode-unit-c1#shows-the-confirmation-page-with-the-decoded-vendor-code",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 126
+    }
+  ]
+}

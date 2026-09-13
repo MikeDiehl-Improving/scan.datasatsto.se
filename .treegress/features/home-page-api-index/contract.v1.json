@@ -1,0 +1,106 @@
+{
+  "feature_id": "home-page-api-index",
+  "version": 1,
+  "approval": {
+    "hash": "sha256:105e2a5ef101be623016f8b381dcb92537c3c9b73c206e3a9a4e581f502fcf9a",
+    "strategy_hash": "sha256:14c0046f329af095b064a5e6512d3612af62b44d9aa1eade9c157032ee72d87b",
+    "approved_at": "2026-09-13T15:48:11.849Z"
+  },
+  "testids": [],
+  "roles": [],
+  "strings": [
+    "12pt",
+    "18pt",
+    "24pt",
+    "2x2",
+    "3x3",
+    "4x4",
+    "8pt",
+    "An error occurred",
+    "Avery 5392",
+    "Badges per sheet:",
+    "Choose exhibitor code",
+    "Encryption key:",
+    "Encryption pass phrase",
+    "Event secret (required)",
+    "Event secret:",
+    "Executive",
+    "Font size:",
+    "Generate PDF document",
+    "Huge",
+    "ISO A3",
+    "ISO A4",
+    "ISO A5",
+    "ISO A6",
+    "Large",
+    "Legal",
+    "Letter",
+    "Medium",
+    "Notes",
+    "OK",
+    "Only print badges for the above identities",
+    "Paper size:",
+    "Paste a comma-delimited list of identities here. Column names can include",
+    "QR code size",
+    "Save the above identity details to the database",
+    "Scanner set up",
+    "Small",
+    "Tabloid",
+    "Tiny",
+    "Vendor code"
+  ],
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/"
+    },
+    {
+      "method": "GET",
+      "path": "/assets/:asset"
+    },
+    {
+      "method": "GET",
+      "path": "/expire"
+    },
+    {
+      "method": "POST",
+      "path": "/pdf"
+    },
+    {
+      "method": "GET",
+      "path": "/pdf/:secret"
+    },
+    {
+      "method": "GET",
+      "path": "/random/:secret"
+    },
+    {
+      "method": "GET",
+      "path": "/random/:secret/:code"
+    },
+    {
+      "method": "GET",
+      "path": "/report/:secret"
+    },
+    {
+      "method": "GET",
+      "path": "/robots933456.txt"
+    },
+    {
+      "method": "GET",
+      "path": "/setup"
+    },
+    {
+      "method": "POST",
+      "path": "/setup"
+    }
+  ],
+  "cookies": [],
+  "statusCodes": [
+    200,
+    400,
+    401,
+    404,
+    500
+  ]
+}

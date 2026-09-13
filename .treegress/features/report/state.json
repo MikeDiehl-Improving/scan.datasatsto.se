@@ -1,0 +1,22 @@
+{
+  "feature_id": "report",
+  "state": "VERIFIED",
+  "plan_version": 1,
+  "strategy_version": 1,
+  "approvals": {
+    "test_plan": {
+      "version": 1,
+      "hash": "sha256:d4a8193b9cca7106dda5c14d706730f65b6e261119f1587cad77e96bb9e0a9cf",
+      "approved_at": "2026-09-13T17:39:46.772Z",
+      "self_approved": true
+    },
+    "test_strategy": {
+      "version": 1,
+      "hash": "sha256:ae407eeea811e35ab0a38664f2c9f9b0dddd3debd11b5e4c12a6f5087c26340d",
+      "approved_at": "2026-09-13T17:40:08.461Z",
+      "self_approved": true
+    }
+  },
+  "last_run_id": "run-001",
+  "updated_at": "2026-09-13T17:42:20.497Z"
+}
