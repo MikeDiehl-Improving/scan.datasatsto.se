@@ -204,11 +204,11 @@ function newRegistration (req, res, next) {
                     var id=recordset[0].ID;
 
                     // Create the /qr directory if it doesn't already exist
-                    if (!fs.existsSync(__dirname+'/qr')) { fs.mkdirSync(__dirname+'/qr'); }
+                    fs.mkdirSync(__dirname+'/qr', { recursive: true });
 
                     // Create the event directory if it doesn't already exist
                     var dir=__dirname+'/qr/'+decodeURI(event).toLowerCase();
-                    if (!fs.existsSync(dir)) { fs.mkdirSync(dir); }
+                    fs.mkdirSync(dir, { recursive: true });
 
                     var url='https://'+req.headers.host+'/'+id;
 
@@ -462,10 +462,10 @@ function pdfForm (req, res, next) {
 app.post('/pdf', async function (req, res, next) {
 
     // Create the /pdf directory if it doesn't already exist
-    if (!fs.existsSync(__dirname+'/pdf')) { fs.mkdirSync(__dirname+'/pdf'); }
+    fs.mkdirSync(__dirname+'/pdf', { recursive: true });
 
     // Create the /qr directory if it doesn't already exist
-    if (!fs.existsSync(__dirname+'/qr')) { fs.mkdirSync(__dirname+'/qr'); }
+    fs.mkdirSync(__dirname+'/qr', { recursive: true });
 
     const pageSizes={
         "A3": { "pageWidth": 841.89, "pageHeight": 1190.55 },
@@ -623,7 +623,7 @@ app.post('/pdf', async function (req, res, next) {
 
                     // Create the event directory if it doesn't already exist
                     const dir=__dirname+'/qr/'+(blob.eventName.toLowerCase());
-                    if (!fs.existsSync(dir)) { fs.mkdirSync(dir); }
+                    fs.mkdirSync(dir, { recursive: true });
 
                     var pdf = new PDFGenerator(pdfConfig.pageSettings);
                     pdf.fontSize(parseInt(req.body.fontSize || '16'));
