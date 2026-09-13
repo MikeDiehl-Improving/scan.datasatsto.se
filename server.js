@@ -608,7 +608,7 @@ app.post('/pdf', async function (req, res, next) {
                 { "name": 'IdentityIDs', "type": Types.NVarChar, "value": identityIDs }],
 
             async function(recordset) {
-                if (!recordset) {
+                if (!recordset || !recordset[0]) {
                     res.status(401).send('Invalid or missing event.');
                     return;
                 }
@@ -631,6 +631,7 @@ app.post('/pdf', async function (req, res, next) {
                     pdf.info=pdfConfig.documentInfo;
 
                     //pdf.pipe(fs.createWriteStream('./pdf/Badges_'+blob.eventId+'.pdf'));
+                    res.type('application/pdf');
                     pdf.pipe(res) // send back as http response
 
                     var badgeWidth=pdfConfig.badgeWidth ||
@@ -653,7 +654,7 @@ app.post('/pdf', async function (req, res, next) {
                         hasAveryZones: Boolean(pdfConfig.avery)
                     });
 
-                    for (member of blob.identities) {
+                    for (const member of blob.identities) {
 
                         if (badgeCounter>0 && badgeCounter%(pdfConfig.badgeHorizontalCount*pdfConfig.badgeVerticalCount)==0) {
                             pdf.addPage(pdfConfig.pageSettings);

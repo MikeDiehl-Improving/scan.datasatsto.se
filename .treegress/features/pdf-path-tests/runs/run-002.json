@@ -1,0 +1,521 @@
+{
+  "run_id": "run-002",
+  "feature_id": "pdf-path-tests",
+  "trigger": "verify",
+  "started_at": "2026-09-13T20:14:23.010Z",
+  "finished_at": "2026-09-13T20:14:32.782Z",
+  "results": [
+    {
+      "evidence_id": "run-002:test-0",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/landingpage-endpoints-unit-c1#documents-the-new-event-setup-id-vendorcode-report-event-random-event-pdf-and-expire-endpoints",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 16
+    },
+    {
+      "evidence_id": "run-002:test-1",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/landingpage-queryparams-unit-c1#returns-the-successful-html-landing-page-documenting-the-available-api-endpoints",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 29
+    },
+    {
+      "evidence_id": "run-002:test-2",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/landingpage-unknownroute-unit-c1#returns-a-not-found-indication-and-does-not-render-the-api-documentation-landing-page",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 27
+    },
+    {
+      "evidence_id": "run-002:test-3",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/landingpage-view-unit-c1#returns-a-successful-html-landing-page-instead-of-a-not-found-error",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 37
+    },
+    {
+      "evidence_id": "run-002:test-4",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/mainpage-displayinputs-unit-c1#renders-parameter-input-fields",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 26
+    },
+    {
+      "evidence_id": "run-002:test-5",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/mainpage-invalidparamvalue-unit-c1#displays-an-invalid-input-indication",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 3
+    },
+    {
+      "evidence_id": "run-002:test-6",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/mainpage-missingparam-unit-c1#displays-a-required-indication-and-prevents-execution",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 5
+    },
+    {
+      "evidence_id": "run-002:test-7",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/mainpage-runmultipleparams-unit-c1#executes-with-all-values-and-displays-the-result",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 4
+    },
+    {
+      "evidence_id": "run-002:test-8",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/mainpage-runsingleparam-unit-c1#executes-with-the-supplied-value-and-returns-output",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 2
+    },
+    {
+      "evidence_id": "run-002:test-9",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/mainpage-specialcharacters-unit-c1#encodes-the-value-and-displays-the-response",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 2
+    },
+    {
+      "evidence_id": "run-002:test-10",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/mainpage-updateparams-unit-c1#runs-with-the-updated-value-and-displays-the-new-result",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 2
+    },
+    {
+      "evidence_id": "run-002:test-11",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/pdf-path-unit-c1#renders-the-badge-form-and-its-layout-controls",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 30
+    },
+    {
+      "evidence_id": "run-002:test-12",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/pdf-path-unit-c1#keeps-the-form-available-for-a-route-event-value-without-database-lookup",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 9
+    },
+    {
+      "evidence_id": "run-002:test-13",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/pdf-path-unit-c1#returns-a-pdf-for-valid-badge-data",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 307
+    },
+    {
+      "evidence_id": "run-002:test-14",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/pdf-path-unit-c1#applies-custom-paper-and-badge-options-to-the-pdf-response",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 120
+    },
+    {
+      "evidence_id": "run-002:test-15",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/pdf-path-unit-c1#rejects-a-database-response-without-identities",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 6
+    },
+    {
+      "evidence_id": "run-002:test-16",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/pdf-path-unit-c1#rejects-badge-rows-with-an-invalid-identity-id",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 9
+    },
+    {
+      "evidence_id": "run-002:test-17",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/playwright-appstartupfailure-unit-c1#configures-a-readiness-url-and-startup-timeout",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 4
+    },
+    {
+      "evidence_id": "run-002:test-18",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/playwright-cirun-unit-c1#installs-chromium-and-runs-the-browser-suite",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 3
+    },
+    {
+      "evidence_id": "run-002:test-19",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/playwright-smokefail-unit-c1#uses-the-playwright-runner-so-assertion-failures-produce-a-failing-process",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 3
+    },
+    {
+      "evidence_id": "run-002:test-20",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/randomscan-emptyrecordset-unit-c1#returns-a-successful-response-with-an-empty-json-array",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 31
+    },
+    {
+      "evidence_id": "run-002:test-21",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/randomscan-errorwithcode-unit-c1#returns-an-http-200-response-with-an-empty-body",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 32
+    },
+    {
+      "evidence_id": "run-002:test-22",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/randomscan-errorwithoutcode-unit-c1#returns-an-http-200-response-with-an-empty-body",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 24
+    },
+    {
+      "evidence_id": "run-002:test-23",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/randomscan-withcode-unit-c1#returns-a-successful-response-with-the-matching-scan-records-formatted-as-a-json-array",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 53
+    },
+    {
+      "evidence_id": "run-002:test-24",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/randomscan-withoutcode-unit-c1#returns-a-successful-response-with-the-scan-records-formatted-as-a-json-array",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 49
+    },
+    {
+      "evidence_id": "run-002:test-25",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/registration-autoid-unit-c1#returns-a-successful-json-response-with-the-assigned-id-url-imgsrc-and-qr-data",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 26
+    },
+    {
+      "evidence_id": "run-002:test-26",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/registration-dataurlerror-unit-c1#returns-an-http-500-html-error-page-with-the-couldn-t-create-the-data-blob-message-and-no-json-body",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 73
+    },
+    {
+      "evidence_id": "run-002:test-27",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/registration-invalidid-unit-c1#returns-an-http-401-html-error-page-with-the-invalid-id-message-and-no-json-body",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 92
+    },
+    {
+      "evidence_id": "run-002:test-28",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/registration-manualid-unit-c1#returns-a-successful-json-response-with-the-manual-id-url-imgsrc-and-qr-data",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 52
+    },
+    {
+      "evidence_id": "run-002:test-29",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/registration-nonnumericid-unit-c1#returns-a-404-not-found-response-instead-of-processing-the-registration",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 16
+    },
+    {
+      "evidence_id": "run-002:test-30",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/registration-pngerror-unit-c1#returns-an-http-500-html-error-page-with-the-couldn-t-create-png-file-message-and-no-json-body",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 58
+    },
+    {
+      "evidence_id": "run-002:test-31",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/report-emptyevent-unit-c1#returns-an-empty-report-when-the-event-has-no-scans",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 41
+    },
+    {
+      "evidence_id": "run-002:test-32",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/report-eventisolation-unit-c1#returns-only-scans-supplied-for-the-requested-event",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 51
+    },
+    {
+      "evidence_id": "run-002:test-33",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/report-expired-unit-c1#reports-that-purged-event-data-is-unavailable",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 47
+    },
+    {
+      "evidence_id": "run-002:test-34",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/report-malformedid-unit-c1#rejects-traversal-identifiers-without-exposing-a-file-or-system-resource",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 24
+    },
+    {
+      "evidence_id": "run-002:test-35",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/report-missingid-unit-c1#requires-an-event-identifier",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 18
+    },
+    {
+      "evidence_id": "run-002:test-36",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/report-multiplescans-unit-c1#preserves-every-scan-in-recorded-order",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 37
+    },
+    {
+      "evidence_id": "run-002:test-37",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/report-notfound-unit-c1#rejects-an-event-that-has-no-report",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 34
+    },
+    {
+      "evidence_id": "run-002:test-38",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/report-validwithscans-unit-c1#returns-a-report-containing-every-recorded-scan-detail",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 29
+    },
+    {
+      "evidence_id": "run-002:test-39",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/scan-explicitcode-unit-c1#shows-the-confirmation-page-and-reuses-the-code-on-a-later-session-request",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 75
+    },
+    {
+      "evidence_id": "run-002:test-40",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/scan-favicon-unit-c1#responds-with-404-and-an-empty-body",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 21
+    },
+    {
+      "evidence_id": "run-002:test-41",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/scan-mismatchedrecord-unit-c1#shows-an-error-page-with-the-message-that-code-didn-t-look-right",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 47
+    },
+    {
+      "evidence_id": "run-002:test-42",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/scan-postwithnote-unit-c1#shows-the-confirmation-page-displaying-the-vendor-code",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 47
+    },
+    {
+      "evidence_id": "run-002:test-43",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/scan-redirectsetup-unit-c1#redirects-to-setup-with-the-badge-id-parameter",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 38
+    },
+    {
+      "evidence_id": "run-002:test-44",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/scan-sessionsetup-unit-c1#shows-the-confirmation-page-displaying-the-setup-established-vendor-code",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 78
+    },
+    {
+      "evidence_id": "run-002:test-45",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/scan-urldecodedcode-unit-c1#shows-the-confirmation-page-with-the-decoded-vendor-code",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 38
+    },
+    {
+      "evidence_id": "run-002:test-46",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/setup-get-blankform-unit-c1#displays-the-scanner-setup-page-with-an-empty-vendor-code-input",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 37
+    },
+    {
+      "evidence_id": "run-002:test-47",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/setup-get-nocodes-unit-c1#displays-an-error-page-with-the-message-that-code-didn-t-look-right",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 63
+    },
+    {
+      "evidence_id": "run-002:test-48",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/setup-get-prefilledform-unit-c1#displays-the-scanner-setup-page-prefilled-with-the-previously-submitted-vendor-code",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 104
+    },
+    {
+      "evidence_id": "run-002:test-49",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/setup-get-selectcodes-unit-c1#displays-the-code-selection-page-with-each-matching-code-presented-as-a-selectable-safely-encoded-option",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 44
+    },
+    {
+      "evidence_id": "run-002:test-50",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/setup-post-submitcode-unit-c1#shows-a-confirmation-page-with-the-submitted-code-and-retains-it-in-the-session",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 48
+    },
+    {
+      "evidence_id": "run-002:test-51",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/storedprocedures-directaccess-unit-c1#loads-successfully-and-presents-database-connection-information",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 45
+    },
+    {
+      "evidence_id": "run-002:test-52",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/storedprocedures-navigatedfromwelcome-unit-c1#displays-the-stored-procedures-reference-page",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 25
+    },
+    {
+      "evidence_id": "run-002:test-53",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/storedprocedures-serveranddatabaseinfo-unit-c1#renders-configured-database-connection-details-with-the-reference",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 42
+    },
+    {
+      "evidence_id": "run-002:test-54",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/storedprocedures-unconfiguredserverdetails-unit-c1#shows-a-friendly-unavailable-details-notice-and-welcome-link",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 27
+    },
+    {
+      "evidence_id": "run-002:test-55",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/welcomepage-storedprocedureslink-unit-c1#displays-a-navigable-stored-procedures-reference-link",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 17
+    },
+    {
+      "evidence_id": "run-002:test-56",
+      "skill": "e2e-playwright",
+      "test_id": "e2e-playwright:api-page.smoke#displays-the-interactive-api-controls",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 491
+    },
+    {
+      "evidence_id": "run-002:test-57",
+      "skill": "e2e-playwright",
+      "test_id": "e2e-playwright:pdf-path-e2e-playwright-c2#renders-the-interactive-pdf-form",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 545
+    },
+    {
+      "evidence_id": "run-002:test-58",
+      "skill": "e2e-playwright",
+      "test_id": "e2e-playwright:pdf-path-e2e-playwright-c2#renders-the-same-form-for-a-route-event-value-without-database-lookup",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 289
+    },
+    {
+      "evidence_id": "run-002:test-59",
+      "skill": "e2e-playwright",
+      "test_id": "e2e-playwright:pdf-path-e2e-playwright-c2#submits-badge-data-through-the-browser-form-and-receives-a-pdf",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 335
+    },
+    {
+      "evidence_id": "run-002:test-60",
+      "skill": "e2e-playwright",
+      "test_id": "e2e-playwright:pdf-path-e2e-playwright-c2#submits-selected-pdf-options-from-the-browser-form",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 341
+    },
+    {
+      "evidence_id": "run-002:test-61",
+      "skill": "e2e-playwright",
+      "test_id": "e2e-playwright:pdf-path-e2e-playwright-c2#submits-the-form-without-client-side-required-data-validation",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 227
+    },
+    {
+      "evidence_id": "run-002:test-62",
+      "skill": "e2e-playwright",
+      "test_id": "e2e-playwright:pdf-path-e2e-playwright-c2#allows-malformed-data-to-reach-the-server-submission-boundary",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 250
+    },
+    {
+      "evidence_id": "run-002:test-63",
+      "skill": "e2e-playwright",
+      "test_id": "e2e-playwright:playwright-runnerexecution-e2e-playwright-c1#runs-the-browser-suite-against-the-started-application",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 853
+    }
+  ]
+}

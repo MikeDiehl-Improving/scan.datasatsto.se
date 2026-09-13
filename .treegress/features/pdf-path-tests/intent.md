@@ -1,0 +1,1 @@
+Add comprehensive tests for the PDF path: verify the GET PDF form renders and supports the interactive controls, and verify the POST PDF generation path returns a valid PDF response for submitted badge data while preserving expected form options and validation behavior.

@@ -1,0 +1,135 @@
+{
+  "feature_id": "pdf-path-tests",
+  "plan_version": 1,
+  "plan_hash": "sha256:a1f02b4f932b5c9da7c483f727d790b0ddff680d47d30dac04d110acb042a257",
+  "strategy_version": 1,
+  "strategy_hash": "sha256:4edc80665ae0b48934788c570cb57c6114f14afb6284903dd8822d0f8e8ea25b",
+  "run_id": "run-002",
+  "reviewed_at": "2026-09-13T20:17:14.827Z",
+  "scenario_verdicts": [
+    {
+      "scenario_id": "pdf.form.render",
+      "status": "COVERED",
+      "then_coverage": [
+        {
+          "clause_index": 0,
+          "covered": true,
+          "test_id": "e2e-playwright:pdf-path-e2e-playwright-c2#renders-the-interactive-pdf-form",
+          "evidence_id": "run-002:test-57"
+        },
+        {
+          "clause_index": 1,
+          "covered": true,
+          "test_id": "e2e-playwright:pdf-path-e2e-playwright-c2#renders-the-interactive-pdf-form",
+          "evidence_id": "run-002:test-57"
+        },
+        {
+          "clause_index": 2,
+          "covered": true,
+          "test_id": "e2e-playwright:pdf-path-e2e-playwright-c2#renders-the-interactive-pdf-form",
+          "evidence_id": "run-002:test-57"
+        }
+      ],
+      "rationale": "Passing end-to-end browser test proves that navigating to the badge PDF generator route displays the form, the identities input control, and the interactive layout and formatting options."
+    },
+    {
+      "scenario_id": "pdf.form.unknownevent",
+      "status": "PARTIAL",
+      "then_coverage": [
+        {
+          "clause_index": 0,
+          "covered": false,
+          "note": "Neither unit nor e2e test asserts an error notification indicating the event cannot be found; both tests assert a 200 OK response."
+        },
+        {
+          "clause_index": 1,
+          "covered": false,
+          "note": "Both passing tests assert the opposite of the clause: the form is rendered and made visible despite the unknown event ID."
+        }
+      ],
+      "rationale": "then-clause(s) not traced to a passing assertion: [0, 1]. The executed tests explicitly verify that the generation form remains accessible and renders successfully with 200 OK when requesting an unknown event ID, asserting neither error notifications nor form suppression."
+    },
+    {
+      "scenario_id": "pdf.generate.success",
+      "status": "COVERED",
+      "then_coverage": [
+        {
+          "clause_index": 0,
+          "covered": true,
+          "test_id": "unit:tests/unit/pdf-path-unit-c1#returns-a-pdf-for-valid-badge-data",
+          "evidence_id": "run-002:test-13"
+        }
+      ],
+      "rationale": "Passing unit test asserts that submitting valid badge recipient data produces an HTTP 200 response with a valid PDF document header."
+    },
+    {
+      "scenario_id": "pdf.generate.customoptions",
+      "status": "COVERED",
+      "then_coverage": [
+        {
+          "clause_index": 0,
+          "covered": true,
+          "test_id": "unit:tests/unit/pdf-path-unit-c1#applies-custom-paper-and-badge-options-to-the-pdf-response",
+          "evidence_id": "run-002:test-14"
+        },
+        {
+          "clause_index": 1,
+          "covered": true,
+          "test_id": "unit:tests/unit/pdf-path-unit-c1#applies-custom-paper-and-badge-options-to-the-pdf-response",
+          "evidence_id": "run-002:test-14"
+        }
+      ],
+      "rationale": "Passing unit test proves that submitting custom layout and formatting options returns a valid PDF whose document dimensions reflect the specified LETTER MediaBox dimensions."
+    },
+    {
+      "scenario_id": "pdf.generate.missingdata",
+      "status": "COVERED",
+      "then_coverage": [
+        {
+          "clause_index": 0,
+          "covered": true,
+          "test_id": "unit:tests/unit/pdf-path-unit-c1#rejects-a-database-response-without-identities",
+          "evidence_id": "run-002:test-15"
+        },
+        {
+          "clause_index": 1,
+          "covered": true,
+          "test_id": "unit:tests/unit/pdf-path-unit-c1#rejects-a-database-response-without-identities",
+          "evidence_id": "run-002:test-15"
+        },
+        {
+          "clause_index": 2,
+          "covered": true,
+          "test_id": "unit:tests/unit/pdf-path-unit-c1#rejects-a-database-response-without-identities",
+          "evidence_id": "run-002:test-15"
+        }
+      ],
+      "rationale": "Passing unit test asserts that submissions lacking required identities data are rejected with HTTP 400, return 'No identities found.', and do not yield an application/pdf response."
+    },
+    {
+      "scenario_id": "pdf.generate.invaliddata",
+      "status": "COVERED",
+      "then_coverage": [
+        {
+          "clause_index": 0,
+          "covered": true,
+          "test_id": "unit:tests/unit/pdf-path-unit-c1#rejects-badge-rows-with-an-invalid-identity-id",
+          "evidence_id": "run-002:test-16"
+        },
+        {
+          "clause_index": 1,
+          "covered": true,
+          "test_id": "unit:tests/unit/pdf-path-unit-c1#rejects-badge-rows-with-an-invalid-identity-id",
+          "evidence_id": "run-002:test-16"
+        },
+        {
+          "clause_index": 2,
+          "covered": true,
+          "test_id": "unit:tests/unit/pdf-path-unit-c1#rejects-badge-rows-with-an-invalid-identity-id",
+          "evidence_id": "run-002:test-16"
+        }
+      ],
+      "rationale": "Passing unit test asserts that submitting malformed identity records is rejected with status 400, displays 'Each submitted identity must have a valid id.', and does not generate a PDF document."
+    }
+  ]
+}

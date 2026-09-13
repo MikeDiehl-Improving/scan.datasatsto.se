@@ -1,0 +1,169 @@
+{
+  "feature_id": "pdf-path-tests",
+  "plan_version": 2,
+  "strategy_version": 2,
+  "entries": [
+    {
+      "scenario_id": "pdf.form.render",
+      "obligations": [
+        {
+          "skill": "unit",
+          "obligation_id": "pdf.form.render.unit.c1",
+          "test_ids": [
+            "unit:tests/unit/pdf-path-unit-c1#renders-the-badge-form-and-its-layout-controls"
+          ],
+          "evidence_ids": [
+            "run-005:test-11"
+          ],
+          "reused": true
+        },
+        {
+          "skill": "e2e-playwright",
+          "obligation_id": "pdf.form.render.e2e-playwright.c2",
+          "test_ids": [
+            "e2e-playwright:pdf-path-e2e-playwright-c2#renders-the-interactive-pdf-form"
+          ],
+          "evidence_ids": [
+            "run-005:test-57"
+          ],
+          "reused": true
+        }
+      ]
+    },
+    {
+      "scenario_id": "pdf.form.unknownevent",
+      "obligations": [
+        {
+          "skill": "unit",
+          "obligation_id": "pdf.form.unknownevent.unit.c1",
+          "test_ids": [
+            "unit:tests/unit/pdf-path-unit-c1#keeps-the-form-available-for-a-route-event-value-without-database-lookup"
+          ],
+          "evidence_ids": [
+            "run-002:test-12"
+          ],
+          "reused": true
+        },
+        {
+          "skill": "e2e-playwright",
+          "obligation_id": "pdf.form.unknownevent.e2e-playwright.c2",
+          "test_ids": [
+            "e2e-playwright:pdf-path-e2e-playwright-c2#renders-the-same-form-for-a-route-event-value-without-database-lookup"
+          ],
+          "evidence_ids": [
+            "run-002:test-58"
+          ],
+          "reused": true
+        }
+      ]
+    },
+    {
+      "scenario_id": "pdf.generate.success",
+      "obligations": [
+        {
+          "skill": "unit",
+          "obligation_id": "pdf.generate.success.unit.c1",
+          "test_ids": [
+            "unit:tests/unit/pdf-path-unit-c1#returns-a-pdf-for-valid-badge-data"
+          ],
+          "evidence_ids": [
+            "run-005:test-13"
+          ],
+          "reused": true
+        },
+        {
+          "skill": "e2e-playwright",
+          "obligation_id": "pdf.generate.success.e2e-playwright.c2",
+          "test_ids": [
+            "e2e-playwright:pdf-path-e2e-playwright-c2#submits-badge-data-through-the-browser-form-and-receives-a-pdf"
+          ],
+          "evidence_ids": [
+            "run-005:test-59"
+          ],
+          "reused": true
+        }
+      ]
+    },
+    {
+      "scenario_id": "pdf.generate.customoptions",
+      "obligations": [
+        {
+          "skill": "unit",
+          "obligation_id": "pdf.generate.customoptions.unit.c1",
+          "test_ids": [
+            "unit:tests/unit/pdf-path-unit-c1#applies-custom-paper-and-badge-options-to-the-pdf-response"
+          ],
+          "evidence_ids": [
+            "run-005:test-14"
+          ],
+          "reused": true
+        },
+        {
+          "skill": "e2e-playwright",
+          "obligation_id": "pdf.generate.customoptions.e2e-playwright.c2",
+          "test_ids": [
+            "e2e-playwright:pdf-path-e2e-playwright-c2#submits-selected-pdf-options-from-the-browser-form"
+          ],
+          "evidence_ids": [
+            "run-005:test-60"
+          ],
+          "reused": true
+        }
+      ]
+    },
+    {
+      "scenario_id": "pdf.generate.missingdata",
+      "obligations": [
+        {
+          "skill": "unit",
+          "obligation_id": "pdf.generate.missingdata.unit.c1",
+          "test_ids": [
+            "unit:tests/unit/pdf-path-unit-c1#rejects-a-database-response-without-identities"
+          ],
+          "evidence_ids": [
+            "run-005:test-15"
+          ],
+          "reused": true
+        },
+        {
+          "skill": "e2e-playwright",
+          "obligation_id": "pdf.generate.missingdata.e2e-playwright.c2",
+          "test_ids": [
+            "e2e-playwright:pdf-path-e2e-playwright-c2#submits-the-form-without-client-side-required-data-validation"
+          ],
+          "evidence_ids": [
+            "run-005:test-61"
+          ],
+          "reused": true
+        }
+      ]
+    },
+    {
+      "scenario_id": "pdf.generate.invaliddata",
+      "obligations": [
+        {
+          "skill": "unit",
+          "obligation_id": "pdf.generate.invaliddata.unit.c1",
+          "test_ids": [
+            "unit:tests/unit/pdf-path-unit-c1#rejects-badge-rows-with-an-invalid-identity-id"
+          ],
+          "evidence_ids": [
+            "run-005:test-16"
+          ],
+          "reused": true
+        },
+        {
+          "skill": "e2e-playwright",
+          "obligation_id": "pdf.generate.invaliddata.e2e-playwright.c2",
+          "test_ids": [
+            "e2e-playwright:pdf-path-e2e-playwright-c2#allows-malformed-data-to-reach-the-server-submission-boundary"
+          ],
+          "evidence_ids": [
+            "run-005:test-62"
+          ],
+          "reused": true
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,101 @@
+{
+  "feature_id": "pdf-path-tests",
+  "version": 2,
+  "status": "approved",
+  "approval": {
+    "hash": "sha256:a1f02b4f932b5c9da7c483f727d790b0ddff680d47d30dac04d110acb042a257",
+    "approved_at": "2026-09-13T20:17:19.011Z"
+  },
+  "scenarios": [
+    {
+      "id": "pdf.form.render",
+      "title": "Render badge PDF generator form with interactive controls",
+      "given": [
+        "an active event identifier exists in the system (e.g. EVENT101)"
+      ],
+      "when": "the user navigates to the badge PDF generator page for that event",
+      "then": [
+        "the badge generation form is displayed to the user",
+        "input controls for entering badge records are accessible",
+        "interactive controls for badge layout and formatting options are rendered and ready for user selection"
+      ],
+      "priority": "high",
+      "negative": false
+    },
+    {
+      "id": "pdf.form.unknownevent",
+      "title": "Access badge PDF generator form with non-existent event",
+      "given": [
+        "an event identifier that does not exist in the system (e.g. UNKNOWN999)"
+      ],
+      "when": "the user attempts to access the badge PDF generator page for that event identifier",
+      "then": [
+        "an error notification is displayed stating that the event cannot be found",
+        "the badge generation form is not made available for badge generation"
+      ],
+      "priority": "normal",
+      "negative": true
+    },
+    {
+      "id": "pdf.generate.success",
+      "title": "Generate badge PDF with valid badge data and default options",
+      "given": [
+        "the user is on the badge PDF generator form for a valid event",
+        "valid badge recipient data is provided"
+      ],
+      "when": "the user submits the form to generate the badges",
+      "then": [
+        "the user receives a valid generated PDF document containing the submitted badge data"
+      ],
+      "priority": "critical",
+      "negative": false
+    },
+    {
+      "id": "pdf.generate.customoptions",
+      "title": "Generate badge PDF preserving customized form options",
+      "given": [
+        "the user is on the badge PDF generator form for a valid event",
+        "the user has selected specific custom form options (e.g. badge layout, print dimensions, or style options)",
+        "valid badge recipient data is entered"
+      ],
+      "when": "the user submits the form to generate the badges",
+      "then": [
+        "the user receives a valid generated PDF document",
+        "the output PDF document reflects the chosen configuration and formatting options"
+      ],
+      "priority": "high",
+      "negative": false
+    },
+    {
+      "id": "pdf.generate.missingdata",
+      "title": "Reject PDF generation when required badge data is missing",
+      "given": [
+        "the user is on the badge PDF generator form"
+      ],
+      "when": "the user submits the form without providing required badge data",
+      "then": [
+        "the submission is rejected",
+        "a validation error message informing the user that required badge data is missing is displayed",
+        "no PDF file is generated"
+      ],
+      "priority": "high",
+      "negative": true
+    },
+    {
+      "id": "pdf.generate.invaliddata",
+      "title": "Reject PDF generation when badge data format is invalid",
+      "given": [
+        "the user is on the badge PDF generator form",
+        "the badge input contains malformed or unparseable data"
+      ],
+      "when": "the user submits the form to generate the badges",
+      "then": [
+        "the submission is rejected",
+        "a validation error message indicating the badge data is invalid or improperly formatted is displayed",
+        "no PDF file is generated"
+      ],
+      "priority": "normal",
+      "negative": true
+    }
+  ]
+}

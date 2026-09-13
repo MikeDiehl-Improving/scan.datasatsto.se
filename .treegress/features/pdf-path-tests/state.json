@@ -1,0 +1,21 @@
+{
+  "feature_id": "pdf-path-tests",
+  "state": "FAILED",
+  "plan_version": 2,
+  "strategy_version": 2,
+  "approvals": {
+    "test_plan": {
+      "version": 2,
+      "hash": "sha256:a1f02b4f932b5c9da7c483f727d790b0ddff680d47d30dac04d110acb042a257",
+      "approved_at": "2026-09-13T20:17:19.011Z"
+    },
+    "test_strategy": {
+      "version": 2,
+      "hash": "sha256:6d151228e3eac3bcb37c37fc4c6812152174e2822a68e9507dd4e51f7ac2e7b8",
+      "approved_at": "2026-09-13T20:19:13.728Z",
+      "self_approved": true
+    }
+  },
+  "last_run_id": "run-005",
+  "updated_at": "2026-09-13T20:20:32.125Z"
+}

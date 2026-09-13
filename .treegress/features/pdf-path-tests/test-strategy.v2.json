@@ -1,0 +1,115 @@
+{
+  "feature_id": "pdf-path-tests",
+  "plan_version": 2,
+  "version": 2,
+  "status": "approved",
+  "approval": {
+    "hash": "sha256:6d151228e3eac3bcb37c37fc4c6812152174e2822a68e9507dd4e51f7ac2e7b8",
+    "plan_hash": "sha256:a1f02b4f932b5c9da7c483f727d790b0ddff680d47d30dac04d110acb042a257",
+    "approved_at": "2026-09-13T20:19:13.728Z"
+  },
+  "scenario_strategies": [
+    {
+      "scenario_id": "pdf.form.render",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Validate server endpoint/handler renders badge form controls and layout options for an existing event",
+          "reason": "Verifies server routing and template/response data logic in isolation."
+        },
+        {
+          "skill": "e2e-playwright",
+          "required": true,
+          "target": "Verify browser page renders the badge generation form, inputs, and interactive options for an active event",
+          "reason": "Proves the end-to-end user-visible controls and accessibility in a real browser session."
+        }
+      ]
+    },
+    {
+      "scenario_id": "pdf.form.unknownevent",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Validate route handler rejects non-existent event identifiers and returns an error response",
+          "reason": "Verifies event lookup boundary and failure handling in isolated handler logic."
+        },
+        {
+          "skill": "e2e-playwright",
+          "required": true,
+          "target": "Verify navigating to an unknown event ID displays an error notification and suppresses form availability",
+          "reason": "Confirms error notifications and disabled form rendering in the live browser flow."
+        }
+      ]
+    },
+    {
+      "scenario_id": "pdf.generate.success",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Validate PDF generation service processes recipient data and produces a valid PDF stream/buffer",
+          "reason": "Tests core badge PDF document construction and encoding logic in isolation."
+        },
+        {
+          "skill": "e2e-playwright",
+          "required": true,
+          "target": "Verify user submission of valid badge records triggers receipt of the generated PDF document",
+          "reason": "Proves complete browser form submission, download transport, and generated artifact response."
+        }
+      ]
+    },
+    {
+      "scenario_id": "pdf.generate.customoptions",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Validate PDF generator applies custom formatting, dimensions, and layout configurations",
+          "reason": "Verifies custom configuration mapping to document layout rules in unit test isolation."
+        },
+        {
+          "skill": "e2e-playwright",
+          "required": true,
+          "target": "Verify selecting custom layout and style controls in the UI generates a PDF reflecting chosen settings",
+          "reason": "Confirms end-to-end configuration transmission from browser form controls to the output PDF."
+        }
+      ]
+    },
+    {
+      "scenario_id": "pdf.generate.missingdata",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Validate payload validator rejects submission when mandatory badge data is absent",
+          "reason": "Proves validation business rules prevent processing missing recipient data."
+        },
+        {
+          "skill": "e2e-playwright",
+          "required": true,
+          "target": "Verify submitting form without required badge data displays validation error and suppresses PDF generation",
+          "reason": "Proves UI validation feedback and prevention of document generation during user interaction."
+        }
+      ]
+    },
+    {
+      "scenario_id": "pdf.generate.invaliddata",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Validate parsing logic rejects malformed or unparseable badge recipient structures",
+          "reason": "Tests data sanitization and error handling logic against invalid input schemas."
+        },
+        {
+          "skill": "e2e-playwright",
+          "required": true,
+          "target": "Verify submitting malformed badge inputs displays validation error and prevents PDF creation",
+          "reason": "Verifies browser validation messaging and error state persistence for invalid user input."
+        }
+      ]
+    }
+  ]
+}

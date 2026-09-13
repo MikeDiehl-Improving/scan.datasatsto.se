@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node ./server.js",
-    "test": "npx vitest run",
+    "test": "npx vitest run tests/unit",
     "test:e2e": "playwright test"
   },
   "dependencies": {
