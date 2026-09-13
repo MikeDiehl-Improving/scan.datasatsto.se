@@ -1,0 +1,97 @@
+{
+  "feature_id": "screenshot-playwright-config",
+  "plan_version": 1,
+  "strategy_version": 1,
+  "entries": [
+    {
+      "scenario_id": "screenshotconfig.passingtest",
+      "obligations": [
+        {
+          "skill": "e2e-playwright",
+          "obligation_id": "screenshotconfig.passingtest.e2e-playwright.c1",
+          "test_ids": [
+            "e2e-playwright:screenshot-config#forces-screenshots-for-passing-tests"
+          ],
+          "evidence_ids": [
+            "run-001:test-14"
+          ],
+          "reused": true,
+          "user_authored": true
+        }
+      ],
+      "review_status": "PARTIAL"
+    },
+    {
+      "scenario_id": "screenshotconfig.failingtest",
+      "obligations": [
+        {
+          "skill": "e2e-playwright",
+          "obligation_id": "screenshotconfig.failingtest.e2e-playwright.c1",
+          "test_ids": [
+            "e2e-playwright:screenshot-config#uses-the-same-screenshot-setting-for-failures"
+          ],
+          "evidence_ids": [
+            "run-001:test-15"
+          ],
+          "reused": true,
+          "user_authored": true
+        }
+      ],
+      "review_status": "PARTIAL"
+    },
+    {
+      "scenario_id": "screenshotconfig.preservesprojects",
+      "obligations": [
+        {
+          "skill": "e2e-playwright",
+          "obligation_id": "screenshotconfig.preservesprojects.e2e-playwright.c1",
+          "test_ids": [
+            "e2e-playwright:screenshot-config#preserves-the-default-project-settings"
+          ],
+          "evidence_ids": [
+            "run-001:test-16"
+          ],
+          "reused": true,
+          "user_authored": true
+        }
+      ],
+      "review_status": "PARTIAL"
+    },
+    {
+      "scenario_id": "screenshotconfig.defaultrun",
+      "obligations": [
+        {
+          "skill": "e2e-playwright",
+          "obligation_id": "screenshotconfig.defaultrun.e2e-playwright.c1",
+          "test_ids": [
+            "e2e-playwright:screenshot-config#leaves-the-default-screenshot-policy-unchanged"
+          ],
+          "evidence_ids": [
+            "run-001:test-17"
+          ],
+          "reused": true,
+          "user_authored": true
+        }
+      ],
+      "review_status": "PARTIAL"
+    },
+    {
+      "scenario_id": "screenshotconfig.invalidfile",
+      "obligations": [
+        {
+          "skill": "e2e-playwright",
+          "obligation_id": "screenshotconfig.invalidfile.e2e-playwright.c1",
+          "test_ids": [
+            "e2e-playwright:screenshot-config#provides-a-selectable-dedicated-config-file"
+          ],
+          "evidence_ids": [
+            "run-001:test-18"
+          ],
+          "reused": true,
+          "user_authored": true
+        }
+      ],
+      "review_status": "PARTIAL"
+    }
+  ]
+}

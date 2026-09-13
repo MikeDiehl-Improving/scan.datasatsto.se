@@ -1,0 +1,22 @@
+{
+  "feature_id": "screenshot-playwright-config",
+  "state": "REVIEWED",
+  "plan_version": 1,
+  "strategy_version": 1,
+  "approvals": {
+    "test_plan": {
+      "version": 1,
+      "hash": "sha256:937d99675492bcdbec786114723e75c546da71eacfea48b072ac68df74b5e161",
+      "approved_at": "2026-09-13T21:37:10.395Z",
+      "self_approved": true
+    },
+    "test_strategy": {
+      "version": 1,
+      "hash": "sha256:a8dfcef4e1a8f74326f8ac4e311e66b42d4e24216c56a932a6349fa14e9233f1",
+      "approved_at": "2026-09-13T21:37:46.209Z",
+      "self_approved": true
+    }
+  },
+  "last_run_id": "run-001",
+  "updated_at": "2026-09-13T21:39:09.774Z"
+}

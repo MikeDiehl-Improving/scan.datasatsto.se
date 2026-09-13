@@ -1,0 +1,86 @@
+{
+  "feature_id": "screenshot-playwright-config",
+  "version": 1,
+  "status": "approved",
+  "approval": {
+    "hash": "sha256:937d99675492bcdbec786114723e75c546da71eacfea48b072ac68df74b5e161",
+    "approved_at": "2026-09-13T21:37:10.395Z"
+  },
+  "scenarios": [
+    {
+      "id": "screenshotconfig.passingtest",
+      "title": "Capture screenshot on passing test when using screenshot configuration",
+      "given": [
+        "A test suite contains passing tests",
+        "A dedicated Playwright configuration file configured to force screenshots for every test while preserving default project settings is available"
+      ],
+      "when": "Tests are executed from the command line specifying the dedicated configuration file via the --config flag",
+      "then": [
+        "All passing tests execute successfully",
+        "A screenshot artifact is generated and saved for each passing test"
+      ],
+      "priority": "critical",
+      "negative": false
+    },
+    {
+      "id": "screenshotconfig.failingtest",
+      "title": "Capture screenshot on failing test when using screenshot configuration",
+      "given": [
+        "A test suite contains a failing test",
+        "A dedicated Playwright configuration file configured to force screenshots for every test while preserving default project settings is available"
+      ],
+      "when": "Tests are executed from the command line specifying the dedicated configuration file via the --config flag",
+      "then": [
+        "The test failure is reported in the test execution output",
+        "A screenshot artifact is generated and saved for the failing test"
+      ],
+      "priority": "high",
+      "negative": false
+    },
+    {
+      "id": "screenshotconfig.preservesprojects",
+      "title": "Preserve project and browser settings from default configuration",
+      "given": [
+        "The default Playwright configuration defines multiple projects and environment settings",
+        "The dedicated screenshot configuration file inherits default project configurations"
+      ],
+      "when": "Tests are executed using the dedicated screenshot configuration file via the --config flag",
+      "then": [
+        "Tests are executed across each project configured in the default configuration",
+        "Configured project-level base URLs, timeouts, and device parameters match the default configuration settings"
+      ],
+      "priority": "critical",
+      "negative": false
+    },
+    {
+      "id": "screenshotconfig.defaultrun",
+      "title": "Default configuration execution retains original screenshot behavior on passing tests",
+      "given": [
+        "A test suite contains passing tests",
+        "The default Playwright configuration is used"
+      ],
+      "when": "Tests are executed without specifying the custom screenshot configuration",
+      "then": [
+        "All passing tests execute successfully",
+        "No screenshot artifacts are created for the passing tests"
+      ],
+      "priority": "normal",
+      "negative": false
+    },
+    {
+      "id": "screenshotconfig.invalidfile",
+      "title": "Execution with non-existent configuration file fails with an error",
+      "given": [
+        "The command-line test runner is available"
+      ],
+      "when": "Tests are executed from the command line with the --config flag pointing to a non-existent configuration file (e.g. missing.config.ts)",
+      "then": [
+        "The test execution exits with an error status",
+        "An error message indicating that the specified configuration file cannot be found is displayed",
+        "No test suite is executed"
+      ],
+      "priority": "low",
+      "negative": true
+    }
+  ]
+}

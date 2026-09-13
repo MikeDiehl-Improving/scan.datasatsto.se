@@ -1,0 +1,101 @@
+{
+  "feature_id": "screenshot-playwright-config",
+  "plan_version": 1,
+  "plan_hash": "sha256:937d99675492bcdbec786114723e75c546da71eacfea48b072ac68df74b5e161",
+  "strategy_version": 1,
+  "strategy_hash": "sha256:a8dfcef4e1a8f74326f8ac4e311e66b42d4e24216c56a932a6349fa14e9233f1",
+  "run_id": "run-001",
+  "reviewed_at": "2026-09-13T21:39:09.765Z",
+  "scenario_verdicts": [
+    {
+      "scenario_id": "screenshotconfig.passingtest",
+      "status": "PARTIAL",
+      "then_coverage": [
+        {
+          "clause_index": 0,
+          "covered": false,
+          "note": "The test does not execute a test suite via the --config flag or assert that passing tests execute successfully."
+        },
+        {
+          "clause_index": 1,
+          "covered": false,
+          "note": "The test only asserts the configuration property value and does not verify screenshot artifacts generated and saved by the test runner."
+        }
+      ],
+      "rationale": "then-clause(s) not traced to a passing assertion: [0, 1]. The test checks static configuration and triggers a manual page screenshot, but does not test CLI execution with --config or verify runner-generated screenshot artifacts for passing tests."
+    },
+    {
+      "scenario_id": "screenshotconfig.failingtest",
+      "status": "PARTIAL",
+      "then_coverage": [
+        {
+          "clause_index": 0,
+          "covered": false,
+          "note": "The test does not execute a failing test or assert that failure reporting appears in the execution output."
+        },
+        {
+          "clause_index": 1,
+          "covered": false,
+          "note": "The test only checks a configuration property and does not assert that a screenshot artifact is generated or saved for a failing test."
+        }
+      ],
+      "rationale": "then-clause(s) not traced to a passing assertion: [0, 1]. The test only asserts that screenshotConfig.use.screenshot is 'on' without executing a failing test or verifying failure output and artifact creation."
+    },
+    {
+      "scenario_id": "screenshotconfig.preservesprojects",
+      "status": "PARTIAL",
+      "then_coverage": [
+        {
+          "clause_index": 0,
+          "covered": false,
+          "note": "The test does not assert that tests are executed across each configured project."
+        },
+        {
+          "clause_index": 1,
+          "covered": false,
+          "note": "The test asserts top-level testDir, use.baseURL, and webServer, but does not assert project-level base URLs, timeouts, or device parameters."
+        }
+      ],
+      "rationale": "then-clause(s) not traced to a passing assertion: [0, 1]. The test checks select top-level config properties but does not verify test execution across projects or matching project-level base URLs, timeouts, and device parameters."
+    },
+    {
+      "scenario_id": "screenshotconfig.defaultrun",
+      "status": "PARTIAL",
+      "then_coverage": [
+        {
+          "clause_index": 0,
+          "covered": false,
+          "note": "The test does not execute a test suite or assert that passing tests execute successfully."
+        },
+        {
+          "clause_index": 1,
+          "covered": false,
+          "note": "The test only asserts that baseConfig.use.screenshot is 'only-on-failure' and does not verify the absence of created screenshot artifacts."
+        }
+      ],
+      "rationale": "then-clause(s) not traced to a passing assertion: [0, 1]. The test checks the default config setting string rather than executing tests and proving that no screenshot artifacts are created for passing tests."
+    },
+    {
+      "scenario_id": "screenshotconfig.invalidfile",
+      "status": "PARTIAL",
+      "then_coverage": [
+        {
+          "clause_index": 0,
+          "covered": false,
+          "note": "The test does not execute the CLI with an invalid config file or assert an error exit status."
+        },
+        {
+          "clause_index": 1,
+          "covered": false,
+          "note": "The test does not assert that a file-not-found error message is displayed."
+        },
+        {
+          "clause_index": 2,
+          "covered": false,
+          "note": "The test does not assert that test suite execution is prevented."
+        }
+      ],
+      "rationale": "then-clause(s) not traced to a passing assertion: [0, 1, 2]. The test only asserts that screenshotConfig is an object and does not test CLI runner behavior when invoking a non-existent configuration file."
+    }
+  ]
+}

@@ -1,0 +1,68 @@
+{
+  "feature_id": "screenshot-playwright-config",
+  "plan_version": 1,
+  "version": 1,
+  "status": "approved",
+  "approval": {
+    "hash": "sha256:a8dfcef4e1a8f74326f8ac4e311e66b42d4e24216c56a932a6349fa14e9233f1",
+    "plan_hash": "sha256:937d99675492bcdbec786114723e75c546da71eacfea48b072ac68df74b5e161",
+    "approved_at": "2026-09-13T21:37:46.209Z"
+  },
+  "scenario_strategies": [
+    {
+      "scenario_id": "screenshotconfig.passingtest",
+      "obligations": [
+        {
+          "skill": "e2e-playwright",
+          "required": true,
+          "target": "Verify that executing tests with the dedicated screenshot configuration file via --config flag runs passing tests successfully and generates screenshot artifacts for each test.",
+          "reason": "Confirming command-line runner execution and verifying screenshot artifact generation on passing tests requires end-to-end Playwright test execution."
+        }
+      ]
+    },
+    {
+      "scenario_id": "screenshotconfig.failingtest",
+      "obligations": [
+        {
+          "skill": "e2e-playwright",
+          "required": true,
+          "target": "Verify that executing tests with the dedicated screenshot configuration via --config flag reports failure and saves screenshot artifacts for failing tests.",
+          "reason": "Observing test failure reporting and screenshot artifact persistence on test failure requires end-to-end Playwright runner execution."
+        }
+      ]
+    },
+    {
+      "scenario_id": "screenshotconfig.preservesprojects",
+      "obligations": [
+        {
+          "skill": "e2e-playwright",
+          "required": true,
+          "target": "Verify that running tests with the dedicated screenshot configuration executes across all projects and preserves base URLs, timeouts, and device parameters from default configuration.",
+          "reason": "Proving that tests execute across each project configured in the default configuration with matching device and timeout settings requires end-to-end Playwright execution."
+        }
+      ]
+    },
+    {
+      "scenario_id": "screenshotconfig.defaultrun",
+      "obligations": [
+        {
+          "skill": "e2e-playwright",
+          "required": true,
+          "target": "Verify that running tests under default Playwright configuration completes passing tests without generating screenshot artifacts.",
+          "reason": "Verifying that default test execution runs successfully while suppressing screenshot artifacts on passing tests requires executing tests end-to-end with default config."
+        }
+      ]
+    },
+    {
+      "scenario_id": "screenshotconfig.invalidfile",
+      "obligations": [
+        {
+          "skill": "e2e-playwright",
+          "required": true,
+          "target": "Verify that specifying a non-existent configuration file via --config flag causes the test runner to exit with an error code, display a file not found error message, and prevent test suite execution.",
+          "reason": "Asserting CLI exit code, missing configuration error messaging, and test execution prevention requires end-to-end runner invocation."
+        }
+      ]
+    }
+  ]
+}

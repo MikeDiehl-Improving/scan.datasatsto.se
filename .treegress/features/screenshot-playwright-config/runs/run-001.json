@@ -1,0 +1,161 @@
+{
+  "run_id": "run-001",
+  "feature_id": "screenshot-playwright-config",
+  "trigger": "verify",
+  "started_at": "2026-09-13T21:38:37.733Z",
+  "finished_at": "2026-09-13T21:38:44.158Z",
+  "results": [
+    {
+      "evidence_id": "run-001:test-0",
+      "skill": "e2e-playwright",
+      "test_id": "e2e-playwright:api-page.smoke#displays-the-interactive-api-controls",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 888
+    },
+    {
+      "evidence_id": "run-001:test-1",
+      "skill": "e2e-playwright",
+      "test_id": "e2e-playwright:apidocs-run-call-navigation-e2e#navigates-a-parameterless-endpoint",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 417
+    },
+    {
+      "evidence_id": "run-001:test-2",
+      "skill": "e2e-playwright",
+      "test_id": "e2e-playwright:apidocs-run-call-navigation-e2e#navigates-to-a-parameterized-endpoint",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 387
+    },
+    {
+      "evidence_id": "run-001:test-3",
+      "skill": "e2e-playwright",
+      "test_id": "e2e-playwright:apidocs-run-call-navigation-e2e#navigates-to-a-composite-parameterized-endpoint",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 355
+    },
+    {
+      "evidence_id": "run-001:test-4",
+      "skill": "e2e-playwright",
+      "test_id": "e2e-playwright:apidocs-run-call-navigation-e2e#encodes-parameters-in-the-navigated-url",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 322
+    },
+    {
+      "evidence_id": "run-001:test-5",
+      "skill": "e2e-playwright",
+      "test_id": "e2e-playwright:apidocs-run-call-navigation-e2e#does-not-submit-when-a-required-parameter-is-empty",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 286
+    },
+    {
+      "evidence_id": "run-001:test-6",
+      "skill": "e2e-playwright",
+      "test_id": "e2e-playwright:apidocs-run-call-navigation-e2e#uses-navigation-for-endpoint-buttons",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 1313
+    },
+    {
+      "evidence_id": "run-001:test-7",
+      "skill": "e2e-playwright",
+      "test_id": "e2e-playwright:pdf-path-e2e-playwright-c2#renders-the-interactive-pdf-form",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 440
+    },
+    {
+      "evidence_id": "run-001:test-8",
+      "skill": "e2e-playwright",
+      "test_id": "e2e-playwright:pdf-path-e2e-playwright-c2#shows-a-server-error-when-submitting-an-unknown-event",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 371
+    },
+    {
+      "evidence_id": "run-001:test-9",
+      "skill": "e2e-playwright",
+      "test_id": "e2e-playwright:pdf-path-e2e-playwright-c2#submits-badge-data-through-the-browser-form-and-receives-a-pdf",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 353
+    },
+    {
+      "evidence_id": "run-001:test-10",
+      "skill": "e2e-playwright",
+      "test_id": "e2e-playwright:pdf-path-e2e-playwright-c2#submits-selected-pdf-options-from-the-browser-form",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 358
+    },
+    {
+      "evidence_id": "run-001:test-11",
+      "skill": "e2e-playwright",
+      "test_id": "e2e-playwright:pdf-path-e2e-playwright-c2#submits-the-form-without-client-side-required-data-validation",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 251
+    },
+    {
+      "evidence_id": "run-001:test-12",
+      "skill": "e2e-playwright",
+      "test_id": "e2e-playwright:pdf-path-e2e-playwright-c2#allows-malformed-data-to-reach-the-server-submission-boundary",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 260
+    },
+    {
+      "evidence_id": "run-001:test-13",
+      "skill": "e2e-playwright",
+      "test_id": "e2e-playwright:playwright-runnerexecution-e2e-playwright-c1#runs-the-browser-suite-against-the-started-application",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 517
+    },
+    {
+      "evidence_id": "run-001:test-14",
+      "skill": "e2e-playwright",
+      "test_id": "e2e-playwright:screenshot-config#forces-screenshots-for-passing-tests",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 777
+    },
+    {
+      "evidence_id": "run-001:test-15",
+      "skill": "e2e-playwright",
+      "test_id": "e2e-playwright:screenshot-config#uses-the-same-screenshot-setting-for-failures",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 2
+    },
+    {
+      "evidence_id": "run-001:test-16",
+      "skill": "e2e-playwright",
+      "test_id": "e2e-playwright:screenshot-config#preserves-the-default-project-settings",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 4
+    },
+    {
+      "evidence_id": "run-001:test-17",
+      "skill": "e2e-playwright",
+      "test_id": "e2e-playwright:screenshot-config#leaves-the-default-screenshot-policy-unchanged",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 1
+    },
+    {
+      "evidence_id": "run-001:test-18",
+      "skill": "e2e-playwright",
+      "test_id": "e2e-playwright:screenshot-config#provides-a-selectable-dedicated-config-file",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 1
+    }
+  ]
+}
