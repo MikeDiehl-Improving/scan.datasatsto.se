@@ -11,6 +11,7 @@ This is a framework to
 - Create QR codes as PNG files, as well as inline HTML data objects
 - Register when a QR code is scanned
 - Associate a terminal (QR code scanner/smart phone) to a specific exhibitor
+- Authorize scanner phones for an event using an organizer-only QR code
 - Create a report of all scanned QR codes for an event
 - Purge data for expired events
 
@@ -24,6 +25,10 @@ field by vendors.
 
 The solution does not use passwords. The event GUID is used to extract reporting data when the event owner
 doesn't have database access.
+
+Scanner authorization is a separate event-scoped bearer credential. Anyone who photographs or forwards the
+organizer's scanner QR can authorize a phone, so keep it behind the registration desk and regenerate the
+`ScannerSecret` if it is exposed.
 
 # Setup
 
@@ -63,8 +68,9 @@ npm start
 # Database setup
 
 To set up:
-- Run the database deployment script in a SQL Server database. The entire solution runs in its own
-  schema, "Scan", so it should play nice with other apps if you need to.
+- Run `Database schema.sql` in a SQL Server database. The script creates or
+  upgrades the `Scan` schema, tables, columns, constraints, and stored
+  procedures, and is safe to rerun.
 - Create a user to the SQL Server database. It can be a contained user (without login) if you want.
 - `GRANT EXECUTE ON SCHEMA::Scan TO {database user};`
 
@@ -90,7 +96,9 @@ Here's how the scanning flow works.
 
 ### With cookie-enabled terminal:
 
-* An exhibitor will first go to `/setup` to create and store an exhibitor code. This code is stored as a cookie
+* A sponsor representative or registration worker first scans the organizer authorization QR. This code is stored as a cookie
+  and authorizes the phone for the event.
+* The exhibitor then goes to `/setup` to create and store an exhibitor code. This code is stored as a cookie
   on the browser, so the process needs to be completed for each terminal.
 * When the exhibitor scans a QR code, the browser will load the `/123456789`. The cookie on the browser identifies
   which exhibitor code to associate the scan with.
@@ -100,7 +108,7 @@ Here's how the scanning flow works.
 The embedded browser in iOS (including the QR code scanning app) does not store cookies persistently across sessions,
 and it does not inherit persistent cookies from Safari, so this alternate workflow is required:
 
-* The exhibitor scans the QR code, which loads `/123456789`.
+* The exhibitor first scans the organizer authorization QR, then scans the attendee QR code, which loads `/123456789`.
 * Because the web server does not detect a cookie, it will present the user with a list of codes.
 * When the user clicks one of the codes, the browser loads `/123456789/exhibitorcode`, which completes the scan.
 * If the user long-presses an exhibitor code, they are given the option to add a custom note to the scan.
@@ -113,7 +121,8 @@ Not supported in the API.
 EXECUTE Scan.New_Event @Event;
 ```
 
-The stored procedure returns an event GUID used to access event data. Store this event GUID if you don't have access to the production database.
+The stored procedure returns the event GUID followed by the scanner secret. Store the event GUID if you don't have access to the production database,
+and encode the scanner secret in `https://{host}/authorize/{scanner secret}` for the organizer QR.
 
 ## Add a new identity (attendee)
 
@@ -143,7 +152,7 @@ Currently only available in the database, you can store the names, titles and co
 
 ```
 EXECUTE Scan.Update_Identities
-    @EventSecret='{event}',
+    @EventCode='{event}',
     @EncryptionKey='',
     @Identities_blob=N'[
         {"id": 1000012345, "firstName": "First", "lastName": "Last", "description": "This is a demo"},
@@ -167,6 +176,20 @@ String lenghts for these attributes are approximate. They may vary with unicode 
 If you do not specify the `@EncryptionKey` parameter, a blank string is used as your key by default. A blank string is required in order to be able to see the name in clear text using the [random scan](#view-one-random-scan) feature.
 
 ## Scan a code
+
+Before scanning badges, each sponsor or registration phone must scan:
+
+`GET /authorize/{scanner secret}`
+
+The organizer's scanner QR should encode that URL. The server validates the secret, stores an event-scoped
+authorization marker in the phone's secure session cookie, and expires it when the event expires or the session
+ends. The phone can then visit `/setup` and enter the sponsor's vendor code; use `Registration` for the
+registration desk. Badge scan URLs and explicit vendor-code URLs are rejected unless this authorization marker
+is present, and the database verifies that the badge belongs to the authorized event.
+
+The scanner QR is not an individual login or device identity. It is a shared bearer credential and should not be
+printed in attendee-facing materials. `cookieSecret` must be set to a strong, stable value in production, and
+HTTPS is required so the session cookie is secure.
 
 `GET /{identity}`
 

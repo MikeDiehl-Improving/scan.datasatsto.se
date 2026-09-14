@@ -145,11 +145,11 @@ function updateIdentities(identities) {
             if (error) return finish(error);
             const request = new Request(
                 'EXECUTE Scan.Update_Identities ' +
-                '@EventSecret=@EventSecret, @EncryptionKey=@EncryptionKey, ' +
+                '@EventCode=@EventCode, @EncryptionKey=@EncryptionKey, ' +
                 '@Identities_blob=@Identities_blob;',
                 finish
             );
-            request.addParameter('EventSecret', Types.UniqueIdentifier, process.env.EVENT);
+            request.addParameter('EventCode', Types.UniqueIdentifier, process.env.EVENT);
             request.addParameter('EncryptionKey', Types.NVarChar, process.env.ENCRYPTION_KEY || '');
             request.addParameter('Identities_blob', Types.NVarChar, JSON.stringify(identities));
             connection.execSql(request);

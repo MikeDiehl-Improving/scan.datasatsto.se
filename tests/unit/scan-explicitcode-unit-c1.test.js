@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeEach } from 'vitest';
 import request from 'supertest';
-import { queueTediousRows, resetTediousQueue } from './fixtures/tedious-mock.js';
+import { authorizeScanner, queueTediousRows, resetTediousQueue } from './fixtures/tedious-mock.js';
 import app from '../../server.js';
 
 describe('scan request with an explicit vendor code segment', () => {
@@ -13,6 +13,7 @@ describe('scan request with an explicit vendor code segment', () => {
     it('shows the confirmation page and reuses the code on a later session request', async () => {
         const agent = request.agent(app);
 
+        await authorizeScanner(agent);
         queueTediousRows([{ ID: 1 }]);
         const first = await agent.get('/12345/EXHIBIT100');
 

@@ -1,5 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import request from 'supertest';
+import { authorizeScanner } from './fixtures/tedious-mock.js';
 import app from '../../server.js';
 
 describe('scanner setup vendor code submission', () => {
@@ -7,6 +8,7 @@ describe('scanner setup vendor code submission', () => {
        authored via treegress_author_tests (SPEC §7.4 amendment #53); assert EXACTLY the then-clauses below. Keep this marker and do not rename the file (run-result correlation is by the obligation id, SPEC §12.3 amendment #34). */
     it('shows a confirmation page with the submitted code and retains it in the session', async () => {
         const agent = request.agent(app);
+        await authorizeScanner(agent);
 
         const postRes = await agent.post('/setup').send({ vendorCode: 'VENDOR99' });
 

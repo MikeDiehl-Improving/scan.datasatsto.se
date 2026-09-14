@@ -11,9 +11,12 @@ describe('scanner setup with an identifier that has no matching reference codes'
     /* treegress:obligation setup.get.nocodes.unit.c1 do-not-regenerate — for: Verify scanner setup GET handler with non-matching identifier renders error page with 'That code didn't look right.'
        authored via treegress_author_tests (SPEC §7.4 amendment #53); assert EXACTLY the then-clauses below. Keep this marker and do not rename the file (run-result correlation is by the obligation id, SPEC §12.3 amendment #34). */
     it("displays an error page with the message That code didn't look right.", async () => {
+        const agent = request.agent(app);
+        queueTediousRows([{ EventID: 1, Event: 'Test event', Expires: '2099-01-01' }]);
+        await agent.get('/authorize/00000000-0000-0000-0000-000000000001');
         queueTediousRows([]);
 
-        const res = await request(app).get('/setup?id=999');
+        const res = await agent.get('/setup?id=999');
 
         expect(res.status).toBe(500);
         expect(res.text).toContain("That code didn't look right.");

@@ -137,6 +137,33 @@ app.get('/robots933456.txt', function (req, res, next) {
     res.status(200).send("OK");
 });
 
+/*-----------------------------------------------------------------------------
+  Authorize a scanner phone for an event:
+  ---------------------------------------------------------------------------*/
+
+app.get('/authorize/:scannerSecret', function (req, res, next) {
+    httpHeaders(res);
+
+    sqlQuery(connectionString, 'EXECUTE Scan.Authorize_Scanner @ScannerSecret=@ScannerSecret;',
+        [{ "name": 'ScannerSecret', "type": Types.UniqueIdentifier, "value": req.params.scannerSecret }],
+        function(recordset) {
+            if (!recordset || recordset.length !== 1) {
+                res.status(403).send(createHTML('assets/error.html', {
+                    "Msg": "That scanner authorization is invalid or expired."
+                }));
+                return;
+            }
+
+            const event = recordset[0];
+            req.session.scannerEventId = Number(event.EventID);
+            req.session.scannerExpires = new Date(event.Expires).getTime();
+            delete req.session.vendorCode;
+            res.status(200).send(createHTML('assets/authorized.html', {
+                "Event": simpleHtmlEncode(String(event.Event || 'this event'))
+            }));
+        });
+});
+
 
 
 
@@ -260,6 +287,10 @@ app.get('/setup', function (req, res, next) {
 
     httpHeaders(res);
 
+    if (!requireScannerAuthorization(req, res)) {
+        return;
+    }
+
     if (req.query.id) {
         sqlQuery(connectionString, 'EXECUTE Scan.Get_Codes @ID=@ID;',
         [   { "name": 'ID', "type": Types.BigInt, "value": parseInt(req.query.id) }],
@@ -290,6 +321,10 @@ app.get('/setup', function (req, res, next) {
 
 app.post('/setup', function (req, res, next) {
 
+    if (!requireScannerAuthorization(req, res)) {
+        return;
+    }
+
     req.session.vendorCode = req.body.vendorCode;
     res.status(200).send(createHTML('assets/ok.html', { "VendorCode": req.body.vendorCode }));
 
@@ -315,6 +350,10 @@ app.get(/^\/([0-9]*)$/, newScan);            // GET with ID only
 
 function newScan(req, res, next) {
 
+    if (!requireScannerAuthorization(req, res)) {
+        return;
+    }
+
     const id = req.params[0];
     const vendorCode = req.params[1] || null;
   
@@ -328,7 +367,11 @@ function newScan(req, res, next) {
     const cookieVendorCode = typeof req.session.vendorCode === 'string'
         ? req.session.vendorCode.trim()
         : '';
-    var referenceCode=decodeURI(vendorCode || '') || cookieVendorCode;
+    const selectedVendorCode = req.method === 'POST' && req.body &&
+        typeof req.body.vendorCode === 'string'
+        ? req.body.vendorCode.trim()
+        : '';
+    var referenceCode=decodeURI(vendorCode || '') || selectedVendorCode || cookieVendorCode;
 
     if (!referenceCode) {
         res.redirect('/setup?id='+parseInt(id));
@@ -341,6 +384,7 @@ function newScan(req, res, next) {
         httpHeaders(res);
         res.status(200).send(createHTML('assets/scan.html', {
             "ID": parseInt(id),
+            "VendorCode": simpleHtmlEncode(referenceCode),
             "Vendor": referenceCode
                 ? '<div class="scan-vendor">Vendor code: ' +
                     simpleHtmlEncode(referenceCode) + '</div>'
@@ -351,21 +395,26 @@ function newScan(req, res, next) {
 
     var note="";
     if (req.body) { note = req.body.note || "" };
+    const shouldSetDefault = req.body && req.body.setDefault === 'on';
 
     httpHeaders(res);
     try {
         // Name the connection after the host:
         connectionString.options.appName=req.headers.host;
 
-        sqlQuery(connectionString, 'EXECUTE Scan.New_Scan @ID=@ID, @ReferenceCode=@ReferenceCode, @Note=@Note;',
+        sqlQuery(connectionString, 'EXECUTE Scan.New_Scan @ID=@ID, @EventID=@EventID, @ReferenceCode=@ReferenceCode, @Note=@Note;',
             [   { "name": 'ID', "type": Types.BigInt, "value": parseInt(id) },
+                { "name": 'EventID', "type": Types.Int, "value": getAuthorizedEventId(req) },
                 { "name": 'ReferenceCode', "type": Types.VarChar, "value": referenceCode },
                 { "name": 'Note', "type": Types.NVarChar, "value": note }],
 
             async function(recordset) {
                 if (recordset.length==1) {
-                    // Set the exhibitor code to the one we're using now:
-                    req.session.vendorCode = referenceCode;
+                    // Explicit URL codes retain their existing behavior; ID-only submissions
+                    // update the default only when the user opts in.
+                    if (vendorCode || shouldSetDefault) {
+                        req.session.vendorCode = referenceCode;
+                    }
 
                     res.status(200).send(createHTML('assets/ok.html', { "VendorCode": (referenceCode || '(No exhibitor code)') }));
                     return;
@@ -380,6 +429,26 @@ function newScan(req, res, next) {
     }
 
 };
+
+function getAuthorizedEventId(req) {
+    const eventId = Number(req.session.scannerEventId);
+    const expires = Number(req.session.scannerExpires);
+    if (!Number.isInteger(eventId) || !Number.isFinite(expires) || expires <= Date.now()) {
+        return null;
+    }
+    return eventId;
+}
+
+function requireScannerAuthorization(req, res) {
+    if (getAuthorizedEventId(req) !== null) {
+        return true;
+    }
+
+    res.status(403).send(createHTML('assets/error.html', {
+        "Msg": "Scan the event organizer's authorization QR code on this phone first."
+    }));
+    return false;
+}
 
 
 
@@ -396,8 +465,8 @@ app.get('/report/:event', function (req, res, next) {
           // Name the connection after the host:
           connectionString.options.appName=req.headers.host;
   
-          sqlQuery(connectionString, 'EXECUTE Scan.Get_Scans @EventSecret=@EventSecret;',
-              [   { "name": 'EventSecret', "type": Types.UniqueIdentifier, "value": decodeURI(req.params.event) }],
+          sqlQuery(connectionString, 'EXECUTE Scan.Get_Scans @EventCode=@EventCode;',
+              [   { "name": 'EventCode', "type": Types.UniqueIdentifier, "value": decodeURI(req.params.event) }],
   
               async function(recordset) {
                 if (!recordset || recordset.length === 0) {
@@ -435,8 +504,8 @@ function randomScan (req, res, next) {
         // Name the connection after the host:
         connectionString.options.appName=req.headers.host;
 
-        sqlQuery(connectionString, 'EXECUTE Scan.Get_Random @ReferenceCode=@ReferenceCode, @EventSecret=@EventSecret;',
-            [   { "name": 'EventSecret', "type": Types.UniqueIdentifier, "value": decodeURI(req.params.event) },
+        sqlQuery(connectionString, 'EXECUTE Scan.Get_Random @ReferenceCode=@ReferenceCode, @EventCode=@EventCode;',
+            [   { "name": 'EventCode', "type": Types.UniqueIdentifier, "value": decodeURI(req.params.event) },
                 { "name": 'ReferenceCode', "type": Types.NVarChar, "value": referenceCode }],
 
             async function(recordset) {
@@ -613,15 +682,15 @@ app.post('/pdf', async function (req, res, next) {
             }
         }
         const getIdentities=shouldUpdateIdentities
-            ? 'EXECUTE Scan.Update_Identities @EventSecret=@EventSecret, @EncryptionKey=@EncryptionKey, @Identities_blob=@blob;\n'
+            ? 'EXECUTE Scan.Update_Identities @EventCode=@EventCode, @EncryptionKey=@EncryptionKey, @Identities_blob=@blob;\n'
             : '';
         const identityIDs=shouldOnlyPrintIdentities
             ? JSON.stringify(selectedIdentities.map(identity => identity.id))
             : null;
 
         sqlQuery(connectionString, getIdentities+
-                                   'EXECUTE Scan.Get_Identities @EventSecret=@EventSecret, @EncryptionKey=@EncryptionKey, @IdentityIDs=@IdentityIDs;',
-            [   { "name": 'EventSecret', "type": Types.UniqueIdentifier, "value": req.body.event },
+                                   'EXECUTE Scan.Get_Identities @EventCode=@EventCode, @EncryptionKey=@EncryptionKey, @IdentityIDs=@IdentityIDs;',
+            [   { "name": 'EventCode', "type": Types.UniqueIdentifier, "value": req.body.event },
                 { "name": 'EncryptionKey', "type": Types.NVarChar, "value": req.body.encryptionKey },
                 { "name": 'blob', "type": Types.NVarChar, "value": JSON.stringify(selectedIdentities) },
                 { "name": 'IdentityIDs', "type": Types.NVarChar, "value": identityIDs }],

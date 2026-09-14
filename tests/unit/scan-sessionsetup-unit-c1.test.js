@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeEach } from 'vitest';
 import request from 'supertest';
-import { queueTediousRows, resetTediousQueue } from './fixtures/tedious-mock.js';
+import { authorizeScanner, queueTediousRows, resetTediousQueue } from './fixtures/tedious-mock.js';
 import app from '../../server.js';
 
 describe('scan request reusing a vendor code established via /setup', () => {
@@ -13,6 +13,7 @@ describe('scan request reusing a vendor code established via /setup', () => {
     it('shows the confirmation page displaying the setup-established vendor code', async () => {
         const agent = request.agent(app);
 
+        await authorizeScanner(agent);
         await agent.post('/setup').send({ vendorCode: 'BOOTH77' });
 
         queueTediousRows([{ ID: 1 }]);
@@ -20,5 +21,38 @@ describe('scan request reusing a vendor code established via /setup', () => {
 
         expect(res.status).toBe(200);
         expect(res.text).toContain('BOOTH77');
+    });
+
+    it('uses a submitted vendor code without changing the default unless requested', async () => {
+        const agent = request.agent(app);
+
+        await authorizeScanner(agent);
+        await agent.post('/setup').send({ vendorCode: 'BOOTH77' });
+
+        queueTediousRows([{ ID: 1 }]);
+        const res = await agent
+            .post('/12345')
+            .send({ vendorCode: 'BOOTH88', note: '' });
+
+        expect(res.status).toBe(200);
+        expect(res.text).toContain('BOOTH88');
+
+        const followUp = await agent.get('/12345');
+        expect(followUp.text).toContain('value="BOOTH77"');
+    });
+
+    it('updates the default when the submitted vendor code is selected as default', async () => {
+        const agent = request.agent(app);
+
+        await authorizeScanner(agent);
+        await agent.post('/setup').send({ vendorCode: 'BOOTH77' });
+
+        queueTediousRows([{ ID: 1 }]);
+        await agent
+            .post('/12345')
+            .send({ vendorCode: 'BOOTH88', setDefault: 'on', note: '' });
+
+        const followUp = await agent.get('/12345');
+        expect(followUp.text).toContain('value="BOOTH88"');
     });
 });

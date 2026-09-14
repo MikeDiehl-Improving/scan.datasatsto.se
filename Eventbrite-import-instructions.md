@@ -66,7 +66,7 @@ added when a matching row is found. Only report rows with `Ticket Type` equal to
 `General Admission` are included, so `Box Lunch` orders are excluded.
 
 The generator validates both CSVs and reports the number of identities written to
-the SQL file. Review the generated file, fill in `@EventSecret`, and execute it
+the SQL file. Review the generated file, fill in `@EventCode`, and execute it
 against the database. The SQL calls `Scan.Update_Identities` with the combined
 identity payload.
 

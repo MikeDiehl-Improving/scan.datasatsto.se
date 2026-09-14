@@ -24,6 +24,15 @@ export function resetTediousQueue() {
     tediousQueue.length = 0;
 }
 
+export async function authorizeScanner(agent, eventId = 1) {
+    queueTediousRows([{
+        EventID: eventId,
+        Event: 'Test event',
+        Expires: '2099-01-01'
+    }]);
+    return agent.get('/authorize/00000000-0000-0000-0000-000000000001');
+}
+
 class MockTediousRequest {
     constructor(sqlText, callback) {
         this.sqlText = sqlText;

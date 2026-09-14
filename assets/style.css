@@ -196,8 +196,29 @@ body.scan .scan-vendor {
     font-size: 2rem;
 }
 
+body.scan input[type=text] {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 0.5rem;
+    font: inherit;
+    font-size: 2rem;
+    color: #000000;
+    background-color: rgb(255, 255, 255, 0.8);
+}
+
 body.scan label {
     align-self: flex-start;
+}
+
+body.scan label.scan-default {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+body.scan input[type=checkbox] {
+    width: 2rem;
+    height: 2rem;
 }
 
 body.scan textarea {

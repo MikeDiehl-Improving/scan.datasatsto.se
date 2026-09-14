@@ -1,8 +1,8 @@
 -- Generated from: Day_of_Data_Winnipeg_2026_Attendees_40554971420_20260914_151116_192.csv, report-2026-09-14T1013.csv
 -- Idempotent ID rule: (Order ID * 100) + attendee sequence within that order.
--- Fill in @EventSecret before executing this script.
+-- Fill in @EventCode before executing this script.
 
-DECLARE @EventSecret uniqueidentifier = N'00000000-0000-0000-0000-000000000000';
+DECLARE @EventCode uniqueidentifier = N'00000000-0000-0000-0000-000000000000';
 DECLARE @EncryptionKey nvarchar(200) = N'';
 DECLARE @Identities_blob nvarchar(max) = N'[
   {
@@ -2681,7 +2681,7 @@ DECLARE @Identities_blob nvarchar(max) = N'[
 ]';
 
 EXECUTE Scan.Update_Identities
-    @EventSecret = @EventSecret,
+    @EventCode = @EventCode,
     @EncryptionKey = @EncryptionKey,
     @Identities_blob = @Identities_blob;
 GO
