@@ -1,0 +1,125 @@
+{
+  "feature_id": "separate-authorization-qr",
+  "plan_version": 2,
+  "plan_hash": "sha256:1ac7c4cbe074ed0c87098776c8679c6051958e5a9c8a67caa057a50eea827304",
+  "strategy_version": 1,
+  "strategy_hash": "sha256:f24c2bbfe4c33e8b6e8ff766006e524a77a5134bf6f2906df4c2e34dd7515d21",
+  "run_id": "run-003",
+  "reviewed_at": "2026-09-14T20:04:10.220Z",
+  "scenario_verdicts": [
+    {
+      "scenario_id": "mainpage.unauthorized",
+      "status": "COVERED",
+      "then_coverage": [
+        {
+          "clause_index": 0,
+          "covered": true,
+          "test_id": "unit:tests/unit/separate-authorization-qr-unit#blocks-the-main-page-for-an-unauthorized-visitor",
+          "evidence_id": "run-003:test-69"
+        },
+        {
+          "clause_index": 1,
+          "covered": true,
+          "test_id": "unit:tests/unit/separate-authorization-qr-unit#blocks-the-main-page-for-an-unauthorized-visitor",
+          "evidence_id": "run-003:test-69"
+        }
+      ],
+      "rationale": "Passing unit test verifies 403 status, absence of main page content, and presence of authorization requirement notice."
+    },
+    {
+      "scenario_id": "authqr.display",
+      "status": "COVERED",
+      "then_coverage": [
+        {
+          "clause_index": 0,
+          "covered": true,
+          "test_id": "unit:tests/unit/separate-authorization-qr-unit#keeps-the-authorization-qr-generator-available-separately",
+          "evidence_id": "run-003:test-70"
+        },
+        {
+          "clause_index": 1,
+          "covered": true,
+          "test_id": "unit:tests/unit/separate-authorization-qr-unit#keeps-the-authorization-qr-generator-available-separately",
+          "evidence_id": "run-003:test-70"
+        }
+      ],
+      "rationale": "Passing unit test verifies the authorization QR endpoint responds with PDF data while ensuring main page content is absent."
+    },
+    {
+      "scenario_id": "authqr.complete",
+      "status": "COVERED",
+      "then_coverage": [
+        {
+          "clause_index": 0,
+          "covered": true,
+          "test_id": "unit:tests/unit/separate-authorization-qr-unit#grants-main-page-access-after-processing-a-valid-authorization-qr",
+          "evidence_id": "run-003:test-71"
+        },
+        {
+          "clause_index": 1,
+          "covered": true,
+          "test_id": "unit:tests/unit/separate-authorization-qr-unit#grants-main-page-access-after-processing-a-valid-authorization-qr",
+          "evidence_id": "run-003:test-71"
+        }
+      ],
+      "rationale": "Passing unit test verifies successful authorization via QR endpoint and subsequent access to the main page content."
+    },
+    {
+      "scenario_id": "mainpage.authorized",
+      "status": "COVERED",
+      "then_coverage": [
+        {
+          "clause_index": 0,
+          "covered": true,
+          "test_id": "unit:tests/unit/separate-authorization-qr-unit#shows-the-main-page-to-an-authorized-visitor",
+          "evidence_id": "run-003:test-72"
+        }
+      ],
+      "rationale": "Passing unit test confirms that an authorized session receives a 200 response with main page content."
+    },
+    {
+      "scenario_id": "authqr.invalid",
+      "status": "COVERED",
+      "then_coverage": [
+        {
+          "clause_index": 0,
+          "covered": true,
+          "test_id": "unit:tests/unit/separate-authorization-qr-unit#keeps-an-invalid-authorization-attempt-unauthorized",
+          "evidence_id": "run-003:test-73"
+        },
+        {
+          "clause_index": 1,
+          "covered": true,
+          "test_id": "unit:tests/unit/separate-authorization-qr-unit#keeps-an-invalid-authorization-attempt-unauthorized",
+          "evidence_id": "run-003:test-73"
+        },
+        {
+          "clause_index": 2,
+          "covered": true,
+          "test_id": "unit:tests/unit/separate-authorization-qr-unit#keeps-an-invalid-authorization-attempt-unauthorized",
+          "evidence_id": "run-003:test-73"
+        }
+      ],
+      "rationale": "Passing unit test verifies invalid code submission displays an error, keeps status 403, and blocks main page content."
+    },
+    {
+      "scenario_id": "mainpage.expired",
+      "status": "COVERED",
+      "then_coverage": [
+        {
+          "clause_index": 0,
+          "covered": true,
+          "test_id": "unit:tests/unit/separate-authorization-qr-unit#blocks-the-main-page-when-authorization-has-expired",
+          "evidence_id": "run-003:test-74"
+        },
+        {
+          "clause_index": 1,
+          "covered": true,
+          "test_id": "unit:tests/unit/separate-authorization-qr-unit#blocks-the-main-page-when-authorization-has-expired",
+          "evidence_id": "run-003:test-74"
+        }
+      ],
+      "rationale": "Passing unit test confirms expired authorization returns 403 without main page content and prompts for authorization."
+    }
+  ]
+}

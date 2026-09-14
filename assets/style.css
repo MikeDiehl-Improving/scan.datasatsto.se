@@ -42,6 +42,222 @@ body.pdf {
     background: radial-gradient(#ffffff, #ffffff, #d8d8d8);
 }
 
+body.authorization-pdf {
+    min-height: 100vh;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 2rem;
+    color: #17242b;
+    background: #eef3f5;
+    font-family: Montserrat, sans-serif;
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+body.authorization-pdf *,
+body.authorization-pdf *::before,
+body.authorization-pdf *::after {
+    box-sizing: border-box;
+}
+
+body.authorization-pdf .authorization-shell {
+    width: min(100%, 560px);
+    margin: 2rem auto;
+    overflow: hidden;
+    border: 1px solid rgba(23, 36, 43, 0.08);
+    border-radius: 0.9rem;
+    background: #ffffff;
+    box-shadow: 0 0.75rem 2rem rgba(38, 63, 74, 0.1);
+}
+
+body.authorization-pdf .authorization-intro {
+    padding: 1.75rem 2rem 1.5rem;
+    color: #ffffff;
+    background: linear-gradient(145deg, #173b45 0%, #24616b 100%);
+}
+
+body.authorization-pdf .brand-mark {
+    display: grid;
+    place-items: center;
+    width: 3rem;
+    height: 3rem;
+    margin-bottom: 1.25rem;
+    border-radius: 0.6rem;
+    color: #173b45;
+    background: #a8e6d3;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+}
+
+body.authorization-pdf .eyebrow,
+body.authorization-pdf .card-kicker {
+    margin: 0 0 0.8rem;
+    color: #83d7c2;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
+body.authorization-pdf h1,
+body.authorization-pdf h2 {
+    margin: 0;
+    letter-spacing: -0.04em;
+}
+
+body.authorization-pdf h1 {
+    font-size: 2rem;
+    line-height: 1.1;
+}
+
+body.authorization-pdf .intro-copy {
+    margin: 0.65rem 0 0;
+    color: rgba(255, 255, 255, 0.78);
+    font-size: 1rem;
+    line-height: 1.7;
+}
+
+body.authorization-pdf .workflow {
+    display: none;
+}
+
+body.authorization-pdf .workflow-step {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+}
+
+body.authorization-pdf .workflow-step span {
+    color: #83d7c2;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+}
+
+body.authorization-pdf .workflow-step p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.82rem;
+}
+
+body.authorization-pdf .authorization-card {
+    align-self: center;
+    margin: 1.25rem 2rem 1.5rem;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: #fbfcfc;
+}
+
+body.authorization-pdf .authorization-card h2 {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    line-height: 1.1;
+}
+
+body.authorization-pdf .card-copy {
+    margin: 0.5rem 0 1.25rem;
+    color: #66777e;
+    font-size: 0.85rem;
+    line-height: 1.6;
+}
+
+body.authorization-pdf form {
+    display: grid;
+    gap: 0.55rem;
+}
+
+body.authorization-pdf form label {
+    color: #34474e;
+    font-size: 0.78rem;
+    font-weight: 700;
+}
+
+body.authorization-pdf form input[type="text"] {
+    width: 100%;
+    min-height: 3.25rem;
+    margin: 0;
+    padding: 0.75rem 0.9rem;
+    border: 1px solid #cbd7da;
+    border-radius: 0.55rem;
+    outline: none;
+    color: #17242b;
+    background: #ffffff;
+    font: inherit;
+    font-size: 0.9rem;
+    font-weight: 400;
+    transition: border-color 150ms ease, box-shadow 150ms ease;
+}
+
+body.authorization-pdf form input[type="text"]:focus {
+    border-color: #2e8b7d;
+    box-shadow: 0 0 0 3px rgba(46, 139, 125, 0.16);
+}
+
+body.authorization-pdf form button {
+    min-height: 3.25rem;
+    margin-top: 0.75rem;
+    padding: 0.75rem 1rem;
+    border: 0;
+    border-radius: 0.55rem;
+    cursor: pointer;
+    color: #ffffff;
+    background: #247d70;
+    font: inherit;
+    font-size: 0.82rem;
+    font-weight: 700;
+    transition: background 150ms ease, transform 150ms ease;
+}
+
+body.authorization-pdf form button:hover {
+    background: #1d685d;
+    transform: translateY(-1px);
+}
+
+body.authorization-pdf form button span {
+    margin-left: 0.35rem;
+    font-size: 1.1rem;
+}
+
+body.authorization-pdf .form-note {
+    margin: 1rem 0 0;
+    color: #7a898e;
+    font-size: 0.7rem;
+    line-height: 1.5;
+}
+
+body.authorization-pdf .form-note span {
+    margin-right: 0.25rem;
+    color: #247d70;
+    font-size: 1rem;
+}
+
+@media (max-width: 700px) {
+    body.authorization-pdf {
+        padding: 1rem;
+    }
+
+    body.authorization-pdf .authorization-shell {
+        margin: 1rem auto;
+    }
+
+    body.authorization-pdf .authorization-intro {
+        padding: 1.5rem;
+    }
+
+    body.authorization-pdf .brand-mark {
+        margin-bottom: 1rem;
+    }
+
+    body.authorization-pdf .workflow {
+        display: none;
+    }
+
+    body.authorization-pdf .authorization-card {
+        margin: 1.25rem 1.5rem 1.5rem;
+    }
+}
+
 body.index {
     min-height: 100vh;
     padding: 2rem;

@@ -1,0 +1,109 @@
+{
+  "feature_id": "separate-authorization-qr",
+  "plan_version": 2,
+  "strategy_version": 1,
+  "entries": [
+    {
+      "scenario_id": "mainpage.unauthorized",
+      "obligations": [
+        {
+          "skill": "unit",
+          "obligation_id": "mainpage.unauthorized.unit.c1",
+          "test_ids": [
+            "unit:tests/unit/separate-authorization-qr-unit#blocks-the-main-page-for-an-unauthorized-visitor"
+          ],
+          "evidence_ids": [
+            "run-003:test-69"
+          ],
+          "reused": true
+        }
+      ],
+      "review_status": "COVERED"
+    },
+    {
+      "scenario_id": "authqr.display",
+      "obligations": [
+        {
+          "skill": "unit",
+          "obligation_id": "authqr.display.unit.c1",
+          "test_ids": [
+            "unit:tests/unit/separate-authorization-qr-unit#keeps-the-authorization-qr-generator-available-separately"
+          ],
+          "evidence_ids": [
+            "run-003:test-70"
+          ],
+          "reused": true
+        }
+      ],
+      "review_status": "COVERED"
+    },
+    {
+      "scenario_id": "authqr.complete",
+      "obligations": [
+        {
+          "skill": "unit",
+          "obligation_id": "authqr.complete.unit.c1",
+          "test_ids": [
+            "unit:tests/unit/separate-authorization-qr-unit#grants-main-page-access-after-processing-a-valid-authorization-qr"
+          ],
+          "evidence_ids": [
+            "run-003:test-71"
+          ],
+          "reused": true
+        }
+      ],
+      "review_status": "COVERED"
+    },
+    {
+      "scenario_id": "mainpage.authorized",
+      "obligations": [
+        {
+          "skill": "unit",
+          "obligation_id": "mainpage.authorized.unit.c1",
+          "test_ids": [
+            "unit:tests/unit/separate-authorization-qr-unit#shows-the-main-page-to-an-authorized-visitor"
+          ],
+          "evidence_ids": [
+            "run-003:test-72"
+          ],
+          "reused": true
+        }
+      ],
+      "review_status": "COVERED"
+    },
+    {
+      "scenario_id": "authqr.invalid",
+      "obligations": [
+        {
+          "skill": "unit",
+          "obligation_id": "authqr.invalid.unit.c1",
+          "test_ids": [
+            "unit:tests/unit/separate-authorization-qr-unit#keeps-an-invalid-authorization-attempt-unauthorized"
+          ],
+          "evidence_ids": [
+            "run-003:test-73"
+          ],
+          "reused": true
+        }
+      ],
+      "review_status": "COVERED"
+    },
+    {
+      "scenario_id": "mainpage.expired",
+      "obligations": [
+        {
+          "skill": "unit",
+          "obligation_id": "mainpage.expired.unit.c1",
+          "test_ids": [
+            "unit:tests/unit/separate-authorization-qr-unit#blocks-the-main-page-when-authorization-has-expired"
+          ],
+          "evidence_ids": [
+            "run-003:test-74"
+          ],
+          "reused": true
+        }
+      ],
+      "review_status": "COVERED"
+    }
+  ]
+}

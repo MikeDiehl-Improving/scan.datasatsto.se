@@ -1,0 +1,78 @@
+{
+  "feature_id": "separate-authorization-qr",
+  "version": 1,
+  "status": "draft",
+  "scenarios": [
+    {
+      "id": "mainpage.unauthorizedvisitor",
+      "title": "Unauthorised visitor is blocked from viewing the main page",
+      "given": [
+        "A visitor who is not authorised"
+      ],
+      "when": "The visitor navigates to the main page",
+      "then": [
+        "The visitor is prevented from seeing the main page content",
+        "The visitor is presented with an indication that authorization is required"
+      ],
+      "priority": "critical",
+      "negative": true
+    },
+    {
+      "id": "qrcode.generatedisplay",
+      "title": "Generate and display authorization QR code separately from the main page",
+      "given": [
+        "A visitor who is not authorised"
+      ],
+      "when": "The visitor accesses the separate authorization interface to request an authorization QR code",
+      "then": [
+        "An authorization QR code is generated and displayed",
+        "The main page content remains hidden while the QR code is displayed"
+      ],
+      "priority": "critical",
+      "negative": false
+    },
+    {
+      "id": "qrcode.completeauthorization",
+      "title": "Complete authorization via the QR code to gain access to the main page",
+      "given": [
+        "An unauthorised visitor who has displayed the authorization QR code",
+        "The authorization has been completed using the QR code"
+      ],
+      "when": "The visitor accesses the main page",
+      "then": [
+        "The visitor is recognized as authorised",
+        "The main page content is fully displayed to the visitor"
+      ],
+      "priority": "high",
+      "negative": false
+    },
+    {
+      "id": "mainpage.authorizedaccess",
+      "title": "Authorised visitor directly accesses the main page",
+      "given": [
+        "A visitor who is already authorised"
+      ],
+      "when": "The visitor navigates to the main page",
+      "then": [
+        "The main page content is displayed without requiring QR code authorization"
+      ],
+      "priority": "high",
+      "negative": false
+    },
+    {
+      "id": "qrcode.incompleteauthorization",
+      "title": "Attempting to access main page while QR authorization remains incomplete",
+      "given": [
+        "An unauthorised visitor has generated the authorization QR code",
+        "Authorization via the QR code has not yet been completed"
+      ],
+      "when": "The visitor attempts to access the main page",
+      "then": [
+        "The main page content is not displayed",
+        "The visitor is prompted to complete authorization"
+      ],
+      "priority": "normal",
+      "negative": true
+    }
+  ]
+}

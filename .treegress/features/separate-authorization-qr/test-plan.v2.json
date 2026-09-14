@@ -1,0 +1,97 @@
+{
+  "feature_id": "separate-authorization-qr",
+  "version": 2,
+  "status": "approved",
+  "approval": {
+    "hash": "sha256:1ac7c4cbe074ed0c87098776c8679c6051958e5a9c8a67caa057a50eea827304",
+    "approved_at": "2026-09-14T19:59:18.377Z"
+  },
+  "scenarios": [
+    {
+      "id": "mainpage.unauthorized",
+      "title": "Unauthorized visitor is prevented from viewing the main page",
+      "given": [
+        "A visitor is not authorized"
+      ],
+      "when": "The visitor navigates to the main page",
+      "then": [
+        "The main page content is not displayed to the visitor",
+        "The visitor is presented with an indication that authorization is required or redirected to an authorization surface"
+      ],
+      "priority": "critical",
+      "negative": true
+    },
+    {
+      "id": "authqr.display",
+      "title": "Visitor views authorization QR code via dedicated separate interface",
+      "given": [
+        "A visitor is not authorized to access the main page",
+        "A separate authorization display surface is available"
+      ],
+      "when": "The visitor accesses the separate authorization QR code interface",
+      "then": [
+        "An authorization QR code is displayed to the visitor",
+        "The main page content remains hidden and unexposed"
+      ],
+      "priority": "critical",
+      "negative": false
+    },
+    {
+      "id": "authqr.complete",
+      "title": "Completing authorization via separate QR code grants access to the main page",
+      "given": [
+        "An unauthorized visitor has obtained an authorization QR code from the separate display interface"
+      ],
+      "when": "The authorization QR code is processed to complete device authorization",
+      "then": [
+        "The visitor's session is recognized as authorized",
+        "A subsequent navigation to the main page displays the main page content"
+      ],
+      "priority": "high",
+      "negative": false
+    },
+    {
+      "id": "mainpage.authorized",
+      "title": "Authorized visitor successfully accesses the main page",
+      "given": [
+        "A visitor has previously completed the authorization flow"
+      ],
+      "when": "The visitor navigates to the main page",
+      "then": [
+        "The main page content is displayed to the visitor"
+      ],
+      "priority": "high",
+      "negative": false
+    },
+    {
+      "id": "authqr.invalid",
+      "title": "Authorization fails when using an invalid or unrecognized code",
+      "given": [
+        "A visitor attempts authorization on the authorization surface"
+      ],
+      "when": "The visitor submits an invalid authorization code (e.g. INVALIDCODE999)",
+      "then": [
+        "An error message indicating that authorization failed or the code is invalid is displayed",
+        "The visitor remains unauthorized",
+        "The main page content is not displayed"
+      ],
+      "priority": "normal",
+      "negative": true
+    },
+    {
+      "id": "mainpage.expired",
+      "title": "Visitor with expired authorization is blocked from viewing the main page",
+      "given": [
+        "A visitor was previously authorized",
+        "The visitor's authorization has expired"
+      ],
+      "when": "The visitor navigates to the main page",
+      "then": [
+        "The main page content is not displayed to the visitor",
+        "The visitor is prompted to complete authorization again"
+      ],
+      "priority": "normal",
+      "negative": true
+    }
+  ]
+}

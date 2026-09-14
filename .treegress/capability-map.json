@@ -1,9 +1,9 @@
 {
-  "version": 5,
+  "version": 6,
   "status": "approved",
   "approval": {
-    "hash": "sha256:b6564f2018e7b2f4a0b4c9f5c07ffe301e6c8866aa2d6580a6c07329e04e8cac",
-    "approved_at": "2026-09-13T21:01:33.712Z"
+    "hash": "sha256:cf17461374dba4baa23eacf25a757d7522603f3a34582014ca9aa85d1c6daa29",
+    "approved_at": "2026-09-14T20:40:00.341Z"
   },
   "interactionSegments": [
     {
@@ -14,7 +14,7 @@
         "path": "/random/{}/{}",
         "handler": "randomScan",
         "source": "server.js",
-        "line": 406,
+        "line": 498,
         "surface": "service"
       },
       "guards": {
@@ -24,11 +24,11 @@
       },
       "operations": [
         {
-          "id": "OP-55fc690ea5bf",
+          "id": "OP-907f4fc5006b",
           "kind": "trigger",
           "confidence": "observed",
           "symbol": "randomScan",
-          "line": 406
+          "line": 498
         }
       ],
       "operationRelations": [],
@@ -44,14 +44,14 @@
       "confidence": "high"
     },
     {
-      "id": "FLOW-38ce949441c4",
+      "id": "FLOW-330492c5b72a",
       "entrypoint": {
         "kind": "http_route",
-        "method": "POST",
-        "path": "/pdf",
+        "method": "GET",
+        "path": "/authorize/{}",
         "handler": null,
         "source": "server.js",
-        "line": 462,
+        "line": 148,
         "surface": "service"
       },
       "guards": {
@@ -61,11 +61,64 @@
       },
       "operations": [
         {
-          "id": "OP-a5c75e9a436b",
+          "id": "OP-40c85d85b22c",
           "kind": "trigger",
           "confidence": "observed",
           "symbol": "<entrypoint>",
-          "line": 462
+          "line": 148
+        },
+        {
+          "id": "OP-35a0d39cc3c1",
+          "kind": "decide",
+          "confidence": "candidate",
+          "symbol": "<anonymous>",
+          "line": 154,
+          "evidence": "if (!recordset || recordset.length !== 1) {"
+        }
+      ],
+      "operationRelations": [
+        {
+          "fromOperationId": "OP-40c85d85b22c",
+          "toOperationId": "OP-35a0d39cc3c1",
+          "kind": "dispatches_to_handler"
+        }
+      ],
+      "trace": {
+        "status": "bounded_to_observed_operations",
+        "maxHops": 0,
+        "limitations": [
+          "bounded_window"
+        ]
+      },
+      "label": {
+        "title": "Scanner authorization endpoint",
+        "description": "Endpoint for authenticating a scanning device with a scanner secret token."
+      },
+      "confidence": "high"
+    },
+    {
+      "id": "FLOW-38ce949441c4",
+      "entrypoint": {
+        "kind": "http_route",
+        "method": "POST",
+        "path": "/pdf",
+        "handler": null,
+        "source": "server.js",
+        "line": 622,
+        "surface": "service"
+      },
+      "guards": {
+        "auth": "not_observed",
+        "permission": "not_observed",
+        "markers": []
+      },
+      "operations": [
+        {
+          "id": "OP-07e467830ae0",
+          "kind": "trigger",
+          "confidence": "observed",
+          "symbol": "<entrypoint>",
+          "line": 622
         }
       ],
       "operationRelations": [],
@@ -90,7 +143,7 @@
         "path": "/robots933456.txt",
         "handler": null,
         "source": "server.js",
-        "line": 135,
+        "line": 139,
         "surface": "service"
       },
       "guards": {
@@ -100,25 +153,25 @@
       },
       "operations": [
         {
-          "id": "OP-d55af841d13e",
+          "id": "OP-3df3a900427f",
           "kind": "trigger",
           "confidence": "observed",
           "symbol": "<entrypoint>",
-          "line": 135
+          "line": 139
         },
         {
-          "id": "OP-ffa9311af1d6",
+          "id": "OP-b6ed2fe06941",
           "kind": "decide",
           "confidence": "candidate",
           "symbol": "<anonymous>",
-          "line": 162,
-          "evidence": "if (err) {"
+          "line": 154,
+          "evidence": "if (!recordset || recordset.length !== 1) {"
         }
       ],
       "operationRelations": [
         {
-          "fromOperationId": "OP-d55af841d13e",
-          "toOperationId": "OP-ffa9311af1d6",
+          "fromOperationId": "OP-3df3a900427f",
+          "toOperationId": "OP-b6ed2fe06941",
           "kind": "dispatches_to_handler"
         }
       ],
@@ -143,7 +196,7 @@
         "path": "/stored-procedures",
         "handler": null,
         "source": "server.js",
-        "line": 110,
+        "line": 114,
         "surface": "service"
       },
       "guards": {
@@ -153,24 +206,104 @@
       },
       "operations": [
         {
-          "id": "OP-3d7579055ae7",
+          "id": "OP-dfe2c361c69e",
           "kind": "trigger",
           "confidence": "observed",
           "symbol": "<entrypoint>",
-          "line": 110
+          "line": 114
+        },
+        {
+          "id": "OP-f2eb0da9ec92",
+          "kind": "decide",
+          "confidence": "candidate",
+          "symbol": "<anonymous>",
+          "line": 154,
+          "evidence": "if (!recordset || recordset.length !== 1) {"
         }
       ],
-      "operationRelations": [],
+      "operationRelations": [
+        {
+          "fromOperationId": "OP-dfe2c361c69e",
+          "toOperationId": "OP-f2eb0da9ec92",
+          "kind": "dispatches_to_handler"
+        }
+      ],
       "trace": {
-        "status": "entrypoint_only",
+        "status": "bounded_to_observed_operations",
         "maxHops": 0,
         "limitations": [
           "bounded_window"
         ]
       },
       "label": {
-        "title": "GET /stored-procedures",
-        "description": ""
+        "title": "Stored procedures documentation",
+        "description": "Documentation page detailing database schema and stored procedure reference information."
+      },
+      "confidence": "high"
+    },
+    {
+      "id": "FLOW-6479de10b913",
+      "entrypoint": {
+        "kind": "http_route",
+        "method": "POST",
+        "path": "/authorization-pdf",
+        "handler": null,
+        "source": "server.js",
+        "line": 563,
+        "surface": "service"
+      },
+      "guards": {
+        "auth": "not_observed",
+        "permission": "not_observed",
+        "markers": []
+      },
+      "operations": [
+        {
+          "id": "OP-d51b804b63f3",
+          "kind": "trigger",
+          "confidence": "observed",
+          "symbol": "<entrypoint>",
+          "line": 563
+        },
+        {
+          "id": "OP-9b2fe1cc2e6d",
+          "kind": "decide",
+          "confidence": "candidate",
+          "symbol": "<anonymous>",
+          "line": 568,
+          "evidence": "if (!eventCode) {"
+        },
+        {
+          "id": "OP-c198b93a6b45",
+          "kind": "decide",
+          "confidence": "candidate",
+          "symbol": "<anonymous>",
+          "line": 577,
+          "evidence": "if (!recordset || recordset.length !== 1) {"
+        }
+      ],
+      "operationRelations": [
+        {
+          "fromOperationId": "OP-d51b804b63f3",
+          "toOperationId": "OP-9b2fe1cc2e6d",
+          "kind": "dispatches_to_handler"
+        },
+        {
+          "fromOperationId": "OP-9b2fe1cc2e6d",
+          "toOperationId": "OP-c198b93a6b45",
+          "kind": "lexical_order"
+        }
+      ],
+      "trace": {
+        "status": "bounded_to_observed_operations",
+        "maxHops": 0,
+        "limitations": [
+          "bounded_window"
+        ]
+      },
+      "label": {
+        "title": "Scanner authorization PDF submission",
+        "description": "Form submission handler for generating scanner authorization QR code PDFs from an event code."
       },
       "confidence": "high"
     },
@@ -182,7 +315,7 @@
         "path": "/report/{}",
         "handler": null,
         "source": "server.js",
-        "line": 373,
+        "line": 465,
         "surface": "service"
       },
       "guards": {
@@ -192,25 +325,25 @@
       },
       "operations": [
         {
-          "id": "OP-3f5a3b3181fe",
+          "id": "OP-39ea717427ab",
           "kind": "trigger",
           "confidence": "observed",
           "symbol": "<entrypoint>",
-          "line": 373
+          "line": 465
         },
         {
-          "id": "OP-c40acbca48a3",
+          "id": "OP-d7de9eddc779",
           "kind": "decide",
           "confidence": "candidate",
           "symbol": "<anonymous>",
-          "line": 384,
+          "line": 476,
           "evidence": "if (!recordset || recordset.length === 0) {"
         }
       ],
       "operationRelations": [
         {
-          "fromOperationId": "OP-3f5a3b3181fe",
-          "toOperationId": "OP-c40acbca48a3",
+          "fromOperationId": "OP-39ea717427ab",
+          "toOperationId": "OP-d7de9eddc779",
           "kind": "dispatches_to_handler"
         }
       ],
@@ -235,7 +368,7 @@
         "path": "/pdf",
         "handler": "pdfForm",
         "source": "server.js",
-        "line": 453,
+        "line": 545,
         "surface": "service"
       },
       "guards": {
@@ -245,11 +378,11 @@
       },
       "operations": [
         {
-          "id": "OP-d2d54302b1e6",
+          "id": "OP-582fed32efdd",
           "kind": "trigger",
           "confidence": "observed",
           "symbol": "pdfForm",
-          "line": 453
+          "line": 545
         }
       ],
       "operationRelations": [],
@@ -259,8 +392,8 @@
         "limitations": []
       },
       "label": {
-        "title": "GET /pdf",
-        "description": ""
+        "title": "Badge PDF generation page",
+        "description": "Form interface for configuring badge layouts, paper sizes, and attendee identity printing."
       },
       "confidence": "high"
     },
@@ -272,7 +405,7 @@
         "path": "/random/{}",
         "handler": "randomScan",
         "source": "server.js",
-        "line": 407,
+        "line": 499,
         "surface": "service"
       },
       "guards": {
@@ -282,11 +415,11 @@
       },
       "operations": [
         {
-          "id": "OP-d413e04c3597",
+          "id": "OP-47295a888d65",
           "kind": "trigger",
           "confidence": "observed",
           "symbol": "randomScan",
-          "line": 407
+          "line": 499
         }
       ],
       "operationRelations": [],
@@ -302,14 +435,14 @@
       "confidence": "high"
     },
     {
-      "id": "FLOW-a8c704c9df8e",
+      "id": "FLOW-96d311b39198",
       "entrypoint": {
         "kind": "http_route",
         "method": "GET",
-        "path": "/pdf/{}",
-        "handler": "pdfForm",
+        "path": "/authorization-pdf",
+        "handler": "authorizationPdfForm",
         "source": "server.js",
-        "line": 454,
+        "line": 553,
         "surface": "service"
       },
       "guards": {
@@ -319,11 +452,75 @@
       },
       "operations": [
         {
-          "id": "OP-12bbd1039655",
+          "id": "OP-02998c714197",
+          "kind": "trigger",
+          "confidence": "observed",
+          "symbol": "authorizationPdfForm",
+          "line": 553
+        },
+        {
+          "id": "OP-c6fdfbe4d6ed",
+          "kind": "decide",
+          "confidence": "candidate",
+          "symbol": "authorizationPdfForm",
+          "line": 568,
+          "evidence": "if (!eventCode) {"
+        },
+        {
+          "id": "OP-68a47f951bd8",
+          "kind": "decide",
+          "confidence": "candidate",
+          "symbol": "authorizationPdfForm",
+          "line": 577,
+          "evidence": "if (!recordset || recordset.length !== 1) {"
+        }
+      ],
+      "operationRelations": [
+        {
+          "fromOperationId": "OP-02998c714197",
+          "toOperationId": "OP-c6fdfbe4d6ed",
+          "kind": "dispatches_to_handler"
+        },
+        {
+          "fromOperationId": "OP-c6fdfbe4d6ed",
+          "toOperationId": "OP-68a47f951bd8",
+          "kind": "lexical_order"
+        }
+      ],
+      "trace": {
+        "status": "bounded_to_observed_operations",
+        "maxHops": 1,
+        "limitations": []
+      },
+      "label": {
+        "title": "Scanner authorization PDF request page",
+        "description": "Form interface for specifying an event code to generate an authorization PDF."
+      },
+      "confidence": "high"
+    },
+    {
+      "id": "FLOW-a8c704c9df8e",
+      "entrypoint": {
+        "kind": "http_route",
+        "method": "GET",
+        "path": "/pdf/{}",
+        "handler": "pdfForm",
+        "source": "server.js",
+        "line": 546,
+        "surface": "service"
+      },
+      "guards": {
+        "auth": "not_observed",
+        "permission": "not_observed",
+        "markers": []
+      },
+      "operations": [
+        {
+          "id": "OP-5d0cf24949a3",
           "kind": "trigger",
           "confidence": "observed",
           "symbol": "pdfForm",
-          "line": 454
+          "line": 546
         }
       ],
       "operationRelations": [],
@@ -333,8 +530,8 @@
         "limitations": []
       },
       "label": {
-        "title": "GET /pdf/{}",
-        "description": ""
+        "title": "Event badge PDF download",
+        "description": "Direct endpoint for badge PDF document generation using an event identifier."
       },
       "confidence": "high"
     },
@@ -361,11 +558,25 @@
           "confidence": "observed",
           "symbol": "<entrypoint>",
           "line": 97
+        },
+        {
+          "id": "OP-4185630ce467",
+          "kind": "decide",
+          "confidence": "candidate",
+          "symbol": "<anonymous>",
+          "line": 101,
+          "evidence": "if (!requireScannerAuthorization(req, res)) {"
         }
       ],
-      "operationRelations": [],
+      "operationRelations": [
+        {
+          "fromOperationId": "OP-3385cea57177",
+          "toOperationId": "OP-4185630ce467",
+          "kind": "dispatches_to_handler"
+        }
+      ],
       "trace": {
-        "status": "entrypoint_only",
+        "status": "bounded_to_observed_operations",
         "maxHops": 0,
         "limitations": [
           "bounded_window"
@@ -385,7 +596,7 @@
         "path": "/setup",
         "handler": null,
         "source": "server.js",
-        "line": 259,
+        "line": 290,
         "surface": "service"
       },
       "guards": {
@@ -395,38 +606,64 @@
       },
       "operations": [
         {
-          "id": "OP-a4676b55a065",
+          "id": "OP-effd733e895d",
           "kind": "trigger",
           "confidence": "observed",
           "symbol": "<entrypoint>",
-          "line": 259
+          "line": 290
         },
         {
-          "id": "OP-57733f913ee8",
+          "id": "OP-d40007ecaa19",
           "kind": "decide",
           "confidence": "candidate",
           "symbol": "<anonymous>",
-          "line": 263,
+          "line": 294,
+          "evidence": "if (!requireScannerAuthorization(req, res)) {"
+        },
+        {
+          "id": "OP-65ef1c130625",
+          "kind": "decide",
+          "confidence": "candidate",
+          "symbol": "<anonymous>",
+          "line": 298,
           "evidence": "if (req.query.id) {"
         },
         {
-          "id": "OP-9085894f25f1",
+          "id": "OP-301f640b5ed3",
           "kind": "decide",
           "confidence": "candidate",
           "symbol": "<anonymous>",
-          "line": 273,
+          "line": 308,
           "evidence": "if (!codes) {"
+        },
+        {
+          "id": "OP-d7c5031cf034",
+          "kind": "decide",
+          "confidence": "candidate",
+          "symbol": "<anonymous>",
+          "line": 328,
+          "evidence": "if (!requireScannerAuthorization(req, res)) {"
         }
       ],
       "operationRelations": [
         {
-          "fromOperationId": "OP-a4676b55a065",
-          "toOperationId": "OP-57733f913ee8",
+          "fromOperationId": "OP-effd733e895d",
+          "toOperationId": "OP-d40007ecaa19",
           "kind": "dispatches_to_handler"
         },
         {
-          "fromOperationId": "OP-57733f913ee8",
-          "toOperationId": "OP-9085894f25f1",
+          "fromOperationId": "OP-d40007ecaa19",
+          "toOperationId": "OP-65ef1c130625",
+          "kind": "lexical_order"
+        },
+        {
+          "fromOperationId": "OP-65ef1c130625",
+          "toOperationId": "OP-301f640b5ed3",
+          "kind": "lexical_order"
+        },
+        {
+          "fromOperationId": "OP-301f640b5ed3",
+          "toOperationId": "OP-d7c5031cf034",
           "kind": "lexical_order"
         }
       ],
@@ -451,7 +688,7 @@
         "path": "/expire",
         "handler": null,
         "source": "server.js",
-        "line": 928,
+        "line": 1088,
         "surface": "service"
       },
       "guards": {
@@ -461,51 +698,51 @@
       },
       "operations": [
         {
-          "id": "OP-5b44c042aaae",
+          "id": "OP-f5fe072690a2",
           "kind": "trigger",
           "confidence": "observed",
           "symbol": "<entrypoint>",
-          "line": 928
+          "line": 1088
         },
         {
-          "id": "OP-25e1bccd88c3",
+          "id": "OP-b9fbcf62cd41",
           "kind": "decide",
           "confidence": "candidate",
           "symbol": "<anonymous>",
-          "line": 939,
+          "line": 1099,
           "evidence": "if (recordset) {"
         },
         {
-          "id": "OP-6e75c718d98e",
+          "id": "OP-76e167d87d90",
           "kind": "decide",
           "confidence": "candidate",
           "symbol": "<anonymous>",
-          "line": 961,
+          "line": 1121,
           "evidence": "if (fs.existsSync(path)) {"
         },
         {
-          "id": "OP-1a32a6aa6139",
+          "id": "OP-8d134761663c",
           "kind": "decide",
           "confidence": "candidate",
           "symbol": "<anonymous>",
-          "line": 965,
+          "line": 1125,
           "evidence": "if (fs.statSync(path + \"/\" + filename).isDirectory()) {"
         }
       ],
       "operationRelations": [
         {
-          "fromOperationId": "OP-5b44c042aaae",
-          "toOperationId": "OP-25e1bccd88c3",
+          "fromOperationId": "OP-f5fe072690a2",
+          "toOperationId": "OP-b9fbcf62cd41",
           "kind": "dispatches_to_handler"
         },
         {
-          "fromOperationId": "OP-25e1bccd88c3",
-          "toOperationId": "OP-6e75c718d98e",
+          "fromOperationId": "OP-b9fbcf62cd41",
+          "toOperationId": "OP-76e167d87d90",
           "kind": "lexical_order"
         },
         {
-          "fromOperationId": "OP-6e75c718d98e",
-          "toOperationId": "OP-1a32a6aa6139",
+          "fromOperationId": "OP-76e167d87d90",
+          "toOperationId": "OP-8d134761663c",
           "kind": "lexical_order"
         }
       ],
@@ -530,7 +767,7 @@
         "path": "/assets/{}",
         "handler": null,
         "source": "server.js",
-        "line": 985,
+        "line": 1145,
         "surface": "service"
       },
       "guards": {
@@ -540,25 +777,25 @@
       },
       "operations": [
         {
-          "id": "OP-41b674c0311a",
+          "id": "OP-73945a27f720",
           "kind": "trigger",
           "confidence": "observed",
           "symbol": "<entrypoint>",
-          "line": 985
+          "line": 1145
         },
         {
-          "id": "OP-7f5a2beecca3",
+          "id": "OP-a6dd1ad8842e",
           "kind": "decide",
           "confidence": "candidate",
           "symbol": "<anonymous>",
-          "line": 1000,
+          "line": 1160,
           "evidence": "if (err) {"
         }
       ],
       "operationRelations": [
         {
-          "fromOperationId": "OP-41b674c0311a",
-          "toOperationId": "OP-7f5a2beecca3",
+          "fromOperationId": "OP-73945a27f720",
+          "toOperationId": "OP-a6dd1ad8842e",
           "kind": "dispatches_to_handler"
         }
       ],
@@ -583,7 +820,7 @@
         "path": "/setup",
         "handler": null,
         "source": "server.js",
-        "line": 291,
+        "line": 326,
         "surface": "service"
       },
       "guards": {
@@ -593,51 +830,64 @@
       },
       "operations": [
         {
-          "id": "OP-3fa77638df63",
+          "id": "OP-0a92ac46ef7c",
           "kind": "trigger",
           "confidence": "observed",
           "symbol": "<entrypoint>",
-          "line": 291
+          "line": 326
         },
         {
-          "id": "OP-9d6b0707d00e",
-          "kind": "decide",
-          "confidence": "candidate",
-          "symbol": "<anonymous>",
-          "line": 320,
-          "evidence": "if (vendorCode) {"
-        },
-        {
-          "id": "OP-69c1b3179dc4",
-          "kind": "decide",
-          "confidence": "candidate",
-          "symbol": "<anonymous>",
-          "line": 321,
-          "evidence": "if (vendorCode.includes('favicon')) {"
-        },
-        {
-          "id": "OP-ea98f530e4b7",
+          "id": "OP-480e0c014517",
           "kind": "decide",
           "confidence": "candidate",
           "symbol": "<anonymous>",
           "line": 328,
-          "evidence": "if (!referenceCode) {"
+          "evidence": "if (!requireScannerAuthorization(req, res)) {"
+        },
+        {
+          "id": "OP-d000e9d8ef87",
+          "kind": "decide",
+          "confidence": "candidate",
+          "symbol": "<anonymous>",
+          "line": 357,
+          "evidence": "if (!requireScannerAuthorization(req, res)) {"
+        },
+        {
+          "id": "OP-8f5502031378",
+          "kind": "decide",
+          "confidence": "candidate",
+          "symbol": "<anonymous>",
+          "line": 364,
+          "evidence": "if (vendorCode) {"
+        },
+        {
+          "id": "OP-464fbdb99307",
+          "kind": "decide",
+          "confidence": "candidate",
+          "symbol": "<anonymous>",
+          "line": 365,
+          "evidence": "if (vendorCode.includes('favicon')) {"
         }
       ],
       "operationRelations": [
         {
-          "fromOperationId": "OP-3fa77638df63",
-          "toOperationId": "OP-9d6b0707d00e",
+          "fromOperationId": "OP-0a92ac46ef7c",
+          "toOperationId": "OP-480e0c014517",
           "kind": "dispatches_to_handler"
         },
         {
-          "fromOperationId": "OP-9d6b0707d00e",
-          "toOperationId": "OP-69c1b3179dc4",
+          "fromOperationId": "OP-480e0c014517",
+          "toOperationId": "OP-d000e9d8ef87",
           "kind": "lexical_order"
         },
         {
-          "fromOperationId": "OP-69c1b3179dc4",
-          "toOperationId": "OP-ea98f530e4b7",
+          "fromOperationId": "OP-d000e9d8ef87",
+          "toOperationId": "OP-8f5502031378",
+          "kind": "lexical_order"
+        },
+        {
+          "fromOperationId": "OP-8f5502031378",
+          "toOperationId": "OP-464fbdb99307",
           "kind": "lexical_order"
         }
       ],
@@ -653,9 +903,97 @@
         "description": "Form submission endpoint for associating a scanner terminal with an exhibitor code."
       },
       "confidence": "high"
+    },
+    {
+      "id": "FLOW-fe9da4aef5e0",
+      "entrypoint": {
+        "kind": "http_route",
+        "method": "GET",
+        "path": "/authorization-pdf/{}",
+        "handler": "authorizationPdfForm",
+        "source": "server.js",
+        "line": 554,
+        "surface": "service"
+      },
+      "guards": {
+        "auth": "not_observed",
+        "permission": "not_observed",
+        "markers": []
+      },
+      "operations": [
+        {
+          "id": "OP-2b72674f582b",
+          "kind": "trigger",
+          "confidence": "observed",
+          "symbol": "authorizationPdfForm",
+          "line": 554
+        },
+        {
+          "id": "OP-a964224c7098",
+          "kind": "decide",
+          "confidence": "candidate",
+          "symbol": "authorizationPdfForm",
+          "line": 568,
+          "evidence": "if (!eventCode) {"
+        },
+        {
+          "id": "OP-39639fbe43f4",
+          "kind": "decide",
+          "confidence": "candidate",
+          "symbol": "authorizationPdfForm",
+          "line": 577,
+          "evidence": "if (!recordset || recordset.length !== 1) {"
+        }
+      ],
+      "operationRelations": [
+        {
+          "fromOperationId": "OP-2b72674f582b",
+          "toOperationId": "OP-a964224c7098",
+          "kind": "dispatches_to_handler"
+        },
+        {
+          "fromOperationId": "OP-a964224c7098",
+          "toOperationId": "OP-39639fbe43f4",
+          "kind": "lexical_order"
+        }
+      ],
+      "trace": {
+        "status": "bounded_to_observed_operations",
+        "maxHops": 1,
+        "limitations": []
+      },
+      "label": {
+        "title": "Scanner authorization PDF download",
+        "description": "Direct endpoint for authorization QR code PDF document generation using an event code."
+      },
+      "confidence": "high"
     }
   ],
   "journeys": [
+    {
+      "id": "BFLOW-04a29b243003",
+      "coverageStatus": "isolated_segment",
+      "isCausallyComposed": false,
+      "verifiedEdgeCount": 0,
+      "segmentRefs": [
+        "FLOW-6479de10b913"
+      ],
+      "entrySegmentRefs": [
+        "FLOW-6479de10b913"
+      ],
+      "terminalSegmentRefs": [
+        "FLOW-6479de10b913"
+      ],
+      "edges": [],
+      "surfaces": [
+        "service"
+      ],
+      "label": {
+        "name": "Scanner authorization PDF submission",
+        "description": "Submitting an event code to produce an authorization QR code PDF document."
+      },
+      "confidence": "high"
+    },
     {
       "id": "BFLOW-0fd659be6c3a",
       "coverageStatus": "isolated_segment",
@@ -699,8 +1037,32 @@
         "service"
       ],
       "label": {
-        "name": "GET /stored-procedures",
-        "description": ""
+        "name": "View database stored procedures",
+        "description": "Viewing the database stored procedure reference and connection details."
+      },
+      "confidence": "high"
+    },
+    {
+      "id": "BFLOW-6309d4cb3764",
+      "coverageStatus": "isolated_segment",
+      "isCausallyComposed": false,
+      "verifiedEdgeCount": 0,
+      "segmentRefs": [
+        "FLOW-330492c5b72a"
+      ],
+      "entrySegmentRefs": [
+        "FLOW-330492c5b72a"
+      ],
+      "terminalSegmentRefs": [
+        "FLOW-330492c5b72a"
+      ],
+      "edges": [],
+      "surfaces": [
+        "service"
+      ],
+      "label": {
+        "name": "Authorize scanning device",
+        "description": "Authorizing a device to scan badges using an event scanner secret."
       },
       "confidence": "high"
     },
@@ -771,8 +1133,8 @@
         "service"
       ],
       "label": {
-        "name": "GET /pdf",
-        "description": ""
+        "name": "Access badge PDF generation form",
+        "description": "Viewing the badge generation form with print and layout settings."
       },
       "confidence": "high"
     },
@@ -797,6 +1159,30 @@
       "label": {
         "name": "Purge Expired Event Data",
         "description": "Running the automated data cleanup routine for concluded events."
+      },
+      "confidence": "high"
+    },
+    {
+      "id": "BFLOW-a68ff30c48ce",
+      "coverageStatus": "isolated_segment",
+      "isCausallyComposed": false,
+      "verifiedEdgeCount": 0,
+      "segmentRefs": [
+        "FLOW-fe9da4aef5e0"
+      ],
+      "entrySegmentRefs": [
+        "FLOW-fe9da4aef5e0"
+      ],
+      "terminalSegmentRefs": [
+        "FLOW-fe9da4aef5e0"
+      ],
+      "edges": [],
+      "surfaces": [
+        "service"
+      ],
+      "label": {
+        "name": "Retrieve authorization PDF by path parameter",
+        "description": "Requesting the scanner authorization PDF using an event code path parameter."
       },
       "confidence": "high"
     },
@@ -939,8 +1325,32 @@
         "service"
       ],
       "label": {
-        "name": "GET /pdf/{}",
-        "description": ""
+        "name": "Generate badges by event path parameter",
+        "description": "Requesting the attendee badge PDF using an event parameter in the route."
+      },
+      "confidence": "high"
+    },
+    {
+      "id": "BFLOW-eb1b9d7b887a",
+      "coverageStatus": "isolated_segment",
+      "isCausallyComposed": false,
+      "verifiedEdgeCount": 0,
+      "segmentRefs": [
+        "FLOW-96d311b39198"
+      ],
+      "entrySegmentRefs": [
+        "FLOW-96d311b39198"
+      ],
+      "terminalSegmentRefs": [
+        "FLOW-96d311b39198"
+      ],
+      "edges": [],
+      "surfaces": [
+        "service"
+      ],
+      "label": {
+        "name": "Access scanner authorization PDF form",
+        "description": "Viewing the form for requesting scanner authorization QR code PDFs."
       },
       "confidence": "high"
     },

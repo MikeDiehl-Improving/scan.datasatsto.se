@@ -1,0 +1,77 @@
+{
+  "feature_id": "human-readable-authorize-pdf-url",
+  "version": 1,
+  "status": "draft",
+  "scenarios": [
+    {
+      "id": "authorizepdf.readableurl",
+      "title": "Authorization PDF displays human-readable authorization URL",
+      "given": [
+        "An authorization PDF is requested for a device"
+      ],
+      "when": "The user views the generated authorization PDF",
+      "then": [
+        "The PDF displays the authorization URL as readable text in addition to any QR code",
+        "The displayed URL is clear and legible for manual entry"
+      ],
+      "priority": "critical",
+      "negative": false
+    },
+    {
+      "id": "authorizepdf.authorizewithoutqr",
+      "title": "User successfully authorizes device by navigating directly to readable URL",
+      "given": [
+        "An authorization PDF has been generated containing a human-readable authorization URL",
+        "The user accesses the authorization process from a laptop without scanning the QR code"
+      ],
+      "when": "The user enters the readable authorization URL into a web browser on the laptop",
+      "then": [
+        "The user lands on the device authorization screen",
+        "The user can complete authorization for the laptop"
+      ],
+      "priority": "critical",
+      "negative": false
+    },
+    {
+      "id": "authorizepdf.qrandurlmatch",
+      "title": "Human-readable URL matches the destination in the QR code",
+      "given": [
+        "An authorization PDF is generated containing both a QR code and a readable authorization URL"
+      ],
+      "when": "The user inspects both the destination encoded in the QR code and the printed authorization URL",
+      "then": [
+        "Both destinations point to the same device authorization target"
+      ],
+      "priority": "high",
+      "negative": false
+    },
+    {
+      "id": "authorizepdf.notruncation",
+      "title": "Full authorization URL is shown without truncation",
+      "given": [
+        "An authorization session has a long URL containing identifiers or tokens"
+      ],
+      "when": "The authorization PDF is rendered",
+      "then": [
+        "The complete authorization URL is shown without cut-off or hidden characters so all parts can be manually transcribed or copied"
+      ],
+      "priority": "normal",
+      "negative": false
+    },
+    {
+      "id": "authorizepdf.expiredorusedurl",
+      "title": "Navigating to an expired readable authorization URL shows an invalid link message",
+      "given": [
+        "An authorization PDF was generated",
+        "The authorization session for the URL has expired or has already been used"
+      ],
+      "when": "The user enters the readable authorization URL into a browser",
+      "then": [
+        "The user is presented with a message indicating the authorization link is expired or invalid",
+        "The laptop is not authorized"
+      ],
+      "priority": "high",
+      "negative": true
+    }
+  ]
+}

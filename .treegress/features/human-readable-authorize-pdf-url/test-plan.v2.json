@@ -1,0 +1,81 @@
+{
+  "feature_id": "human-readable-authorize-pdf-url",
+  "version": 2,
+  "status": "approved",
+  "approval": {
+    "hash": "sha256:121f533bd41e9a56102d661c8c13f0ca97517bf4100cca35b2e78a73d0a5aec3",
+    "approved_at": "2026-09-14T20:40:19.104Z"
+  },
+  "scenarios": [
+    {
+      "id": "authpdf.displayurl",
+      "title": "Authorization PDF displays human-readable authorization URL",
+      "given": [
+        "A user requests a scanner authorization PDF for a valid setup or event"
+      ],
+      "when": "The user views the generated authorization PDF",
+      "then": [
+        "The document displays a human-readable authorization URL alongside the QR code",
+        "The full authorization URL is plainly readable as text without truncation"
+      ],
+      "priority": "critical",
+      "negative": false
+    },
+    {
+      "id": "authpdf.urlmatchesqr",
+      "title": "Human-readable URL matches the target encoded in the QR code",
+      "given": [
+        "An authorization PDF has been generated with a QR code and a human-readable authorization URL"
+      ],
+      "when": "The user compares the text of the human-readable URL with the destination encoded in the QR code",
+      "then": [
+        "The human-readable URL directs to the identical authorization address encoded by the QR code"
+      ],
+      "priority": "high",
+      "negative": false
+    },
+    {
+      "id": "authpdf.manualauthorization",
+      "title": "User successfully authorizes device by navigating directly to the printed URL",
+      "given": [
+        "A user has an authorization PDF containing a human-readable authorization URL",
+        "The user is using a laptop or browser without scanning the QR code"
+      ],
+      "when": "The user navigates directly to the human-readable authorization URL in their web browser",
+      "then": [
+        "The device is recognized as authorized for scanning",
+        "The user receives confirmation that the scanner setup is complete"
+      ],
+      "priority": "critical",
+      "negative": false
+    },
+    {
+      "id": "authpdf.expiredurl",
+      "title": "Navigating to an authorization URL from an expired authorization PDF shows an authorization error",
+      "given": [
+        "An authorization PDF was generated for an event or session that has expired or been revoked"
+      ],
+      "when": "The user navigates to the human-readable authorization URL shown on the PDF",
+      "then": [
+        "The device is not authorized",
+        "An error message indicating the authorization link has expired or is invalid is displayed"
+      ],
+      "priority": "high",
+      "negative": true
+    },
+    {
+      "id": "authpdf.invalidrequest",
+      "title": "Requesting an authorization PDF with invalid event details fails",
+      "given": [
+        "A user attempts to generate an authorization PDF with missing or non-existent event parameters (e.g. an unknown event code)"
+      ],
+      "when": "The user submits the authorization PDF request",
+      "then": [
+        "An error message indicating invalid event details is presented to the user",
+        "No authorization PDF with an active authorization URL is produced"
+      ],
+      "priority": "normal",
+      "negative": true
+    }
+  ]
+}

@@ -98,6 +98,10 @@ app.get('/', function (req, res, next) {
 
     httpHeaders(res);
 
+    if (!requireScannerAuthorization(req, res)) {
+        return;
+    }
+
     res.status(200).send(createHTML('assets/index.html', {}));
     return;
 
@@ -599,6 +603,16 @@ app.post('/authorization-pdf', async function (req, res, next) {
                 pdf.moveDown(1);
                 pdf.image(qrImage, { fit: [450, 450], align: 'center' });
                 pdf.moveDown(1);
+                pdf.fontSize(10).text('Or open this authorization URL on a laptop:', {
+                    align: 'center'
+                });
+                pdf.moveDown(0.35);
+                pdf.fontSize(9).text(authorizationUrl, {
+                    align: 'center',
+                    link: authorizationUrl,
+                    underline: true
+                });
+                pdf.moveDown(1);
                 pdf.fontSize(11).text(
                     'Each sponsor or Registration phone must scan this code before scanning badges.',
                     { align: 'center' }
@@ -734,7 +748,7 @@ app.post('/pdf', async function (req, res, next) {
         if (shouldUpdateIdentities) {
             const requiredUpdateFields=[
                 'id', 'email', 'firstName', 'lastName', 'name',
-                'description', 'title', 'phone', 'location'
+                'description', 'title', 'phone', 'location', 'role'
             ];
             const invalidRow=selectedIdentities.find(identity =>
                 !requiredUpdateFields.every(field =>
@@ -744,7 +758,7 @@ app.post('/pdf', async function (req, res, next) {
             if (invalidRow) {
                 res.status(400).send(
                     'Saving identity details requires columns: id, email, firstname, lastname, ' +
-                    'name, description, title, phone, and location. Each row must have a valid id.'
+                    'name, description, title, phone, location, and role. Each row must have a valid id.'
                 );
                 return;
             }
@@ -908,6 +922,25 @@ app.post('/pdf', async function (req, res, next) {
                                         lineGap: 1
                                     });
                             }
+                            if (member.role) {
+                                pdf.fontSize(pdfConfig.avery.companyFontSize);
+                                validateAveryElement(pdfConfig.avery, 'role',
+                                    pdfConfig.avery.detailsLeft,
+                                    pdfConfig.avery.detailsTop +
+                                        pdfConfig.avery.detailsHeight -
+                                        pdfConfig.avery.detailsRoleReserve,
+                                    pdfConfig.avery.detailsWidth,
+                                    pdfConfig.avery.detailsRoleReserve);
+                                pdf.text(member.role,
+                                    x+pdfConfig.avery.detailsLeft,
+                                    y+pdfConfig.avery.detailsTop +
+                                        pdfConfig.avery.detailsHeight -
+                                        pdfConfig.avery.detailsRoleReserve, {
+                                        align: 'right',
+                                        width: pdfConfig.avery.detailsWidth,
+                                        height: pdfConfig.avery.detailsRoleReserve
+                                    });
+                            }
 
                         } else if (member.id) {
                             await qr.toFile(dir+'/'+member.id+'.png', 'https://'+pdfConfig.siteName+'/'+member.id, { scale: 10 });
@@ -1024,6 +1057,7 @@ async function parseDelimitedText(dataset) {
     var phoneHeader=selectHeader(headers, ['phone', 'mobile']);
     var descriptionHeader=selectHeader(headers, ['org', 'company']);
     var jobTitleHeader=selectHeader(headers, ['jobtitle', 'title']);
+    var roleHeader=selectHeader(headers, ['role']);
     var location=selectHeader(headers, ['location', 'city', 'state', 'country']);
 
     var data=parsedCsv.map(row => {
@@ -1040,6 +1074,7 @@ async function parseDelimitedText(dataset) {
         if (phoneHeader) { obj.phone=row[phoneHeader]; }
         if (descriptionHeader) { obj.description=row[descriptionHeader]; }
         if (jobTitleHeader) { obj.title=row[jobTitleHeader]; }
+        if (roleHeader) { obj.role=row[roleHeader]; }
         if (location) { obj.location=row[location]; }
         return obj;
     });

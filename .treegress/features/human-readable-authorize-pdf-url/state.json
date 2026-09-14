@@ -1,0 +1,22 @@
+{
+  "feature_id": "human-readable-authorize-pdf-url",
+  "state": "FAILED",
+  "plan_version": 2,
+  "strategy_version": 1,
+  "approvals": {
+    "test_plan": {
+      "version": 2,
+      "hash": "sha256:121f533bd41e9a56102d661c8c13f0ca97517bf4100cca35b2e78a73d0a5aec3",
+      "approved_at": "2026-09-14T20:40:19.104Z",
+      "self_approved": true
+    },
+    "test_strategy": {
+      "version": 1,
+      "hash": "sha256:a8cbf8d05bcb5b483a81fd019e6bc5055f4442400d2e6c960d1f5ceb1a82438a",
+      "approved_at": "2026-09-14T20:40:45.982Z",
+      "self_approved": true
+    }
+  },
+  "last_run_id": "run-004",
+  "updated_at": "2026-09-14T20:43:26.273Z"
+}

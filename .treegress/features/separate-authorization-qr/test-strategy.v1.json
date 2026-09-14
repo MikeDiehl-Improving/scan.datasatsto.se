@@ -1,0 +1,79 @@
+{
+  "feature_id": "separate-authorization-qr",
+  "plan_version": 2,
+  "version": 1,
+  "status": "approved",
+  "approval": {
+    "hash": "sha256:f24c2bbfe4c33e8b6e8ff766006e524a77a5134bf6f2906df4c2e34dd7515d21",
+    "plan_hash": "sha256:1ac7c4cbe074ed0c87098776c8679c6051958e5a9c8a67caa057a50eea827304",
+    "approved_at": "2026-09-14T19:59:44.164Z"
+  },
+  "scenario_strategies": [
+    {
+      "scenario_id": "mainpage.unauthorized",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Proves that an unauthorized request to the main page is blocked from viewing main content and redirected or presented with an authorization prompt",
+          "reason": "At standard verification effort, endpoint authorization and redirect logic is verified via unit tests; this navigation flow would gain e2e-playwright coverage at thorough."
+        }
+      ]
+    },
+    {
+      "scenario_id": "authqr.display",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Proves that the dedicated authorization QR code interface renders the QR code while main page content remains unexposed",
+          "reason": "Validates rendering of the QR authorization surface and isolation of main page content using unit tests; this UI page view would gain e2e-playwright coverage at thorough."
+        }
+      ]
+    },
+    {
+      "scenario_id": "authqr.complete",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Proves that completing authorization via the QR code establishes an authorized session and enables access to the main page",
+          "reason": "Tests authorization completion and subsequent main page accessibility through unit session and route assertions; this end-to-end journey would gain e2e-playwright coverage at thorough."
+        }
+      ]
+    },
+    {
+      "scenario_id": "mainpage.authorized",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Proves that a visitor with a valid authorized session successfully views the main page content",
+          "reason": "Verifies successful access to main page content for authorized sessions via unit tests; this browser navigation would gain e2e-playwright coverage at thorough."
+        }
+      ]
+    },
+    {
+      "scenario_id": "authqr.invalid",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Proves that submitting an invalid authorization code displays an error message, keeps the visitor unauthorized, and denies main page access",
+          "reason": "Validates code verification failure handling, error presentation, and access restriction via unit tests; this user submission flow would gain e2e-playwright coverage at thorough."
+        }
+      ]
+    },
+    {
+      "scenario_id": "mainpage.expired",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Proves that an expired authorization session prevents access to main page content and prompts the visitor to re-authorize",
+          "reason": "Verifies session expiration checks and re-authorization prompting through unit tests; this user session expiry journey would gain e2e-playwright coverage at thorough."
+        }
+      ]
+    }
+  ]
+}

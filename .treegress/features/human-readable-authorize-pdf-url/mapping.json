@@ -1,0 +1,67 @@
+{
+  "feature_id": "human-readable-authorize-pdf-url",
+  "plan_version": 2,
+  "strategy_version": 1,
+  "entries": [
+    {
+      "scenario_id": "authpdf.displayurl",
+      "obligations": [
+        {
+          "skill": "unit",
+          "obligation_id": "authpdf.displayurl.unit.c1",
+          "test_ids": [],
+          "evidence_ids": [],
+          "reused": false
+        }
+      ]
+    },
+    {
+      "scenario_id": "authpdf.urlmatchesqr",
+      "obligations": [
+        {
+          "skill": "unit",
+          "obligation_id": "authpdf.urlmatchesqr.unit.c1",
+          "test_ids": [],
+          "evidence_ids": [],
+          "reused": false
+        }
+      ]
+    },
+    {
+      "scenario_id": "authpdf.manualauthorization",
+      "obligations": [
+        {
+          "skill": "unit",
+          "obligation_id": "authpdf.manualauthorization.unit.c1",
+          "test_ids": [],
+          "evidence_ids": [],
+          "reused": false
+        }
+      ]
+    },
+    {
+      "scenario_id": "authpdf.expiredurl",
+      "obligations": [
+        {
+          "skill": "unit",
+          "obligation_id": "authpdf.expiredurl.unit.c1",
+          "test_ids": [],
+          "evidence_ids": [],
+          "reused": false
+        }
+      ]
+    },
+    {
+      "scenario_id": "authpdf.invalidrequest",
+      "obligations": [
+        {
+          "skill": "unit",
+          "obligation_id": "authpdf.invalidrequest.unit.c1",
+          "test_ids": [],
+          "evidence_ids": [],
+          "reused": false
+        }
+      ]
+    }
+  ]
+}

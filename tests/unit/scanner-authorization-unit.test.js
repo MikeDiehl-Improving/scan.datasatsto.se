@@ -15,6 +15,14 @@ describe('event scanner authorization', () => {
         expect(res.text).toContain('authorization QR code');
     });
 
+    it('does not expose the main page before scanner authorization', async () => {
+        const res = await request(app).get('/');
+
+        expect(res.status).toBe(403);
+        expect(res.text).not.toContain('scan.datasatsto.se API');
+        expect(res.text).toContain('authorization QR code');
+    });
+
     it('authorizes a phone for the event returned by the scanner secret', async () => {
         const agent = request.agent(app);
         queueTediousRows([{
@@ -29,6 +37,10 @@ describe('event scanner authorization', () => {
 
         const setup = await agent.get('/setup');
         expect(setup.status).toBe(200);
+
+        const landingPage = await agent.get('/');
+        expect(landingPage.status).toBe(200);
+        expect(landingPage.text).toContain('scan.datasatsto.se API');
     });
 
     it('rejects an invalid or expired organizer QR', async () => {

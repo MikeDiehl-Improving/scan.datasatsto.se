@@ -12,17 +12,42 @@
 
     <title>Print scanner authorization QR code</title>
 </head>
-<body class="pdf">
+<body class="pdf authorization-pdf">
 
-    <div class="msgbox">
-        <h1>Print scanner authorization QR code</h1>
-        <p>Enter the event's EventCode. The PDF contains the QR code that sponsor representatives and Registration should scan before scanning badges.</p>
-        <form action="/authorization-pdf" method="post" autocomplete="off">
-            <label for="eventCode">EventCode:</label>
-            <input id="eventCode" type="text" name="eventCode" placeholder="EventCode (required)" value="<%=EventCode%>" required/>
-            <input type="submit" value="Generate PDF"/>
-        </form>
-    </div>
+    <main class="authorization-shell">
+        <section class="authorization-intro" aria-labelledby="authorization-title">
+            <div class="brand-mark" aria-hidden="true">QR</div>
+            <p class="eyebrow">Scanner setup</p>
+            <h1 id="authorization-title">Print scanner authorization</h1>
+            <p class="intro-copy">Create a printable QR code that authorizes sponsor representatives and Registration to scan badges for your event.</p>
+            <div class="workflow">
+                <div class="workflow-step">
+                    <span>01</span>
+                    <p>Enter your event code</p>
+                </div>
+                <div class="workflow-step">
+                    <span>02</span>
+                    <p>Print the authorization PDF</p>
+                </div>
+                <div class="workflow-step">
+                    <span>03</span>
+                    <p>Scan it before badge scanning</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="authorization-card" aria-labelledby="form-title">
+            <p class="card-kicker">Generate a PDF</p>
+            <h2 id="form-title">Enter your event code</h2>
+            <p class="card-copy">The code is available in your event setup details.</p>
+            <form action="/authorization-pdf" method="post" autocomplete="off">
+                <label for="eventCode">Event code</label>
+                <input id="eventCode" type="text" name="eventCode" placeholder="e.g. 12345678..." value="<%=EventCode%>" required/>
+                <button type="submit">Generate authorization PDF <span aria-hidden="true">&rarr;</span></button>
+            </form>
+            <p class="form-note"><span aria-hidden="true">&#126;</span> Your code is used only to find the event.</p>
+        </section>
+    </main>
 
 </body>
 </html>
