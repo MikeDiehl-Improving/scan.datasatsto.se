@@ -324,9 +324,27 @@ function newScan(req, res, next) {
         }
     }
 
-    var referenceCode=decodeURI(vendorCode || '') || req.session.vendorCode || "";
+    const cookieVendorCode = typeof req.session.vendorCode === 'string'
+        ? req.session.vendorCode.trim()
+        : '';
+    var referenceCode=decodeURI(vendorCode || '') || cookieVendorCode;
+
     if (!referenceCode) {
         res.redirect('/setup?id='+parseInt(id));
+        return;
+    }
+
+    // A QR code opens this route with GET and no vendor code in the URL.
+    // Show the note form before recording the scan; the form submits back via POST.
+    if (req.method === 'GET' && !vendorCode) {
+        httpHeaders(res);
+        res.status(200).send(createHTML('assets/scan.html', {
+            "ID": parseInt(id),
+            "Vendor": referenceCode
+                ? '<div class="scan-vendor">Vendor code: ' +
+                    simpleHtmlEncode(referenceCode) + '</div>'
+                : ''
+        }));
         return;
     }
 

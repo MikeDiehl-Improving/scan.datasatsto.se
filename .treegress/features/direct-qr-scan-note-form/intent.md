@@ -1,0 +1,1 @@
+For every direct QR scan, show a note form before submission with a clear “Submit without note” option. When the vendor has already been selected via the cookie, display the vendor code in the scan flow.

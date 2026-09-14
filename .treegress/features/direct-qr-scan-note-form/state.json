@@ -1,0 +1,22 @@
+{
+  "feature_id": "direct-qr-scan-note-form",
+  "state": "REVIEWED",
+  "plan_version": 2,
+  "strategy_version": 1,
+  "approvals": {
+    "test_plan": {
+      "version": 2,
+      "hash": "sha256:d562df250e07ea55b601fc1c71b2c99e6cfc6e64e2363577fafaee573afefdfb",
+      "approved_at": "2026-09-14T14:54:26.497Z",
+      "self_approved": true
+    },
+    "test_strategy": {
+      "version": 1,
+      "hash": "sha256:ec597df2764c159d5c68a2625ac1eca9fb58d9ba628f3576fb8f4e8a33aa66a6",
+      "approved_at": "2026-09-14T14:54:43.148Z",
+      "self_approved": true
+    }
+  },
+  "last_run_id": "run-003",
+  "updated_at": "2026-09-14T14:59:56.682Z"
+}

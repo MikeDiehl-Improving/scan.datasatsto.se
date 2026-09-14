@@ -1,0 +1,90 @@
+{
+  "feature_id": "direct-qr-scan-note-form",
+  "plan_version": 2,
+  "version": 1,
+  "status": "approved",
+  "approval": {
+    "hash": "sha256:ec597df2764c159d5c68a2625ac1eca9fb58d9ba628f3576fb8f4e8a33aa66a6",
+    "plan_hash": "sha256:d562df250e07ea55b601fc1c71b2c99e6cfc6e64e2363577fafaee573afefdfb",
+    "approved_at": "2026-09-14T14:54:43.148Z"
+  },
+  "scenario_strategies": [
+    {
+      "scenario_id": "qrscan.noteform.initial",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Direct QR scan handler and template model ensure note form is presented with 'Submit without note' option before finalizing",
+          "reason": "Unit tests in Vitest verify state setup and view data logic for the initial scan flow."
+        }
+      ]
+    },
+    {
+      "scenario_id": "qrscan.noteform.submitwithnote",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Scan submission handler processes entered note and returns confirmation state indicating note was recorded",
+          "reason": "Unit tests in Vitest verify submission logic and confirmation response payload with note."
+        }
+      ]
+    },
+    {
+      "scenario_id": "qrscan.noteform.submitwithoutnote",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Scan submission handler completes successfully with null/omitted note and returns confirmation when 'Submit without note' is triggered",
+          "reason": "Unit tests in Vitest verify the direct submit-without-note action path and resulting confirmation."
+        }
+      ]
+    },
+    {
+      "scenario_id": "qrscan.noteform.submitemptynote",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Primary submission handler normalizes empty note input to submit without note and returns confirmation",
+          "reason": "Unit tests in Vitest verify empty note field handling during standard form submission."
+        }
+      ]
+    },
+    {
+      "scenario_id": "qrscan.vendorcookie.present",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Vendor cookie parser and context builder extract valid vendor code and include it in the scan view data",
+          "reason": "Unit tests in Vitest verify extraction and propagation of vendor code from cookie into the scan flow."
+        }
+      ]
+    },
+    {
+      "scenario_id": "qrscan.vendorcookie.absent",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Vendor context builder omits vendor code from scan view data when vendor cookie is absent",
+          "reason": "Unit tests in Vitest verify default behaviour when no vendor cookie is provided."
+        }
+      ]
+    },
+    {
+      "scenario_id": "qrscan.vendorcookie.invalid",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Vendor cookie parser treats empty or whitespace-only cookie values as invalid and excludes vendor code from scan view data",
+          "reason": "Unit tests in Vitest verify sanitization and rejection of blank vendor cookie values."
+        }
+      ]
+    }
+  ]
+}

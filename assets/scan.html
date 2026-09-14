@@ -1,0 +1,30 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html>
+<head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type"/>
+    <meta content="utf-8" http-equiv="encoding"/>
+    <meta name="viewport" content="width=device-width, initial-scale=0.5">
+
+    <link rel="shortcut icon" href="/assets/favicon.png" type="image/png">
+    <link rel="icon" href="/assets/favicon.png" type="image/png">
+
+    <link rel="stylesheet" href="/assets/style.css"/>
+
+    <title>Scan note</title>
+</head>
+<body class="scan">
+
+    <div class="msgbox">
+        <form action="/<%=ID%>" method="post">
+            <%=Vendor%>
+            <label for="note">Note</label>
+            <textarea id="note" name="note" placeholder="Notes"></textarea>
+            <div class="scan-actions">
+                <input type="submit" value="Submit"/>
+                <button type="submit">Submit without note</button>
+            </div>
+        </form>
+    </div>
+
+</body>
+</html>

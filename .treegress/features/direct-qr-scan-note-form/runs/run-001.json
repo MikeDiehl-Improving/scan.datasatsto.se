@@ -1,0 +1,16 @@
+{
+  "run_id": "run-001",
+  "feature_id": "direct-qr-scan-note-form",
+  "trigger": "verify",
+  "started_at": "2026-09-14T14:56:52.984Z",
+  "finished_at": "2026-09-14T14:56:54.004Z",
+  "results": [
+    {
+      "evidence_id": "run-001:test-0",
+      "skill": "unit",
+      "test_id": "unit:__run__",
+      "status": "failed",
+      "exit_code": 1
+    }
+  ]
+}

@@ -1,0 +1,76 @@
+{
+  "feature_id": "direct-qr-scan-note-form",
+  "version": 1,
+  "status": "draft",
+  "scenarios": [
+    {
+      "id": "qrscan.shownoteform",
+      "title": "Direct QR scan displays note form before submission",
+      "given": [
+        "the user initiates a direct QR scan"
+      ],
+      "when": "the QR code is scanned",
+      "then": [
+        "a note form is displayed before submission occurs",
+        "a clear option to submit without a note is visible to the user"
+      ],
+      "priority": "critical",
+      "negative": false
+    },
+    {
+      "id": "qrscan.submitwithnote",
+      "title": "Submit direct QR scan with a note",
+      "given": [
+        "the user has scanned a direct QR code",
+        "the note form is currently displayed"
+      ],
+      "when": "the user enters note text (e.g. 'Priority delivery') and submits",
+      "then": [
+        "the scan submission completes successfully with the note included"
+      ],
+      "priority": "high",
+      "negative": false
+    },
+    {
+      "id": "qrscan.submitwithoutnote",
+      "title": "Submit direct QR scan without a note",
+      "given": [
+        "the user has scanned a direct QR code",
+        "the note form is currently displayed"
+      ],
+      "when": "the user chooses the option to submit without a note",
+      "then": [
+        "the scan submission proceeds without requiring note input",
+        "the scan submission completes successfully with no note attached"
+      ],
+      "priority": "critical",
+      "negative": false
+    },
+    {
+      "id": "qrscan.vendorcodedisplayed",
+      "title": "Vendor code is displayed when vendor was preselected via cookie",
+      "given": [
+        "a vendor has already been selected via cookie (e.g. vendor code 'VND123')"
+      ],
+      "when": "the user performs a direct QR scan",
+      "then": [
+        "the preselected vendor code is visibly displayed within the scan flow"
+      ],
+      "priority": "high",
+      "negative": false
+    },
+    {
+      "id": "qrscan.novendorcookie",
+      "title": "Vendor code is omitted when no vendor is selected via cookie",
+      "given": [
+        "no vendor has been selected via cookie"
+      ],
+      "when": "the user performs a direct QR scan",
+      "then": [
+        "no vendor code is displayed in the scan flow"
+      ],
+      "priority": "normal",
+      "negative": true
+    }
+  ]
+}

@@ -1,0 +1,133 @@
+{
+  "feature_id": "direct-qr-scan-note-form",
+  "plan_version": 2,
+  "strategy_version": 1,
+  "entries": [
+    {
+      "scenario_id": "qrscan.noteform.initial",
+      "obligations": [
+        {
+          "skill": "unit",
+          "obligation_id": "qrscan.noteform.initial.unit.c1",
+          "test_ids": [
+            "unit:tests/unit/qrscan-noteform#shows-the-form-and-a-submit-without-note-option-before-recording"
+          ],
+          "evidence_ids": [
+            "run-003:test-0"
+          ],
+          "reused": true,
+          "user_authored": true
+        }
+      ],
+      "review_status": "PARTIAL"
+    },
+    {
+      "scenario_id": "qrscan.noteform.submitwithnote",
+      "obligations": [
+        {
+          "skill": "unit",
+          "obligation_id": "qrscan.noteform.submitwithnote.unit.c1",
+          "test_ids": [
+            "unit:tests/unit/qrscan-noteform#passes-an-entered-note-to-scan-submission"
+          ],
+          "evidence_ids": [
+            "run-003:test-1"
+          ],
+          "reused": true,
+          "user_authored": true
+        }
+      ],
+      "review_status": "PARTIAL"
+    },
+    {
+      "scenario_id": "qrscan.noteform.submitwithoutnote",
+      "obligations": [
+        {
+          "skill": "unit",
+          "obligation_id": "qrscan.noteform.submitwithoutnote.unit.c1",
+          "test_ids": [
+            "unit:tests/unit/qrscan-noteform#submits-an-empty-note-from-the-secondary-action"
+          ],
+          "evidence_ids": [
+            "run-003:test-2"
+          ],
+          "reused": true,
+          "user_authored": true
+        }
+      ],
+      "review_status": "PARTIAL"
+    },
+    {
+      "scenario_id": "qrscan.noteform.submitemptynote",
+      "obligations": [
+        {
+          "skill": "unit",
+          "obligation_id": "qrscan.noteform.submitemptynote.unit.c1",
+          "test_ids": [
+            "unit:tests/unit/qrscan-noteform#normalizes-an-empty-note-to-an-empty-database-value"
+          ],
+          "evidence_ids": [
+            "run-003:test-3"
+          ],
+          "reused": true,
+          "user_authored": true
+        }
+      ],
+      "review_status": "PARTIAL"
+    },
+    {
+      "scenario_id": "qrscan.vendorcookie.present",
+      "obligations": [
+        {
+          "skill": "unit",
+          "obligation_id": "qrscan.vendorcookie.present.unit.c1",
+          "test_ids": [
+            "unit:tests/unit/qrscan-noteform#includes-a-selected-vendor-code-in-the-scan-view"
+          ],
+          "evidence_ids": [
+            "run-003:test-4"
+          ],
+          "reused": true,
+          "user_authored": true
+        }
+      ],
+      "review_status": "PARTIAL"
+    },
+    {
+      "scenario_id": "qrscan.vendorcookie.absent",
+      "obligations": [
+        {
+          "skill": "unit",
+          "obligation_id": "qrscan.vendorcookie.absent.unit.c1",
+          "test_ids": [
+            "unit:tests/unit/qrscan-noteform#omits-the-vendor-line-when-no-vendor-cookie-is-selected"
+          ],
+          "evidence_ids": [
+            "run-003:test-5"
+          ],
+          "reused": true,
+          "user_authored": true
+        }
+      ],
+      "review_status": "PARTIAL"
+    },
+    {
+      "scenario_id": "qrscan.vendorcookie.invalid",
+      "obligations": [
+        {
+          "skill": "unit",
+          "obligation_id": "qrscan.vendorcookie.invalid.unit.c1",
+          "test_ids": [
+            "unit:tests/unit/qrscan-noteform#rejects-whitespace-only-vendor-cookie-values"
+          ],
+          "evidence_ids": [
+            "run-003:test-6"
+          ],
+          "reused": true,
+          "user_authored": true
+        }
+      ],
+      "review_status": "PARTIAL"
+    }
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "run_id": "run-002",
+  "feature_id": "direct-qr-scan-note-form",
+  "trigger": "rerun",
+  "started_at": "2026-09-14T14:58:02.143Z",
+  "finished_at": "2026-09-14T14:58:03.209Z",
+  "results": [
+    {
+      "evidence_id": "run-002:test-0",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/qrscan-noteform#shows-the-form-and-a-submit-without-note-option-before-recording",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 1
+    },
+    {
+      "evidence_id": "run-002:test-1",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/qrscan-noteform#passes-an-entered-note-to-scan-submission",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 0
+    },
+    {
+      "evidence_id": "run-002:test-2",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/qrscan-noteform#submits-an-empty-note-from-the-secondary-action",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 0
+    },
+    {
+      "evidence_id": "run-002:test-3",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/qrscan-noteform#normalizes-an-empty-note-to-an-empty-database-value",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 0
+    },
+    {
+      "evidence_id": "run-002:test-4",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/qrscan-noteform#includes-a-selected-vendor-code-in-the-scan-view",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 0
+    },
+    {
+      "evidence_id": "run-002:test-5",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/qrscan-noteform#omits-the-vendor-line-when-no-vendor-cookie-is-selected",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 0
+    },
+    {
+      "evidence_id": "run-002:test-6",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/qrscan-noteform#rejects-whitespace-only-vendor-cookie-values",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 0
+    }
+  ]
+}

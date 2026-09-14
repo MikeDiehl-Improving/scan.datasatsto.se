@@ -1,0 +1,130 @@
+{
+  "feature_id": "direct-qr-scan-note-form",
+  "plan_version": 2,
+  "plan_hash": "sha256:d562df250e07ea55b601fc1c71b2c99e6cfc6e64e2363577fafaee573afefdfb",
+  "strategy_version": 1,
+  "strategy_hash": "sha256:ec597df2764c159d5c68a2625ac1eca9fb58d9ba628f3576fb8f4e8a33aa66a6",
+  "run_id": "run-003",
+  "reviewed_at": "2026-09-14T14:59:56.668Z",
+  "scenario_verdicts": [
+    {
+      "scenario_id": "qrscan.noteform.initial",
+      "status": "PARTIAL",
+      "then_coverage": [
+        {
+          "clause_index": 0,
+          "covered": false,
+          "note": "The test only performs static substring matching on server.js and scan.html without executing the handler or proving that a note entry form is presented before scan finalization."
+        },
+        {
+          "clause_index": 1,
+          "covered": false,
+          "note": "The test only checks for a raw substring in the template file and does not execute the interface or prove that an option labeled 'Submit without note' is visible on the form."
+        }
+      ],
+      "rationale": "then-clause(s) not traced to a passing assertion: [0, 1]. The mapped test only checks static text in source files via readFileSync and does not execute the scan route, render the template, or verify form presentation."
+    },
+    {
+      "scenario_id": "qrscan.noteform.submitwithnote",
+      "status": "PARTIAL",
+      "then_coverage": [
+        {
+          "clause_index": 0,
+          "covered": false,
+          "note": "The test only checks static strings in server.js ('note = req.body.note || \"\"' and '@Note=@Note') without executing form submission or verifying successful completion."
+        },
+        {
+          "clause_index": 1,
+          "covered": false,
+          "note": "The test makes no assertion regarding confirmation display after submission."
+        }
+      ],
+      "rationale": "then-clause(s) not traced to a passing assertion: [0, 1]. Static source code string checks do not execute the submission handler or verify successful submission and confirmation display."
+    },
+    {
+      "scenario_id": "qrscan.noteform.submitwithoutnote",
+      "status": "PARTIAL",
+      "then_coverage": [
+        {
+          "clause_index": 0,
+          "covered": false,
+          "note": "The test only checks static strings in scan.html and server.js; it does not execute the submission action or prove that it completes successfully."
+        },
+        {
+          "clause_index": 1,
+          "covered": false,
+          "note": "The test asserts nothing about confirmation display after submission."
+        }
+      ],
+      "rationale": "then-clause(s) not traced to a passing assertion: [0, 1]. The test asserts static string fragments rather than executing the submit-without-note action and verifying confirmation."
+    },
+    {
+      "scenario_id": "qrscan.noteform.submitemptynote",
+      "status": "PARTIAL",
+      "then_coverage": [
+        {
+          "clause_index": 0,
+          "covered": false,
+          "note": "The test only asserts a static code string in server.js and does not execute form submission with an empty note or verify successful completion."
+        },
+        {
+          "clause_index": 1,
+          "covered": false,
+          "note": "The test asserts nothing about confirmation display after submission."
+        }
+      ],
+      "rationale": "then-clause(s) not traced to a passing assertion: [0, 1]. Static string inspection of server.js does not execute submission with an empty note or verify completion and confirmation."
+    },
+    {
+      "scenario_id": "qrscan.vendorcookie.present",
+      "status": "PARTIAL",
+      "then_coverage": [
+        {
+          "clause_index": 0,
+          "covered": false,
+          "note": "The test makes no assertion that the note form is displayed."
+        },
+        {
+          "clause_index": 1,
+          "covered": false,
+          "note": "The test only checks static strings in server.js ('req.session.vendorCode' and 'Vendor code: ') without executing the flow with a vendor cookie or verifying vendor code display."
+        }
+      ],
+      "rationale": "then-clause(s) not traced to a passing assertion: [0, 1]. The test does not execute the scan route with a vendor cookie and asserts nothing about the note form being displayed or vendor code rendering."
+    },
+    {
+      "scenario_id": "qrscan.vendorcookie.absent",
+      "status": "PARTIAL",
+      "then_coverage": [
+        {
+          "clause_index": 0,
+          "covered": false,
+          "note": "The test makes no assertion that the note form is displayed."
+        },
+        {
+          "clause_index": 1,
+          "covered": false,
+          "note": "The test only checks static substrings in server.js and scan.html without executing the scan flow without cookies or proving vendor code omission."
+        }
+      ],
+      "rationale": "then-clause(s) not traced to a passing assertion: [0, 1]. Static source code checks do not execute the scan flow in the absence of vendor cookies or verify note form display and vendor code omission."
+    },
+    {
+      "scenario_id": "qrscan.vendorcookie.invalid",
+      "status": "PARTIAL",
+      "then_coverage": [
+        {
+          "clause_index": 0,
+          "covered": false,
+          "note": "The test makes no assertion that the note form is displayed."
+        },
+        {
+          "clause_index": 1,
+          "covered": false,
+          "note": "The test only checks for 'req.session.vendorCode.trim()' in server.js without testing blank cookie values or verifying vendor code omission."
+        }
+      ],
+      "rationale": "then-clause(s) not traced to a passing assertion: [0, 1]. Static code inspection does not execute the scan link with invalid cookie values or verify note form display and vendor code exclusion."
+    }
+  ]
+}

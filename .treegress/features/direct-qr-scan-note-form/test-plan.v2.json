@@ -1,0 +1,111 @@
+{
+  "feature_id": "direct-qr-scan-note-form",
+  "version": 2,
+  "status": "approved",
+  "approval": {
+    "hash": "sha256:d562df250e07ea55b601fc1c71b2c99e6cfc6e64e2363577fafaee573afefdfb",
+    "approved_at": "2026-09-14T14:54:26.497Z"
+  },
+  "scenarios": [
+    {
+      "id": "qrscan.noteform.initial",
+      "title": "Direct QR scan displays note form before submission",
+      "given": [
+        "a user accesses a direct QR scan link for a badge"
+      ],
+      "when": "the direct QR scan interface loads",
+      "then": [
+        "a note entry form is presented to the user before the scan is finalized",
+        "a clear option labeled \"Submit without note\" is visible on the form"
+      ],
+      "priority": "critical",
+      "negative": false
+    },
+    {
+      "id": "qrscan.noteform.submitwithnote",
+      "title": "Submit scan with an entered note",
+      "given": [
+        "the direct QR scan note form is displayed",
+        "the user has entered a note (e.g. \"Met at booth 12\")"
+      ],
+      "when": "the user submits the note form",
+      "then": [
+        "the scan submission completes successfully",
+        "confirmation that the scan was recorded with the note is displayed"
+      ],
+      "priority": "high",
+      "negative": false
+    },
+    {
+      "id": "qrscan.noteform.submitwithoutnote",
+      "title": "Submit scan using the submit without note option",
+      "given": [
+        "the direct QR scan note form is displayed"
+      ],
+      "when": "the user chooses the \"Submit without note\" option",
+      "then": [
+        "the scan submission completes successfully",
+        "confirmation that the scan was recorded without a note is displayed"
+      ],
+      "priority": "high",
+      "negative": false
+    },
+    {
+      "id": "qrscan.noteform.submitemptynote",
+      "title": "Submit scan using standard submit with empty note input",
+      "given": [
+        "the direct QR scan note form is displayed",
+        "the note input field is left empty"
+      ],
+      "when": "the user submits the form using the primary submit button",
+      "then": [
+        "the scan submission completes successfully without a note",
+        "confirmation that the scan was recorded is displayed"
+      ],
+      "priority": "normal",
+      "negative": false
+    },
+    {
+      "id": "qrscan.vendorcookie.present",
+      "title": "Display vendor code when vendor has already been selected via cookie",
+      "given": [
+        "a vendor has already been selected via cookie (e.g. vendor code \"VEND101\")"
+      ],
+      "when": "the user accesses a direct QR scan link",
+      "then": [
+        "the note form is displayed",
+        "the selected vendor code (e.g. \"VEND101\") is visibly displayed in the scan flow"
+      ],
+      "priority": "high",
+      "negative": false
+    },
+    {
+      "id": "qrscan.vendorcookie.absent",
+      "title": "Vendor code is omitted when vendor cookie is not present",
+      "given": [
+        "no vendor has been selected and no vendor cookie is present"
+      ],
+      "when": "the user accesses a direct QR scan link",
+      "then": [
+        "the note form is displayed",
+        "no vendor code is displayed in the scan flow"
+      ],
+      "priority": "normal",
+      "negative": true
+    },
+    {
+      "id": "qrscan.vendorcookie.invalid",
+      "title": "Vendor code is omitted when vendor cookie is blank or invalid",
+      "given": [
+        "the vendor cookie is present but contains an empty or whitespace value"
+      ],
+      "when": "the user accesses a direct QR scan link",
+      "then": [
+        "the note form is displayed",
+        "no vendor code is displayed in the scan flow"
+      ],
+      "priority": "low",
+      "negative": true
+    }
+  ]
+}
