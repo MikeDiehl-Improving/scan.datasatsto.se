@@ -6,6 +6,11 @@ param(
     [Alias("ReportCsvPath")]
     [string]$CustomQuestionsResponsesCsvPath,
 
+    [Alias("OrganizersVolunteersCsvPath")]
+    [string]$OrganizersAndVolunteersCsvPath,
+
+    [string]$SpeakerListCsvPath,
+
     [string]$OutputPath = ".\eventbrite-identities.sql"
 )
 
@@ -32,6 +37,102 @@ function Import-ReportCsv {
 function Get-Field {
     param($Row, [string]$Name)
     return ([string]$Row.$Name).Trim()
+}
+
+function Get-NormalizedMatchValue {
+    param([string]$Value)
+    return (([string]$Value).Trim().ToLowerInvariant() -replace '[^\p{L}\p{Nd}]', '')
+}
+
+function Get-NameMatchKey {
+    param([string]$FirstName, [string]$LastName)
+    return Get-NormalizedMatchValue ((@($FirstName, $LastName) | Where-Object { $_ }) -join " ")
+}
+
+function Get-RolePriority {
+    param([string]$Role)
+    switch ($Role) {
+        "Speaker" { return 3 }
+        "Organizer" { return 2 }
+        "Volunteer" { return 1 }
+        default { return 0 }
+    }
+}
+
+function Get-CanonicalRole {
+    param([string]$Role)
+    switch ((Get-NormalizedMatchValue $Role)) {
+        "speaker" { return "Speaker" }
+        "organizer" { return "Organizer" }
+        "volunteer" { return "Volunteer" }
+        "vollunteer" { return "Volunteer" }
+        default { return "" }
+    }
+}
+
+function Get-SupplementalPersonKey {
+    param($Row)
+    $email = Get-NormalizedMatchValue (Get-Field $Row "Email")
+    if ($email) {
+        return "email:$email"
+    }
+    return "name:$(Get-NameMatchKey (Get-Field $Row 'FirstName') (Get-Field $Row 'LastName'))"
+}
+
+function Get-SpeakerIdentityId {
+    param([string]$SpeakerId)
+    if (-not $SpeakerId) {
+        return $null
+    }
+
+    $sha256 = [System.Security.Cryptography.SHA256]::Create()
+    try {
+        $bytes = [System.Text.Encoding]::UTF8.GetBytes($SpeakerId.Trim().ToLowerInvariant())
+        $hash = $sha256.ComputeHash($bytes)
+        $hashPrefix = [System.BitConverter]::ToString($hash).Replace("-", "").Substring(0, 12)
+        return ([bigint]100000000000000 + [Convert]::ToInt64($hashPrefix, 16)).ToString()
+    } finally {
+        $sha256.Dispose()
+    }
+}
+
+function Add-RoleToIdentity {
+    param($Identity, [string]$Role)
+    $canonicalRole = Get-CanonicalRole $Role
+    if (-not $canonicalRole) {
+        return
+    }
+    if ((Get-RolePriority $canonicalRole) -gt (Get-RolePriority $Identity.role)) {
+        $Identity.role = $canonicalRole
+    }
+}
+
+function Add-SupplementalPerson {
+    param($People, $Person)
+    $personEmail = Get-NormalizedMatchValue $Person.Email
+    $personName = Get-NameMatchKey $Person.FirstName $Person.LastName
+    foreach ($existing in @($People.Values)) {
+        $existingEmail = Get-NormalizedMatchValue $existing.Email
+        $existingName = Get-NameMatchKey $existing.FirstName $existing.LastName
+        if (($personEmail -and $personEmail -eq $existingEmail) -or
+            ($personName -and $personName -eq $existingName)) {
+            Add-RoleToIdentity $existing $Person.Role
+            if (-not $existing.Email -and $Person.Email) {
+                $existing.Email = $Person.Email
+            }
+            if (-not $existing.Phone -and $Person.Phone) {
+                $existing.Phone = $Person.Phone
+            }
+            if (-not $existing.SpeakerId -and $Person.SpeakerId) {
+                $existing.SpeakerId = $Person.SpeakerId
+            }
+            if (-not $existing.Description -and $Person.Description) {
+                $existing.Description = $Person.Description
+            }
+            return
+        }
+    }
+    $People[(Get-SupplementalPersonKey $Person)] = $Person
 }
 
 function Get-ReportMatchKey {
@@ -120,6 +221,68 @@ $attendeeRowsWithIdentityDataCount = $rows.Count
 $attendeeRowsWithoutIdentityDataCount = $attendeeSourceRowCount - $attendeeRowsWithIdentityDataCount
 if ($rows.Count -eq 0) {
     throw "The CSV contains no attendee rows."
+}
+
+$supplementalPeople = [ordered]@{}
+if ($OrganizersAndVolunteersCsvPath) {
+    $organizerVolunteerRows = @(Import-Csv -LiteralPath $OrganizersAndVolunteersCsvPath)
+    if ($organizerVolunteerRows.Count -gt 0) {
+        $requiredSupplementalColumns = @("Name", "Email", "Role")
+        $missingSupplementalColumns = @($requiredSupplementalColumns | Where-Object {
+            -not $organizerVolunteerRows[0].PSObject.Properties.Name.Contains($_)
+        })
+        if ($missingSupplementalColumns.Count -gt 0) {
+            throw "Organizers and volunteers CSV is missing required columns: $($missingSupplementalColumns -join ', ')"
+        }
+        foreach ($sourceRow in $organizerVolunteerRows) {
+            $nameParts = (Get-Field $sourceRow "Name") -split '\s+', 2
+            $person = [pscustomobject]@{
+                FirstName = if ($nameParts.Count -gt 0) { $nameParts[0] } else { "" }
+                LastName = if ($nameParts.Count -gt 1) { $nameParts[1] } else { "" }
+                Email = Get-Field $sourceRow "Email"
+                Role = Get-CanonicalRole (Get-Field $sourceRow "Role")
+                Phone = ""
+                SpeakerId = ""
+                Description = ""
+            }
+            if (-not ($person.Email -or $person.FirstName -or $person.LastName)) {
+                Write-Warning "Ignoring organizer/volunteer row with no name or email."
+                continue
+            }
+            if (-not $person.Role) {
+                throw "Unsupported organizer/volunteer role '$($sourceRow.Role)' for '$($sourceRow.Name)'."
+            }
+            Add-SupplementalPerson $supplementalPeople $person
+        }
+    }
+}
+if ($SpeakerListCsvPath) {
+    $speakerRows = @(Import-Csv -LiteralPath $SpeakerListCsvPath)
+    if ($speakerRows.Count -gt 0) {
+        $requiredSpeakerColumns = @("FirstName", "LastName", "Email")
+        $missingSpeakerColumns = @($requiredSpeakerColumns | Where-Object {
+            -not $speakerRows[0].PSObject.Properties.Name.Contains($_)
+        })
+        if ($missingSpeakerColumns.Count -gt 0) {
+            throw "Speaker list CSV is missing required columns: $($missingSpeakerColumns -join ', ')"
+        }
+        foreach ($sourceRow in $speakerRows) {
+            $person = [pscustomobject]@{
+                FirstName = Get-Field $sourceRow "FirstName"
+                LastName = Get-Field $sourceRow "LastName"
+                Email = Get-Field $sourceRow "Email"
+                Role = "Speaker"
+                Phone = Get-Field $sourceRow "Cell Phone"
+                SpeakerId = Get-Field $sourceRow "Speaker Id"
+                Description = Get-Field $sourceRow "TagLine"
+            }
+            if (-not ($person.Email -or $person.FirstName -or $person.LastName)) {
+                Write-Warning "Ignoring speaker row with no name or email."
+                continue
+            }
+            Add-SupplementalPerson $supplementalPeople $person
+        }
+    }
 }
 
 $reportByKey = @{}
@@ -324,6 +487,7 @@ foreach ($group in $groups) {
             phone = Get-Field $row "Phone number"
             email = Get-Field $row "Attendee email"
             location = $location
+            role = $null
         })
         $nextSequenceByOrder[$group.Name] = $sequence
     }
@@ -364,10 +528,77 @@ foreach ($fallbackGroup in @($fallbackReportRows | Group-Object { Get-Field $_ "
             phone = ""
             email = Get-Field $reportRow "Email"
             location = ""
+            role = $null
         })
         Write-Warning "No row found in the Attendees report for Custom Questions Responses Row (line $($reportRow.SourceLine)): Order=$orderId, Name='$($name -join " ")', Email='$(Get-Field $reportRow "Email")'. Identity data was populated from the Custom Questions Responses row"
     }
     $nextSequenceByOrder[$orderId] = $sequence
+}
+
+$identityByEmail = @{}
+$identityByName = @{}
+foreach ($identity in $identities) {
+    $emailKey = Get-NormalizedMatchValue $identity.email
+    $nameKey = Get-NameMatchKey $identity.firstName $identity.lastName
+    if ($emailKey) {
+        if (-not $identityByEmail.ContainsKey($emailKey)) {
+            $identityByEmail[$emailKey] = [System.Collections.Generic.List[object]]::new()
+        }
+        $identityByEmail[$emailKey].Add($identity)
+    }
+    if ($nameKey) {
+        if (-not $identityByName.ContainsKey($nameKey)) {
+            $identityByName[$nameKey] = [System.Collections.Generic.List[object]]::new()
+        }
+        $identityByName[$nameKey].Add($identity)
+    }
+}
+
+$supplementalSequence = 0
+$usedIdentityIds = @{}
+foreach ($identity in $identities) {
+    $usedIdentityIds[$identity.id] = $true
+}
+foreach ($person in @($supplementalPeople.Values | Sort-Object { Get-SupplementalPersonKey $_ })) {
+    $emailKey = Get-NormalizedMatchValue $person.Email
+    $nameKey = Get-NameMatchKey $person.FirstName $person.LastName
+    $match = $null
+    if ($emailKey -and $identityByEmail.ContainsKey($emailKey) -and $identityByEmail[$emailKey].Count -eq 1) {
+        $match = $identityByEmail[$emailKey][0]
+    } elseif ($nameKey -and $identityByName.ContainsKey($nameKey) -and $identityByName[$nameKey].Count -eq 1) {
+        $match = $identityByName[$nameKey][0]
+    }
+    if ($match) {
+        Add-RoleToIdentity $match $person.Role
+        continue
+    }
+    if ($person.Role -eq "Organizer" -or $person.Role -eq "Volunteer") {
+        Write-Warning "Organizer/volunteer '$($person.FirstName) $($person.LastName)' <$($person.Email)> was not matched with an Eventbrite registration; a supplemental identity will be created."
+    }
+
+    $supplementalSequence++
+    $supplementalId = Get-SpeakerIdentityId $person.SpeakerId
+    if (-not $supplementalId) {
+        $supplementalId = ([bigint]900000000000000 + $supplementalSequence).ToString()
+    }
+    while ($usedIdentityIds.ContainsKey($supplementalId)) {
+        $supplementalId = ([bigint]$supplementalId + 1).ToString()
+    }
+    $usedIdentityIds[$supplementalId] = $true
+    $name = @($person.FirstName, $person.LastName) | Where-Object { $_ }
+    $identity = [ordered]@{
+        id = $supplementalId.ToString()
+        firstName = $person.FirstName
+        lastName = $person.LastName
+        name = $name -join " "
+        description = $person.Description
+        jobTitle = ""
+        phone = $person.Phone
+        email = $person.Email
+        location = ""
+        role = $person.Role
+    }
+    $identities.Add($identity)
 }
 
 $json = $identities | ConvertTo-Json -Depth 3
@@ -376,17 +607,23 @@ $sourceFiles = [System.IO.Path]::GetFileName($AttendeesCsvPath)
 if ($CustomQuestionsResponsesCsvPath) {
     $sourceFiles += ", " + [System.IO.Path]::GetFileName($CustomQuestionsResponsesCsvPath)
 }
+if ($OrganizersAndVolunteersCsvPath) {
+    $sourceFiles += ", " + [System.IO.Path]::GetFileName($OrganizersAndVolunteersCsvPath)
+}
+if ($SpeakerListCsvPath) {
+    $sourceFiles += ", " + [System.IO.Path]::GetFileName($SpeakerListCsvPath)
+}
 $sql = @"
 -- Generated from: $sourceFiles
 -- Idempotent ID rule: (Order ID * 100) + attendee sequence within that order.
--- Fill in @EventSecret before executing this script.
+-- Fill in @EventCode before executing this script.
 
-DECLARE @EventSecret uniqueidentifier = N'00000000-0000-0000-0000-000000000000';
+DECLARE @EventCode uniqueidentifier = N'00000000-0000-0000-0000-000000000000';
 DECLARE @EncryptionKey nvarchar(200) = N'';
 DECLARE @Identities_blob nvarchar(max) = N'$sqlJson';
 
 EXECUTE Scan.Update_Identities
-    @EventSecret = @EventSecret,
+    @EventCode = @EventCode,
     @EncryptionKey = @EncryptionKey,
     @Identities_blob = @Identities_blob;
 GO
@@ -410,4 +647,7 @@ foreach ($unusableRow in $unusableCustomQuestionsRows) {
     Write-Warning "Unusable Custom Questions Responses row $($unusableRow.row): Order='$($unusableRow.order)', Name='$($unusableRow.name)', Email='$($unusableRow.email)', Ticket Type='$($unusableRow.ticketType)'; order, email, first name, and last name are all required."
 }
 Write-Host "Generated $($identities.Count) identities, including $($fallbackReportRows.Count) fallback identities in $OutputPath"
-Write-Host "Found $boxLunchOrderCount distinct Box Lunch orders"
+$speakerCount = @($identities | Where-Object { $_.role -eq "Speaker" }).Count
+$organizerCount = @($identities | Where-Object { $_.role -eq "Organizer" }).Count
+$volunteerCount = @($identities | Where-Object { $_.role -eq "Volunteer" }).Count
+Write-Host "Found $speakerCount speakers, $organizerCount organizers, $volunteerCount volunteers, and $boxLunchOrderCount distinct Box Lunch orders"

@@ -1,4 +1,4 @@
--- Generated from: Day_of_Data_Winnipeg_2026_Attendees_40554971420_20260914_151116_192.csv, report-2026-09-14T1013.csv
+-- Generated from: Day_of_Data_Winnipeg_2026_Attendees_40554971420_20260914_161825_040.csv, report-2026-09-14T1013.csv, DayOfData_OranizersAndVolunteers.csv, speakerlist.csv
 -- Idempotent ID rule: (Order ID * 100) + attendee sequence within that order.
 -- Fill in @EventCode before executing this script.
 
@@ -14,7 +14,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "",
     "phone": "",
     "email": "oleksandr.dimbrovskyi@gmail.com",
-    "location": "BC"
+    "location": "BC",
+    "role": null
   },
   {
     "id": "1543694209301",
@@ -25,7 +26,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "",
     "phone": "",
     "email": "samuelkariithi123@gmail.com",
-    "location": "Nairobi, 30"
+    "location": "Nairobi, 30",
+    "role": null
   },
   {
     "id": "1545925283301",
@@ -36,7 +38,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "",
     "phone": "",
     "email": "xrmeng720@gmail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1545925283302",
@@ -47,18 +50,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "",
     "phone": "",
     "email": "xrmeng720@gmail.com",
-    "location": "Winnipeg, MB"
-  },
-  {
-    "id": "1552256183301",
-    "firstName": "Roxana",
-    "lastName": "Ibanez",
-    "name": "Roxana Ibanez",
-    "description": "",
-    "jobTitle": "",
-    "phone": "",
-    "email": "roxana@winnipegedt.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1553574935301",
@@ -69,7 +62,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "",
     "phone": "",
     "email": "chiakanosike203@gmail.com",
-    "location": "Toronto, ON"
+    "location": "Toronto, ON",
+    "role": null
   },
   {
     "id": "1553883222301",
@@ -80,7 +74,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "",
     "phone": "",
     "email": "jucamvil@hotmail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1554162943301",
@@ -91,7 +86,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "",
     "phone": "",
     "email": "janjaimerc@gmail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1555193018301",
@@ -102,7 +98,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "",
     "phone": "",
     "email": "ressenyi@gmail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1558702137301",
@@ -113,7 +110,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "",
     "phone": "",
     "email": "huynhntdl@gmail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1558867735301",
@@ -124,7 +122,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "",
     "phone": "",
     "email": "ScottAStauffer@Outlook.com",
-    "location": "Surrey, BC"
+    "location": "Surrey, BC",
+    "role": "Speaker"
   },
   {
     "id": "1559291070301",
@@ -135,7 +134,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "",
     "phone": "",
     "email": "carson.leung@umanitoba.ca",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1559310127301",
@@ -146,7 +146,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "",
     "phone": "",
     "email": "gonglange@gmail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1559348056301",
@@ -157,7 +158,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "",
     "phone": "",
     "email": "pcortes@rrc.ca",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1559375850301",
@@ -168,7 +170,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "",
     "phone": "",
     "email": "armaans.grover07@gmail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1559394126301",
@@ -179,7 +182,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "",
     "phone": "",
     "email": "hiteshnagpal955@gmail.com",
-    "location": "Calgary, AB"
+    "location": "Calgary, AB",
+    "role": null
   },
   {
     "id": "1559419620301",
@@ -190,7 +194,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "",
     "phone": "",
     "email": "zainabmosunmola@gmail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1559420234301",
@@ -201,7 +206,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "",
     "phone": "",
     "email": "a.programming2022@gmail.com",
-    "location": "Montreal, QC"
+    "location": "Montreal, QC",
+    "role": null
   },
   {
     "id": "1559529675301",
@@ -212,7 +218,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "",
     "phone": "",
     "email": "agbolade2020@gmail.com",
-    "location": "ON"
+    "location": "ON",
+    "role": null
   },
   {
     "id": "1559549143301",
@@ -223,7 +230,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "",
     "phone": "",
     "email": "baher.alabbar@gmail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1559556560301",
@@ -234,7 +242,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "",
     "phone": "",
     "email": "bakshikavya143@gmail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1559563226301",
@@ -245,7 +254,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "",
     "phone": "",
     "email": "ravneet1994@gmail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": "Volunteer"
   },
   {
     "id": "1559599169301",
@@ -256,7 +266,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "",
     "phone": "",
     "email": "gilldapinder515@gmail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1559624007301",
@@ -267,7 +278,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "",
     "phone": "",
     "email": "la.asadzadeh@gmail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1559629544301",
@@ -278,7 +290,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "",
     "phone": "",
     "email": "bisolaadebija@gmail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1559656166301",
@@ -289,7 +302,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "",
     "phone": "",
     "email": "banisaea@myumanitoba.ca",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1559681575301",
@@ -300,7 +314,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "",
     "phone": "",
     "email": "liuyang6093@gmail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": "Volunteer"
   },
   {
     "id": "1559692282301",
@@ -311,7 +326,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "",
     "phone": "",
     "email": "folarinko20@gmail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1559746442301",
@@ -322,7 +338,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "",
     "phone": "",
     "email": "7qwfk8pznm@privaterelay.appleid.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1559968138301",
@@ -333,18 +350,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "",
     "phone": "",
     "email": "natashawilliams883@gmail.com",
-    "location": "Winnipeg, MB"
-  },
-  {
-    "id": "1559977382301",
-    "firstName": "Sukhmandeep",
-    "lastName": "Kaur",
-    "name": "Sukhmandeep Kaur",
-    "description": "",
-    "jobTitle": "",
-    "phone": "",
-    "email": "sukhman2807@gmail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1560012182301",
@@ -355,7 +362,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "",
     "phone": "",
     "email": "nasresfz@myumanitoba.ca",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1560020388301",
@@ -366,7 +374,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "",
     "phone": "",
     "email": "zahraxrizvi@gmail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1560024139301",
@@ -377,7 +386,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "",
     "phone": "",
     "email": "singhgurdarshan715@gmail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1560025894301",
@@ -388,7 +398,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "",
     "phone": "",
     "email": "bagdat.rakhimov@gmail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1560025914301",
@@ -399,7 +410,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "",
     "phone": "",
     "email": "kurtljhuff@gmail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1560029003301",
@@ -410,7 +422,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "",
     "phone": "",
     "email": "jay16ca@gmail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1560055968301",
@@ -421,7 +434,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "",
     "phone": "",
     "email": "fawazbinsaleem2001@gmail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1560065224301",
@@ -432,7 +446,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "",
     "phone": "",
     "email": "mtarmishaw14@gmail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1560071352301",
@@ -443,7 +458,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "",
     "phone": "",
     "email": "emmaoyenuga@gmail.com",
-    "location": "BC"
+    "location": "BC",
+    "role": "Volunteer"
   },
   {
     "id": "1560075501301",
@@ -454,7 +470,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "",
     "phone": "",
     "email": "atishaya7777@gmail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1560116371301",
@@ -465,7 +482,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "",
     "phone": "",
     "email": "yw181920@gmail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1560117712301",
@@ -476,7 +494,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "",
     "phone": "",
     "email": "arobce@gmail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1560155242301",
@@ -487,7 +506,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "",
     "phone": "",
     "email": "simranpanthi101@gmail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1560160030301",
@@ -498,7 +518,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "",
     "phone": "",
     "email": "salami.faiza15@gmail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1560224997301",
@@ -509,7 +530,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "",
     "phone": "",
     "email": "ramatjyot13.ca@gmail.com",
-    "location": "ON"
+    "location": "ON",
+    "role": null
   },
   {
     "id": "1560226919301",
@@ -520,7 +542,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "",
     "phone": "",
     "email": "abdalla.mohd000@gmail.com",
-    "location": "Etobicoke, ON"
+    "location": "Etobicoke, ON",
+    "role": null
   },
   {
     "id": "1560250008301",
@@ -531,7 +554,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "",
     "phone": "",
     "email": "kimibusiness@gmail.com",
-    "location": "Etobicoke, ON"
+    "location": "Etobicoke, ON",
+    "role": null
   },
   {
     "id": "1560320034301",
@@ -542,7 +566,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "",
     "phone": "",
     "email": "adriftenigma@gmail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1560334536301",
@@ -553,7 +578,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "",
     "phone": "",
     "email": "kgurneet0224@gmail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1560423606301",
@@ -564,7 +590,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "",
     "phone": "",
     "email": "ashandilya795@gmail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1560424807301",
@@ -575,7 +602,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "",
     "phone": "",
     "email": "sherylsuarezporto@gmail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1560492678301",
@@ -586,7 +614,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "",
     "phone": "",
     "email": "pamkmoll@gmail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1560536069301",
@@ -597,7 +626,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "",
     "phone": "",
     "email": "ahsanpulok999@gmail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1560586553301",
@@ -608,7 +638,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "",
     "phone": "",
     "email": "Alikismat2222@gmail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1560763969301",
@@ -619,7 +650,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "",
     "phone": "",
     "email": "logandecock004@gmail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1560790071301",
@@ -630,7 +662,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "",
     "phone": "",
     "email": "obafunshot@gmail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1560845800301",
@@ -641,7 +674,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "Senior Data Analyst",
     "phone": "",
     "email": "kquach@gmail.com",
-    "location": "Ottawa, ON"
+    "location": "Ottawa, ON",
+    "role": null
   },
   {
     "id": "1560847292301",
@@ -652,7 +686,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "",
     "phone": "",
     "email": "alanchenjain@gmail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1560859437301",
@@ -663,7 +698,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "Portfolio Lead - Data, Evaluation, and Higher Education Research",
     "phone": "",
     "email": "brenda.stoesz@umanitoba.ca",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1560860972301",
@@ -674,7 +710,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "Data analyst",
     "phone": "",
     "email": "prviktoriia@gmail.com",
-    "location": "Steinbach, MB"
+    "location": "Steinbach, MB",
+    "role": null
   },
   {
     "id": "1560877241301",
@@ -685,7 +722,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "",
     "phone": "",
     "email": "mandy.siragusa@gmail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1560905042301",
@@ -696,7 +734,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "Maker of things, writer of codes, breaker of systems",
     "phone": "",
     "email": "morgan.may2@umanitoba.ca",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1560920322301",
@@ -707,7 +746,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "Data Governance Architect",
     "phone": "",
     "email": "noel.gelineau@gmail.com",
-    "location": "Niverville, MB"
+    "location": "Niverville, MB",
+    "role": null
   },
   {
     "id": "1560948260301",
@@ -718,7 +758,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "Senior Analyst",
     "phone": "",
     "email": "Shettyb@myumanitoba.ca",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1561032486301",
@@ -729,7 +770,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "Founder",
     "phone": "",
     "email": "naonennenets@gmail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1561052450301",
@@ -740,7 +782,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "Researcher",
     "phone": "",
     "email": "olivia.lee@umanitoba.ca",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1561085718301",
@@ -751,7 +794,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "Student",
     "phone": "",
     "email": "hlady.marcus@gmail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1561086958301",
@@ -762,7 +806,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "Student",
     "phone": "",
     "email": "shar179@myumanitoba.ca",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1561099062301",
@@ -773,7 +818,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "Student",
     "phone": "",
     "email": "karenupendo@gmail.com",
-    "location": ""
+    "location": "",
+    "role": null
   },
   {
     "id": "1561106479301",
@@ -784,7 +830,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "Graduate Student",
     "phone": "",
     "email": "suherlij@myumanitoba.ca",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1561108722301",
@@ -795,7 +842,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "",
     "phone": "",
     "email": "anthonyokolie.ace@gmail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1561207709301",
@@ -806,7 +854,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "Student",
     "phone": "",
     "email": "tannjh@myumanitoba.ca",
-    "location": "Singapore"
+    "location": "Singapore",
+    "role": null
   },
   {
     "id": "1561273694301",
@@ -817,7 +866,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "Student",
     "phone": "",
     "email": "zibanyan1222@gmail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1561278334301",
@@ -828,7 +878,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "Student",
     "phone": "",
     "email": "jatindersahota2184@gmail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1561291694301",
@@ -839,7 +890,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "",
     "phone": "",
     "email": "jeetdhruv2003@gmail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1561474878301",
@@ -850,7 +902,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "PMO Manager",
     "phone": "",
     "email": "guruhayat@gmail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1561504465301",
@@ -861,7 +914,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "Digital Transformation and Operations Excellence Manager",
     "phone": "",
     "email": "alshukairi.al@gmail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1561536712301",
@@ -872,7 +926,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "DevOps Lead",
     "phone": "",
     "email": "udugreg@gmail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1561539580301",
@@ -883,7 +938,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "Application Developer",
     "phone": "",
     "email": "seyedsaber.mirmiran@umanitoba.ca",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1561541794301",
@@ -894,7 +950,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "Research Assistant",
     "phone": "",
     "email": "hasan.ahmed1435@gmail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1561593626301",
@@ -905,7 +962,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "Software Developer",
     "phone": "",
     "email": "dumas.mariasofia@gmail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1561597058301",
@@ -916,7 +974,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "Data Engineer",
     "phone": "",
     "email": "shivanshu.mps@gmail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1561598801301",
@@ -927,7 +986,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "Database and Reporting Analyst",
     "phone": "",
     "email": "Ramandeep.Kaur1@umanitoba.ca",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1561601890301",
@@ -938,7 +998,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "Student",
     "phone": "",
     "email": "anikaviado@gmail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1561605395301",
@@ -949,7 +1010,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "Student",
     "phone": "",
     "email": "ayla.buenafe88@gmail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1561605545301",
@@ -960,7 +1022,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "Student",
     "phone": "",
     "email": "vcastro2@rrc.ca",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1561612659301",
@@ -971,7 +1034,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "",
     "phone": "",
     "email": "varlamova.com@gmail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1561612816301",
@@ -982,7 +1046,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "AI/ML Researcher/Manager",
     "phone": "",
     "email": "alexey.dolgich@gmail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1561621631301",
@@ -993,7 +1058,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "Supervisor - Cloud Infrastructure",
     "phone": "",
     "email": "utpanc@gmail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1561628903301",
@@ -1004,7 +1070,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "Data Transformation Specialist",
     "phone": "",
     "email": "sarabjitsinghsethi85@gmail.com",
-    "location": "ON"
+    "location": "ON",
+    "role": null
   },
   {
     "id": "1561659482301",
@@ -1015,7 +1082,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "Senior Data Architect",
     "phone": "",
     "email": "salmarnic@gmail.com",
-    "location": "BC"
+    "location": "BC",
+    "role": null
   },
   {
     "id": "1561671324301",
@@ -1026,7 +1094,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "Data Engineering Specialist",
     "phone": "",
     "email": "gusdayrell@gmail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1561676708301",
@@ -1037,7 +1106,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "Load Forecast specialist",
     "phone": "",
     "email": "ali.rezaei.ee@gmail.com",
-    "location": "BC"
+    "location": "BC",
+    "role": null
   },
   {
     "id": "1561680804301",
@@ -1048,7 +1118,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "Student",
     "phone": "",
     "email": "shehanidinithi89@gmail.com",
-    "location": "BC"
+    "location": "BC",
+    "role": null
   },
   {
     "id": "1561682321301",
@@ -1059,7 +1130,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "Data Engineering Specialist",
     "phone": "",
     "email": "9fkws8czsy@privaterelay.appleid.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1561703115301",
@@ -1070,7 +1142,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "",
     "phone": "",
     "email": "sainis2@myumanitoba.ca",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1561703502301",
@@ -1081,7 +1154,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "",
     "phone": "",
     "email": "simiadeniyi97@gmail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1561723010301",
@@ -1092,7 +1166,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "Research Analyst",
     "phone": "",
     "email": "seth.kumbalathuparambilsajeev@umanitoba.ca",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1561793106301",
@@ -1103,7 +1178,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "",
     "phone": "",
     "email": "pegah.geranmayeh@gmail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1561805494301",
@@ -1114,7 +1190,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "Student",
     "phone": "",
     "email": "helloswastikdash@gmail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1561810993301",
@@ -1125,7 +1202,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "MIS Instructor",
     "phone": "",
     "email": "byron.wright@umanitoba.ca",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1561850122301",
@@ -1136,7 +1214,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "",
     "phone": "",
     "email": "sumanthmellacheruvu@gmail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1561851119301",
@@ -1147,7 +1226,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "",
     "phone": "",
     "email": "yaroszko@gmail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1561868662301",
@@ -1158,7 +1238,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "Student",
     "phone": "",
     "email": "matthuanphong@gmail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1561894925301",
@@ -1169,7 +1250,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "Information and Privacy Manager",
     "phone": "",
     "email": "shellybsmith@gmail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1561900576301",
@@ -1180,7 +1262,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "",
     "phone": "",
     "email": "abarriosdc@gmail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1561911048301",
@@ -1191,7 +1274,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "",
     "phone": "",
     "email": "yadavs2@myumanitoba.ca",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1561913300301",
@@ -1202,7 +1286,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "",
     "phone": "",
     "email": "faithakinyemi01@gmail.com",
-    "location": "Calgary, AB"
+    "location": "Calgary, AB",
+    "role": null
   },
   {
     "id": "1562012658301",
@@ -1213,7 +1298,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "",
     "phone": "",
     "email": "fxyflttw@hotmail.com",
-    "location": "BC"
+    "location": "BC",
+    "role": null
   },
   {
     "id": "1562103995301",
@@ -1224,7 +1310,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "",
     "phone": "",
     "email": "danielmai12.cs@gmail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1562252172301",
@@ -1235,7 +1322,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "Tech. Assistance",
     "phone": "",
     "email": "ypersson@gmail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1562260224301",
@@ -1246,7 +1334,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "Educator",
     "phone": "",
     "email": "espersson@gmail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1562331685301",
@@ -1257,7 +1346,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "Student",
     "phone": "",
     "email": "umdugua2@myumanitoba.ca",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1562358005301",
@@ -1268,7 +1358,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "Student",
     "phone": "",
     "email": "navroopkaur26@yahoo.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": "Volunteer"
   },
   {
     "id": "1562448071301",
@@ -1279,7 +1370,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "IT",
     "phone": "",
     "email": "esaltosnarvaez@academic.rrc.ca",
-    "location": "Montreal, QC"
+    "location": "Montreal, QC",
+    "role": null
   },
   {
     "id": "1562584454301",
@@ -1290,7 +1382,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "Business intelligence analyst",
     "phone": "",
     "email": "hurtadok@myumanitoba.ca",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1562590552301",
@@ -1301,7 +1394,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "cloud engineer",
     "phone": "",
     "email": "mailtodemis08@gmail.com",
-    "location": "BC"
+    "location": "BC",
+    "role": null
   },
   {
     "id": "1562609928301",
@@ -1312,7 +1406,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "",
     "phone": "",
     "email": "ian.smith.12a@gmail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1562615225301",
@@ -1323,7 +1418,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "Software Developer",
     "phone": "",
     "email": "evan.penner@aimsio.com",
-    "location": "Kleefeld, MB"
+    "location": "Kleefeld, MB",
+    "role": null
   },
   {
     "id": "1562618106301",
@@ -1334,7 +1430,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "Director Business Intelligence",
     "phone": "",
     "email": "ghazanfarjawed@gmail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1562621035301",
@@ -1345,7 +1442,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "Instructor",
     "phone": "",
     "email": "chris@macmac.ca",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1562625614301",
@@ -1356,7 +1454,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "Data Analyst",
     "phone": "",
     "email": "matsawatzky@gmail.com",
-    "location": "Toronto, ON"
+    "location": "Toronto, ON",
+    "role": null
   },
   {
     "id": "1562626086301",
@@ -1367,7 +1466,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "Business Analyst",
     "phone": "",
     "email": "bakkyinspiration@gmail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1562630002301",
@@ -1378,7 +1478,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "Manager, Analytics",
     "phone": "",
     "email": "uthakur@exchangetech.ca",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1562642121301",
@@ -1389,7 +1490,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "IT Manager",
     "phone": "",
     "email": "spencer.c.mcdonald@gmail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1562644561301",
@@ -1400,7 +1502,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "Freelancer",
     "phone": "",
     "email": "ashlean.sterling@icloud.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1562670906301",
@@ -1411,7 +1514,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "Data analyst manager",
     "phone": "",
     "email": "nazariogabrielfarias@gmail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1562698709301",
@@ -1422,7 +1526,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "Manufacturing Engineer",
     "phone": "",
     "email": "nima.geran@gmail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1562745463301",
@@ -1433,7 +1538,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "sales associate",
     "phone": "",
     "email": "harshvardhan@gadhvi.xyz",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1562746922301",
@@ -1444,7 +1550,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "Student",
     "phone": "",
     "email": "cyrils.li@icloud.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1562767859301",
@@ -1455,7 +1562,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "HR Analytics",
     "phone": "",
     "email": "gricagno@redrivermutual.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1562786892301",
@@ -1466,7 +1574,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "Manager, Data & Analytics",
     "phone": "",
     "email": "kylejennb@gmail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1562957600301",
@@ -1477,7 +1586,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "Senior Developer, Digital Learning Environments",
     "phone": "",
     "email": "farzana.ebrahim@umanitoba.ca",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1563000108301",
@@ -1488,7 +1598,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "",
     "phone": "",
     "email": "lealdo.gois.andrade@gmail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1563027544301",
@@ -1499,7 +1610,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "Owner/Lead Technician",
     "phone": "",
     "email": "nathan.dasilva@hotmail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1563227158301",
@@ -1510,7 +1622,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "ThinkLeader",
     "phone": "",
     "email": "yizus.rangel@gmail.com",
-    "location": "BC"
+    "location": "BC",
+    "role": null
   },
   {
     "id": "1563358415301",
@@ -1521,7 +1634,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "IT Support Specialist",
     "phone": "",
     "email": "pierrekijandi@hotmail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1563510519301",
@@ -1532,7 +1646,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "Student",
     "phone": "",
     "email": "peter.vu298@gmail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1563642957301",
@@ -1543,7 +1658,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "Microsoft Data Analyst - AzureDataFactory, with 5 years of experience in the Mic",
     "phone": "",
     "email": "andrealsanchez2018@gmail.com",
-    "location": "Calgary, AB"
+    "location": "Calgary, AB",
+    "role": null
   },
   {
     "id": "1563775590301",
@@ -1554,7 +1670,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "",
     "phone": "",
     "email": "fatimah.salami@gmail.com",
-    "location": "ON"
+    "location": "ON",
+    "role": null
   },
   {
     "id": "1563891420301",
@@ -1565,7 +1682,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "Student",
     "phone": "",
     "email": "swbusinesscontact10@gmail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1563963221301",
@@ -1576,7 +1694,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "",
     "phone": "",
     "email": "0be9nsdxc@mozmail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1563965593301",
@@ -1587,7 +1706,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "",
     "phone": "",
     "email": "yawen299@hotmail.ca",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1563967292301",
@@ -1598,7 +1718,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "Co-founder @ onghost.com",
     "phone": "",
     "email": "dilaw3r@gmail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1563969818301",
@@ -1609,7 +1730,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "",
     "phone": "",
     "email": "hamzahaque30@gmail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1563970946301",
@@ -1620,7 +1742,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "",
     "phone": "",
     "email": "saba@ymail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1563972624301",
@@ -1631,7 +1754,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "Student",
     "phone": "",
     "email": "mcgallajones@gmail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1563977639301",
@@ -1642,7 +1766,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "Data Science and Applications Development Lead",
     "phone": "",
     "email": "jrjavier13@yahoo.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1564014110301",
@@ -1653,7 +1778,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "Product Lead",
     "phone": "",
     "email": "jeremytnmalenchak@gmail.com",
-    "location": "Tokyo, 13"
+    "location": "Tokyo, 13",
+    "role": null
   },
   {
     "id": "1564017447301",
@@ -1664,7 +1790,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "Classroom Teacher",
     "phone": "",
     "email": "jawaherakhter498@gmail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1564035592301",
@@ -1675,7 +1802,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "N/A",
     "phone": "",
     "email": "videopostproduction@outlook.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1564083986301",
@@ -1686,7 +1814,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "Frontend Developer",
     "phone": "",
     "email": "madisonfehr@icloud.com",
-    "location": "Tokyo, 13"
+    "location": "Tokyo, 13",
+    "role": null
   },
   {
     "id": "1564195963301",
@@ -1697,18 +1826,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "Analyst",
     "phone": "",
     "email": "artem.ramus@gmail.com",
-    "location": "Winnipeg, MB"
-  },
-  {
-    "id": "1564216459301",
-    "firstName": "RITHIKA",
-    "lastName": "NEMURI",
-    "name": "RITHIKA NEMURI",
-    "description": "inTouch CX",
-    "jobTitle": "",
-    "phone": "",
-    "email": "rithika.nemuri@gmail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1564218521301",
@@ -1719,7 +1838,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "Director Manufacturing Business Systems",
     "phone": "",
     "email": "kurt_shaw@newflyer.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1564218815301",
@@ -1730,7 +1850,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "Data Analyst",
     "phone": "",
     "email": "erwin.lopez@mcicoach.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1564219220301",
@@ -1741,7 +1862,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "Technical Support Representative",
     "phone": "",
     "email": "rithika.nemuri@gmail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1564219596301",
@@ -1752,7 +1874,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "Manager, Advanced Analytics",
     "phone": "",
     "email": "jchand@wawanesa.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1564219904301",
@@ -1763,7 +1886,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "Junior Electrical Designer",
     "phone": "",
     "email": "rajesh_kothapeta@newflyer.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1564224261301",
@@ -1774,7 +1898,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "Founder, CEO",
     "phone": "",
     "email": "talktoBrad9002@gmail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1564316617301",
@@ -1785,7 +1910,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "Project Manager",
     "phone": "",
     "email": "Sara.Cianflone@umanitoba.ca",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1564323383301",
@@ -1796,7 +1922,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "Observability Engineer",
     "phone": "",
     "email": "ksanders5728@gmail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1564342598301",
@@ -1807,7 +1934,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "Graduate Researcher",
     "phone": "",
     "email": "duongk5@myumanitoba.ca",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1564342665301",
@@ -1818,7 +1946,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "Student",
     "phone": "",
     "email": "raeispon@myumanitoba.ca",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1564343247301",
@@ -1829,7 +1958,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "",
     "phone": "",
     "email": "beghbalnia@gmail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1564344327301",
@@ -1840,7 +1970,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "",
     "phone": "",
     "email": "sahejgarg2018@gmail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1564350106301",
@@ -1851,7 +1982,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "Co-Founder",
     "phone": "",
     "email": "farbinkie@gmail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1564353719301",
@@ -1862,7 +1994,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "Data Engineer",
     "phone": "",
     "email": "ttarom1987@gmail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1564360513301",
@@ -1873,7 +2006,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "Ph.D researcher",
     "phone": "",
     "email": "soleiman.hosseinpour@gmail.com",
-    "location": "ON"
+    "location": "ON",
+    "role": null
   },
   {
     "id": "1564386372301",
@@ -1884,7 +2018,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "",
     "phone": "",
     "email": "aseem@letsgivetogether.com",
-    "location": "Morden, MB"
+    "location": "Morden, MB",
+    "role": null
   },
   {
     "id": "1564387885301",
@@ -1895,7 +2030,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "Data & Systems Specialist",
     "phone": "",
     "email": "yhzwpg@gmail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1564388528301",
@@ -1906,7 +2042,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "Data Scientist",
     "phone": "",
     "email": "daniel.melo.castiblanco@gmail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1564423402301",
@@ -1917,7 +2054,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "",
     "phone": "",
     "email": "roxana@winnipegedt.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1564427218301",
@@ -1928,7 +2066,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "Student",
     "phone": "",
     "email": "akintolb@myumanitoba.ca",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1564442049301",
@@ -1939,7 +2078,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "Student",
     "phone": "",
     "email": "vneelofar@gmail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1564457374301",
@@ -1950,7 +2090,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "",
     "phone": "",
     "email": "jj.czgm@gmail.com",
-    "location": "ON"
+    "location": "ON",
+    "role": null
   },
   {
     "id": "1564526538301",
@@ -1961,7 +2102,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "",
     "phone": "",
     "email": "naodtedros@gmail.com",
-    "location": "Mississauga, ON"
+    "location": "Mississauga, ON",
+    "role": null
   },
   {
     "id": "1564602656301",
@@ -1972,7 +2114,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "",
     "phone": "",
     "email": "stevenjohnfletcher@gmail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1564773034301",
@@ -1983,7 +2126,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "",
     "phone": "",
     "email": "olayinks455@gmail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": "Volunteer"
   },
   {
     "id": "1564967910301",
@@ -1994,7 +2138,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "Machine Learning Researcher",
     "phone": "",
     "email": "jleeee15@gmail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1564969976301",
@@ -2005,7 +2150,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "Student",
     "phone": "",
     "email": "jeep.mudding+eventbrite@gmail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1565010560301",
@@ -2016,7 +2162,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "Data analyst",
     "phone": "",
     "email": "xyannca@gmail.com",
-    "location": "BC"
+    "location": "BC",
+    "role": null
   },
   {
     "id": "1565012403301",
@@ -2027,7 +2174,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "AI Data Engineer",
     "phone": "",
     "email": "cassandra.phung@ig.ca",
-    "location": "Toronto, ON"
+    "location": "Toronto, ON",
+    "role": "Volunteer"
   },
   {
     "id": "1565022493301",
@@ -2038,7 +2186,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "Scrum master/Agile Delivery Lead",
     "phone": "",
     "email": "wcssynyt4q@privaterelay.appleid.com",
-    "location": "BC"
+    "location": "BC",
+    "role": null
   },
   {
     "id": "1565022752301",
@@ -2049,7 +2198,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "Data Engineer",
     "phone": "",
     "email": "tocontactgagan@gmail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1565022753301",
@@ -2060,7 +2210,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "Data Engineer",
     "phone": "",
     "email": "technicaltg007@gmail.com",
-    "location": "BC"
+    "location": "BC",
+    "role": null
   },
   {
     "id": "1565065314301",
@@ -2071,7 +2222,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "Lead, Database and Reporting Analyst",
     "phone": "",
     "email": "eleonore.heinrichs@umanitoba.ca",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": "Organizer"
   },
   {
     "id": "1565075709301",
@@ -2082,7 +2234,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "Senior Data Analyst",
     "phone": "",
     "email": "cswenson@wawanesa.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1565093681301",
@@ -2093,7 +2246,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "Senior Solutions Analyst",
     "phone": "",
     "email": "rjamil@wawanesa.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1565104570301",
@@ -2104,7 +2258,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "",
     "phone": "",
     "email": "avelidi@wawanesa.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1565161869301",
@@ -2115,7 +2270,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "Data Consultant",
     "phone": "",
     "email": "olena.shevchenko@improving.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": "Organizer"
   },
   {
     "id": "1565185347301",
@@ -2126,7 +2282,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "Research Assistant",
     "phone": "",
     "email": "chowdh62@myumanitoba.ca",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1565197653301",
@@ -2137,7 +2294,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "Student",
     "phone": "",
     "email": "bruneau1@myumanitoba.ca",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1565314651301",
@@ -2148,7 +2306,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "IT Project Engineer",
     "phone": "",
     "email": "amirah.aesthetics@gmail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1565351128301",
@@ -2159,7 +2318,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "",
     "phone": "",
     "email": "azeez.akinlade01@gmail.com",
-    "location": "BC"
+    "location": "BC",
+    "role": null
   },
   {
     "id": "1565379696301",
@@ -2170,7 +2330,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "Student",
     "phone": "",
     "email": "ohcan911@gmail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1565397211301",
@@ -2181,7 +2342,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "Workforce Analyst",
     "phone": "",
     "email": "mayankkataria194@gmail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1565398799301",
@@ -2192,7 +2354,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "Student",
     "phone": "",
     "email": "arunaoluwatobi@gmail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1565491031301",
@@ -2203,7 +2366,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "Team lead application developer",
     "phone": "",
     "email": "trudymog@gmail.com",
-    "location": "Steinbach, MB"
+    "location": "Steinbach, MB",
+    "role": null
   },
   {
     "id": "1565497365301",
@@ -2214,7 +2378,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "Instructor",
     "phone": "",
     "email": "amoghaddam4488@gmail.com",
-    "location": "Steinbach, MB"
+    "location": "Steinbach, MB",
+    "role": null
   },
   {
     "id": "1565539002301",
@@ -2225,7 +2390,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "",
     "phone": "",
     "email": "xrmeng720@gmail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1565905749301",
@@ -2236,7 +2402,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "",
     "phone": "",
     "email": "tools@naturalpattern.space",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1565984189301",
@@ -2247,7 +2414,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "Data Engineer",
     "phone": "",
     "email": "rabarrios25@gmail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": "Organizer"
   },
   {
     "id": "1566049441301",
@@ -2258,7 +2426,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "Senior Research Assistant",
     "phone": "",
     "email": "ebadi-a@webmail.uwinnipeg.ca",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1566084036301",
@@ -2269,7 +2438,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "",
     "phone": "",
     "email": "tools@naturalpattern.space",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1566086547301",
@@ -2280,7 +2450,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "CIO",
     "phone": "",
     "email": "terry.bunio@umanitoba.ca",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": "Organizer"
   },
   {
     "id": "1566114379301",
@@ -2291,7 +2462,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "Research Technologist",
     "phone": "",
     "email": "harmanjot082003@gmail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1566177025301",
@@ -2302,7 +2474,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "",
     "phone": "",
     "email": "lyo.eos@outlook.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1566204760301",
@@ -2313,7 +2486,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "",
     "phone": "",
     "email": "fatemahossain6837@gmail.com",
-    "location": "Milton, ON"
+    "location": "Milton, ON",
+    "role": null
   },
   {
     "id": "1566288242301",
@@ -2324,7 +2498,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "Student",
     "phone": "",
     "email": "destinyovili@gmail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1566352917301",
@@ -2335,7 +2510,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "Student",
     "phone": "",
     "email": "gurungr1@myumanitoba.ca",
-    "location": "Brampton, ON"
+    "location": "Brampton, ON",
+    "role": "Volunteer"
   },
   {
     "id": "1566396120301",
@@ -2346,7 +2522,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "Quality Assurance Leader",
     "phone": "",
     "email": "ppawani55@gmail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1566401042301",
@@ -2357,7 +2534,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "Inventory",
     "phone": "",
     "email": "valenzuelad1@hotmail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1566474265301",
@@ -2368,7 +2546,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "Data scientist co-op student",
     "phone": "",
     "email": "wardhunter0@gmail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1566704343301",
@@ -2379,7 +2558,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "",
     "phone": "",
     "email": "jhonmer.araujo.79@gmail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1566826196301",
@@ -2390,7 +2570,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "Student",
     "phone": "",
     "email": "abenuabera@gmail.com",
-    "location": "BC"
+    "location": "BC",
+    "role": null
   },
   {
     "id": "1566868769301",
@@ -2401,7 +2582,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "Solutions Architect",
     "phone": "",
     "email": "shashen@gmail.com",
-    "location": "Brandon, MB"
+    "location": "Brandon, MB",
+    "role": null
   },
   {
     "id": "1567011840301",
@@ -2412,7 +2594,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "Data Analytics Developer",
     "phone": "",
     "email": "liamelson21@gmail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1567104771301",
@@ -2423,7 +2606,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "",
     "phone": "",
     "email": "agapeseo@gmail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1567104922301",
@@ -2434,7 +2618,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "",
     "phone": "",
     "email": "seo.grace.e@gmail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1567158596301",
@@ -2445,7 +2630,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "",
     "phone": "",
     "email": "phamhongnhung2294@gmail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1567161383301",
@@ -2456,7 +2642,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "",
     "phone": "",
     "email": "phamhongnhung2294@gmail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1567163568301",
@@ -2467,7 +2654,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "I am a student at Red river college and it is a great opportunity for me tomlear",
     "phone": "",
     "email": "vaidsirath11@gmail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1567243210301",
@@ -2478,7 +2666,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "",
     "phone": "",
     "email": "sakifhossain71@gmail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1567425111301",
@@ -2489,7 +2678,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "SOC Analyst",
     "phone": "",
     "email": "subeks@tutanota.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1567515737301",
@@ -2500,7 +2690,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "Student",
     "phone": "",
     "email": "tanvimp2004@gmail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1567577075301",
@@ -2511,7 +2702,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "N/A",
     "phone": "",
     "email": "reali_arter@hotmail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1567577933301",
@@ -2522,7 +2714,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "N/A",
     "phone": "",
     "email": "aurora_tj@hotmail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1567585943301",
@@ -2533,7 +2726,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "Data Analyst",
     "phone": "",
     "email": "aamena0928@gmail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1567654777301",
@@ -2544,7 +2738,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "",
     "phone": "",
     "email": "anlac2359@gmail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1567658907301",
@@ -2555,7 +2750,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "",
     "phone": "",
     "email": "rght74cgnt@privaterelay.appleid.com",
-    "location": "Vancouver, BC"
+    "location": "Vancouver, BC",
+    "role": null
   },
   {
     "id": "1567800533301",
@@ -2566,7 +2762,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "Data Analyst",
     "phone": "",
     "email": "nastialetter@gmail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1568263115301",
@@ -2577,7 +2774,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "Graduate",
     "phone": "",
     "email": "zhangl53@myumanitoba.ca",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1568294256301",
@@ -2588,7 +2786,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "Student",
     "phone": "",
     "email": "bilehanouran@gmail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1568366734301",
@@ -2599,7 +2798,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "data science intern at IGM",
     "phone": "",
     "email": "wangh1@myumanitoba.ca",
-    "location": "Toronto, ON"
+    "location": "Toronto, ON",
+    "role": null
   },
   {
     "id": "1568382304301",
@@ -2610,7 +2810,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "Student",
     "phone": "",
     "email": "veranyan@myumanitoba.ca",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1568409870301",
@@ -2621,7 +2822,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "Data Science student from University of Manitoba",
     "phone": "",
     "email": "erkinjonovqobiljon@gmail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1568412784301",
@@ -2632,7 +2834,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "Computer Science Student from University of Manitoba",
     "phone": "",
     "email": "claymrx003@gmail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1568431291301",
@@ -2643,7 +2846,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "",
     "phone": "",
     "email": "hritikpunj@icloud.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1568460092301",
@@ -2654,7 +2858,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "IT Business Analyst",
     "phone": "",
     "email": "lyduong0910@gmail.com",
-    "location": "Winnipeg, MB"
+    "location": "Winnipeg, MB",
+    "role": null
   },
   {
     "id": "1568663253301",
@@ -2665,7 +2870,8 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "Data Engineering Specialist",
     "phone": "",
     "email": "matthewfogel@outlook.com",
-    "location": "BC"
+    "location": "BC",
+    "role": null
   },
   {
     "id": "1568704287301",
@@ -2676,7 +2882,296 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "Senior Data Engineer",
     "phone": "",
     "email": "sdkbhatti24@gmail.com",
-    "location": ""
+    "location": "Toronto, ON",
+    "role": null
+  },
+  {
+    "id": "1552256183301",
+    "firstName": "Roxana",
+    "lastName": "Ibanez",
+    "name": "Roxana Ibanez",
+    "description": "",
+    "jobTitle": "",
+    "phone": "",
+    "email": "roxana@winnipegedt.com",
+    "location": "",
+    "role": null
+  },
+  {
+    "id": "1559977382301",
+    "firstName": "Sukhmandeep",
+    "lastName": "Kaur",
+    "name": "Sukhmandeep Kaur",
+    "description": "",
+    "jobTitle": "",
+    "phone": "",
+    "email": "sukhman2807@gmail.com",
+    "location": "",
+    "role": null
+  },
+  {
+    "id": "1564216459301",
+    "firstName": "RITHIKA",
+    "lastName": "NEMURI",
+    "name": "RITHIKA NEMURI",
+    "description": "inTouch CX",
+    "jobTitle": "",
+    "phone": "",
+    "email": "rithika.nemuri@gmail.com",
+    "location": "",
+    "role": null
+  },
+  {
+    "id": "242039476065953",
+    "firstName": "Hadi",
+    "lastName": "Abdul",
+    "name": "Hadi Abdul",
+    "description": "Software Engineer specializing in AWS cloud, data, search and AI solutions",
+    "jobTitle": "",
+    "phone": "2046983137",
+    "email": "abdulhadi2122@gmail.com",
+    "location": "",
+    "role": "Speaker"
+  },
+  {
+    "id": "332929937624195",
+    "firstName": "Alex",
+    "lastName": "Campomanes",
+    "name": "Alex Campomanes",
+    "description": "Executive Director of Advancement Services at the University of Manitoba",
+    "jobTitle": "",
+    "phone": "2042279218",
+    "email": "alex.campomanes@umanitoba.ca",
+    "location": "",
+    "role": "Speaker"
+  },
+  {
+    "id": "122650335860236",
+    "firstName": "Anastasiia",
+    "lastName": "Kasprova",
+    "name": "Anastasiia Kasprova",
+    "description": "Improving Winnipeg, Senior Consultant, PhD",
+    "jobTitle": "",
+    "phone": "",
+    "email": "anastasiia.kasprova@gmail.com",
+    "location": "",
+    "role": "Speaker"
+  },
+  {
+    "id": "287809484226994",
+    "firstName": "Cesario",
+    "lastName": "Estrada",
+    "name": "Cesario Estrada",
+    "description": "AI & Machine Learning Specialist | Data Solutions Developer",
+    "jobTitle": "",
+    "phone": "2043331097",
+    "email": "cesarajjjume74@gmail.com",
+    "location": "",
+    "role": "Speaker"
+  },
+  {
+    "id": "245481766348051",
+    "firstName": "Darian",
+    "lastName": "Lagman",
+    "name": "Darian Lagman",
+    "description": "Software Developer & Local AI Infrastructure Builder",
+    "jobTitle": "",
+    "phone": "2048073798",
+    "email": "darjaylag@gmail.com",
+    "location": "",
+    "role": "Speaker"
+  },
+  {
+    "id": "900000000000006",
+    "firstName": "Eleonore",
+    "lastName": "Braun",
+    "name": "Eleonore Braun",
+    "description": "",
+    "jobTitle": "",
+    "phone": "",
+    "email": "eleonore.braun@gmail.com",
+    "location": "",
+    "role": "Volunteer"
+  },
+  {
+    "id": "202978483805144",
+    "firstName": "Greg",
+    "lastName": "Peter-Joyal",
+    "name": "Greg Peter-Joyal",
+    "description": "Improving, Senior Consultant in Data Engineering",
+    "jobTitle": "",
+    "phone": "",
+    "email": "gregjoyal@hotmail.com",
+    "location": "",
+    "role": "Speaker"
+  },
+  {
+    "id": "187854514082655",
+    "firstName": "Hannah",
+    "lastName": "Vernon",
+    "name": "Hannah Vernon",
+    "description": "Senior Database Reliability Engineer | sqlserverscience.com",
+    "jobTitle": "",
+    "phone": "",
+    "email": "hannah@mvct.com",
+    "location": "",
+    "role": "Speaker"
+  },
+  {
+    "id": "283742104233699",
+    "firstName": "Adam",
+    "lastName": "Krieger",
+    "name": "Adam Krieger",
+    "description": "Security Architect, CISSP, CSSLP, CISA",
+    "jobTitle": "",
+    "phone": "2048805279",
+    "email": "hello@adamkrieger.ca",
+    "location": "",
+    "role": "Speaker"
+  },
+  {
+    "id": "321333801290122",
+    "firstName": "Huzhi",
+    "lastName": "Zhao",
+    "name": "Huzhi Zhao",
+    "description": "Backend & Data Engineer | Applied AI post-grad student, University of Winnipeg",
+    "jobTitle": "",
+    "phone": "2048810766",
+    "email": "huzhi.zhao.smecta@gmail.com",
+    "location": "",
+    "role": "Speaker"
+  },
+  {
+    "id": "171797940077593",
+    "firstName": "Jennifer",
+    "lastName": "Bodnarchuk",
+    "name": "Jennifer Bodnarchuk",
+    "description": "City of Winnipeg, Coordinator of Data & Analytics",
+    "jobTitle": "",
+    "phone": "",
+    "email": "jbodnarchuk@winnipeg.ca",
+    "location": "",
+    "role": "Speaker"
+  },
+  {
+    "id": "168657489392539",
+    "firstName": "Karen",
+    "lastName": "Lopez",
+    "name": "Karen Lopez",
+    "description": "Data Evangelist for InfoAdvisors, Space Enthusiast, & TeamData Coach",
+    "jobTitle": "",
+    "phone": "6472843404",
+    "email": "KarenLopez@infoadvisors.com",
+    "location": "",
+    "role": "Speaker"
+  },
+  {
+    "id": "168942086280814",
+    "firstName": "Kate",
+    "lastName": "Kehler",
+    "name": "Kate Kehler",
+    "description": "Social Planning Council of Winnipeg",
+    "jobTitle": "",
+    "phone": "",
+    "email": "kkehler@spcw.mb.ca",
+    "location": "",
+    "role": "Speaker"
+  },
+  {
+    "id": "170753873906323",
+    "firstName": "Louis-Francois",
+    "lastName": "Bouchard",
+    "name": "Louis-Francois Bouchard",
+    "description": "CTO & Co-Founder · Towards AI",
+    "jobTitle": "",
+    "phone": "",
+    "email": "louis@towardsai.net",
+    "location": "",
+    "role": "Speaker"
+  },
+  {
+    "id": "900000000000015",
+    "firstName": "Mike",
+    "lastName": "Diehl",
+    "name": "Mike Diehl",
+    "description": "",
+    "jobTitle": "",
+    "phone": "",
+    "email": "Mike.Diehl@improving.com",
+    "location": "",
+    "role": "Organizer"
+  },
+  {
+    "id": "275422777320055",
+    "firstName": "Rick",
+    "lastName": "Lowe",
+    "name": "Rick Lowe",
+    "description": "Data FLowe Solutions LLC",
+    "jobTitle": "",
+    "phone": "",
+    "email": "rick@data-flowe.com",
+    "location": "",
+    "role": "Speaker"
+  },
+  {
+    "id": "179857007835368",
+    "firstName": "Sudhir",
+    "lastName": "Amin",
+    "name": "Sudhir Amin",
+    "description": "Sr Database Specialist Solution Architect",
+    "jobTitle": "",
+    "phone": "",
+    "email": "sudhamin@amazon.com",
+    "location": "",
+    "role": "Speaker"
+  },
+  {
+    "id": "111863964707765",
+    "firstName": "Temitope",
+    "lastName": "Oladele (PhD)",
+    "name": "Temitope Oladele (PhD)",
+    "description": "Data Engineering, MDM, AI",
+    "jobTitle": "",
+    "phone": "2049957602",
+    "email": "temitope.vistro@gmail.com",
+    "location": "",
+    "role": "Speaker"
+  },
+  {
+    "id": "294218383854882",
+    "firstName": "Thimantha",
+    "lastName": "Vidanagamage",
+    "name": "Thimantha Vidanagamage",
+    "description": "Senior Data Engineer at OMERS, Canada",
+    "jobTitle": "",
+    "phone": "",
+    "email": "thimantha.vidanagamage@hotmail.com",
+    "location": "",
+    "role": "Speaker"
+  },
+  {
+    "id": "258259063723310",
+    "firstName": "Trevor",
+    "lastName": "Strome",
+    "name": "Trevor Strome",
+    "description": "Director, IT Operations and Data, Winnipeg Airports Authority",
+    "jobTitle": "",
+    "phone": "",
+    "email": "tstrome@gmail.com",
+    "location": "",
+    "role": "Speaker"
+  },
+  {
+    "id": "900000000000021",
+    "firstName": "Wing",
+    "lastName": "Kwong",
+    "name": "Wing Kwong",
+    "description": "",
+    "jobTitle": "",
+    "phone": "",
+    "email": "wing.kwong@umanitoba.ca",
+    "location": "",
+    "role": "Organizer"
   }
 ]';
 

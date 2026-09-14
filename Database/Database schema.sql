@@ -95,19 +95,27 @@ IF OBJECT_ID(N'Scan.Identities', N'U') IS NULL BEGIN
         [Description] varbinary(500) NULL,
         JobTitle    varbinary(200) NULL,
         Email       varbinary(200) NULL,
-        Phone       varbinary(50) NULL,
+        Phone       varbinary(100) NULL,
         [Location]  varbinary(200) NULL,
+        [Role]      varbinary(100) NULL,
         CONSTRAINT PK_Scan_Identities PRIMARY KEY CLUSTERED (ID),
         CONSTRAINT FK_Scan_Identities_Events FOREIGN KEY (EventID) REFERENCES Scan.Events (EventID)
     );
     PRINT N'[3/15] Created Scan.Identities.';
 END;
 ELSE BEGIN
+    IF COL_LENGTH(N'Scan.Identities', N'Phone') < 100
+        ALTER TABLE Scan.Identities ALTER COLUMN Phone varbinary(100) NULL;
+
     IF COL_LENGTH(N'Scan.Identities', N'FirstName') IS NULL
         ALTER TABLE Scan.Identities ADD [FirstName] varbinary(250) NULL;
 
     IF COL_LENGTH(N'Scan.Identities', N'LastName') IS NULL
         ALTER TABLE Scan.Identities ADD [LastName] varbinary(250) NULL;
+    IF COL_LENGTH(N'Scan.Identities', N'Role') IS NULL
+        ALTER TABLE Scan.Identities ADD [Role] varbinary(100) NULL;
+    ELSE
+        ALTER TABLE Scan.Identities ALTER COLUMN [Role] varbinary(100) NULL;
     PRINT N'[3/15] Upgraded Scan.Identities.';
 END;
 GO
@@ -365,7 +373,8 @@ SELECT (
                 CONVERT(nvarchar(200), DECRYPTBYPASSPHRASE(@EncryptionKey, JobTitle)) AS jobTitle,
                 CONVERT(nvarchar(50), DECRYPTBYPASSPHRASE(@EncryptionKey, Phone)) AS phone,
                 CONVERT(nvarchar(200), DECRYPTBYPASSPHRASE(@EncryptionKey, Email)) AS email,
-                CONVERT(nvarchar(200), DECRYPTBYPASSPHRASE(@EncryptionKey, [Location])) AS [location]
+                CONVERT(nvarchar(200), DECRYPTBYPASSPHRASE(@EncryptionKey, [Location])) AS [location],
+                CONVERT(nvarchar(50), DECRYPTBYPASSPHRASE(@EncryptionKey, [Role])) AS [role]
             FROM Scan.Identities AS i
             WHERE i.EventID=e.EventID
               AND (
@@ -470,7 +479,8 @@ GO
 --- * jobTitle: nvarchar(150)
 --- * phone: nvarchar(150)
 --- * email: nvarchar(150)
---- * location: nvarchar(150)
+---- * location: nvarchar(150)
+--- * role: nvarchar(50)
 ---
 --- NB: Attributes are case sensitive.
 ---
@@ -481,74 +491,85 @@ CREATE OR ALTER PROCEDURE Scan.Update_Identities
     @EncryptionKey nvarchar(200)=N'',
     @Identities_blob nvarchar(max)
 AS
-DECLARE @EventID int=(SELECT EventID FROM Scan.Events WHERE EventCode=@EventCode);
+DECLARE @EventID int;
+SELECT @EventID = EventID
+FROM Scan.Events
+WHERE EventCode = @EventCode;
 
-IF (@EventID IS NULL) BEGIN;
+IF (@EventID IS NULL) BEGIN
     THROW 50001, N'Invalid or missing event code.', 1;
     RETURN;
 END;
 
-DECLARE @idcount int=(SELECT COUNT(*) FROM STRING_SPLIT(@Identities_blob, N'{'))+1;
+DECLARE @sourceRows TABLE (
+    ID bigint NULL,
+    [Name] nvarchar(250) NULL,
+    [FirstName] nvarchar(250) NULL,
+    [LastName] nvarchar(250) NULL,
+    [Description] nvarchar(400) NULL,
+    JobTitle nvarchar(150) NULL,
+    Phone nvarchar(150) NULL,
+    Email nvarchar(150) NULL,
+    [Location] nvarchar(150) NULL,
+    [Role] nvarchar(50) NULL
+);
 
-SELECT TOP (@idcount) ROW_NUMBER() OVER (ORDER BY ID) AS _rowno, ID INTO #idents
-FROM (
-    SELECT DISTINCT CAST(10000000000.+10000000000.*RAND(CHECKSUM(NEWID())) AS bigint) AS ID
-    FROM GENERATE_SERIES(1, @idcount*2, 1)) AS sub
-WHERE ID NOT IN (SELECT ID FROM Scan.Identities);
+INSERT INTO @sourceRows (ID, [Name], [FirstName], [LastName], [Description],
+                         JobTitle, Phone, Email, [Location], [Role])
+SELECT id, [name], [firstName], [lastName], [description],
+       jobTitle, phone, email, [location], RoleName
+FROM OPENJSON(NULLIF(@Identities_blob, N'')) WITH (
+    id bigint '$.id',
+    [name] nvarchar(250) '$.name',
+    [firstName] nvarchar(250) '$.firstName',
+    [lastName] nvarchar(250) '$.lastName',
+    [description] nvarchar(400) '$.description',
+    jobTitle nvarchar(150) '$.jobTitle',
+    phone nvarchar(150) '$.phone',
+    email nvarchar(150) '$.email',
+    [location] nvarchar(150) '$.location',
+    RoleName nvarchar(50) '$.role'
+);
 
-WITH i AS (
-    SELECT EventID, ID, [Name], [FirstName], [LastName], [Description], JobTitle, Email, Phone, [Location], Created
-    FROM Scan.Identities
-    WHERE EventID=@EventID),
-j AS (
-    SELECT ROW_NUMBER() OVER (ORDER BY id) AS _rowno,
-           id AS ID,
-           ENCRYPTBYPASSPHRASE(@EncryptionKey, NULLIF([name], N'')) AS [Name],
-           ENCRYPTBYPASSPHRASE(@EncryptionKey, NULLIF([firstName], N'')) AS [FirstName],
-           ENCRYPTBYPASSPHRASE(@EncryptionKey, NULLIF([lastName], N'')) AS [LastName],
-           ENCRYPTBYPASSPHRASE(@EncryptionKey, NULLIF([description], N'')) AS [Description],
-           ENCRYPTBYPASSPHRASE(@EncryptionKey, NULLIF(jobTitle, N'')) AS JobTitle,
-           ENCRYPTBYPASSPHRASE(@EncryptionKey, NULLIF(phone, N'')) AS Phone,
-           ENCRYPTBYPASSPHRASE(@EncryptionKey, NULLIF(LOWER(email), N'')) AS Email,
-           ENCRYPTBYPASSPHRASE(@EncryptionKey, NULLIF([location], N'')) AS [Location],
-           (CASE WHEN [id] IS NOT NULL THEN ROW_NUMBER() OVER (PARTITION BY [id] ORDER BY (SELECT NULL)) ELSE 1 END) AS _duplicate
-    FROM OPENJSON(NULLIF(@Identities_blob, N'')) WITH (
-        id bigint '$.id',
-        [name] nvarchar(max) '$.name',
-        [firstName] nvarchar(max) '$.firstName',
-        [lastName] nvarchar(max) '$.lastName',
-        [description] nvarchar(max) '$.description',
-        jobTitle nvarchar(max) '$.jobTitle',
-        phone nvarchar(max) '$.phone',
-        email nvarchar(max) '$.email',
-        [location] nvarchar(max) '$.location')),
-blob AS (
-    SELECT ISNULL(j.ID, id.ID) AS ID,
-           j.[Name], j.[FirstName], j.[LastName], j.[Description],
-           j.JobTitle, j.Phone, j.Email, j.[Location]
-    FROM j
-    LEFT JOIN #idents AS id ON j._rowno=id._rowno
-    WHERE j._duplicate=1
-      AND (j.ID IS NOT NULL OR j.[Name] IS NOT NULL OR j.[FirstName] IS NOT NULL
-           OR j.[LastName] IS NOT NULL OR j.[Description] IS NOT NULL
-           OR j.JobTitle IS NOT NULL OR j.Phone IS NOT NULL
-           OR j.Email IS NOT NULL OR j.[Location] IS NOT NULL))
-MERGE INTO i
-USING blob ON (i.ID=blob.ID OR blob.ID IS NULL AND i.Email=blob.Email)
-WHEN NOT MATCHED BY TARGET THEN
-    INSERT (EventID, ID, [Name], [FirstName], [LastName], [Description], JobTitle, Email, Phone, [Location], Created)
-    VALUES (@EventID, blob.ID, blob.[Name], blob.[FirstName], blob.[LastName],
-            blob.[Description], blob.JobTitle, blob.Email, blob.Phone, blob.[Location], SYSDATETIME())
-WHEN MATCHED THEN
-    UPDATE SET i.ID=blob.ID,
-               i.[Name]=blob.[Name],
-               i.[FirstName]=blob.[FirstName],
-               i.[LastName]=blob.[LastName],
-               i.[Description]=blob.[Description],
-               i.JobTitle=blob.JobTitle,
-               i.Email=blob.Email,
-               i.Phone=blob.Phone,
-               i.[Location]=blob.[Location];
+UPDATE target
+SET target.[Name] = ENCRYPTBYPASSPHRASE(@EncryptionKey, NULLIF(source.[Name], N'')),
+    target.[FirstName] = ENCRYPTBYPASSPHRASE(@EncryptionKey, NULLIF(source.[FirstName], N'')),
+    target.[LastName] = ENCRYPTBYPASSPHRASE(@EncryptionKey, NULLIF(source.[LastName], N'')),
+    target.[Description] = ENCRYPTBYPASSPHRASE(@EncryptionKey, NULLIF(source.[Description], N'')),
+    target.JobTitle = ENCRYPTBYPASSPHRASE(@EncryptionKey, NULLIF(source.JobTitle, N'')),
+    target.Phone = ENCRYPTBYPASSPHRASE(@EncryptionKey, NULLIF(source.Phone, N'')),
+    target.Email = ENCRYPTBYPASSPHRASE(@EncryptionKey, NULLIF(LOWER(source.Email), N'')),
+    target.[Location] = ENCRYPTBYPASSPHRASE(@EncryptionKey, NULLIF(source.[Location], N'')),
+    target.[Role] = ENCRYPTBYPASSPHRASE(@EncryptionKey, NULLIF(source.[Role], N''))
+FROM Scan.Identities AS target
+INNER JOIN @sourceRows AS source
+    ON source.ID = target.ID
+WHERE target.EventID = @EventID;
+
+INSERT INTO Scan.Identities (
+    EventID, ID, [Name], [FirstName], [LastName], [Description],
+    JobTitle, Email, Phone, [Location], [Role], Created
+)
+SELECT
+    @EventID,
+    source.ID,
+    ENCRYPTBYPASSPHRASE(@EncryptionKey, NULLIF(source.[Name], N'')),
+    ENCRYPTBYPASSPHRASE(@EncryptionKey, NULLIF(source.[FirstName], N'')),
+    ENCRYPTBYPASSPHRASE(@EncryptionKey, NULLIF(source.[LastName], N'')),
+    ENCRYPTBYPASSPHRASE(@EncryptionKey, NULLIF(source.[Description], N'')),
+    ENCRYPTBYPASSPHRASE(@EncryptionKey, NULLIF(source.JobTitle, N'')),
+    ENCRYPTBYPASSPHRASE(@EncryptionKey, NULLIF(LOWER(source.Email), N'')),
+    ENCRYPTBYPASSPHRASE(@EncryptionKey, NULLIF(source.Phone, N'')),
+    ENCRYPTBYPASSPHRASE(@EncryptionKey, NULLIF(source.[Location], N'')),
+    ENCRYPTBYPASSPHRASE(@EncryptionKey, NULLIF(source.[Role], N'')),
+    SYSDATETIME()
+FROM @sourceRows AS source
+WHERE source.ID IS NOT NULL
+  AND NOT EXISTS (
+      SELECT 1
+      FROM Scan.Identities AS existing
+      WHERE existing.ID = source.ID
+  );
 GO
 PRINT N'[15/15] Scan.Update_Identities succeeded.';
 GO
