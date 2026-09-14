@@ -20,4 +20,17 @@ describe('POST scan request with a vendor code and an optional note', () => {
         expect(res.status).toBe(200);
         expect(res.text).toContain('EXHIBIT200');
     });
+
+    it('accepts an ID-only POST using the vendor code from the session', async () => {
+        queueTediousRows([{ ID: 1 }]);
+
+        const agent = request.agent(app);
+        await agent.post('/setup').send({ vendorCode: 'EXHIBIT200' });
+        const res = await agent
+            .post('/12345')
+            .send({ note: 'Follow up regarding quote' });
+
+        expect(res.status).toBe(200);
+        expect(res.text).toContain('EXHIBIT200');
+    });
 });

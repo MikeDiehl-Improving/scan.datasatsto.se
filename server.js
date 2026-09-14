@@ -309,6 +309,7 @@ app.post('/setup', function (req, res, next) {
   ---------------------------------------------------------------------------*/
 
 app.post(/^\/([0-9]*)\/([^\/]+)$/, newScan);  // POST with ID and vendorCode
+app.post(/^\/([0-9]+)$/, newScan);            // POST with ID only, using the vendor code from the session
 app.get(/^\/([0-9]*)\/([^\/]+)$/, newScan);   // GET with ID and vendorCode
 app.get(/^\/([0-9]*)$/, newScan);            // GET with ID only
 
