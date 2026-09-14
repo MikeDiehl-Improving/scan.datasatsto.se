@@ -33,6 +33,7 @@ describe('direct QR scan note form', () => {
     it('includes a selected vendor code in the scan view', () => {
         expect(server).toContain('req.session.vendorCode');
         expect(server).toContain('Vendor code: ');
+        expect(template).toContain('<a href="/setup">Switch vendor code</a>');
     });
 
     /* treegress:obligation qrscan.vendorcookie.absent.unit.c1 do-not-regenerate */

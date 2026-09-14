@@ -1,4 +1,4 @@
--- Generated from: Day_of_Data_Winnipeg_2026_Attendees_40554971420_20260907_181138_344.csv, report-2026-09-07T1312.csv
+-- Generated from: Day_of_Data_Winnipeg_2026_Attendees_40554971420_20260914_151116_192.csv, report-2026-09-14T1013.csv
 -- Idempotent ID rule: (Order ID * 100) + attendee sequence within that order.
 -- Fill in @EventSecret before executing this script.
 
@@ -15,17 +15,6 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "phone": "",
     "email": "oleksandr.dimbrovskyi@gmail.com",
     "location": "BC"
-  },
-  {
-    "id": "1542528276301",
-    "firstName": "Bagdat",
-    "lastName": "Rakhimov",
-    "name": "Bagdat Rakhimov",
-    "description": "",
-    "jobTitle": "",
-    "phone": "",
-    "email": "bagdat.rakhimov@gmail.com",
-    "location": "Winnipeg, MB"
   },
   {
     "id": "1543694209301",
@@ -58,17 +47,6 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "",
     "phone": "",
     "email": "xrmeng720@gmail.com",
-    "location": "Winnipeg, MB"
-  },
-  {
-    "id": "1551789838301",
-    "firstName": "Cheryl",
-    "lastName": "Hooper",
-    "name": "Cheryl Hooper",
-    "description": "",
-    "jobTitle": "",
-    "phone": "",
-    "email": "cheryl@winnipegedt.com",
     "location": "Winnipeg, MB"
   },
   {
@@ -168,28 +146,6 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "",
     "phone": "",
     "email": "gonglange@gmail.com",
-    "location": "Winnipeg, MB"
-  },
-  {
-    "id": "1559312323301",
-    "firstName": "Maria",
-    "lastName": "besiada",
-    "name": "Maria besiada",
-    "description": "",
-    "jobTitle": "",
-    "phone": "",
-    "email": "xrmeng720@gmail.com",
-    "location": "Winnipeg, MB"
-  },
-  {
-    "id": "1559312323302",
-    "firstName": "Xiaoran",
-    "lastName": "Meng",
-    "name": "Xiaoran Meng",
-    "description": "",
-    "jobTitle": "",
-    "phone": "",
-    "email": "xrmeng720@gmail.com",
     "location": "Winnipeg, MB"
   },
   {
@@ -366,17 +322,6 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "",
     "phone": "",
     "email": "7qwfk8pznm@privaterelay.appleid.com",
-    "location": "Winnipeg, MB"
-  },
-  {
-    "id": "1559904141301",
-    "firstName": "Mohammad",
-    "lastName": "Hassan",
-    "name": "Mohammad Hassan",
-    "description": "",
-    "jobTitle": "",
-    "phone": "",
-    "email": "hasan.ahmed1435@gmail.com",
     "location": "Winnipeg, MB"
   },
   {
@@ -644,17 +589,6 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "location": "Winnipeg, MB"
   },
   {
-    "id": "1560520699301",
-    "firstName": "Sarabjit",
-    "lastName": "Sethi",
-    "name": "Sarabjit Sethi",
-    "description": "",
-    "jobTitle": "",
-    "phone": "",
-    "email": "sarabjitsinghsethi85@gmail.com",
-    "location": "Winnipeg, MB"
-  },
-  {
     "id": "1560536069301",
     "firstName": "Hasib",
     "lastName": "Pulok",
@@ -873,17 +807,6 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "phone": "",
     "email": "tannjh@myumanitoba.ca",
     "location": "Singapore"
-  },
-  {
-    "id": "1561271894301",
-    "firstName": "Minori",
-    "lastName": "Shibuya",
-    "name": "Minori Shibuya",
-    "description": "Uofm",
-    "jobTitle": "",
-    "phone": "",
-    "email": "zibanyan1222@gmail.com",
-    "location": "Winnipeg, MB"
   },
   {
     "id": "1561273694301",
@@ -1557,6 +1480,17 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "location": "Winnipeg, MB"
   },
   {
+    "id": "1563000108301",
+    "firstName": "Lealdo",
+    "lastName": "Andrade",
+    "name": "Lealdo Andrade",
+    "description": "Intouch Insight",
+    "jobTitle": "",
+    "phone": "",
+    "email": "lealdo.gois.andrade@gmail.com",
+    "location": "Winnipeg, MB"
+  },
+  {
     "id": "1563027544301",
     "firstName": "Nathan",
     "lastName": "Da Silva",
@@ -1576,18 +1510,7 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "ThinkLeader",
     "phone": "",
     "email": "yizus.rangel@gmail.com",
-    "location": ""
-  },
-  {
-    "id": "1563000108301",
-    "firstName": "Lealdo",
-    "lastName": "Andrade",
-    "name": "Lealdo Andrade",
-    "description": "Intouch Insight",
-    "jobTitle": "",
-    "phone": "",
-    "email": "lealdo.gois.andrade@gmail.com",
-    "location": ""
+    "location": "BC"
   },
   {
     "id": "1563358415301",
@@ -1598,7 +1521,7 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "IT Support Specialist",
     "phone": "",
     "email": "pierrekijandi@hotmail.com",
-    "location": ""
+    "location": "Winnipeg, MB"
   },
   {
     "id": "1563510519301",
@@ -1609,7 +1532,7 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "Student",
     "phone": "",
     "email": "peter.vu298@gmail.com",
-    "location": ""
+    "location": "Winnipeg, MB"
   },
   {
     "id": "1563642957301",
@@ -1620,6 +1543,1139 @@ DECLARE @Identities_blob nvarchar(max) = N'[
     "jobTitle": "Microsoft Data Analyst - AzureDataFactory, with 5 years of experience in the Mic",
     "phone": "",
     "email": "andrealsanchez2018@gmail.com",
+    "location": "Calgary, AB"
+  },
+  {
+    "id": "1563775590301",
+    "firstName": "Fatimah",
+    "lastName": "Salami",
+    "name": "Fatimah Salami",
+    "description": "Kpmg",
+    "jobTitle": "",
+    "phone": "",
+    "email": "fatimah.salami@gmail.com",
+    "location": "ON"
+  },
+  {
+    "id": "1563891420301",
+    "firstName": "Steffen",
+    "lastName": "Walker",
+    "name": "Steffen Walker",
+    "description": "Red River College Polytechnic",
+    "jobTitle": "Student",
+    "phone": "",
+    "email": "swbusinesscontact10@gmail.com",
+    "location": "Winnipeg, MB"
+  },
+  {
+    "id": "1563963221301",
+    "firstName": "Richard",
+    "lastName": "Chan",
+    "name": "Richard Chan",
+    "description": "Manitoba Hydro",
+    "jobTitle": "",
+    "phone": "",
+    "email": "0be9nsdxc@mozmail.com",
+    "location": "Winnipeg, MB"
+  },
+  {
+    "id": "1563965593301",
+    "firstName": "YaWen",
+    "lastName": "Huang",
+    "name": "YaWen Huang",
+    "description": "DAX",
+    "jobTitle": "",
+    "phone": "",
+    "email": "yawen299@hotmail.ca",
+    "location": "Winnipeg, MB"
+  },
+  {
+    "id": "1563967292301",
+    "firstName": "Dilawer",
+    "lastName": "Hussain",
+    "name": "Dilawer Hussain",
+    "description": "onghost.com",
+    "jobTitle": "Co-founder @ onghost.com",
+    "phone": "",
+    "email": "dilaw3r@gmail.com",
+    "location": "Winnipeg, MB"
+  },
+  {
+    "id": "1563969818301",
+    "firstName": "Hamza",
+    "lastName": "H",
+    "name": "Hamza H",
+    "description": "Fatir Consulting",
+    "jobTitle": "",
+    "phone": "",
+    "email": "hamzahaque30@gmail.com",
+    "location": "Winnipeg, MB"
+  },
+  {
+    "id": "1563970946301",
+    "firstName": "Saba",
+    "lastName": "S",
+    "name": "Saba S",
+    "description": "None",
+    "jobTitle": "",
+    "phone": "",
+    "email": "saba@ymail.com",
+    "location": "Winnipeg, MB"
+  },
+  {
+    "id": "1563972624301",
+    "firstName": "Melanie",
+    "lastName": "Gallajones",
+    "name": "Melanie Gallajones",
+    "description": "Student",
+    "jobTitle": "Student",
+    "phone": "",
+    "email": "mcgallajones@gmail.com",
+    "location": "Winnipeg, MB"
+  },
+  {
+    "id": "1563977639301",
+    "firstName": "Jen",
+    "lastName": "Adriano",
+    "name": "Jen Adriano",
+    "description": "New Flyer Industries",
+    "jobTitle": "Data Science and Applications Development Lead",
+    "phone": "",
+    "email": "jrjavier13@yahoo.com",
+    "location": "Winnipeg, MB"
+  },
+  {
+    "id": "1564014110301",
+    "firstName": "Jeremy",
+    "lastName": "Malenchak",
+    "name": "Jeremy Malenchak",
+    "description": "DAX Digital Technologies Inc.",
+    "jobTitle": "Product Lead",
+    "phone": "",
+    "email": "jeremytnmalenchak@gmail.com",
+    "location": "Tokyo, 13"
+  },
+  {
+    "id": "1564017447301",
+    "firstName": "Jawaher",
+    "lastName": "Chowdhury",
+    "name": "Jawaher Chowdhury",
+    "description": "Al Hijra Islamic School",
+    "jobTitle": "Classroom Teacher",
+    "phone": "",
+    "email": "jawaherakhter498@gmail.com",
+    "location": "Winnipeg, MB"
+  },
+  {
+    "id": "1564035592301",
+    "firstName": "Fangyuan",
+    "lastName": "Chen",
+    "name": "Fangyuan Chen",
+    "description": "None",
+    "jobTitle": "N/A",
+    "phone": "",
+    "email": "videopostproduction@outlook.com",
+    "location": "Winnipeg, MB"
+  },
+  {
+    "id": "1564083986301",
+    "firstName": "Madison",
+    "lastName": "Fehr",
+    "name": "Madison Fehr",
+    "description": "DAX Digital Technologies Inc.",
+    "jobTitle": "Frontend Developer",
+    "phone": "",
+    "email": "madisonfehr@icloud.com",
+    "location": "Tokyo, 13"
+  },
+  {
+    "id": "1564195963301",
+    "firstName": "Artem",
+    "lastName": "Ramus",
+    "name": "Artem Ramus",
+    "description": "MCI",
+    "jobTitle": "Analyst",
+    "phone": "",
+    "email": "artem.ramus@gmail.com",
+    "location": "Winnipeg, MB"
+  },
+  {
+    "id": "1564216459301",
+    "firstName": "RITHIKA",
+    "lastName": "NEMURI",
+    "name": "RITHIKA NEMURI",
+    "description": "inTouch CX",
+    "jobTitle": "",
+    "phone": "",
+    "email": "rithika.nemuri@gmail.com",
+    "location": "Winnipeg, MB"
+  },
+  {
+    "id": "1564218521301",
+    "firstName": "Kurt",
+    "lastName": "Shaw",
+    "name": "Kurt Shaw",
+    "description": "New Flyer",
+    "jobTitle": "Director Manufacturing Business Systems",
+    "phone": "",
+    "email": "kurt_shaw@newflyer.com",
+    "location": "Winnipeg, MB"
+  },
+  {
+    "id": "1564218815301",
+    "firstName": "Erwin",
+    "lastName": "Lopez",
+    "name": "Erwin Lopez",
+    "description": "Motor Coach Industries",
+    "jobTitle": "Data Analyst",
+    "phone": "",
+    "email": "erwin.lopez@mcicoach.com",
+    "location": "Winnipeg, MB"
+  },
+  {
+    "id": "1564219220301",
+    "firstName": "RITHIKA",
+    "lastName": "NEMURI",
+    "name": "RITHIKA NEMURI",
+    "description": "inTouch CX",
+    "jobTitle": "Technical Support Representative",
+    "phone": "",
+    "email": "rithika.nemuri@gmail.com",
+    "location": "Winnipeg, MB"
+  },
+  {
+    "id": "1564219596301",
+    "firstName": "Joy",
+    "lastName": "Chand",
+    "name": "Joy Chand",
+    "description": "Wawanesa Insurance",
+    "jobTitle": "Manager, Advanced Analytics",
+    "phone": "",
+    "email": "jchand@wawanesa.com",
+    "location": "Winnipeg, MB"
+  },
+  {
+    "id": "1564219904301",
+    "firstName": "RAJESH",
+    "lastName": "KOTHAPETA",
+    "name": "RAJESH KOTHAPETA",
+    "description": "NEW FLYER INDUSTRIES",
+    "jobTitle": "Junior Electrical Designer",
+    "phone": "",
+    "email": "rajesh_kothapeta@newflyer.com",
+    "location": "Winnipeg, MB"
+  },
+  {
+    "id": "1564224261301",
+    "firstName": "Bradley",
+    "lastName": "Crass",
+    "name": "Bradley Crass",
+    "description": "Pathfinder Biotechnology Solutions Inc.",
+    "jobTitle": "Founder, CEO",
+    "phone": "",
+    "email": "talktoBrad9002@gmail.com",
+    "location": "Winnipeg, MB"
+  },
+  {
+    "id": "1564316617301",
+    "firstName": "Sara",
+    "lastName": "Cianflone",
+    "name": "Sara Cianflone",
+    "description": "University of Manitoba",
+    "jobTitle": "Project Manager",
+    "phone": "",
+    "email": "Sara.Cianflone@umanitoba.ca",
+    "location": "Winnipeg, MB"
+  },
+  {
+    "id": "1564323383301",
+    "firstName": "Katie",
+    "lastName": "Sanders",
+    "name": "Katie Sanders",
+    "description": "Optimiz",
+    "jobTitle": "Observability Engineer",
+    "phone": "",
+    "email": "ksanders5728@gmail.com",
+    "location": "Winnipeg, MB"
+  },
+  {
+    "id": "1564342598301",
+    "firstName": "Khang",
+    "lastName": "Duong",
+    "name": "Khang Duong",
+    "description": "University of Manitoba",
+    "jobTitle": "Graduate Researcher",
+    "phone": "",
+    "email": "duongk5@myumanitoba.ca",
+    "location": "Winnipeg, MB"
+  },
+  {
+    "id": "1564342665301",
+    "firstName": "Niloofar",
+    "lastName": "Raeispour",
+    "name": "Niloofar Raeispour",
+    "description": "University of Manitoba",
+    "jobTitle": "Student",
+    "phone": "",
+    "email": "raeispon@myumanitoba.ca",
+    "location": "Winnipeg, MB"
+  },
+  {
+    "id": "1564343247301",
+    "firstName": "BARDIA",
+    "lastName": "EGHBALNIA",
+    "name": "BARDIA EGHBALNIA",
+    "description": "FWS GROUP",
+    "jobTitle": "",
+    "phone": "",
+    "email": "beghbalnia@gmail.com",
+    "location": "Winnipeg, MB"
+  },
+  {
+    "id": "1564344327301",
+    "firstName": "Sahej",
+    "lastName": "Garg",
+    "name": "Sahej Garg",
+    "description": "University of Manitoba",
+    "jobTitle": "",
+    "phone": "",
+    "email": "sahejgarg2018@gmail.com",
+    "location": "Winnipeg, MB"
+  },
+  {
+    "id": "1564350106301",
+    "firstName": "Allison",
+    "lastName": "Ferguson",
+    "name": "Allison Ferguson",
+    "description": "Turasanna Inc.",
+    "jobTitle": "Co-Founder",
+    "phone": "",
+    "email": "farbinkie@gmail.com",
+    "location": "Winnipeg, MB"
+  },
+  {
+    "id": "1564353719301",
+    "firstName": "Tamir",
+    "lastName": "Tarom",
+    "name": "Tamir Tarom",
+    "description": "Johnston group",
+    "jobTitle": "Data Engineer",
+    "phone": "",
+    "email": "ttarom1987@gmail.com",
+    "location": "Winnipeg, MB"
+  },
+  {
+    "id": "1564360513301",
+    "firstName": "Soleiman",
+    "lastName": "Hosseinpour",
+    "name": "Soleiman Hosseinpour",
+    "description": "University of Manitoba",
+    "jobTitle": "Ph.D researcher",
+    "phone": "",
+    "email": "soleiman.hosseinpour@gmail.com",
+    "location": "ON"
+  },
+  {
+    "id": "1564386372301",
+    "firstName": "Aseem",
+    "lastName": "Shaikh",
+    "name": "Aseem Shaikh",
+    "description": "Lets Give Together",
+    "jobTitle": "",
+    "phone": "",
+    "email": "aseem@letsgivetogether.com",
+    "location": "Morden, MB"
+  },
+  {
+    "id": "1564387885301",
+    "firstName": "Evelyn",
+    "lastName": "Zhang",
+    "name": "Evelyn Zhang",
+    "description": "Let''s Give Together",
+    "jobTitle": "Data & Systems Specialist",
+    "phone": "",
+    "email": "yhzwpg@gmail.com",
+    "location": "Winnipeg, MB"
+  },
+  {
+    "id": "1564388528301",
+    "firstName": "Daniel",
+    "lastName": "Melo",
+    "name": "Daniel Melo",
+    "description": "New Flyer",
+    "jobTitle": "Data Scientist",
+    "phone": "",
+    "email": "daniel.melo.castiblanco@gmail.com",
+    "location": "Winnipeg, MB"
+  },
+  {
+    "id": "1564423402301",
+    "firstName": "Roxana",
+    "lastName": "Ibanez",
+    "name": "Roxana Ibanez",
+    "description": "Winnipeg Economic Development and Tourism",
+    "jobTitle": "",
+    "phone": "",
+    "email": "roxana@winnipegedt.com",
+    "location": "Winnipeg, MB"
+  },
+  {
+    "id": "1564427218301",
+    "firstName": "Boluwatife",
+    "lastName": "Akintola",
+    "name": "Boluwatife Akintola",
+    "description": "University of Manitoba",
+    "jobTitle": "Student",
+    "phone": "",
+    "email": "akintolb@myumanitoba.ca",
+    "location": "Winnipeg, MB"
+  },
+  {
+    "id": "1564442049301",
+    "firstName": "Neelofar",
+    "lastName": "vahora",
+    "name": "Neelofar vahora",
+    "description": "University of Manitoba",
+    "jobTitle": "Student",
+    "phone": "",
+    "email": "vneelofar@gmail.com",
+    "location": "Winnipeg, MB"
+  },
+  {
+    "id": "1564457374301",
+    "firstName": "Jing",
+    "lastName": "Jing",
+    "name": "Jing Jing",
+    "description": "HMLC",
+    "jobTitle": "",
+    "phone": "",
+    "email": "jj.czgm@gmail.com",
+    "location": "ON"
+  },
+  {
+    "id": "1564526538301",
+    "firstName": "Naod",
+    "lastName": "Tedros",
+    "name": "Naod Tedros",
+    "description": "0",
+    "jobTitle": "",
+    "phone": "",
+    "email": "naodtedros@gmail.com",
+    "location": "Mississauga, ON"
+  },
+  {
+    "id": "1564602656301",
+    "firstName": "steven",
+    "lastName": "fletcher",
+    "name": "steven fletcher",
+    "description": "fletcherfocus",
+    "jobTitle": "",
+    "phone": "",
+    "email": "stevenjohnfletcher@gmail.com",
+    "location": "Winnipeg, MB"
+  },
+  {
+    "id": "1564773034301",
+    "firstName": "Idris",
+    "lastName": "Oyelaja",
+    "name": "Idris Oyelaja",
+    "description": "IDRIS",
+    "jobTitle": "",
+    "phone": "",
+    "email": "olayinks455@gmail.com",
+    "location": "Winnipeg, MB"
+  },
+  {
+    "id": "1564967910301",
+    "firstName": "Johnny",
+    "lastName": "Lee",
+    "name": "Johnny Lee",
+    "description": "University of Manitoba",
+    "jobTitle": "Machine Learning Researcher",
+    "phone": "",
+    "email": "jleeee15@gmail.com",
+    "location": "Winnipeg, MB"
+  },
+  {
+    "id": "1564969976301",
+    "firstName": "Juan",
+    "lastName": "Rempel",
+    "name": "Juan Rempel",
+    "description": "University of Manitoba",
+    "jobTitle": "Student",
+    "phone": "",
+    "email": "jeep.mudding+eventbrite@gmail.com",
+    "location": "Winnipeg, MB"
+  },
+  {
+    "id": "1565010560301",
+    "firstName": "Angie",
+    "lastName": "Gu",
+    "name": "Angie Gu",
+    "description": "N",
+    "jobTitle": "Data analyst",
+    "phone": "",
+    "email": "xyannca@gmail.com",
+    "location": "BC"
+  },
+  {
+    "id": "1565012403301",
+    "firstName": "Cassandra",
+    "lastName": "Phung",
+    "name": "Cassandra Phung",
+    "description": "IG Wealth Management",
+    "jobTitle": "AI Data Engineer",
+    "phone": "",
+    "email": "cassandra.phung@ig.ca",
+    "location": "Toronto, ON"
+  },
+  {
+    "id": "1565022493301",
+    "firstName": "Abdulkareem",
+    "lastName": "Moyo",
+    "name": "Abdulkareem Moyo",
+    "description": "moyo",
+    "jobTitle": "Scrum master/Agile Delivery Lead",
+    "phone": "",
+    "email": "wcssynyt4q@privaterelay.appleid.com",
+    "location": "BC"
+  },
+  {
+    "id": "1565022752301",
+    "firstName": "Gagandeep",
+    "lastName": "Singh",
+    "name": "Gagandeep Singh",
+    "description": "Price Industries",
+    "jobTitle": "Data Engineer",
+    "phone": "",
+    "email": "tocontactgagan@gmail.com",
+    "location": "Winnipeg, MB"
+  },
+  {
+    "id": "1565022753301",
+    "firstName": "Tonmoy",
+    "lastName": "Ghosh",
+    "name": "Tonmoy Ghosh",
+    "description": "Price Industries",
+    "jobTitle": "Data Engineer",
+    "phone": "",
+    "email": "technicaltg007@gmail.com",
+    "location": "BC"
+  },
+  {
+    "id": "1565065314301",
+    "firstName": "Eleonore",
+    "lastName": "Heinrichs",
+    "name": "Eleonore Heinrichs",
+    "description": "University of Manitoba",
+    "jobTitle": "Lead, Database and Reporting Analyst",
+    "phone": "",
+    "email": "eleonore.heinrichs@umanitoba.ca",
+    "location": "Winnipeg, MB"
+  },
+  {
+    "id": "1565075709301",
+    "firstName": "Chris",
+    "lastName": "Swenson",
+    "name": "Chris Swenson",
+    "description": "Wawanesa Mutual Insurance",
+    "jobTitle": "Senior Data Analyst",
+    "phone": "",
+    "email": "cswenson@wawanesa.com",
+    "location": "Winnipeg, MB"
+  },
+  {
+    "id": "1565093681301",
+    "firstName": "Raza",
+    "lastName": "J",
+    "name": "Raza J",
+    "description": "Wawanesa",
+    "jobTitle": "Senior Solutions Analyst",
+    "phone": "",
+    "email": "rjamil@wawanesa.com",
+    "location": "Winnipeg, MB"
+  },
+  {
+    "id": "1565104570301",
+    "firstName": "Anand",
+    "lastName": "Velidi",
+    "name": "Anand Velidi",
+    "description": "Wawanesa Insurance",
+    "jobTitle": "",
+    "phone": "",
+    "email": "avelidi@wawanesa.com",
+    "location": "Winnipeg, MB"
+  },
+  {
+    "id": "1565161869301",
+    "firstName": "Olena",
+    "lastName": "Shevchenko",
+    "name": "Olena Shevchenko",
+    "description": "Improving Winnipeg",
+    "jobTitle": "Data Consultant",
+    "phone": "",
+    "email": "olena.shevchenko@improving.com",
+    "location": "Winnipeg, MB"
+  },
+  {
+    "id": "1565185347301",
+    "firstName": "Mohammad Alamgir",
+    "lastName": "Chowdhury",
+    "name": "Mohammad Alamgir Chowdhury",
+    "description": "University of Manitoba",
+    "jobTitle": "Research Assistant",
+    "phone": "",
+    "email": "chowdh62@myumanitoba.ca",
+    "location": "Winnipeg, MB"
+  },
+  {
+    "id": "1565197653301",
+    "firstName": "Anthony",
+    "lastName": "Bruneau-Cormier",
+    "name": "Anthony Bruneau-Cormier",
+    "description": "University of Manitoba",
+    "jobTitle": "Student",
+    "phone": "",
+    "email": "bruneau1@myumanitoba.ca",
+    "location": "Winnipeg, MB"
+  },
+  {
+    "id": "1565314651301",
+    "firstName": "Ashley",
+    "lastName": "Ashaka",
+    "name": "Ashley Ashaka",
+    "description": "Government of Manitoba / MBLL",
+    "jobTitle": "IT Project Engineer",
+    "phone": "",
+    "email": "amirah.aesthetics@gmail.com",
+    "location": "Winnipeg, MB"
+  },
+  {
+    "id": "1565351128301",
+    "firstName": "Azeez",
+    "lastName": "Akinlade",
+    "name": "Azeez Akinlade",
+    "description": "AA",
+    "jobTitle": "",
+    "phone": "",
+    "email": "azeez.akinlade01@gmail.com",
+    "location": "BC"
+  },
+  {
+    "id": "1565379696301",
+    "firstName": "Kyungmin",
+    "lastName": "Kim",
+    "name": "Kyungmin Kim",
+    "description": "University of Manitoba",
+    "jobTitle": "Student",
+    "phone": "",
+    "email": "ohcan911@gmail.com",
+    "location": "Winnipeg, MB"
+  },
+  {
+    "id": "1565397211301",
+    "firstName": "Mayank",
+    "lastName": "Kataria",
+    "name": "Mayank Kataria",
+    "description": "Shared Health",
+    "jobTitle": "Workforce Analyst",
+    "phone": "",
+    "email": "mayankkataria194@gmail.com",
+    "location": "Winnipeg, MB"
+  },
+  {
+    "id": "1565398799301",
+    "firstName": "Oluwatobi",
+    "lastName": "Aruna",
+    "name": "Oluwatobi Aruna",
+    "description": "RRC",
+    "jobTitle": "Student",
+    "phone": "",
+    "email": "arunaoluwatobi@gmail.com",
+    "location": "Winnipeg, MB"
+  },
+  {
+    "id": "1565491031301",
+    "firstName": "Trudy",
+    "lastName": "Moghaddam",
+    "name": "Trudy Moghaddam",
+    "description": "Johnston group",
+    "jobTitle": "Team lead application developer",
+    "phone": "",
+    "email": "trudymog@gmail.com",
+    "location": "Steinbach, MB"
+  },
+  {
+    "id": "1565497365301",
+    "firstName": "Ali",
+    "lastName": "Moghaddam",
+    "name": "Ali Moghaddam",
+    "description": "Red River College Polytechnic",
+    "jobTitle": "Instructor",
+    "phone": "",
+    "email": "amoghaddam4488@gmail.com",
+    "location": "Steinbach, MB"
+  },
+  {
+    "id": "1565539002301",
+    "firstName": "Xiaoran",
+    "lastName": "Meng",
+    "name": "Xiaoran Meng",
+    "description": "Pollard",
+    "jobTitle": "",
+    "phone": "",
+    "email": "xrmeng720@gmail.com",
+    "location": "Winnipeg, MB"
+  },
+  {
+    "id": "1565905749301",
+    "firstName": "kdc",
+    "lastName": "cst",
+    "name": "kdc cst",
+    "description": "natapat",
+    "jobTitle": "",
+    "phone": "",
+    "email": "tools@naturalpattern.space",
+    "location": "Winnipeg, MB"
+  },
+  {
+    "id": "1565984189301",
+    "firstName": "Ruben",
+    "lastName": "Barrios",
+    "name": "Ruben Barrios",
+    "description": "Price Industries",
+    "jobTitle": "Data Engineer",
+    "phone": "",
+    "email": "rabarrios25@gmail.com",
+    "location": "Winnipeg, MB"
+  },
+  {
+    "id": "1566049441301",
+    "firstName": "Ali",
+    "lastName": "Ebadi",
+    "name": "Ali Ebadi",
+    "description": "The University of Winnipeg",
+    "jobTitle": "Senior Research Assistant",
+    "phone": "",
+    "email": "ebadi-a@webmail.uwinnipeg.ca",
+    "location": "Winnipeg, MB"
+  },
+  {
+    "id": "1566084036301",
+    "firstName": "kdc",
+    "lastName": "cst",
+    "name": "kdc cst",
+    "description": "natpat INCOSE",
+    "jobTitle": "",
+    "phone": "",
+    "email": "tools@naturalpattern.space",
+    "location": "Winnipeg, MB"
+  },
+  {
+    "id": "1566086547301",
+    "firstName": "Terry",
+    "lastName": "Bunio",
+    "name": "Terry Bunio",
+    "description": "University of Manitoba",
+    "jobTitle": "CIO",
+    "phone": "",
+    "email": "terry.bunio@umanitoba.ca",
+    "location": "Winnipeg, MB"
+  },
+  {
+    "id": "1566114379301",
+    "firstName": "Harmanjot",
+    "lastName": "Kaur",
+    "name": "Harmanjot Kaur",
+    "description": "Red River College",
+    "jobTitle": "Research Technologist",
+    "phone": "",
+    "email": "harmanjot082003@gmail.com",
+    "location": "Winnipeg, MB"
+  },
+  {
+    "id": "1566177025301",
+    "firstName": "Junze",
+    "lastName": "Zhou",
+    "name": "Junze Zhou",
+    "description": "University of Manitoba",
+    "jobTitle": "",
+    "phone": "",
+    "email": "lyo.eos@outlook.com",
+    "location": "Winnipeg, MB"
+  },
+  {
+    "id": "1566204760301",
+    "firstName": "Fatema",
+    "lastName": "Hossain",
+    "name": "Fatema Hossain",
+    "description": "N/A",
+    "jobTitle": "",
+    "phone": "",
+    "email": "fatemahossain6837@gmail.com",
+    "location": "Milton, ON"
+  },
+  {
+    "id": "1566288242301",
+    "firstName": "Destiny",
+    "lastName": "Ovili",
+    "name": "Destiny Ovili",
+    "description": "Student",
+    "jobTitle": "Student",
+    "phone": "",
+    "email": "destinyovili@gmail.com",
+    "location": "Winnipeg, MB"
+  },
+  {
+    "id": "1566352917301",
+    "firstName": "Rakesh",
+    "lastName": "Gurung",
+    "name": "Rakesh Gurung",
+    "description": "University of Manitoba",
+    "jobTitle": "Student",
+    "phone": "",
+    "email": "gurungr1@myumanitoba.ca",
+    "location": "Brampton, ON"
+  },
+  {
+    "id": "1566396120301",
+    "firstName": "Pooja",
+    "lastName": "Pawani",
+    "name": "Pooja Pawani",
+    "description": "Risepoint",
+    "jobTitle": "Quality Assurance Leader",
+    "phone": "",
+    "email": "ppawani55@gmail.com",
+    "location": "Winnipeg, MB"
+  },
+  {
+    "id": "1566401042301",
+    "firstName": "Daniel",
+    "lastName": "Ochoa",
+    "name": "Daniel Ochoa",
+    "description": "Park West",
+    "jobTitle": "Inventory",
+    "phone": "",
+    "email": "valenzuelad1@hotmail.com",
+    "location": "Winnipeg, MB"
+  },
+  {
+    "id": "1566474265301",
+    "firstName": "Hunter",
+    "lastName": "Ward",
+    "name": "Hunter Ward",
+    "description": "SYBS",
+    "jobTitle": "Data scientist co-op student",
+    "phone": "",
+    "email": "wardhunter0@gmail.com",
+    "location": "Winnipeg, MB"
+  },
+  {
+    "id": "1566704343301",
+    "firstName": "Jhon",
+    "lastName": "Araujo",
+    "name": "Jhon Araujo",
+    "description": "Freelance",
+    "jobTitle": "",
+    "phone": "",
+    "email": "jhonmer.araujo.79@gmail.com",
+    "location": "Winnipeg, MB"
+  },
+  {
+    "id": "1566826196301",
+    "firstName": "Abenezer",
+    "lastName": "Mergia",
+    "name": "Abenezer Mergia",
+    "description": "Lectura Ai",
+    "jobTitle": "Student",
+    "phone": "",
+    "email": "abenuabera@gmail.com",
+    "location": "BC"
+  },
+  {
+    "id": "1566868769301",
+    "firstName": "Shashen",
+    "lastName": "Mudaly",
+    "name": "Shashen Mudaly",
+    "description": "Norima Consulting",
+    "jobTitle": "Solutions Architect",
+    "phone": "",
+    "email": "shashen@gmail.com",
+    "location": "Brandon, MB"
+  },
+  {
+    "id": "1567011840301",
+    "firstName": "Liam",
+    "lastName": "Elson",
+    "name": "Liam Elson",
+    "description": "Johnston Group",
+    "jobTitle": "Data Analytics Developer",
+    "phone": "",
+    "email": "liamelson21@gmail.com",
+    "location": "Winnipeg, MB"
+  },
+  {
+    "id": "1567104771301",
+    "firstName": "Agape",
+    "lastName": "Seo",
+    "name": "Agape Seo",
+    "description": "Richardson International",
+    "jobTitle": "",
+    "phone": "",
+    "email": "agapeseo@gmail.com",
+    "location": "Winnipeg, MB"
+  },
+  {
+    "id": "1567104922301",
+    "firstName": "Grace",
+    "lastName": "Seo",
+    "name": "Grace Seo",
+    "description": "Public Health Agency of Canada",
+    "jobTitle": "",
+    "phone": "",
+    "email": "seo.grace.e@gmail.com",
+    "location": "Winnipeg, MB"
+  },
+  {
+    "id": "1567158596301",
+    "firstName": "Hong Nhung",
+    "lastName": "Pham",
+    "name": "Hong Nhung Pham",
+    "description": "UofW",
+    "jobTitle": "",
+    "phone": "",
+    "email": "phamhongnhung2294@gmail.com",
+    "location": "Winnipeg, MB"
+  },
+  {
+    "id": "1567161383301",
+    "firstName": "Hong",
+    "lastName": "Pham",
+    "name": "Hong Pham",
+    "description": "U of Winnipeg",
+    "jobTitle": "",
+    "phone": "",
+    "email": "phamhongnhung2294@gmail.com",
+    "location": "Winnipeg, MB"
+  },
+  {
+    "id": "1567163568301",
+    "firstName": "sirath",
+    "lastName": "vaid",
+    "name": "sirath vaid",
+    "description": "Student RRC",
+    "jobTitle": "I am a student at Red river college and it is a great opportunity for me tomlear",
+    "phone": "",
+    "email": "vaidsirath11@gmail.com",
+    "location": "Winnipeg, MB"
+  },
+  {
+    "id": "1567243210301",
+    "firstName": "Sheikh Safwan",
+    "lastName": "Hossain",
+    "name": "Sheikh Safwan Hossain",
+    "description": "Intouchcx",
+    "jobTitle": "",
+    "phone": "",
+    "email": "sakifhossain71@gmail.com",
+    "location": "Winnipeg, MB"
+  },
+  {
+    "id": "1567425111301",
+    "firstName": "Nicolas",
+    "lastName": "Subek Simon",
+    "name": "Nicolas Subek Simon",
+    "description": "New grad",
+    "jobTitle": "SOC Analyst",
+    "phone": "",
+    "email": "subeks@tutanota.com",
+    "location": "Winnipeg, MB"
+  },
+  {
+    "id": "1567515737301",
+    "firstName": "Tanvi",
+    "lastName": "Patel",
+    "name": "Tanvi Patel",
+    "description": "University of Manitoba(student)",
+    "jobTitle": "Student",
+    "phone": "",
+    "email": "tanvimp2004@gmail.com",
+    "location": "Winnipeg, MB"
+  },
+  {
+    "id": "1567577075301",
+    "firstName": "Ariel",
+    "lastName": "Jentsch",
+    "name": "Ariel Jentsch",
+    "description": "N/A",
+    "jobTitle": "N/A",
+    "phone": "",
+    "email": "reali_arter@hotmail.com",
+    "location": "Winnipeg, MB"
+  },
+  {
+    "id": "1567577933301",
+    "firstName": "Terra",
+    "lastName": "Jentsch",
+    "name": "Terra Jentsch",
+    "description": "N/A",
+    "jobTitle": "N/A",
+    "phone": "",
+    "email": "aurora_tj@hotmail.com",
+    "location": "Winnipeg, MB"
+  },
+  {
+    "id": "1567585943301",
+    "firstName": "Aamena",
+    "lastName": "Ghousy",
+    "name": "Aamena Ghousy",
+    "description": "CancerCare Manitoba",
+    "jobTitle": "Data Analyst",
+    "phone": "",
+    "email": "aamena0928@gmail.com",
+    "location": "Winnipeg, MB"
+  },
+  {
+    "id": "1567654777301",
+    "firstName": "An",
+    "lastName": "Ho",
+    "name": "An Ho",
+    "description": "UofW",
+    "jobTitle": "",
+    "phone": "",
+    "email": "anlac2359@gmail.com",
+    "location": "Winnipeg, MB"
+  },
+  {
+    "id": "1567658907301",
+    "firstName": "Kaneza",
+    "lastName": "Louise",
+    "name": "Kaneza Louise",
+    "description": "University of Manitoba",
+    "jobTitle": "",
+    "phone": "",
+    "email": "rght74cgnt@privaterelay.appleid.com",
+    "location": "Vancouver, BC"
+  },
+  {
+    "id": "1567800533301",
+    "firstName": "Anastasiia",
+    "lastName": "Bohachenko",
+    "name": "Anastasiia Bohachenko",
+    "description": "University of Manitoba",
+    "jobTitle": "Data Analyst",
+    "phone": "",
+    "email": "nastialetter@gmail.com",
+    "location": "Winnipeg, MB"
+  },
+  {
+    "id": "1568263115301",
+    "firstName": "Linpu",
+    "lastName": "Zhang",
+    "name": "Linpu Zhang",
+    "description": "University of Manitoba",
+    "jobTitle": "Graduate",
+    "phone": "",
+    "email": "zhangl53@myumanitoba.ca",
+    "location": "Winnipeg, MB"
+  },
+  {
+    "id": "1568294256301",
+    "firstName": "Nouran",
+    "lastName": "Bileha",
+    "name": "Nouran Bileha",
+    "description": "University of Manitoba",
+    "jobTitle": "Student",
+    "phone": "",
+    "email": "bilehanouran@gmail.com",
+    "location": "Winnipeg, MB"
+  },
+  {
+    "id": "1568366734301",
+    "firstName": "huilin",
+    "lastName": "wang",
+    "name": "huilin wang",
+    "description": "iGM",
+    "jobTitle": "data science intern at IGM",
+    "phone": "",
+    "email": "wangh1@myumanitoba.ca",
+    "location": "Toronto, ON"
+  },
+  {
+    "id": "1568382304301",
+    "firstName": "Narek",
+    "lastName": "Veranyan",
+    "name": "Narek Veranyan",
+    "description": "University of Manitoba",
+    "jobTitle": "Student",
+    "phone": "",
+    "email": "veranyan@myumanitoba.ca",
+    "location": "Winnipeg, MB"
+  },
+  {
+    "id": "1568409870301",
+    "firstName": "Kobiljon",
+    "lastName": "Erkinjonov",
+    "name": "Kobiljon Erkinjonov",
+    "description": "Student",
+    "jobTitle": "Data Science student from University of Manitoba",
+    "phone": "",
+    "email": "erkinjonovqobiljon@gmail.com",
+    "location": "Winnipeg, MB"
+  },
+  {
+    "id": "1568412784301",
+    "firstName": "Muhammad Sayid",
+    "lastName": "Mamasiddikov",
+    "name": "Muhammad Sayid Mamasiddikov",
+    "description": "Student",
+    "jobTitle": "Computer Science Student from University of Manitoba",
+    "phone": "",
+    "email": "claymrx003@gmail.com",
+    "location": "Winnipeg, MB"
+  },
+  {
+    "id": "1568431291301",
+    "firstName": "Hritik",
+    "lastName": "Punj",
+    "name": "Hritik Punj",
+    "description": "Norima Consulting",
+    "jobTitle": "",
+    "phone": "",
+    "email": "hritikpunj@icloud.com",
+    "location": "Winnipeg, MB"
+  },
+  {
+    "id": "1568460092301",
+    "firstName": "Ellie",
+    "lastName": "Duong",
+    "name": "Ellie Duong",
+    "description": "GOM",
+    "jobTitle": "IT Business Analyst",
+    "phone": "",
+    "email": "lyduong0910@gmail.com",
+    "location": "Winnipeg, MB"
+  },
+  {
+    "id": "1568663253301",
+    "firstName": "Matthew",
+    "lastName": "Fogel",
+    "name": "Matthew Fogel",
+    "description": "IG Wealth Management",
+    "jobTitle": "Data Engineering Specialist",
+    "phone": "",
+    "email": "matthewfogel@outlook.com",
+    "location": "BC"
+  },
+  {
+    "id": "1568704287301",
+    "firstName": "Sukhmandeep",
+    "lastName": "Kaur",
+    "name": "Sukhmandeep Kaur",
+    "description": "IGM Financial/Financière IGM",
+    "jobTitle": "Senior Data Engineer",
+    "phone": "",
+    "email": "sdkbhatti24@gmail.com",
     "location": ""
   }
 ]';
