@@ -553,4 +553,22 @@ GO
 PRINT N'[15/15] Scan.Update_Identities succeeded.';
 GO
 
+PRINT N'[16/16] Creating or altering Scan.Get_Authorization_Code...';
+GO
+-------------------------------------------------------------------------------
+--- Fetch the organizer scanner authorization code for an event
+-------------------------------------------------------------------------------
+
+CREATE OR ALTER PROCEDURE Scan.Get_Authorization_Code
+    @EventCode uniqueidentifier
+AS
+SET NOCOUNT ON;
+SELECT [Event], EventCode, ScannerSecret
+FROM Scan.Events
+WHERE EventCode=@EventCode
+  AND Expires>=CAST(SYSUTCDATETIME() AS date);
+GO
+PRINT N'[16/16] Scan.Get_Authorization_Code succeeded.';
+GO
+
 COMMIT TRANSACTION;

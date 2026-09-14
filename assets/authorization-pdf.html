@@ -1,0 +1,28 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type"/>
+    <meta content="utf-8" http-equiv="encoding"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="shortcut icon" href="/assets/favicon.png" type="image/png">
+    <link rel="icon" href="/assets/favicon.png" type="image/png">
+
+    <link rel="stylesheet" href="/assets/style.css"/>
+
+    <title>Print scanner authorization QR code</title>
+</head>
+<body class="pdf">
+
+    <div class="msgbox">
+        <h1>Print scanner authorization QR code</h1>
+        <p>Enter the event's EventCode. The PDF contains the QR code that sponsor representatives and Registration should scan before scanning badges.</p>
+        <form action="/authorization-pdf" method="post" autocomplete="off">
+            <label for="eventCode">EventCode:</label>
+            <input id="eventCode" type="text" name="eventCode" placeholder="EventCode (required)" value="<%=EventCode%>" required/>
+            <input type="submit" value="Generate PDF"/>
+        </form>
+    </div>
+
+</body>
+</html>

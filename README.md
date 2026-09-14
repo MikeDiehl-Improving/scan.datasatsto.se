@@ -191,6 +191,10 @@ The scanner QR is not an individual login or device identity. It is a shared bea
 printed in attendee-facing materials. `cookieSecret` must be set to a strong, stable value in production, and
 HTTPS is required so the session cookie is secure.
 
+To print the organizer scanner authorization QR code, open `/authorization-pdf`, enter the event's `EventCode`,
+and choose **Generate PDF**. Give this printed QR code only to the event organizer; each sponsor representative
+and the Registration desk scans it once on their phone before scanning attendee badges.
+
 `GET /{identity}`
 
 `GET /{identity}/{vendorCode}`

@@ -33,6 +33,7 @@
             <tr data-method="GET" data-path="/random/:event"><td class="method">GET</td><td><code>/random/:event</code></td><td>View one random scan for an event.<form class="api-call"><label>Event <input name="event" required></label><button type="submit">Run call</button><pre class="api-result" aria-live="polite"></pre></form></td></tr>
             <tr data-method="GET" data-path="/random/:event/:vendorCode"><td class="method">GET</td><td><code>/random/:event/:vendorCode</code></td><td>View one random scan for an event, filtered by vendor code.<form class="api-call"><label>Event <input name="event" required></label><label>Vendor code <input name="vendorCode" required></label><button type="submit">Run call</button><pre class="api-result" aria-live="polite"></pre></form></td></tr>
             <tr><td class="method">GET</td><td><a href="/pdf">/pdf</a></td><td>Open the interactive form to generate a PDF badge/report.</td></tr>
+            <tr><td class="method">GET</td><td><a href="/authorization-pdf">/authorization-pdf</a></td><td>Print the organizer scanner authorization QR code for an event.</td></tr>
             <tr data-method="GET" data-path="/expire"><td class="method">GET</td><td><code>/expire</code></td><td>Expire old events and remove their cached QR codes.<form class="api-call"><button type="submit">Run call</button><pre class="api-result" aria-live="polite"></pre></form></td></tr>
         </tbody>
     </table>

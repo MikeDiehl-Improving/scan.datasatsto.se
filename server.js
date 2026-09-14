@@ -545,6 +545,74 @@ function pdfForm (req, res, next) {
     res.status(200).send(createHTML('assets/pdf.html', { "Event": (decodeURI(req.params.event) || '') }));
 }
 
+// Input form to generate the organizer authorization QR code PDF:
+app.get('/authorization-pdf', authorizationPdfForm);
+app.get('/authorization-pdf/:eventCode', authorizationPdfForm);
+
+function authorizationPdfForm (req, res, next) {
+    res.status(200).send(createHTML('assets/authorization-pdf.html', {
+        "EventCode": simpleHtmlEncode(decodeURI(req.params.eventCode || ''))
+    }));
+}
+
+// Generate a printable organizer authorization QR code:
+app.post('/authorization-pdf', async function (req, res, next) {
+    const eventCode = typeof req.body.eventCode === 'string'
+        ? req.body.eventCode.trim()
+        : '';
+
+    if (!eventCode) {
+        res.status(400).send('EventCode is required.');
+        return;
+    }
+
+    sqlQuery(connectionString,
+        'EXECUTE Scan.Get_Authorization_Code @EventCode=@EventCode;',
+        [{ "name": 'EventCode', "type": Types.UniqueIdentifier, "value": eventCode }],
+        async function(recordset) {
+            if (!recordset || recordset.length !== 1) {
+                res.status(404).send('Invalid or missing event code.');
+                return;
+            }
+
+            const event = recordset[0];
+            const authorizationUrl = req.protocol + '://' + req.get('host') +
+                '/authorize/' + encodeURIComponent(String(event.ScannerSecret));
+
+            try {
+                const qrImage = await qr.toBuffer(authorizationUrl, {
+                    type: 'png',
+                    width: 500,
+                    margin: 2
+                });
+                const pdf = new PDFGenerator({
+                    size: 'LETTER',
+                    margins: { top: 54, bottom: 54, left: 54, right: 54 }
+                });
+
+                res.type('application/pdf');
+                res.attachment('scanner-authorization-' + String(event.Event).replace(/[^a-z0-9]+/gi, '-') + '.pdf');
+                pdf.pipe(res);
+                pdf.fontSize(24).text('Scanner authorization');
+                pdf.moveDown(0.5);
+                pdf.fontSize(18).text(String(event.Event || 'Event'));
+                pdf.moveDown(1);
+                pdf.image(qrImage, { fit: [450, 450], align: 'center' });
+                pdf.moveDown(1);
+                pdf.fontSize(11).text(
+                    'Each sponsor or Registration phone must scan this code before scanning badges.',
+                    { align: 'center' }
+                );
+                pdf.end();
+            } catch (err) {
+                console.error('Authorization QR PDF generation failed:', err);
+                if (!res.headersSent) {
+                    res.status(500).send('Unable to generate the authorization QR code PDF.');
+                }
+            }
+        });
+});
+
 
 // Generate the PDF document:
 app.post('/pdf', async function (req, res, next) {
