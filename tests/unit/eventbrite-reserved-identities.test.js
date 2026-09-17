@@ -2,9 +2,15 @@ import { afterEach, describe, expect, it } from 'vitest';
 import fs from 'fs';
 import os from 'os';
 import path from 'path';
-import { execFileSync } from 'child_process';
+import { execFileSync, spawnSync } from 'child_process';
 
 const scriptPath = path.resolve('scripts', 'generate-eventbrite-identities.ps1');
+const powershellCommand = process.platform === 'win32' ? 'powershell' : 'pwsh';
+const hasPowerShell = spawnSync(
+    powershellCommand,
+    ['-NoProfile', '-Command', 'exit 0'],
+    { stdio: 'ignore' }
+).status === 0;
 const temporaryPaths = [];
 
 afterEach(() => {
@@ -23,7 +29,7 @@ function runGenerator(argumentsList) {
         '123,Test,Attendee,test@example.com,555,City,ST',
     ].join('\n'));
 
-    execFileSync('powershell', [
+    execFileSync(powershellCommand, [
         '-NoProfile',
         '-ExecutionPolicy', 'Bypass',
         '-File', scriptPath,
@@ -35,7 +41,7 @@ function runGenerator(argumentsList) {
     return fs.readFileSync(outputPath, 'utf8');
 }
 
-describe('reserved blank badge identity generation', () => {
+describe.skipIf(!hasPowerShell)('reserved blank badge identity generation', () => {
     it('adds deterministic blank identities for the requested range', () => {
         const sql = runGenerator([
             '-ReservedIdStart', '8000000000',
