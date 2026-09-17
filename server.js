@@ -36,7 +36,7 @@ app.use(cookieSession({
     secret: (process.env.cookieSecret || 'dev'),
     rolling: true,
     secure: !(serverPort==3000),        // on dev environment only, allow cookies even without HTTPS.
-    sameSite: true,
+    sameSite: 'lax',
     resave: true,
     maxAge: 24 * 60 * 60 * 1000         // 24 little hours
 }));
