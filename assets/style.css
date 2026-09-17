@@ -38,6 +38,10 @@ body.scan {
     color: #000000;
 }
 
+body.authorized {
+    font-size: 1.5rem;
+}
+
 body.pdf {
     background: radial-gradient(#ffffff, #ffffff, #d8d8d8);
 }
@@ -461,10 +465,10 @@ body.scan button {
     border-width: 1px;
     border-color: rgb(0, 0, 0);
     background-color: rgb(255, 255, 255, 0.8);
-    padding: 0.25rem 2rem;
+    padding: 0.5rem 4rem;
     color: #000000;
     font: inherit;
-    font-size: 2rem;
+    font-size: 4rem;
 }
 
 body.pdf td {
