@@ -1,0 +1,1 @@
+On the setup page and scan page, show the existing vendor codes as selectable options and provide an explicit option to enter a new vendor code. Selecting an existing code should avoid creating a new code from a typo, while the new-code path should preserve the ability to add a genuinely new vendor code.

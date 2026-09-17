@@ -1,0 +1,235 @@
+{
+  "feature_id": "vendor-code-selection",
+  "plan_version": 1,
+  "strategy_version": 1,
+  "entries": [
+    {
+      "scenario_id": "setup.optionsshown",
+      "obligations": [
+        {
+          "skill": "unit",
+          "obligation_id": "setup.optionsshown.unit.c1",
+          "test_ids": [],
+          "evidence_ids": [],
+          "reused": false
+        },
+        {
+          "skill": "e2e-playwright",
+          "obligation_id": "setup.optionsshown.e2e-playwright.c2",
+          "test_ids": [],
+          "evidence_ids": [],
+          "reused": false
+        }
+      ]
+    },
+    {
+      "scenario_id": "setup.newcodeinputrevealed",
+      "obligations": [
+        {
+          "skill": "unit",
+          "obligation_id": "setup.newcodeinputrevealed.unit.c1",
+          "test_ids": [],
+          "evidence_ids": [],
+          "reused": false
+        },
+        {
+          "skill": "e2e-playwright",
+          "obligation_id": "setup.newcodeinputrevealed.e2e-playwright.c2",
+          "test_ids": [],
+          "evidence_ids": [],
+          "reused": false
+        }
+      ]
+    },
+    {
+      "scenario_id": "setup.selectexisting",
+      "obligations": [
+        {
+          "skill": "unit",
+          "obligation_id": "setup.selectexisting.unit.c1",
+          "test_ids": [],
+          "evidence_ids": [],
+          "reused": false
+        },
+        {
+          "skill": "e2e-playwright",
+          "obligation_id": "setup.selectexisting.e2e-playwright.c2",
+          "test_ids": [],
+          "evidence_ids": [],
+          "reused": false
+        }
+      ]
+    },
+    {
+      "scenario_id": "setup.abandonnewcode",
+      "obligations": [
+        {
+          "skill": "unit",
+          "obligation_id": "setup.abandonnewcode.unit.c1",
+          "test_ids": [],
+          "evidence_ids": [],
+          "reused": false
+        },
+        {
+          "skill": "e2e-playwright",
+          "obligation_id": "setup.abandonnewcode.e2e-playwright.c2",
+          "test_ids": [],
+          "evidence_ids": [],
+          "reused": false
+        }
+      ]
+    },
+    {
+      "scenario_id": "setup.enternewcode",
+      "obligations": [
+        {
+          "skill": "unit",
+          "obligation_id": "setup.enternewcode.unit.c1",
+          "test_ids": [],
+          "evidence_ids": [],
+          "reused": false
+        },
+        {
+          "skill": "e2e-playwright",
+          "obligation_id": "setup.enternewcode.e2e-playwright.c2",
+          "test_ids": [],
+          "evidence_ids": [],
+          "reused": false
+        }
+      ]
+    },
+    {
+      "scenario_id": "setup.emptycode",
+      "obligations": [
+        {
+          "skill": "unit",
+          "obligation_id": "setup.emptycode.unit.c1",
+          "test_ids": [],
+          "evidence_ids": [],
+          "reused": false
+        },
+        {
+          "skill": "e2e-playwright",
+          "obligation_id": "setup.emptycode.e2e-playwright.c2",
+          "test_ids": [],
+          "evidence_ids": [],
+          "reused": false
+        }
+      ]
+    },
+    {
+      "scenario_id": "scan.optionsshown",
+      "obligations": [
+        {
+          "skill": "unit",
+          "obligation_id": "scan.optionsshown.unit.c1",
+          "test_ids": [],
+          "evidence_ids": [],
+          "reused": false
+        },
+        {
+          "skill": "e2e-playwright",
+          "obligation_id": "scan.optionsshown.e2e-playwright.c2",
+          "test_ids": [],
+          "evidence_ids": [],
+          "reused": false
+        }
+      ]
+    },
+    {
+      "scenario_id": "scan.newcodeinputrevealed",
+      "obligations": [
+        {
+          "skill": "unit",
+          "obligation_id": "scan.newcodeinputrevealed.unit.c1",
+          "test_ids": [],
+          "evidence_ids": [],
+          "reused": false
+        },
+        {
+          "skill": "e2e-playwright",
+          "obligation_id": "scan.newcodeinputrevealed.e2e-playwright.c2",
+          "test_ids": [],
+          "evidence_ids": [],
+          "reused": false
+        }
+      ]
+    },
+    {
+      "scenario_id": "scan.selectexisting",
+      "obligations": [
+        {
+          "skill": "unit",
+          "obligation_id": "scan.selectexisting.unit.c1",
+          "test_ids": [],
+          "evidence_ids": [],
+          "reused": false
+        },
+        {
+          "skill": "e2e-playwright",
+          "obligation_id": "scan.selectexisting.e2e-playwright.c2",
+          "test_ids": [],
+          "evidence_ids": [],
+          "reused": false
+        }
+      ]
+    },
+    {
+      "scenario_id": "scan.abandonnewcode",
+      "obligations": [
+        {
+          "skill": "unit",
+          "obligation_id": "scan.abandonnewcode.unit.c1",
+          "test_ids": [],
+          "evidence_ids": [],
+          "reused": false
+        },
+        {
+          "skill": "e2e-playwright",
+          "obligation_id": "scan.abandonnewcode.e2e-playwright.c2",
+          "test_ids": [],
+          "evidence_ids": [],
+          "reused": false
+        }
+      ]
+    },
+    {
+      "scenario_id": "scan.enternewcode",
+      "obligations": [
+        {
+          "skill": "unit",
+          "obligation_id": "scan.enternewcode.unit.c1",
+          "test_ids": [],
+          "evidence_ids": [],
+          "reused": false
+        },
+        {
+          "skill": "e2e-playwright",
+          "obligation_id": "scan.enternewcode.e2e-playwright.c2",
+          "test_ids": [],
+          "evidence_ids": [],
+          "reused": false
+        }
+      ]
+    },
+    {
+      "scenario_id": "scan.emptycode",
+      "obligations": [
+        {
+          "skill": "unit",
+          "obligation_id": "scan.emptycode.unit.c1",
+          "test_ids": [],
+          "evidence_ids": [],
+          "reused": false
+        },
+        {
+          "skill": "e2e-playwright",
+          "obligation_id": "scan.emptycode.e2e-playwright.c2",
+          "test_ids": [],
+          "evidence_ids": [],
+          "reused": false
+        }
+      ]
+    }
+  ]
+}

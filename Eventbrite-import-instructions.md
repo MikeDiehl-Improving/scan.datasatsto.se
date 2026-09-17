@@ -55,8 +55,19 @@ From the repository root, generate the SQL file from both exports:
 powershell -File .\scripts\generate-eventbrite-identities.ps1 `
   -CsvPath "C:\path\to\Day_of_Data_Winnipeg_2026_Attendees.csv" `
   -ReportCsvPath "C:\path\to\report-2026-09-04T1631.csv" `
+  -OrganizersVolunteersCsvPath "C:\path\to\organizers-volunteers.csv" `
+  -SpeakerListCsvPath "C:\path\to\speakerlist.csv" `
+  -ReservedIdStart 8000000000 `
+  -ReservedIdCount 100 `
   -OutputPath ".\Eventbrite-identities.sql"
 ```
+
+`-ReservedIdStart` and `-ReservedIdCount` add preprinted blank-badge identities.
+Their name, title, job title, phone, location, description, and role are blank;
+the email is a deterministic placeholder such as
+`blank-8000000000@invalid.example`. The generator rejects negative values,
+overflow, and collisions with imported identity IDs. Omit both parameters when
+no reserved badges are needed.
 
 The report export currently contains a second, billing-related `Company` header.
 The script preserves the first `Company` column, which is the attendee's company.
@@ -68,7 +79,9 @@ added when a matching row is found. Only report rows with `Ticket Type` equal to
 The generator validates both CSVs and reports the number of identities written to
 the SQL file. Review the generated file, fill in `@EventCode`, and execute it
 against the database. The SQL calls `Scan.Update_Identities` with the combined
-identity payload.
+identity payload. All identity columns accept nulls. When rerun after a
+walk-up is registered, the database procedure preserves each populated field
+and fills only fields that are still null.
 
 For an attendee export without a separate report, omit `-ReportCsvPath`; the
 `description` and `jobTitle` fields will remain empty.

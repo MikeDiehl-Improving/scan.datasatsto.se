@@ -1,0 +1,179 @@
+{
+  "feature_id": "vendor-code-selection",
+  "version": 1,
+  "status": "approved",
+  "approval": {
+    "hash": "sha256:71424285a576c5c363f44cdeed59e61765e1c33bb731cde5a592a792b74328c0",
+    "approved_at": "2026-09-17T22:05:45.052Z"
+  },
+  "scenarios": [
+    {
+      "id": "setup.optionsshown",
+      "title": "Display existing vendor codes and new code option on setup page",
+      "given": [
+        "Existing vendor codes are registered in the system (e.g. VENDOR1, VENDOR2)"
+      ],
+      "when": "The user navigates to the setup page",
+      "then": [
+        "The existing vendor codes are presented as selectable options",
+        "An explicit option to enter a new vendor code is displayed"
+      ],
+      "priority": "critical",
+      "negative": false
+    },
+    {
+      "id": "setup.newcodeinputrevealed",
+      "title": "Selecting new code option displays entry field on setup page",
+      "given": [
+        "The user is on the setup page"
+      ],
+      "when": "The user selects the option to enter a new vendor code",
+      "then": [
+        "An input field for entering a new vendor code becomes available"
+      ],
+      "priority": "normal",
+      "negative": false
+    },
+    {
+      "id": "setup.selectexisting",
+      "title": "Select existing vendor code on setup page",
+      "given": [
+        "The user is on the setup page with existing vendor codes displayed (e.g. VENDOR1)"
+      ],
+      "when": "The user selects an existing vendor code and submits the setup form",
+      "then": [
+        "The scanner setup is completed with the selected vendor code",
+        "No new vendor code is created"
+      ],
+      "priority": "critical",
+      "negative": false
+    },
+    {
+      "id": "setup.abandonnewcode",
+      "title": "Switch from new code entry back to existing vendor code on setup page",
+      "given": [
+        "The user is on the setup page",
+        "The user selected the option to enter a new code and typed a value (e.g. TYPO123)"
+      ],
+      "when": "The user switches selection to an existing vendor code (e.g. VENDOR1) and submits",
+      "then": [
+        "The scanner setup is completed using the selected existing vendor code",
+        "The typed value is discarded and no new vendor code is created"
+      ],
+      "priority": "normal",
+      "negative": false
+    },
+    {
+      "id": "setup.enternewcode",
+      "title": "Enter and submit a genuine new vendor code on setup page",
+      "given": [
+        "The user is on the setup page"
+      ],
+      "when": "The user selects the option to enter a new vendor code, enters a new code (e.g. NEWVENDOR), and submits the setup form",
+      "then": [
+        "The scanner setup is completed with the newly entered vendor code",
+        "The new vendor code is saved and appears as a selectable option in subsequent views"
+      ],
+      "priority": "critical",
+      "negative": false
+    },
+    {
+      "id": "setup.emptycode",
+      "title": "Submit empty value for new vendor code on setup page",
+      "given": [
+        "The user is on the setup page with the new vendor code option selected"
+      ],
+      "when": "The user submits the setup form with the new vendor code field left blank",
+      "then": [
+        "A validation message indicating that a vendor code is required is shown",
+        "The setup configuration is not updated"
+      ],
+      "priority": "high",
+      "negative": true
+    },
+    {
+      "id": "scan.optionsshown",
+      "title": "Display existing vendor codes and new code option on scan page",
+      "given": [
+        "Existing vendor codes are registered in the system (e.g. VENDOR1, VENDOR2)"
+      ],
+      "when": "The user navigates to the scan page",
+      "then": [
+        "The existing vendor codes are presented as selectable options",
+        "An explicit option to enter a new vendor code is displayed"
+      ],
+      "priority": "critical",
+      "negative": false
+    },
+    {
+      "id": "scan.newcodeinputrevealed",
+      "title": "Selecting new code option displays entry field on scan page",
+      "given": [
+        "The user is on the scan page"
+      ],
+      "when": "The user selects the option to enter a new vendor code",
+      "then": [
+        "An input field for entering a new vendor code becomes available"
+      ],
+      "priority": "normal",
+      "negative": false
+    },
+    {
+      "id": "scan.selectexisting",
+      "title": "Select existing vendor code on scan page",
+      "given": [
+        "The user is on the scan page with existing vendor codes displayed (e.g. VENDOR1)"
+      ],
+      "when": "The user selects an existing vendor code and confirms",
+      "then": [
+        "The scanning session is associated with the selected vendor code",
+        "No new vendor code is created"
+      ],
+      "priority": "critical",
+      "negative": false
+    },
+    {
+      "id": "scan.abandonnewcode",
+      "title": "Switch from new code entry back to existing vendor code on scan page",
+      "given": [
+        "The user is on the scan page",
+        "The user selected the option to enter a new code and typed a value (e.g. TYPO123)"
+      ],
+      "when": "The user switches selection to an existing vendor code (e.g. VENDOR1) and confirms",
+      "then": [
+        "The scanning session is associated with the selected existing vendor code",
+        "The typed value is discarded and no new vendor code is created"
+      ],
+      "priority": "normal",
+      "negative": false
+    },
+    {
+      "id": "scan.enternewcode",
+      "title": "Enter and confirm a genuine new vendor code on scan page",
+      "given": [
+        "The user is on the scan page"
+      ],
+      "when": "The user selects the option to enter a new vendor code, enters a new code (e.g. NEWVENDOR), and confirms",
+      "then": [
+        "The scanning session is associated with the newly entered vendor code",
+        "The new vendor code is saved and appears as a selectable option in subsequent views"
+      ],
+      "priority": "critical",
+      "negative": false
+    },
+    {
+      "id": "scan.emptycode",
+      "title": "Confirm empty value for new vendor code on scan page",
+      "given": [
+        "The user is on the scan page with the new vendor code option selected"
+      ],
+      "when": "The user attempts to proceed with the new vendor code field left blank",
+      "then": [
+        "A validation message indicating that a vendor code is required is shown",
+        "The scanning session does not proceed"
+      ],
+      "priority": "high",
+      "negative": true
+    }
+  ]
+}

@@ -68,16 +68,18 @@ BEGIN
     DECLARE @UpdatedCount int = 0;
     DECLARE @InsertedCount int = 0;
 
+    -- Preserve fields already registered for a reserved badge. Incoming values
+    -- fill only columns that are still NULL.
     UPDATE target
-    SET target.[Name] = ENCRYPTBYPASSPHRASE(@EncryptionKey, NULLIF(source.[Name], N'')),
-        target.[FirstName] = ENCRYPTBYPASSPHRASE(@EncryptionKey, NULLIF(source.[FirstName], N'')),
-        target.[LastName] = ENCRYPTBYPASSPHRASE(@EncryptionKey, NULLIF(source.[LastName], N'')),
-        target.[Description] = ENCRYPTBYPASSPHRASE(@EncryptionKey, NULLIF(source.[Description], N'')),
-        target.JobTitle = ENCRYPTBYPASSPHRASE(@EncryptionKey, NULLIF(source.JobTitle, N'')),
-        target.Phone = ENCRYPTBYPASSPHRASE(@EncryptionKey, NULLIF(source.Phone, N'')),
-        target.Email = ENCRYPTBYPASSPHRASE(@EncryptionKey, NULLIF(LOWER(source.Email), N'')),
-        target.[Location] = ENCRYPTBYPASSPHRASE(@EncryptionKey, NULLIF(source.[Location], N'')),
-        target.[Role] = ENCRYPTBYPASSPHRASE(@EncryptionKey, NULLIF(source.RoleName, N''))
+    SET target.[Name] = COALESCE(target.[Name], ENCRYPTBYPASSPHRASE(@EncryptionKey, NULLIF(source.[Name], N''))),
+        target.[FirstName] = COALESCE(target.[FirstName], ENCRYPTBYPASSPHRASE(@EncryptionKey, NULLIF(source.[FirstName], N''))),
+        target.[LastName] = COALESCE(target.[LastName], ENCRYPTBYPASSPHRASE(@EncryptionKey, NULLIF(source.[LastName], N''))),
+        target.[Description] = COALESCE(target.[Description], ENCRYPTBYPASSPHRASE(@EncryptionKey, NULLIF(source.[Description], N''))),
+        target.JobTitle = COALESCE(target.JobTitle, ENCRYPTBYPASSPHRASE(@EncryptionKey, NULLIF(source.JobTitle, N''))),
+        target.Phone = COALESCE(target.Phone, ENCRYPTBYPASSPHRASE(@EncryptionKey, NULLIF(source.Phone, N''))),
+        target.Email = COALESCE(target.Email, ENCRYPTBYPASSPHRASE(@EncryptionKey, NULLIF(LOWER(source.Email), N''))),
+        target.[Location] = COALESCE(target.[Location], ENCRYPTBYPASSPHRASE(@EncryptionKey, NULLIF(source.[Location], N''))),
+        target.[Role] = COALESCE(target.[Role], ENCRYPTBYPASSPHRASE(@EncryptionKey, NULLIF(source.RoleName, N'')))
     FROM Scan.Identities AS target
     INNER JOIN @sourceRows AS source
         ON source.ID = target.ID

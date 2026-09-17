@@ -1,0 +1,22 @@
+{
+  "feature_id": "vendor-code-selection",
+  "state": "FAILED",
+  "plan_version": 1,
+  "strategy_version": 1,
+  "approvals": {
+    "test_plan": {
+      "version": 1,
+      "hash": "sha256:71424285a576c5c363f44cdeed59e61765e1c33bb731cde5a592a792b74328c0",
+      "approved_at": "2026-09-17T22:05:45.052Z",
+      "self_approved": true
+    },
+    "test_strategy": {
+      "version": 1,
+      "hash": "sha256:d2391e20f85a3674afaae35a59bd100d4f62470def8d30c9455983bc19aaeef3",
+      "approved_at": "2026-09-17T22:06:06.311Z",
+      "self_approved": true
+    }
+  },
+  "last_run_id": "run-003",
+  "updated_at": "2026-09-17T22:17:55.431Z"
+}

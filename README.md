@@ -215,6 +215,25 @@ the terminal first.
 For POST requests, the "note" parameter is saved as a plaintext description in
 the "Note" column of the scans table.
 
+## Register a reserved blank badge
+
+After the registration laptop scans the organizer authorization QR, open:
+
+`GET /registration`
+
+The page accepts the badge's human-readable identity ID or can scan the badge
+QR code with a webcam in browsers that support `BarcodeDetector`. Manual ID
+entry remains available when camera permissions, browser support, or lighting
+prevent scanning. The page also asks for the encryption key used when the
+reserved identities were generated.
+
+The server checks that the identity belongs to the authorized event and is
+still in the reserved state (`blank-{id}@invalid.example`). A claimed identity
+is read-only and cannot be overwritten through this workflow. The final
+registration uses an atomic database claim, so if two registration workers
+submit the same badge, only the first succeeds and the other receives an
+already-registered response.
+
 ## Store a exhibitor code as a cookie
 
 `GET /setup`

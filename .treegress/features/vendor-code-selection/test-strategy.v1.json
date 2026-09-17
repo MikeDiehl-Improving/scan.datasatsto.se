@@ -1,0 +1,217 @@
+{
+  "feature_id": "vendor-code-selection",
+  "plan_version": 1,
+  "version": 1,
+  "status": "approved",
+  "approval": {
+    "hash": "sha256:d2391e20f85a3674afaae35a59bd100d4f62470def8d30c9455983bc19aaeef3",
+    "plan_hash": "sha256:71424285a576c5c363f44cdeed59e61765e1c33bb731cde5a592a792b74328c0",
+    "approved_at": "2026-09-17T22:06:06.311Z"
+  },
+  "scenario_strategies": [
+    {
+      "scenario_id": "setup.optionsshown",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Verify setup route template and view-model render existing registered vendor codes and include an option to enter a new code",
+          "reason": "Validates the server-side setup view rendering logic in isolation without requiring browser automation"
+        },
+        {
+          "skill": "e2e-playwright",
+          "required": true,
+          "target": "Verify setup page renders selectable existing vendor options and a new vendor code option in a real browser session",
+          "reason": "Ensures end-user UI visibility and accessibility of vendor code selection options on the setup page"
+        }
+      ]
+    },
+    {
+      "scenario_id": "setup.newcodeinputrevealed",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Verify client-side form interaction logic reveals the text input when the new vendor code option is selected",
+          "reason": "Unit tests isolated client script or view state toggling the input field visibility"
+        },
+        {
+          "skill": "e2e-playwright",
+          "required": true,
+          "target": "Verify clicking the new vendor code option on the setup page makes the entry input field visible and interactable",
+          "reason": "Validates interactive DOM behavior and user experience in a real browser context"
+        }
+      ]
+    },
+    {
+      "scenario_id": "setup.selectexisting",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Verify setup form submission handler associates the existing vendor code with the scanner configuration and skips creating a new vendor record",
+          "reason": "Confirms backend controller logic correctly assigns the selected code and avoids duplicate persistence"
+        },
+        {
+          "skill": "e2e-playwright",
+          "required": true,
+          "target": "Verify selecting an existing vendor code and submitting setup completes setup with the selected code and creates no new record",
+          "reason": "Proves the full end-to-end user journey for setup using existing vendor codes"
+        }
+      ]
+    },
+    {
+      "scenario_id": "setup.abandonnewcode",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Verify setup submission logic discards typed new vendor code input when an existing vendor code is selected before submit",
+          "reason": "Ensures form processing logic prioritizes active selection over unselected input fields"
+        },
+        {
+          "skill": "e2e-playwright",
+          "required": true,
+          "target": "Verify typing a draft code into the new code field, selecting an existing code, and submitting completes setup with the existing code and discards the draft",
+          "reason": "Guarantees that browser form state and submission payload ignore discarded inputs during real user interactions"
+        }
+      ]
+    },
+    {
+      "scenario_id": "setup.enternewcode",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Verify setup submission handler persists a genuine new vendor code and associates it with the scanner setup configuration",
+          "reason": "Tests persistence and configuration assignment logic for new vendor codes in isolation"
+        },
+        {
+          "skill": "e2e-playwright",
+          "required": true,
+          "target": "Verify submitting a new vendor code completes setup, saves the code, and shows it as selectable on subsequent views",
+          "reason": "Validates full browser workflow and persistence across subsequent page navigations"
+        }
+      ]
+    },
+    {
+      "scenario_id": "setup.emptycode",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Verify validation logic rejects blank new vendor code on setup form submission and prevents configuration updates",
+          "reason": "Validates validation rules and error response generation for blank vendor codes"
+        },
+        {
+          "skill": "e2e-playwright",
+          "required": true,
+          "target": "Verify submitting a blank new vendor code displays a required validation message and halts setup completion in the browser",
+          "reason": "Confirms user feedback and form submission prevention in a real browser"
+        }
+      ]
+    },
+    {
+      "scenario_id": "scan.optionsshown",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Verify scan page view model and template render registered vendor codes as selectable options alongside the new code option",
+          "reason": "Validates scan route presentation logic and option list population"
+        },
+        {
+          "skill": "e2e-playwright",
+          "required": true,
+          "target": "Verify scan page displays existing vendor codes and the explicit option to enter a new code in the browser",
+          "reason": "Confirms visual presentation and layout of vendor code options on the live scan interface"
+        }
+      ]
+    },
+    {
+      "scenario_id": "scan.newcodeinputrevealed",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Verify scan interface client script reveals the new vendor code input field when the new code option is chosen",
+          "reason": "Tests state transition and element visibility handling for scan view options"
+        },
+        {
+          "skill": "e2e-playwright",
+          "required": true,
+          "target": "Verify selecting the new vendor code option on the scan page reveals the entry input field in the browser",
+          "reason": "Ensures browser interaction dynamically unhides the input element for entering a new vendor code"
+        }
+      ]
+    },
+    {
+      "scenario_id": "scan.selectexisting",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Verify scan session initialization handler binds the selected existing vendor code to the session without creating new vendor records",
+          "reason": "Validates backend session association and absence of extraneous database writes"
+        },
+        {
+          "skill": "e2e-playwright",
+          "required": true,
+          "target": "Verify selecting an existing vendor code and confirming on the scan page associates the session with the code in the browser",
+          "reason": "Confirms end-to-end scanning session startup with existing vendor credentials"
+        }
+      ]
+    },
+    {
+      "scenario_id": "scan.abandonnewcode",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Verify scan session handler ignores unselected new vendor input when an existing code is chosen upon confirmation",
+          "reason": "Validates controller-level handling of abandoned new code entries in scan workflows"
+        },
+        {
+          "skill": "e2e-playwright",
+          "required": true,
+          "target": "Verify switching from typed new code to existing vendor code and confirming links session to existing code and discards typed input",
+          "reason": "Proves user interaction in the browser correctly discards abandoned inputs upon confirmation"
+        }
+      ]
+    },
+    {
+      "scenario_id": "scan.enternewcode",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Verify scan submission logic creates and saves a new vendor code and links it to the active scanning session",
+          "reason": "Ensures data persistence and session state linkage for new vendor codes"
+        },
+        {
+          "skill": "e2e-playwright",
+          "required": true,
+          "target": "Verify entering a new vendor code on the scan page confirms session setup with the new code and shows it in subsequent views",
+          "reason": "Validates full user flow from entering a new vendor code to scanning session establishment and cross-page persistence"
+        }
+      ]
+    },
+    {
+      "scenario_id": "scan.emptycode",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Verify validation rejects empty new vendor code submissions on scan page and blocks scanning session initialization",
+          "reason": "Tests validation error handling and session guard logic in isolation"
+        },
+        {
+          "skill": "e2e-playwright",
+          "required": true,
+          "target": "Verify confirming an empty new vendor code displays a required validation message and prevents scanning session progression in the browser",
+          "reason": "Ensures real user is prevented from starting a scan session with a blank vendor code"
+        }
+      ]
+    }
+  ]
+}

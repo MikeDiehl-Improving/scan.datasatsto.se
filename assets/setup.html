@@ -16,10 +16,12 @@
 
     <div class="msgbox">
         <form action="/setup" method="post">
-            <input type="text" name="vendorCode" placeholder="Vendor code" value="<%=VendorCode%>"/>
+            <%=VendorCodeOptions%>
+            <input type="hidden" name="vendorCode" value="<%=VendorCode%>"/>
             <input type="submit" value="OK"/>
         </form>
     </div>
 
+    <script src="/assets/vendor-code-selector.js"></script>
 </body>
 </html>

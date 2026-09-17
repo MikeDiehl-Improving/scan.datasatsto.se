@@ -1,0 +1,143 @@
+{
+  "feature_id": "reserved-badge-registration-form",
+  "version": 1,
+  "status": "draft",
+  "scenarios": [
+    {
+      "id": "regworkflow.unauthorized",
+      "title": "Accessing laptop registration workflow without event authorization",
+      "given": [
+        "A worker accesses the registration application on a laptop without valid event authorization"
+      ],
+      "when": "The worker navigates to the badge registration interface",
+      "then": [
+        "The registration interface is inaccessible",
+        "A message indicating that event authorization is required is displayed"
+      ],
+      "priority": "high",
+      "negative": true
+    },
+    {
+      "id": "regworkflow.lookupunclaimedmanual",
+      "title": "Looking up an unclaimed badge by human-readable identity ID",
+      "given": [
+        "An event-authorized worker is on the laptop badge registration interface",
+        "A preprinted reserved badge (e.g. \"BADGE101\") exists and is currently unclaimed"
+      ],
+      "when": "The worker enters the human-readable identity ID of the badge and requests lookup",
+      "then": [
+        "The badge is displayed as unclaimed and eligible for registration",
+        "The attendee detail entry form is presented to the worker"
+      ],
+      "priority": "high",
+      "negative": false
+    },
+    {
+      "id": "regworkflow.lookupunclaimedwebcam",
+      "title": "Looking up an unclaimed badge by scanning QR code with webcam",
+      "given": [
+        "An event-authorized worker is on the laptop badge registration interface",
+        "A preprinted reserved badge with a valid QR code (e.g. \"BADGE102\") exists and is currently unclaimed"
+      ],
+      "when": "The worker scans the badge QR code using the laptop webcam",
+      "then": [
+        "The badge identity is recognized",
+        "The badge is displayed as unclaimed and ready for attendee registration",
+        "The attendee detail entry form is presented to the worker"
+      ],
+      "priority": "high",
+      "negative": false
+    },
+    {
+      "id": "regworkflow.lookupunknownbadge",
+      "title": "Looking up an unrecognized badge identifier",
+      "given": [
+        "An event-authorized worker is on the laptop badge registration interface"
+      ],
+      "when": "The worker enters an unrecognized identity ID (e.g. \"INVALID999\") or scans an invalid QR code",
+      "then": [
+        "An error message indicating the badge could not be found is displayed",
+        "The attendee detail entry form is not presented"
+      ],
+      "priority": "normal",
+      "negative": true
+    },
+    {
+      "id": "regworkflow.lookupalreadyclaimed",
+      "title": "Looking up a badge that has already been claimed",
+      "given": [
+        "An event-authorized worker is on the laptop badge registration interface",
+        "A preprinted badge (e.g. \"BADGE103\") has already been claimed for an attendee (e.g. \"Jane Doe\")"
+      ],
+      "when": "The worker enters the identity ID or scans the QR code for the badge",
+      "then": [
+        "The badge is visibly identified as already claimed",
+        "The option to claim or edit attendee details for the badge is blocked",
+        "Existing registration details for the badge are not modified"
+      ],
+      "priority": "high",
+      "negative": true
+    },
+    {
+      "id": "regworkflow.claimsuccess",
+      "title": "Successfully claiming an unclaimed badge with attendee details",
+      "given": [
+        "An event-authorized worker has retrieved an unclaimed preprinted badge (e.g. \"BADGE104\") on the laptop interface"
+      ],
+      "when": "The worker inputs attendee details (e.g. full name \"Alex Morgan\" and email \"alex@example.com\") and submits the registration",
+      "then": [
+        "A confirmation indicating successful badge registration is displayed",
+        "The badge status is updated to claimed",
+        "Subsequent lookups for the badge display the badge as claimed by the attendee"
+      ],
+      "priority": "critical",
+      "negative": false
+    },
+    {
+      "id": "regworkflow.claimconcurrentconflict",
+      "title": "Preventing duplicate registration when two workers submit concurrently for the same badge",
+      "given": [
+        "Two event-authorized workers on separate laptops look up the same unclaimed badge (e.g. \"BADGE105\") at the same time",
+        "Both workers view the active attendee detail entry form for the badge"
+      ],
+      "when": "Both workers submit their attendee registration details at the same time",
+      "then": [
+        "Exactly one worker receives a confirmation that the badge was successfully registered",
+        "The other worker is visibly notified that the badge has already been claimed and the registration attempt is rejected",
+        "The attendee details from the winning registration remain intact without being overwritten"
+      ],
+      "priority": "critical",
+      "negative": true
+    },
+    {
+      "id": "regworkflow.claimalreadyclaimedattempt",
+      "title": "Submitting registration after badge was claimed by another worker during data entry",
+      "given": [
+        "An event-authorized worker loads the registration form for an unclaimed badge (e.g. \"BADGE106\")",
+        "Another worker completes claiming the same badge while the first worker is still on the form"
+      ],
+      "when": "The first worker submits the attendee details for the badge",
+      "then": [
+        "The submission is visibly rejected with a message stating the badge is already claimed",
+        "The previously saved attendee registration details on the badge are preserved without overwrite"
+      ],
+      "priority": "high",
+      "negative": true
+    },
+    {
+      "id": "regworkflow.claimmissingdetails",
+      "title": "Submitting registration without entering required attendee details",
+      "given": [
+        "An event-authorized worker is viewing the registration form for an unclaimed badge (e.g. \"BADGE107\")"
+      ],
+      "when": "The worker attempts to submit the claim with mandatory attendee fields left blank",
+      "then": [
+        "Validation messages highlighting the missing required fields are displayed",
+        "The registration is not submitted",
+        "The badge remains in an unclaimed state"
+      ],
+      "priority": "normal",
+      "negative": true
+    }
+  ]
+}

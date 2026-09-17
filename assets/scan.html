@@ -17,8 +17,8 @@
     <div class="msgbox">
         <form action="/<%=ID%>" method="post">
             <%=Vendor%>
-            <label for="vendorCode">Vendor code</label>
-            <input id="vendorCode" name="vendorCode" type="text" value="<%=VendorCode%>" required/>
+            <%=VendorCodeOptions%>
+            <input type="hidden" name="vendorCode" value="<%=VendorCode%>"/>
             <label class="scan-default"><input type="checkbox" name="setDefault"/> Set as default vendor code</label>
             <label for="note">Note</label>
             <textarea id="note" name="note" placeholder="Notes"></textarea>
@@ -29,5 +29,6 @@
         </form>
     </div>
 
+    <script src="/assets/vendor-code-selector.js"></script>
 </body>
 </html>

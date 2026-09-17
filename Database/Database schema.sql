@@ -317,6 +317,23 @@ GO
 PRINT N'[10/15] Scan.Get_Codes succeeded.';
 GO
 
+PRINT N'[10/15] Creating or altering Scan.Get_Event_Codes...';
+GO
+-------------------------------------------------------------------------------
+--- Get all exhibitor codes for an authorized event
+-------------------------------------------------------------------------------
+
+CREATE OR ALTER PROCEDURE Scan.Get_Event_Codes
+    @EventID int
+AS
+SELECT ReferenceCode
+FROM Scan.ReferenceCodes
+WHERE EventID=@EventID
+ORDER BY ReferenceCode;
+GO
+PRINT N'[10/15] Scan.Get_Event_Codes succeeded.';
+GO
+
 PRINT N'[11/15] Creating or altering Scan.Get_Scans...';
 GO
 -------------------------------------------------------------------------------
@@ -393,6 +410,73 @@ SELECT (
     FOR JSON PATH, WITHOUT_ARRAY_WRAPPER) AS blob;
 GO
 PRINT N'[12/15] Scan.Get_Identities succeeded.';
+GO
+
+PRINT N'[12/15] Creating or altering Scan.Get_Reserved_Identity...';
+GO
+CREATE OR ALTER PROCEDURE Scan.Get_Reserved_Identity
+    @EventID int,
+    @ID bigint,
+    @EncryptionKey nvarchar(200)=N''
+AS
+SET NOCOUNT ON;
+SELECT CASE
+           WHEN i.ID IS NULL THEN N'NotFound'
+           WHEN CONVERT(nvarchar(150), DECRYPTBYPASSPHRASE(@EncryptionKey, i.Email))
+                = LOWER(CONCAT(N'blank-', CONVERT(nvarchar(30), i.ID), N'@invalid.example'))
+               THEN N'Available'
+           ELSE N'Claimed'
+       END AS Status
+FROM (SELECT @ID AS ID) AS requested
+LEFT JOIN Scan.Identities AS i
+    ON i.ID=requested.ID
+   AND i.EventID=@EventID;
+GO
+PRINT N'[12/15] Scan.Get_Reserved_Identity succeeded.';
+GO
+
+PRINT N'[12/15] Creating or altering Scan.Claim_Reserved_Identity...';
+GO
+CREATE OR ALTER PROCEDURE Scan.Claim_Reserved_Identity
+    @EventID int,
+    @ID bigint,
+    @EncryptionKey nvarchar(200)=N'',
+    @Email nvarchar(150),
+    @FirstName nvarchar(250),
+    @LastName nvarchar(250),
+    @Name nvarchar(250),
+    @Description nvarchar(400),
+    @JobTitle nvarchar(150),
+    @Phone nvarchar(150),
+    @Location nvarchar(150),
+    @Role nvarchar(50)
+AS
+SET NOCOUNT ON;
+SET XACT_ABORT ON;
+SET TRANSACTION ISOLATION LEVEL SERIALIZABLE;
+BEGIN TRANSACTION;
+
+UPDATE i
+SET i.Email = ENCRYPTBYPASSPHRASE(@EncryptionKey, NULLIF(LOWER(@Email), N'')),
+    i.FirstName = ENCRYPTBYPASSPHRASE(@EncryptionKey, NULLIF(@FirstName, N'')),
+    i.LastName = ENCRYPTBYPASSPHRASE(@EncryptionKey, NULLIF(@LastName, N'')),
+    i.[Name] = ENCRYPTBYPASSPHRASE(@EncryptionKey, NULLIF(@Name, N'')),
+    i.[Description] = ENCRYPTBYPASSPHRASE(@EncryptionKey, NULLIF(@Description, N'')),
+    i.JobTitle = ENCRYPTBYPASSPHRASE(@EncryptionKey, NULLIF(@JobTitle, N'')),
+    i.Phone = ENCRYPTBYPASSPHRASE(@EncryptionKey, NULLIF(@Phone, N'')),
+    i.[Location] = ENCRYPTBYPASSPHRASE(@EncryptionKey, NULLIF(@Location, N'')),
+    i.[Role] = ENCRYPTBYPASSPHRASE(@EncryptionKey, NULLIF(@Role, N''))
+FROM Scan.Identities AS i
+WHERE i.EventID=@EventID
+  AND i.ID=@ID
+  AND CONVERT(nvarchar(150), DECRYPTBYPASSPHRASE(@EncryptionKey, i.Email))
+      = LOWER(CONCAT(N'blank-', CONVERT(nvarchar(30), i.ID), N'@invalid.example'));
+
+DECLARE @Claimed int=@@ROWCOUNT;
+COMMIT TRANSACTION;
+SELECT @Claimed AS Claimed;
+GO
+PRINT N'[12/15] Scan.Claim_Reserved_Identity succeeded.';
 GO
 
 PRINT N'[13/15] Creating or altering Scan.Get_Random...';
@@ -531,16 +615,18 @@ FROM OPENJSON(NULLIF(@Identities_blob, N'')) WITH (
     RoleName nvarchar(50) '$.role'
 );
 
+-- Preserve fields already registered for a reserved badge. Incoming values
+-- fill only columns that are still NULL.
 UPDATE target
-SET target.[Name] = ENCRYPTBYPASSPHRASE(@EncryptionKey, NULLIF(source.[Name], N'')),
-    target.[FirstName] = ENCRYPTBYPASSPHRASE(@EncryptionKey, NULLIF(source.[FirstName], N'')),
-    target.[LastName] = ENCRYPTBYPASSPHRASE(@EncryptionKey, NULLIF(source.[LastName], N'')),
-    target.[Description] = ENCRYPTBYPASSPHRASE(@EncryptionKey, NULLIF(source.[Description], N'')),
-    target.JobTitle = ENCRYPTBYPASSPHRASE(@EncryptionKey, NULLIF(source.JobTitle, N'')),
-    target.Phone = ENCRYPTBYPASSPHRASE(@EncryptionKey, NULLIF(source.Phone, N'')),
-    target.Email = ENCRYPTBYPASSPHRASE(@EncryptionKey, NULLIF(LOWER(source.Email), N'')),
-    target.[Location] = ENCRYPTBYPASSPHRASE(@EncryptionKey, NULLIF(source.[Location], N'')),
-    target.[Role] = ENCRYPTBYPASSPHRASE(@EncryptionKey, NULLIF(source.[Role], N''))
+SET target.[Name] = COALESCE(target.[Name], ENCRYPTBYPASSPHRASE(@EncryptionKey, NULLIF(source.[Name], N''))),
+    target.[FirstName] = COALESCE(target.[FirstName], ENCRYPTBYPASSPHRASE(@EncryptionKey, NULLIF(source.[FirstName], N''))),
+    target.[LastName] = COALESCE(target.[LastName], ENCRYPTBYPASSPHRASE(@EncryptionKey, NULLIF(source.[LastName], N''))),
+    target.[Description] = COALESCE(target.[Description], ENCRYPTBYPASSPHRASE(@EncryptionKey, NULLIF(source.[Description], N''))),
+    target.JobTitle = COALESCE(target.JobTitle, ENCRYPTBYPASSPHRASE(@EncryptionKey, NULLIF(source.JobTitle, N''))),
+    target.Phone = COALESCE(target.Phone, ENCRYPTBYPASSPHRASE(@EncryptionKey, NULLIF(source.Phone, N''))),
+    target.Email = COALESCE(target.Email, ENCRYPTBYPASSPHRASE(@EncryptionKey, NULLIF(LOWER(source.Email), N''))),
+    target.[Location] = COALESCE(target.[Location], ENCRYPTBYPASSPHRASE(@EncryptionKey, NULLIF(source.[Location], N''))),
+    target.[Role] = COALESCE(target.[Role], ENCRYPTBYPASSPHRASE(@EncryptionKey, NULLIF(source.[Role], N'')))
 FROM Scan.Identities AS target
 INNER JOIN @sourceRows AS source
     ON source.ID = target.ID

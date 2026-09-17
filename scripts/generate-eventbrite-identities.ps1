@@ -11,8 +11,27 @@ param(
 
     [string]$SpeakerListCsvPath,
 
+    [long]$ReservedIdStart,
+
+    [int]$ReservedIdCount = 0,
+
     [string]$OutputPath = ".\eventbrite-identities.sql"
 )
+
+if (($PSBoundParameters.ContainsKey("ReservedIdStart") -and $ReservedIdCount -eq 0) -or
+    (-not $PSBoundParameters.ContainsKey("ReservedIdStart") -and $ReservedIdCount -ne 0)) {
+    throw "ReservedIdStart and ReservedIdCount must be supplied together."
+}
+if ($ReservedIdCount -lt 0) {
+    throw "ReservedIdCount cannot be negative."
+}
+if ($PSBoundParameters.ContainsKey("ReservedIdStart") -and $ReservedIdStart -lt 0) {
+    throw "ReservedIdStart cannot be negative."
+}
+if ($ReservedIdCount -gt 0 -and
+    ([bigint]$ReservedIdStart + $ReservedIdCount - 1) -gt [bigint]9223372036854775807) {
+    throw "The reserved ID range does not fit SQL bigint."
+}
 
 $requiredColumns = @(
     "Order ID",
@@ -601,6 +620,33 @@ foreach ($person in @($supplementalPeople.Values | Sort-Object { Get-Supplementa
     $identities.Add($identity)
 }
 
+if ($ReservedIdCount -gt 0) {
+    $reservedIds = @{}
+    foreach ($identity in $identities) {
+        $reservedIds[$identity.id] = $true
+    }
+
+    for ($offset = 0; $offset -lt $ReservedIdCount; $offset++) {
+        $reservedId = ([bigint]$ReservedIdStart + $offset).ToString()
+        if ($reservedIds.ContainsKey($reservedId)) {
+            throw "Reserved identity ID $reservedId conflicts with an imported identity."
+        }
+        $reservedIds[$reservedId] = $true
+        $identities.Add([ordered]@{
+            id = $reservedId
+            firstName = ""
+            lastName = ""
+            name = ""
+            description = ""
+            jobTitle = ""
+            phone = ""
+            email = "blank-$reservedId@invalid.example"
+            location = ""
+            role = $null
+        })
+    }
+}
+
 $json = $identities | ConvertTo-Json -Depth 3
 $sqlJson = $json.Replace("'", "''")
 $sourceFiles = [System.IO.Path]::GetFileName($AttendeesCsvPath)
@@ -613,9 +659,15 @@ if ($OrganizersAndVolunteersCsvPath) {
 if ($SpeakerListCsvPath) {
     $sourceFiles += ", " + [System.IO.Path]::GetFileName($SpeakerListCsvPath)
 }
+$reservedSummary = if ($ReservedIdCount -gt 0) {
+    "Reserved blank IDs: $ReservedIdStart through $(([bigint]$ReservedIdStart + $ReservedIdCount - 1).ToString()) ($ReservedIdCount identities)."
+} else {
+    "Reserved blank IDs: none."
+}
 $sql = @"
 -- Generated from: $sourceFiles
 -- Idempotent ID rule: (Order ID * 100) + attendee sequence within that order.
+-- $reservedSummary
 -- Fill in @EventCode before executing this script.
 
 DECLARE @EventCode uniqueidentifier = N'00000000-0000-0000-0000-000000000000';
@@ -647,6 +699,7 @@ foreach ($unusableRow in $unusableCustomQuestionsRows) {
     Write-Warning "Unusable Custom Questions Responses row $($unusableRow.row): Order='$($unusableRow.order)', Name='$($unusableRow.name)', Email='$($unusableRow.email)', Ticket Type='$($unusableRow.ticketType)'; order, email, first name, and last name are all required."
 }
 Write-Host "Generated $($identities.Count) identities, including $($fallbackReportRows.Count) fallback identities in $OutputPath"
+Write-Host "Generated $ReservedIdCount reserved blank identities"
 $speakerCount = @($identities | Where-Object { $_.role -eq "Speaker" }).Count
 $organizerCount = @($identities | Where-Object { $_.role -eq "Organizer" }).Count
 $volunteerCount = @($identities | Where-Object { $_.role -eq "Volunteer" }).Count

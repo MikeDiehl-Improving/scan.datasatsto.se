@@ -18,7 +18,7 @@
   "webServer": {
     "command": "npm start",
     "url": "http://localhost:3000",
-    "healthcheckPath": "/",
+    "healthcheckPath": "/robots933456.txt",
     "timeoutMs": 60000,
     "reuseExisting": true
   },

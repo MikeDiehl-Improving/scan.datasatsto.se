@@ -368,6 +368,41 @@ body.setup input[type=text] {
 
 }
 
+body.setup select,
+body.setup input[type=text] {
+    box-sizing: border-box;
+}
+
+body.setup select {
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgb(0, 0, 0, 0.5);
+    background-color: rgb(255, 255, 255, 0.8);
+    padding: 0.25rem 2rem;
+    width: 30rem;
+    max-width: calc(100% - 4rem);
+    text-align: center;
+    color: #000000;
+    font: inherit;
+}
+
+body.setup [data-vendor-code-selector],
+body.scan [data-vendor-code-selector] {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+body.setup [data-vendor-code-selector] label,
+body.scan [data-vendor-code-selector] label {
+    align-self: center;
+}
+
+body.setup [data-vendor-code-selector] input[type=text] {
+    margin-top: 0.5rem;
+}
+
 body.setup span.code {
     display: block;
     border-style: solid;
@@ -417,6 +452,16 @@ body.scan .scan-vendor {
 }
 
 body.scan input[type=text] {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 0.5rem;
+    font: inherit;
+    font-size: 2rem;
+    color: #000000;
+    background-color: rgb(255, 255, 255, 0.8);
+}
+
+body.scan select {
     box-sizing: border-box;
     width: 100%;
     padding: 0.5rem;

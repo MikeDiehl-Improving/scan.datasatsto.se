@@ -317,7 +317,12 @@ app.get('/setup', function (req, res, next) {
         // This creates/renews a session cookie, used to create/maintain the user session:
         req.session.dummy=Date.now();        // Prevent the session from expiring.
 
-        res.status(200).send(createHTML('assets/setup.html', { "VendorCode": (req.session.vendorCode || "") }));
+        getEventVendorCodes(req, function (codes) {
+            res.status(200).send(createHTML('assets/setup.html', {
+                "VendorCode": htmlAttributeEncode(req.session.vendorCode || ""),
+                "VendorCodeOptions": createVendorCodeOptions(codes, req.session.vendorCode || "")
+            }));
+        });
     }
 
 
@@ -329,10 +334,110 @@ app.post('/setup', function (req, res, next) {
         return;
     }
 
-    req.session.vendorCode = req.body.vendorCode;
-    res.status(200).send(createHTML('assets/ok.html', { "VendorCode": req.body.vendorCode }));
+    const vendorCode = getSubmittedVendorCode(req);
+    if (!vendorCode) {
+        res.status(400).send(createHTML('assets/error.html', { "Msg": "A vendor code is required." }));
+        return;
+    }
+    req.session.vendorCode = vendorCode;
+    res.status(200).send(createHTML('assets/ok.html', { "VendorCode": simpleHtmlEncode(vendorCode) }));
 
 });
+
+/*-----------------------------------------------------------------------------
+  Register a reserved badge:
+  ---------------------------------------------------------------------------*/
+
+app.get('/registration', function (req, res) {
+    httpHeaders(res);
+    if (!requireScannerAuthorization(req, res)) {
+        return;
+    }
+    res.status(200).send(createHTML('assets/registration.html', {}));
+});
+
+app.post('/registration/status', function (req, res) {
+    if (!requireScannerAuthorization(req, res)) {
+        return;
+    }
+
+    const identityId = parseRegistrationIdentityId(req.body.id);
+    if (identityId === null) {
+        res.status(400).json({ error: 'A valid identity ID is required.' });
+        return;
+    }
+
+    sqlQuery(connectionString, 'EXECUTE Scan.Get_Reserved_Identity @EventID=@EventID, @ID=@ID, @EncryptionKey=@EncryptionKey;',
+        [
+            { name: 'EventID', type: Types.Int, value: getAuthorizedEventId(req) },
+            { name: 'ID', type: Types.BigInt, value: identityId },
+            { name: 'EncryptionKey', type: Types.NVarChar, value: req.body.encryptionKey || '' }
+        ],
+        function (recordset) {
+            const result = recordset && recordset[0];
+            if (!result) {
+                res.status(404).json({ status: 'not-found' });
+                return;
+            }
+            if (result.Status === 'NotFound') {
+                res.status(404).json({ status: 'not-found' });
+                return;
+            }
+            res.status(200).json({
+                status: result.Status === 'Available' ? 'available' : 'claimed',
+                id: identityId
+            });
+        });
+});
+
+app.post('/registration/claim', function (req, res) {
+    if (!requireScannerAuthorization(req, res)) {
+        return;
+    }
+
+    const identityId = parseRegistrationIdentityId(req.body.id);
+    const fields = ['email', 'firstName', 'lastName', 'name', 'description', 'title', 'phone', 'location', 'role'];
+    if (identityId === null || fields.some(field => typeof req.body[field] !== 'string')) {
+        res.status(400).json({ error: 'Identity ID and all registration fields are required.' });
+        return;
+    }
+
+    sqlQuery(connectionString, 'EXECUTE Scan.Claim_Reserved_Identity @EventID=@EventID, @ID=@ID, @EncryptionKey=@EncryptionKey, @Email=@Email, @FirstName=@FirstName, @LastName=@LastName, @Name=@Name, @Description=@Description, @JobTitle=@JobTitle, @Phone=@Phone, @Location=@Location, @Role=@Role;',
+        [
+            { name: 'EventID', type: Types.Int, value: getAuthorizedEventId(req) },
+            { name: 'ID', type: Types.BigInt, value: identityId },
+            { name: 'EncryptionKey', type: Types.NVarChar, value: req.body.encryptionKey || '' },
+            { name: 'Email', type: Types.NVarChar, value: req.body.email },
+            { name: 'FirstName', type: Types.NVarChar, value: req.body.firstName },
+            { name: 'LastName', type: Types.NVarChar, value: req.body.lastName },
+            { name: 'Name', type: Types.NVarChar, value: req.body.name },
+            { name: 'Description', type: Types.NVarChar, value: req.body.description },
+            { name: 'JobTitle', type: Types.NVarChar, value: req.body.title },
+            { name: 'Phone', type: Types.NVarChar, value: req.body.phone },
+            { name: 'Location', type: Types.NVarChar, value: req.body.location },
+            { name: 'Role', type: Types.NVarChar, value: req.body.role }
+        ],
+        function (recordset) {
+            const result = recordset && recordset[0];
+            if (!result || result.Claimed !== 1) {
+                res.status(409).json({ status: 'claimed', message: 'That badge has already been registered.' });
+                return;
+            }
+            res.status(200).json({ status: 'registered', id: identityId });
+        });
+});
+
+function parseRegistrationIdentityId(value) {
+    if (typeof value !== 'string' && typeof value !== 'number') {
+        return null;
+    }
+    const normalized = String(value).trim();
+    if (!/^[0-9]+$/.test(normalized)) {
+        return null;
+    }
+    const identityId = Number(normalized);
+    return Number.isSafeInteger(identityId) ? identityId : null;
+}
 
 
 
@@ -371,13 +476,14 @@ function newScan(req, res, next) {
     const cookieVendorCode = typeof req.session.vendorCode === 'string'
         ? req.session.vendorCode.trim()
         : '';
-    const selectedVendorCode = req.method === 'POST' && req.body &&
-        typeof req.body.vendorCode === 'string'
-        ? req.body.vendorCode.trim()
-        : '';
+    const selectedVendorCode = getSubmittedVendorCode(req);
     var referenceCode=decodeURI(vendorCode || '') || selectedVendorCode || cookieVendorCode;
 
     if (!referenceCode) {
+        if (req.method === 'POST') {
+            res.status(400).send(createHTML('assets/error.html', { "Msg": "A vendor code is required." }));
+            return;
+        }
         res.redirect('/setup?id='+parseInt(id));
         return;
     }
@@ -386,14 +492,17 @@ function newScan(req, res, next) {
     // Show the note form before recording the scan; the form submits back via POST.
     if (req.method === 'GET' && !vendorCode) {
         httpHeaders(res);
-        res.status(200).send(createHTML('assets/scan.html', {
-            "ID": parseInt(id),
-            "VendorCode": simpleHtmlEncode(referenceCode),
-            "Vendor": referenceCode
-                ? '<div class="scan-vendor">Vendor code: ' +
-                    simpleHtmlEncode(referenceCode) + '</div>'
-                : ''
-        }));
+        getEventVendorCodes(req, function (codes) {
+            res.status(200).send(createHTML('assets/scan.html', {
+                "ID": parseInt(id),
+                "VendorCode": htmlAttributeEncode(referenceCode),
+                "VendorCodeOptions": createVendorCodeOptions(codes, referenceCode),
+                "Vendor": referenceCode
+                    ? '<div class="scan-vendor">Vendor code: ' +
+                        simpleHtmlEncode(referenceCode) + '</div>'
+                    : ''
+            }));
+        });
         return;
     }
 
@@ -440,7 +549,62 @@ function getAuthorizedEventId(req) {
     if (!Number.isInteger(eventId) || !Number.isFinite(expires) || expires <= Date.now()) {
         return null;
     }
+
     return eventId;
+}
+
+function getEventVendorCodes(req, next) {
+    const eventId = getAuthorizedEventId(req);
+    if (eventId === null) {
+        next([]);
+        return;
+    }
+
+    sqlQuery(connectionString, 'EXECUTE Scan.Get_Event_Codes @EventID=@EventID;',
+        [{ "name": 'EventID', "type": Types.Int, "value": eventId }],
+        function (recordset) {
+            next((recordset || []).map(item => item.ReferenceCode).filter(code => typeof code === 'string'));
+        });
+}
+
+function getSubmittedVendorCode(req) {
+    if (!req.body) {
+        return '';
+    }
+
+    if (req.body.vendorCodeChoice === '__new__') {
+        return typeof req.body.newVendorCode === 'string'
+            ? req.body.newVendorCode.trim()
+            : '';
+    }
+
+    if (typeof req.body.vendorCodeChoice === 'string' && req.body.vendorCodeChoice.trim()) {
+        return req.body.vendorCodeChoice.trim();
+    }
+
+    return typeof req.body.vendorCode === 'string'
+        ? req.body.vendorCode.trim()
+        : '';
+}
+
+function createVendorCodeOptions(codes, selectedCode) {
+    const normalizedSelectedCode = typeof selectedCode === 'string' ? selectedCode.trim() : '';
+    const hasSelectedCode = codes.includes(normalizedSelectedCode);
+    const options = codes.map(code =>
+        '<option value="' + htmlAttributeEncode(code) + '"' +
+        (code === normalizedSelectedCode ? ' selected' : '') + '>' +
+        simpleHtmlEncode(code) + '</option>'
+    ).join('');
+
+    return '<div class="vendor-code-selector" data-vendor-code-selector>' +
+        '<label for="vendorCodeChoice">Vendor code</label>' +
+        '<select id="vendorCodeChoice" name="vendorCodeChoice">' +
+        options +
+        '<option value="__new__"' + (hasSelectedCode ? '' : ' selected') + '>Enter a new vendor code</option>' +
+        '</select>' +
+        '<input id="newVendorCode" name="newVendorCode" type="text" placeholder="New vendor code" value="' +
+            (hasSelectedCode ? '' : htmlAttributeEncode(normalizedSelectedCode)) + '">' +
+        '</div>';
 }
 
 function requireScannerAuthorization(req, res) {
@@ -1302,10 +1466,16 @@ function sqlQuery(connectionString, statement, parameters, next) {
 
 function simpleHtmlEncode(plaintext) {
     var html=plaintext;
-    html=html.replace('&', '&amp;');
-    html=html.replace('<', '&lt;');
-    html=html.replace('>', '&gt;');
+    html=String(html).replace(/&/g, '&amp;');
+    html=html.replace(/</g, '&lt;');
+    html=html.replace(/>/g, '&gt;');
     return(html);
+}
+
+function htmlAttributeEncode(plaintext) {
+    return simpleHtmlEncode(plaintext)
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
 }
 
 
