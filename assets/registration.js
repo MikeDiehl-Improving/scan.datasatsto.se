@@ -3,6 +3,8 @@ const statusMessage = document.querySelector('#badge-status');
 const details = document.querySelector('#details');
 const form = document.querySelector('#registration-form');
 const camera = document.querySelector('#camera');
+const canvas = document.createElement('canvas');
+const canvasContext = canvas.getContext('2d', { willReadFrequently: true });
 let stream;
 
 async function checkBadge() {
@@ -34,20 +36,31 @@ document.querySelector('#check-id').addEventListener('click', () => {
 
 document.querySelector('#start-camera').addEventListener('click', async () => {
     const message = document.querySelector('#camera-message');
-    if (!('BarcodeDetector' in window)) {
-        message.textContent = 'This browser does not support webcam QR scanning. Enter the ID manually.';
-        return;
-    }
     try {
         stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } });
         camera.srcObject = stream;
         camera.hidden = false;
-        const detector = new BarcodeDetector({ formats: ['qr_code'] });
+        const detector = 'BarcodeDetector' in window
+            ? new BarcodeDetector({ formats: ['qr_code'] })
+            : null;
+        await camera.play();
         const scan = async () => {
             if (camera.hidden) return;
-            const codes = await detector.detect(camera);
-            if (codes.length > 0) {
-                const match = codes[0].rawValue.match(/\/([0-9]+)\/?$/);
+            let rawValue;
+            if (detector) {
+                const codes = await detector.detect(camera);
+                rawValue = codes[0]?.rawValue;
+            } else if (camera.videoWidth > 0 && camera.videoHeight > 0) {
+                canvas.width = camera.videoWidth;
+                canvas.height = camera.videoHeight;
+                canvasContext.drawImage(camera, 0, 0, canvas.width, canvas.height);
+                const image = canvasContext.getImageData(0, 0, canvas.width, canvas.height);
+                rawValue = window.jsQR(image.data, image.width, image.height, {
+                    inversionAttempts: 'dontInvert'
+                })?.data;
+            }
+            if (rawValue) {
+                const match = rawValue.match(/\/([0-9]+)\/?$/);
                 if (match) {
                     idInput.value = match[1];
                     stopCamera();
@@ -56,7 +69,7 @@ document.querySelector('#start-camera').addEventListener('click', async () => {
                 }
                 message.textContent = 'That QR code is not a badge QR code.';
             }
-            requestAnimationFrame(scan);
+            if (!camera.hidden) requestAnimationFrame(scan);
         };
         scan();
     } catch {

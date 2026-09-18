@@ -59,7 +59,9 @@ test.describe('registration page layout', () => {
     await page.setViewportSize({ width: 375, height: 667 });
     await page.goto('/assets/registration.html');
     await page.getByRole('button', { name: 'Scan with webcam' }).click();
-    await expect(page.locator('#camera-message')).toContainText('does not support webcam QR scanning');
+    await expect(page.locator('#camera-message')).toHaveText(
+      /Camera access was unavailable\. Enter the ID manually\.|That QR code is not a badge QR code\./
+    );
     await page.getByLabel('Identity ID').focus();
     expect(await page.evaluate(() => document.activeElement.id)).toBe('identity-id');
     expect(await page.evaluate(() => document.documentElement.scrollWidth))

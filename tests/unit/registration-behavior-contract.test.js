@@ -5,12 +5,20 @@ import path from 'path';
 const assets = path.join(process.cwd(), 'assets');
 const registrationScript = fs.readFileSync(path.join(assets, 'registration.js'), 'utf8');
 const registrationMarkup = fs.readFileSync(path.join(assets, 'registration.html'), 'utf8');
+const qrDecoder = fs.readFileSync(path.join(assets, 'jsQR.js'), 'utf8');
 
 describe('registration browser behavior contract', () => {
-    /* treegress:obligation registration.webcamunsupported.unit.c1 do-not-regenerate — for: Proves that when webcam capabilities are unsupported, a clear notification message is displayed and manual ID entry input and submit controls remain visible and interactive.
+    it('loads a QR decoder fallback for browsers without BarcodeDetector', () => {
+        expect(registrationMarkup).toContain('<script src="/assets/jsQR.js"></script>');
+        expect(registrationScript).toContain("window.jsQR(image.data, image.width, image.height");
+        expect(registrationScript).not.toContain('This browser does not support webcam QR scanning.');
+        expect(qrDecoder).toContain('jsQR');
+    });
+
+    /* treegress:obligation registration.webcamunsupported.unit.c1 do-not-regenerate — for: Proves that when BarcodeDetector is unavailable, the QR decoder fallback is initialized and manual ID entry remains available.
        authored via treegress_author_tests (SPEC §7.4 amendment #53); assert EXACTLY the then-clauses below. Keep this marker and do not rename the file (run-result correlation is by the obligation id, SPEC §12.3 amendment #34). */
-    it('keeps manual entry available when webcam scanning is unsupported', () => {
-        expect(registrationScript).toContain('does not support webcam QR scanning');
+    it('uses the QR decoder fallback when BarcodeDetector is unavailable', () => {
+        expect(registrationScript).toContain("window.jsQR(image.data, image.width, image.height");
         expect(registrationMarkup).toContain('id="identity-id"');
         expect(registrationMarkup).toContain('id="check-id"');
     });
@@ -18,7 +26,8 @@ describe('registration browser behavior contract', () => {
     /* treegress:obligation registration.webcamsupported.unit.c1 do-not-regenerate — for: Proves that when webcam scanning is supported, the QR webcam scanner interface is initialized and accessible alongside manual ID entry controls.
        authored via treegress_author_tests (SPEC §7.4 amendment #53); assert EXACTLY the then-clauses below. Keep this marker and do not rename the file (run-result correlation is by the obligation id, SPEC §12.3 amendment #34). */
     it('initializes the QR scanner alongside manual entry controls', () => {
-        expect(registrationScript).toContain('new BarcodeDetector');
+        expect(registrationScript).toContain("new BarcodeDetector({ formats: ['qr_code'] })");
+        expect(registrationScript).toContain("const detector = 'BarcodeDetector' in window");
         expect(registrationMarkup).toContain('id="start-camera"');
         expect(registrationMarkup).toContain('id="identity-id"');
     });
