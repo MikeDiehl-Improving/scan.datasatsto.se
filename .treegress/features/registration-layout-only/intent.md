@@ -1,0 +1,1 @@
+Fix the Registration page presentation and webcam support messaging: use readable responsive typography and contained controls on desktop and mobile, and clearly tell users when their browser lacks QR webcam support while retaining manual ID entry.

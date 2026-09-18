@@ -1,0 +1,79 @@
+{
+  "feature_id": "edge-webcam-barcode-permissions",
+  "plan_version": 2,
+  "strategy_version": 2,
+  "entries": [
+    {
+      "scenario_id": "camera.edgesuccess",
+      "obligations": [
+        {
+          "skill": "e2e-playwright",
+          "obligation_id": "camera.edgesuccess.e2e-playwright.c1",
+          "test_ids": [],
+          "evidence_ids": [],
+          "reused": false
+        }
+      ]
+    },
+    {
+      "scenario_id": "camera.deniedfallback",
+      "obligations": [
+        {
+          "skill": "e2e-playwright",
+          "obligation_id": "camera.deniedfallback.e2e-playwright.c1",
+          "test_ids": [],
+          "evidence_ids": [],
+          "reused": false
+        }
+      ]
+    },
+    {
+      "scenario_id": "camera.originrestricted",
+      "obligations": [
+        {
+          "skill": "e2e-playwright",
+          "obligation_id": "camera.originrestricted.e2e-playwright.c1",
+          "test_ids": [],
+          "evidence_ids": [],
+          "reused": false
+        }
+      ]
+    },
+    {
+      "scenario_id": "manualentry.withactivecamera",
+      "obligations": [
+        {
+          "skill": "e2e-playwright",
+          "obligation_id": "manualentry.withactivecamera.e2e-playwright.c1",
+          "test_ids": [],
+          "evidence_ids": [],
+          "reused": false
+        }
+      ]
+    },
+    {
+      "scenario_id": "scan.invalidbarcode",
+      "obligations": [
+        {
+          "skill": "e2e-playwright",
+          "obligation_id": "scan.invalidbarcode.e2e-playwright.c1",
+          "test_ids": [],
+          "evidence_ids": [],
+          "reused": false
+        }
+      ]
+    },
+    {
+      "scenario_id": "camera.devicenotfound",
+      "obligations": [
+        {
+          "skill": "e2e-playwright",
+          "obligation_id": "camera.devicenotfound.e2e-playwright.c1",
+          "test_ids": [],
+          "evidence_ids": [],
+          "reused": false
+        }
+      ]
+    }
+  ]
+}

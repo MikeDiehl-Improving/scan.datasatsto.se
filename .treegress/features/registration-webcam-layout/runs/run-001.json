@@ -1,0 +1,1105 @@
+{
+  "run_id": "run-001",
+  "feature_id": "registration-webcam-layout",
+  "trigger": "verify",
+  "started_at": "2026-09-17T23:52:28.116Z",
+  "finished_at": "2026-09-17T23:55:26.672Z",
+  "results": [
+    {
+      "evidence_id": "run-001:test-0",
+      "skill": "e2e-playwright",
+      "test_id": "e2e-playwright:api-page.smoke#displays-the-interactive-api-controls",
+      "status": "failed",
+      "exit_code": 1,
+      "duration_ms": 8855,
+      "failure": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: 'scan.datasatsto.se' })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByRole('heading', { name: 'scan.datasatsto.se' }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: 'scan.datasatsto.se' })\u001b[22m\n\n\nError: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: 'scan.datasatsto.se' })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByRole('heading', { name: 'scan.datasatsto.se' }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: 'scan.datasatsto.se' })\u001b[22m\n\n\n   6 |   await page.goto('/');\n   7 |\n>  8 |   await expect(page.getByRole('heading', { name: 'scan.datasatsto.se' })).toBeVisible();\n     |                                                                           ^\n   9 |\n  10 |   const newEventRow = page.locator('tr[data-path=\"/new/:event\"]');\n  11 |   await expect(newEventRow.getByLabel('Event')).toBeVisible();\n    at C:\\Users\\MikeDiehl\\repos\\scan.datasatsto.se\\tests\\e2e\\api-page.smoke.spec.js:8:75",
+      "artifacts": [
+        {
+          "evidence_id": "run-001:screenshot-0",
+          "kind": "screenshot",
+          "path": ".treegress/features/registration-webcam-layout/runs/run-001-artifacts/run-001_screenshot-0.png",
+          "sha256": "3276750f5ea0c99ed406702e81a5aff37f9bc51759fb492c5942edd602012c5e"
+        }
+      ]
+    },
+    {
+      "evidence_id": "run-001:test-1",
+      "skill": "e2e-playwright",
+      "test_id": "e2e-playwright:apidocs-run-call-navigation-e2e#navigates-a-parameterless-endpoint",
+      "status": "failed",
+      "exit_code": 1,
+      "duration_ms": 8859,
+      "failure": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: locator('tr[data-path=\"/expire\"]').locator('.api-result')\nExpected: \u001b[32m\"\"\u001b[39m\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toHaveText\" locator('tr[data-path=\"/expire\"]').locator('.api-result') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('tr[data-path=\"/expire\"]').locator('.api-result')\u001b[22m\n\n\nError: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: locator('tr[data-path=\"/expire\"]').locator('.api-result')\nExpected: \u001b[32m\"\"\u001b[39m\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toHaveText\" locator('tr[data-path=\"/expire\"]').locator('.api-result') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('tr[data-path=\"/expire\"]').locator('.api-result')\u001b[22m\n\n\n  10 |     if (['fetch', 'xhr'].includes(request.resourceType())) inlineRequests.push(request.url());\n  11 |   });\n> 12 |   await expect(row.locator('.api-result')).toHaveText('');\n     |                                            ^\n  13 |   await row.getByRole('button', { name: 'Run call' }).click();\n  14 |   await expect(page).toHaveURL(/\\/expire$/);\n  15 |   expect(inlineRequests).toHaveLength(0);\n    at C:\\Users\\MikeDiehl\\repos\\scan.datasatsto.se\\tests\\e2e\\apidocs-run-call-navigation-e2e.spec.js:12:44",
+      "artifacts": [
+        {
+          "evidence_id": "run-001:screenshot-1",
+          "kind": "screenshot",
+          "path": ".treegress/features/registration-webcam-layout/runs/run-001-artifacts/run-001_screenshot-1.png",
+          "sha256": "3276750f5ea0c99ed406702e81a5aff37f9bc51759fb492c5942edd602012c5e"
+        }
+      ]
+    },
+    {
+      "evidence_id": "run-001:test-2",
+      "skill": "e2e-playwright",
+      "test_id": "e2e-playwright:apidocs-run-call-navigation-e2e#navigates-to-a-parameterized-endpoint",
+      "status": "failed",
+      "exit_code": 1,
+      "duration_ms": 30052,
+      "failure": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m\n\n\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m\n\nError: locator.fill: Test timeout of 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('tr[data-path=\"/report/:event\"]').getByLabel('Event')\u001b[22m\n\n\n  25 |     if (['fetch', 'xhr'].includes(request.resourceType())) inlineRequests.push(request.url());\n  26 |   });\n> 27 |   await row.getByLabel('Event').fill('101');\n     |                                 ^\n  28 |   await expect(row.locator('.api-result')).toHaveText('');\n  29 |   await row.getByRole('button', { name: 'Run call' }).click();\n  30 |   await expect(page).toHaveURL(/\\/report\\/101$/);\n    at C:\\Users\\MikeDiehl\\repos\\scan.datasatsto.se\\tests\\e2e\\apidocs-run-call-navigation-e2e.spec.js:27:33",
+      "artifacts": [
+        {
+          "evidence_id": "run-001:screenshot-2",
+          "kind": "screenshot",
+          "path": ".treegress/features/registration-webcam-layout/runs/run-001-artifacts/run-001_screenshot-2.png",
+          "sha256": "3276750f5ea0c99ed406702e81a5aff37f9bc51759fb492c5942edd602012c5e"
+        }
+      ]
+    },
+    {
+      "evidence_id": "run-001:test-3",
+      "skill": "e2e-playwright",
+      "test_id": "e2e-playwright:apidocs-run-call-navigation-e2e#navigates-to-a-composite-parameterized-endpoint",
+      "status": "failed",
+      "exit_code": 1,
+      "duration_ms": 30042,
+      "failure": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m\n\n\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m\n\nError: locator.fill: Test timeout of 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('tr[data-path=\"/random/:event/:vendorCode\"]').getByLabel('Event')\u001b[22m\n\n\n  41 |     if (['fetch', 'xhr'].includes(request.resourceType())) inlineRequests.push(request.url());\n  42 |   });\n> 43 |   await row.getByLabel('Event').fill('5');\n     |                                 ^\n  44 |   await row.getByLabel('Vendor code').fill('test');\n  45 |   await expect(row.locator('.api-result')).toHaveText('');\n  46 |   await row.getByRole('button', { name: 'Run call' }).click();\n    at C:\\Users\\MikeDiehl\\repos\\scan.datasatsto.se\\tests\\e2e\\apidocs-run-call-navigation-e2e.spec.js:43:33",
+      "artifacts": [
+        {
+          "evidence_id": "run-001:screenshot-3",
+          "kind": "screenshot",
+          "path": ".treegress/features/registration-webcam-layout/runs/run-001-artifacts/run-001_screenshot-3.png",
+          "sha256": "3276750f5ea0c99ed406702e81a5aff37f9bc51759fb492c5942edd602012c5e"
+        }
+      ]
+    },
+    {
+      "evidence_id": "run-001:test-4",
+      "skill": "e2e-playwright",
+      "test_id": "e2e-playwright:apidocs-run-call-navigation-e2e#encodes-parameters-in-the-navigated-url",
+      "status": "failed",
+      "exit_code": 1,
+      "duration_ms": 30051,
+      "failure": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m\n\n\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m\n\nError: locator.fill: Test timeout of 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('tr[data-path=\"/report/:event\"]').getByLabel('Event')\u001b[22m\n\n\n  58 |     if (['fetch', 'xhr'].includes(request.resourceType())) inlineRequests.push(request.url());\n  59 |   });\n> 60 |   await row.getByLabel('Event').fill('badge alpha/1');\n     |                                 ^\n  61 |   await expect(row.locator('.api-result')).toHaveText('');\n  62 |   await row.getByRole('button', { name: 'Run call' }).click();\n  63 |   await expect(page).toHaveURL(/\\/report\\/badge%20alpha%2F1$/);\n    at C:\\Users\\MikeDiehl\\repos\\scan.datasatsto.se\\tests\\e2e\\apidocs-run-call-navigation-e2e.spec.js:60:33",
+      "artifacts": [
+        {
+          "evidence_id": "run-001:screenshot-4",
+          "kind": "screenshot",
+          "path": ".treegress/features/registration-webcam-layout/runs/run-001-artifacts/run-001_screenshot-4.png",
+          "sha256": "3276750f5ea0c99ed406702e81a5aff37f9bc51759fb492c5942edd602012c5e"
+        }
+      ]
+    },
+    {
+      "evidence_id": "run-001:test-5",
+      "skill": "e2e-playwright",
+      "test_id": "e2e-playwright:apidocs-run-call-navigation-e2e#does-not-submit-when-a-required-parameter-is-empty",
+      "status": "failed",
+      "exit_code": 1,
+      "duration_ms": 30049,
+      "failure": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m\n\n\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m\n\nError: locator.click: Test timeout of 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('tr[data-path=\"/report/:event\"]').getByRole('button', { name: 'Run call' })\u001b[22m\n\n\n  72 |   const requests = [];\n  73 |   page.on('request', request => requests.push(request.url()));\n> 74 |   await row.getByRole('button', { name: 'Run call' }).click();\n     |                                                       ^\n  75 |   await expect(page).toHaveURL(/\\/$/);\n  76 |   await expect(row.locator('.api-result')).toHaveText('');\n  77 |   expect(requests.filter(url => url.includes('/report/'))).toHaveLength(0);\n    at C:\\Users\\MikeDiehl\\repos\\scan.datasatsto.se\\tests\\e2e\\apidocs-run-call-navigation-e2e.spec.js:74:55",
+      "artifacts": [
+        {
+          "evidence_id": "run-001:screenshot-5",
+          "kind": "screenshot",
+          "path": ".treegress/features/registration-webcam-layout/runs/run-001-artifacts/run-001_screenshot-5.png",
+          "sha256": "3276750f5ea0c99ed406702e81a5aff37f9bc51759fb492c5942edd602012c5e"
+        }
+      ]
+    },
+    {
+      "evidence_id": "run-001:test-6",
+      "skill": "e2e-playwright",
+      "test_id": "e2e-playwright:apidocs-run-call-navigation-e2e#uses-navigation-for-endpoint-buttons",
+      "status": "failed",
+      "exit_code": 1,
+      "duration_ms": 30042,
+      "failure": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m\n\n\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m\n\nError: locator.fill: Test timeout of 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('tr[data-path=\"/new/:event\"]').first().locator('[name=\"event\"]')\u001b[22m\n\n\n   98 |       : page.locator(`tr[data-path=\"${path}\"]`).first();\n   99 |     for (const [name, value] of Object.entries(values)) {\n> 100 |       await row.locator(`[name=\"${name}\"]`).fill(value);\n      |                                             ^\n  101 |     }\n  102 |     await row.getByRole('button', { name: 'Run call' }).click();\n  103 |     await expect(page).toHaveURL(expectedUrl);\n    at C:\\Users\\MikeDiehl\\repos\\scan.datasatsto.se\\tests\\e2e\\apidocs-run-call-navigation-e2e.spec.js:100:45",
+      "artifacts": [
+        {
+          "evidence_id": "run-001:screenshot-6",
+          "kind": "screenshot",
+          "path": ".treegress/features/registration-webcam-layout/runs/run-001-artifacts/run-001_screenshot-6.png",
+          "sha256": "3276750f5ea0c99ed406702e81a5aff37f9bc51759fb492c5942edd602012c5e"
+        }
+      ]
+    },
+    {
+      "evidence_id": "run-001:test-7",
+      "skill": "e2e-playwright",
+      "test_id": "e2e-playwright:mobile-browser-rendering#renders-the-authorization-page-without-horizontal-overflow",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 3992
+    },
+    {
+      "evidence_id": "run-001:test-8",
+      "skill": "e2e-playwright",
+      "test_id": "e2e-playwright:mobile-browser-rendering#renders-both-scan-submit-controls-without-overlap-or-clipping",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 501
+    },
+    {
+      "evidence_id": "run-001:test-9",
+      "skill": "e2e-playwright",
+      "test_id": "e2e-playwright:pdf-path-e2e-playwright-c2#renders-the-interactive-pdf-form",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 3851
+    },
+    {
+      "evidence_id": "run-001:test-10",
+      "skill": "e2e-playwright",
+      "test_id": "e2e-playwright:pdf-path-e2e-playwright-c2#shows-a-server-error-when-submitting-an-unknown-event",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 544
+    },
+    {
+      "evidence_id": "run-001:test-11",
+      "skill": "e2e-playwright",
+      "test_id": "e2e-playwright:pdf-path-e2e-playwright-c2#submits-badge-data-through-the-browser-form-and-receives-a-pdf",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 485
+    },
+    {
+      "evidence_id": "run-001:test-12",
+      "skill": "e2e-playwright",
+      "test_id": "e2e-playwright:pdf-path-e2e-playwright-c2#submits-selected-pdf-options-from-the-browser-form",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 1524
+    },
+    {
+      "evidence_id": "run-001:test-13",
+      "skill": "e2e-playwright",
+      "test_id": "e2e-playwright:pdf-path-e2e-playwright-c2#submits-the-form-without-client-side-required-data-validation",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 429
+    },
+    {
+      "evidence_id": "run-001:test-14",
+      "skill": "e2e-playwright",
+      "test_id": "e2e-playwright:pdf-path-e2e-playwright-c2#allows-malformed-data-to-reach-the-server-submission-boundary",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 431
+    },
+    {
+      "evidence_id": "run-001:test-15",
+      "skill": "e2e-playwright",
+      "test_id": "e2e-playwright:playwright-runnerexecution-e2e-playwright-c1#runs-the-browser-suite-against-the-started-application",
+      "status": "failed",
+      "exit_code": 1,
+      "duration_ms": 8819,
+      "failure": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mpage\u001b[39m\u001b[2m).\u001b[22mtoHaveTitle\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nExpected: \u001b[32m\"scan.datasatsto.se API\"\u001b[39m\nReceived: \u001b[31m\"An error occurred\"\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveTitle\" with timeout 5000ms\u001b[22m\n\u001b[2m    14 × locator resolved to <html>…</html>\u001b[22m\n\u001b[2m       - unexpected value \"An error occurred\"\u001b[22m\n\n\nError: \u001b[2mexpect(\u001b[22m\u001b[31mpage\u001b[39m\u001b[2m).\u001b[22mtoHaveTitle\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nExpected: \u001b[32m\"scan.datasatsto.se API\"\u001b[39m\nReceived: \u001b[31m\"An error occurred\"\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveTitle\" with timeout 5000ms\u001b[22m\n\u001b[2m    14 × locator resolved to <html>…</html>\u001b[22m\n\u001b[2m       - unexpected value \"An error occurred\"\u001b[22m\n\n\n  5 | test('runs the browser suite against the started application', async ({ page }) => {\n  6 |   await page.goto('/');\n> 7 |   await expect(page).toHaveTitle('scan.datasatsto.se API');\n    |                      ^\n  8 | });\n  9 |\n    at C:\\Users\\MikeDiehl\\repos\\scan.datasatsto.se\\tests\\e2e\\playwright-runnerexecution-e2e-playwright-c1.spec.js:7:22",
+      "artifacts": [
+        {
+          "evidence_id": "run-001:screenshot-7",
+          "kind": "screenshot",
+          "path": ".treegress/features/registration-webcam-layout/runs/run-001-artifacts/run-001_screenshot-7.png",
+          "sha256": "3276750f5ea0c99ed406702e81a5aff37f9bc51759fb492c5942edd602012c5e"
+        }
+      ]
+    },
+    {
+      "evidence_id": "run-001:test-16",
+      "skill": "e2e-playwright",
+      "test_id": "e2e-playwright:registration-layout#keeps-controls-readable-and-contained-on-desktop",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 3997
+    },
+    {
+      "evidence_id": "run-001:test-17",
+      "skill": "e2e-playwright",
+      "test_id": "e2e-playwright:registration-layout#keeps-the-manual-form-usable-on-a-narrow-viewport",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 419
+    },
+    {
+      "evidence_id": "run-001:test-18",
+      "skill": "e2e-playwright",
+      "test_id": "e2e-playwright:screenshot-config#forces-screenshots-for-passing-tests",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 3816
+    },
+    {
+      "evidence_id": "run-001:test-19",
+      "skill": "e2e-playwright",
+      "test_id": "e2e-playwright:screenshot-config#uses-the-same-screenshot-setting-for-failures",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 1
+    },
+    {
+      "evidence_id": "run-001:test-20",
+      "skill": "e2e-playwright",
+      "test_id": "e2e-playwright:screenshot-config#preserves-the-default-project-settings",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 2
+    },
+    {
+      "evidence_id": "run-001:test-21",
+      "skill": "e2e-playwright",
+      "test_id": "e2e-playwright:screenshot-config#leaves-the-default-screenshot-policy-unchanged",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 1
+    },
+    {
+      "evidence_id": "run-001:test-22",
+      "skill": "e2e-playwright",
+      "test_id": "e2e-playwright:screenshot-config#provides-a-selectable-dedicated-config-file",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 1
+    },
+    {
+      "evidence_id": "run-001:test-23",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/apidocs-run-call-navigation-unit-c1#navigates-a-parameterless-endpoint-without-fetching-a-response",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 3
+    },
+    {
+      "evidence_id": "run-001:test-24",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/apidocs-run-call-navigation-unit-c1#navigates-with-a-supplied-parameter",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 1
+    },
+    {
+      "evidence_id": "run-001:test-25",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/apidocs-run-call-navigation-unit-c1#navigates-with-multiple-supplied-parameters",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 0
+    },
+    {
+      "evidence_id": "run-001:test-26",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/apidocs-run-call-navigation-unit-c1#encodes-parameter-values-before-navigation",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 0
+    },
+    {
+      "evidence_id": "run-001:test-27",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/apidocs-run-call-navigation-unit-c1#does-not-navigate-or-fetch-when-a-required-parameter-is-omitted",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 2
+    },
+    {
+      "evidence_id": "run-001:test-28",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/apidocs-run-call-navigation-unit-c1#uses-navigation-for-every-endpoint-method",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 1
+    },
+    {
+      "evidence_id": "run-001:test-29",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/authorization-pdf-unit#renders-the-authorization-pdf-form",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 41
+    },
+    {
+      "evidence_id": "run-001:test-30",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/authorization-pdf-unit#rejects-an-unknown-event-code",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 76
+    },
+    {
+      "evidence_id": "run-001:test-31",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/authorization-pdf-unit#returns-a-printable-pdf-containing-the-scanner-authorization-qr-code-and-url",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 177
+    },
+    {
+      "evidence_id": "run-001:test-32",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/authpdf-displayurl-unit-c1#displays-the-complete-authorization-url-alongside-the-qr-code",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 224
+    },
+    {
+      "evidence_id": "run-001:test-33",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/authpdf-expiredurl-unit-c1#denies-authorization-and-displays-an-expired-link-error",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 76
+    },
+    {
+      "evidence_id": "run-001:test-34",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/authpdf-invalidrequest-unit-c1#rejects-an-unknown-event-without-producing-a-pdf",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 96
+    },
+    {
+      "evidence_id": "run-001:test-35",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/authpdf-manualauthorization-unit-c1#authorizes-a-device-and-confirms-scanner-setup",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 42
+    },
+    {
+      "evidence_id": "run-001:test-36",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/authpdf-urlmatchesqr-unit-c1#uses-the-same-authorization-url-for-the-qr-code-and-displayed-text",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 824
+    },
+    {
+      "evidence_id": "run-001:test-37",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/eventbrite-reserved-identities#adds-deterministic-blank-identities-for-the-requested-range",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 2919
+    },
+    {
+      "evidence_id": "run-001:test-38",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/eventbrite-reserved-identities#rejects-a-reserved-range-that-collides-with-an-imported-identity",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 1209
+    },
+    {
+      "evidence_id": "run-001:test-39",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/landingpage-endpoints-unit-c1#documents-the-new-event-setup-id-vendorcode-report-event-random-event-pdf-and-expire-endpoints",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 45
+    },
+    {
+      "evidence_id": "run-001:test-40",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/landingpage-queryparams-unit-c1#returns-the-successful-html-landing-page-documenting-the-available-api-endpoints",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 50
+    },
+    {
+      "evidence_id": "run-001:test-41",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/landingpage-unknownroute-unit-c1#returns-a-not-found-indication-and-does-not-render-the-api-documentation-landing-page",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 32
+    },
+    {
+      "evidence_id": "run-001:test-42",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/landingpage-view-unit-c1#returns-a-successful-html-landing-page-instead-of-a-not-found-error",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 48
+    },
+    {
+      "evidence_id": "run-001:test-43",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/mainpage-displayinputs-unit-c1#renders-parameter-input-fields",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 33
+    },
+    {
+      "evidence_id": "run-001:test-44",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/mainpage-invalidparamvalue-unit-c1#displays-an-invalid-input-indication",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 3
+    },
+    {
+      "evidence_id": "run-001:test-45",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/mainpage-missingparam-unit-c1#displays-a-required-indication-and-prevents-execution",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 5
+    },
+    {
+      "evidence_id": "run-001:test-46",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/mainpage-runmultipleparams-unit-c1#executes-with-all-values-and-displays-the-result",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 4
+    },
+    {
+      "evidence_id": "run-001:test-47",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/mainpage-runsingleparam-unit-c1#executes-with-the-supplied-value-and-returns-output",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 4
+    },
+    {
+      "evidence_id": "run-001:test-48",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/mainpage-specialcharacters-unit-c1#encodes-the-value-and-displays-the-response",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 3
+    },
+    {
+      "evidence_id": "run-001:test-49",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/mainpage-updateparams-unit-c1#runs-with-the-updated-value-and-displays-the-new-result",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 3
+    },
+    {
+      "evidence_id": "run-001:test-50",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/mobile-ui-styling-unit#doubles-scan-submit-control-sizing",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 2
+    },
+    {
+      "evidence_id": "run-001:test-51",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/mobile-ui-styling-unit#uses-reduced-typography-on-the-authorized-confirmation-page",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 0
+    },
+    {
+      "evidence_id": "run-001:test-52",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/pdf-path-unit-c1#renders-the-badge-form-and-its-layout-controls",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 25
+    },
+    {
+      "evidence_id": "run-001:test-53",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/pdf-path-unit-c1#rejects-pdf-generation-for-an-unknown-event",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 36
+    },
+    {
+      "evidence_id": "run-001:test-54",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/pdf-path-unit-c1#returns-a-pdf-for-valid-badge-data",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 202
+    },
+    {
+      "evidence_id": "run-001:test-55",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/pdf-path-unit-c1#applies-custom-paper-and-badge-options-to-the-pdf-response",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 389
+    },
+    {
+      "evidence_id": "run-001:test-56",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/pdf-path-unit-c1#rejects-a-database-response-without-identities",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 12
+    },
+    {
+      "evidence_id": "run-001:test-57",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/pdf-path-unit-c1#rejects-badge-rows-with-an-invalid-identity-id",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 14
+    },
+    {
+      "evidence_id": "run-001:test-58",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/playwright-appstartupfailure-unit-c1#configures-a-readiness-url-and-startup-timeout",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 4
+    },
+    {
+      "evidence_id": "run-001:test-59",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/playwright-cirun-unit-c1#installs-chromium-and-runs-the-browser-suite",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 3
+    },
+    {
+      "evidence_id": "run-001:test-60",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/playwright-smokefail-unit-c1#uses-the-playwright-runner-so-assertion-failures-produce-a-failing-process",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 3
+    },
+    {
+      "evidence_id": "run-001:test-61",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/qrscan-noteform#shows-the-form-and-a-submit-without-note-option-before-recording",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 3
+    },
+    {
+      "evidence_id": "run-001:test-62",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/qrscan-noteform#passes-an-entered-note-to-scan-submission",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 0
+    },
+    {
+      "evidence_id": "run-001:test-63",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/qrscan-noteform#submits-an-empty-note-from-the-secondary-action",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 0
+    },
+    {
+      "evidence_id": "run-001:test-64",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/qrscan-noteform#normalizes-an-empty-note-to-an-empty-database-value",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 0
+    },
+    {
+      "evidence_id": "run-001:test-65",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/qrscan-noteform#includes-a-selected-vendor-code-in-the-scan-view",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 0
+    },
+    {
+      "evidence_id": "run-001:test-66",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/qrscan-noteform#omits-the-vendor-line-when-no-vendor-cookie-is-selected",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 0
+    },
+    {
+      "evidence_id": "run-001:test-67",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/qrscan-noteform#rejects-whitespace-only-vendor-cookie-values",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 0
+    },
+    {
+      "evidence_id": "run-001:test-68",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/randomscan-emptyrecordset-unit-c1#returns-a-successful-response-with-an-empty-json-array",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 45
+    },
+    {
+      "evidence_id": "run-001:test-69",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/randomscan-errorwithcode-unit-c1#returns-an-http-200-response-with-an-empty-body",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 65
+    },
+    {
+      "evidence_id": "run-001:test-70",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/randomscan-errorwithoutcode-unit-c1#returns-an-http-200-response-with-an-empty-body",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 43
+    },
+    {
+      "evidence_id": "run-001:test-71",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/randomscan-withcode-unit-c1#returns-a-successful-response-with-the-matching-scan-records-formatted-as-a-json-array",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 33
+    },
+    {
+      "evidence_id": "run-001:test-72",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/randomscan-withoutcode-unit-c1#returns-a-successful-response-with-the-scan-records-formatted-as-a-json-array",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 27
+    },
+    {
+      "evidence_id": "run-001:test-73",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/registration-autoid-unit-c1#returns-a-successful-json-response-with-the-assigned-id-url-imgsrc-and-qr-data",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 36
+    },
+    {
+      "evidence_id": "run-001:test-74",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/registration-dataurlerror-unit-c1#returns-an-http-500-html-error-page-with-the-couldn-t-create-the-data-blob-message-and-no-json-body",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 69
+    },
+    {
+      "evidence_id": "run-001:test-75",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/registration-invalidid-unit-c1#returns-an-http-401-html-error-page-with-the-invalid-id-message-and-no-json-body",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 34
+    },
+    {
+      "evidence_id": "run-001:test-76",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/registration-manualid-unit-c1#returns-a-successful-json-response-with-the-manual-id-url-imgsrc-and-qr-data",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 74
+    },
+    {
+      "evidence_id": "run-001:test-77",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/registration-nonnumericid-unit-c1#returns-a-404-not-found-response-instead-of-processing-the-registration",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 29
+    },
+    {
+      "evidence_id": "run-001:test-78",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/registration-pngerror-unit-c1#returns-an-http-500-html-error-page-with-the-couldn-t-create-png-file-message-and-no-json-body",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 43
+    },
+    {
+      "evidence_id": "run-001:test-79",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/report-emptyevent-unit-c1#returns-an-empty-report-when-the-event-has-no-scans",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 64
+    },
+    {
+      "evidence_id": "run-001:test-80",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/report-eventisolation-unit-c1#returns-only-scans-supplied-for-the-requested-event",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 25
+    },
+    {
+      "evidence_id": "run-001:test-81",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/report-expired-unit-c1#reports-that-purged-event-data-is-unavailable",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 26
+    },
+    {
+      "evidence_id": "run-001:test-82",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/report-malformedid-unit-c1#rejects-traversal-identifiers-without-exposing-a-file-or-system-resource",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 80
+    },
+    {
+      "evidence_id": "run-001:test-83",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/report-missingid-unit-c1#requires-an-event-identifier",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 26
+    },
+    {
+      "evidence_id": "run-001:test-84",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/report-multiplescans-unit-c1#preserves-every-scan-in-recorded-order",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 25
+    },
+    {
+      "evidence_id": "run-001:test-85",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/report-notfound-unit-c1#rejects-an-event-that-has-no-report",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 31
+    },
+    {
+      "evidence_id": "run-001:test-86",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/report-validwithscans-unit-c1#returns-a-report-containing-every-recorded-scan-detail",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 58
+    },
+    {
+      "evidence_id": "run-001:test-87",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/reserved-badge-registration-unit#requires-event-scanner-authorization",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 32
+    },
+    {
+      "evidence_id": "run-001:test-88",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/reserved-badge-registration-unit#reports-an-available-reserved-badge-after-authorization",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 29
+    },
+    {
+      "evidence_id": "run-001:test-89",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/reserved-badge-registration-unit#rejects-an-identity-that-is-not-part-of-the-authorized-event",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 12
+    },
+    {
+      "evidence_id": "run-001:test-90",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/reserved-badge-registration-unit#returns-a-conflict-when-the-atomic-claim-did-not-update-a-reserved-row",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 48
+    },
+    {
+      "evidence_id": "run-001:test-91",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/scan-explicitcode-unit-c1#shows-the-confirmation-page-and-reuses-the-code-on-a-later-session-request",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 50
+    },
+    {
+      "evidence_id": "run-001:test-92",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/scan-favicon-unit-c1#responds-with-404-and-an-empty-body",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 40
+    },
+    {
+      "evidence_id": "run-001:test-93",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/scan-mismatchedrecord-unit-c1#shows-an-error-page-with-the-message-that-code-didn-t-look-right",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 100
+    },
+    {
+      "evidence_id": "run-001:test-94",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/scan-postwithnote-unit-c1#shows-the-confirmation-page-displaying-the-vendor-code",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 56
+    },
+    {
+      "evidence_id": "run-001:test-95",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/scan-postwithnote-unit-c1#accepts-an-id-only-post-using-the-vendor-code-from-the-session",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 32
+    },
+    {
+      "evidence_id": "run-001:test-96",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/scan-redirectsetup-unit-c1#redirects-to-setup-with-the-badge-id-parameter",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 48
+    },
+    {
+      "evidence_id": "run-001:test-97",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/scan-sessionsetup-unit-c1#shows-the-confirmation-page-displaying-the-setup-established-vendor-code",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 149
+    },
+    {
+      "evidence_id": "run-001:test-98",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/scan-sessionsetup-unit-c1#uses-a-submitted-vendor-code-without-changing-the-default-unless-requested",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 55
+    },
+    {
+      "evidence_id": "run-001:test-99",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/scan-sessionsetup-unit-c1#updates-the-default-when-the-submitted-vendor-code-is-selected-as-default",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 30
+    },
+    {
+      "evidence_id": "run-001:test-100",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/scan-urldecodedcode-unit-c1#shows-the-confirmation-page-with-the-decoded-vendor-code",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 76
+    },
+    {
+      "evidence_id": "run-001:test-101",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/scanner-authorization-unit#rejects-setup-on-a-phone-that-has-not-scanned-the-organizer-qr",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 70
+    },
+    {
+      "evidence_id": "run-001:test-102",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/scanner-authorization-unit#does-not-expose-the-main-page-before-scanner-authorization",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 6
+    },
+    {
+      "evidence_id": "run-001:test-103",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/scanner-authorization-unit#retains-authorization-for-a-subsequent-top-level-navigation",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 134
+    },
+    {
+      "evidence_id": "run-001:test-104",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/scanner-authorization-unit#withholds-protected-scanner-access-without-a-usable-secure-session",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 7
+    },
+    {
+      "evidence_id": "run-001:test-105",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/scanner-authorization-unit#does-not-apply-authorization-to-an-unauthenticated-cross-site-request",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 5
+    },
+    {
+      "evidence_id": "run-001:test-106",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/scanner-authorization-unit#authorizes-a-phone-for-the-event-returned-by-the-scanner-secret",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 46
+    },
+    {
+      "evidence_id": "run-001:test-107",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/scanner-authorization-unit#rejects-an-invalid-or-expired-organizer-qr",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 6
+    },
+    {
+      "evidence_id": "run-001:test-108",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/separate-authorization-qr-unit#blocks-the-main-page-for-an-unauthorized-visitor",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 52
+    },
+    {
+      "evidence_id": "run-001:test-109",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/separate-authorization-qr-unit#keeps-the-authorization-qr-generator-available-separately",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 186
+    },
+    {
+      "evidence_id": "run-001:test-110",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/separate-authorization-qr-unit#grants-main-page-access-after-processing-a-valid-authorization-qr",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 17
+    },
+    {
+      "evidence_id": "run-001:test-111",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/separate-authorization-qr-unit#shows-the-main-page-to-an-authorized-visitor",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 12
+    },
+    {
+      "evidence_id": "run-001:test-112",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/separate-authorization-qr-unit#keeps-an-invalid-authorization-attempt-unauthorized",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 11
+    },
+    {
+      "evidence_id": "run-001:test-113",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/separate-authorization-qr-unit#blocks-the-main-page-when-authorization-has-expired",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 13
+    },
+    {
+      "evidence_id": "run-001:test-114",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/setup-get-blankform-unit-c1#displays-the-scanner-setup-page-with-an-empty-vendor-code-input",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 60
+    },
+    {
+      "evidence_id": "run-001:test-115",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/setup-get-nocodes-unit-c1#displays-an-error-page-with-the-message-that-code-didn-t-look-right",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 61
+    },
+    {
+      "evidence_id": "run-001:test-116",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/setup-get-prefilledform-unit-c1#displays-the-scanner-setup-page-prefilled-with-the-previously-submitted-vendor-code",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 153
+    },
+    {
+      "evidence_id": "run-001:test-117",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/setup-get-selectcodes-unit-c1#displays-the-code-selection-page-with-each-matching-code-presented-as-a-selectable-safely-encoded-option",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 50
+    },
+    {
+      "evidence_id": "run-001:test-118",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/setup-post-submitcode-unit-c1#shows-a-confirmation-page-with-the-submitted-code-and-retains-it-in-the-session",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 127
+    },
+    {
+      "evidence_id": "run-001:test-119",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/storedprocedures-directaccess-unit-c1#loads-successfully-and-presents-database-connection-information",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 24
+    },
+    {
+      "evidence_id": "run-001:test-120",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/storedprocedures-navigatedfromwelcome-unit-c1#displays-the-stored-procedures-reference-page",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 23
+    },
+    {
+      "evidence_id": "run-001:test-121",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/storedprocedures-serveranddatabaseinfo-unit-c1#renders-configured-database-connection-details-with-the-reference",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 25
+    },
+    {
+      "evidence_id": "run-001:test-122",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/storedprocedures-unconfiguredserverdetails-unit-c1#shows-a-friendly-unavailable-details-notice-and-welcome-link",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 24
+    },
+    {
+      "evidence_id": "run-001:test-123",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/vendor-code-selection-unit#shows-registered-codes-and-an-explicit-new-code-option-on-setup",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 38
+    },
+    {
+      "evidence_id": "run-001:test-124",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/vendor-code-selection-unit#reveals-and-requires-the-new-code-input-for-the-new-code-selection",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 0
+    },
+    {
+      "evidence_id": "run-001:test-125",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/vendor-code-selection-unit#shows-registered-codes-and-an-explicit-new-code-option-on-the-scan-page",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 40
+    },
+    {
+      "evidence_id": "run-001:test-126",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/vendor-code-selection-unit#rejects-a-setup-submission-without-a-vendor-code",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 14
+    },
+    {
+      "evidence_id": "run-001:test-127",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/welcomepage-storedprocedureslink-unit-c1#displays-a-navigable-stored-procedures-reference-link",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 42
+    }
+  ]
+}

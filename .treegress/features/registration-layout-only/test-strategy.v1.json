@@ -1,0 +1,68 @@
+{
+  "feature_id": "registration-layout-only",
+  "plan_version": 1,
+  "version": 1,
+  "status": "approved",
+  "approval": {
+    "hash": "sha256:5f3d9ba5b2612a23239e5779f72f53c8db89f656fe3b816f5115be1cd4e8b617",
+    "plan_hash": "sha256:d66f31c98059437a418a0e6863eb0b8f1dc0c23dd6870f2bd57a2b5d31b810bf",
+    "approved_at": "2026-09-18T00:04:21.757Z"
+  },
+  "scenario_strategies": [
+    {
+      "scenario_id": "registration.desktoplayout",
+      "obligations": [
+        {
+          "skill": "e2e-playwright",
+          "required": true,
+          "target": "Proves that typography remains legible with proper proportions and form controls remain contained within their boundaries on desktop viewports without overflowing.",
+          "reason": "Layout containment, control boundary overflow, and typography rendering proportions require real browser rendering and viewport dimensions."
+        }
+      ]
+    },
+    {
+      "scenario_id": "registration.mobilelayout",
+      "obligations": [
+        {
+          "skill": "e2e-playwright",
+          "required": true,
+          "target": "Proves that typography scales without clipping and form controls fit within narrow mobile viewports without unintended horizontal scrolling.",
+          "reason": "Validating viewport-relative responsive text scaling, lack of clipping, and absence of horizontal page scrolling can only be observed in a real browser at mobile viewport dimensions."
+        }
+      ]
+    },
+    {
+      "scenario_id": "registration.webcamunsupported",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Proves that when webcam capabilities are unsupported, a clear notification message is displayed and manual ID entry input and submit controls remain visible and interactive.",
+          "reason": "Detection of unsupported camera capability and conditional rendering of the notification message and interactive manual fallback inputs can be verified at the unit altitude in Vitest."
+        }
+      ]
+    },
+    {
+      "scenario_id": "registration.webcamsupported",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Proves that when webcam scanning is supported, the QR webcam scanner interface is initialized and accessible alongside manual ID entry controls.",
+          "reason": "Camera capability detection and concurrent presentation of the webcam scanner interface and manual entry controls are fully provable via unit tests in Vitest."
+        }
+      ]
+    },
+    {
+      "scenario_id": "registration.manualentryfallback",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Proves that entering a registration identifier into the manual ID entry field processes the submission and displays the registration outcome confirmation.",
+          "reason": "Processing the manual identifier form submission and rendering the resulting registration outcome or confirmation is a behavioral contract verified at unit altitude in Vitest."
+        }
+      ]
+    }
+  ]
+}

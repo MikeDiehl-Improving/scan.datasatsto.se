@@ -1,0 +1,1 @@
+Fix the Registration page so its webcam scan controls and manual identity form render at a usable responsive size instead of inheriting the site's oversized global typography. Preserve webcam scanning, manual ID entry, status messages, and badge registration behavior across desktop and mobile widths.

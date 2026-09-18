@@ -1,0 +1,22 @@
+{
+  "feature_id": "registration-layout-only",
+  "state": "FAILED",
+  "plan_version": 1,
+  "strategy_version": 1,
+  "approvals": {
+    "test_plan": {
+      "version": 1,
+      "hash": "sha256:d66f31c98059437a418a0e6863eb0b8f1dc0c23dd6870f2bd57a2b5d31b810bf",
+      "approved_at": "2026-09-18T00:03:05.238Z",
+      "self_approved": true
+    },
+    "test_strategy": {
+      "version": 1,
+      "hash": "sha256:5f3d9ba5b2612a23239e5779f72f53c8db89f656fe3b816f5115be1cd4e8b617",
+      "approved_at": "2026-09-18T00:04:21.757Z",
+      "self_approved": true
+    }
+  },
+  "last_run_id": "run-002",
+  "updated_at": "2026-09-18T00:11:05.375Z"
+}

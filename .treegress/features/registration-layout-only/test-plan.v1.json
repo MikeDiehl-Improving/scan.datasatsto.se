@@ -1,0 +1,82 @@
+{
+  "feature_id": "registration-layout-only",
+  "version": 1,
+  "status": "approved",
+  "approval": {
+    "hash": "sha256:d66f31c98059437a418a0e6863eb0b8f1dc0c23dd6870f2bd57a2b5d31b810bf",
+    "approved_at": "2026-09-18T00:03:05.238Z"
+  },
+  "scenarios": [
+    {
+      "id": "registration.desktoplayout",
+      "title": "Registration page renders readable typography and contained controls on desktop viewports",
+      "given": [
+        "A user navigates to the Registration page on a desktop-sized display"
+      ],
+      "when": "The page is rendered",
+      "then": [
+        "Typography for headings, labels, and text remains legible with appropriate line height and proportions",
+        "Form controls, inputs, and interactive buttons are contained within their defined boundaries without overflowing the layout container"
+      ],
+      "priority": "normal",
+      "negative": false
+    },
+    {
+      "id": "registration.mobilelayout",
+      "title": "Registration page scales typography and contains controls responsively on mobile viewports",
+      "given": [
+        "A user navigates to the Registration page on a mobile device or narrow viewport"
+      ],
+      "when": "The page is rendered",
+      "then": [
+        "Typography scales responsively so that all text remains readable without clipping",
+        "Form controls, input fields, and action buttons fit within the viewport width without causing unintended horizontal page scrolling"
+      ],
+      "priority": "high",
+      "negative": false
+    },
+    {
+      "id": "registration.webcamunsupported",
+      "title": "Clear notification is shown when browser lacks QR webcam support while manual ID entry remains accessible",
+      "given": [
+        "A user visits the Registration page using a browser or environment that lacks QR webcam support"
+      ],
+      "when": "The Registration page loads",
+      "then": [
+        "A clear message is displayed informing the user that their browser lacks QR webcam scanning support",
+        "The manual ID entry input field and submission control remain visible and interactive"
+      ],
+      "priority": "critical",
+      "negative": true
+    },
+    {
+      "id": "registration.webcamsupported",
+      "title": "Webcam scanner is presented when supported alongside manual ID entry",
+      "given": [
+        "A user visits the Registration page using a browser that supports QR webcam scanning"
+      ],
+      "when": "The Registration page loads",
+      "then": [
+        "The QR webcam scanner interface is available to the user",
+        "The manual ID entry option remains accessible alongside the webcam scanner"
+      ],
+      "priority": "high",
+      "negative": false
+    },
+    {
+      "id": "registration.manualentryfallback",
+      "title": "User can successfully complete registration via manual ID entry when webcam is unsupported",
+      "given": [
+        "A user is on the Registration page in a browser without QR webcam support",
+        "The browser displays the unsupported webcam notification"
+      ],
+      "when": "The user enters a registration identifier (e.g. REG12345) into the manual ID entry field and submits",
+      "then": [
+        "The manual identifier submission is processed",
+        "The user observes the outcome or confirmation of their registration entry"
+      ],
+      "priority": "critical",
+      "negative": false
+    }
+  ]
+}

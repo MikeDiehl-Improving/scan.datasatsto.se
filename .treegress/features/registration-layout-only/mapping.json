@@ -1,0 +1,82 @@
+{
+  "feature_id": "registration-layout-only",
+  "plan_version": 1,
+  "strategy_version": 1,
+  "entries": [
+    {
+      "scenario_id": "registration.desktoplayout",
+      "obligations": [
+        {
+          "skill": "e2e-playwright",
+          "obligation_id": "registration.desktoplayout.e2e-playwright.c1",
+          "test_ids": [],
+          "evidence_ids": [],
+          "reused": false
+        }
+      ]
+    },
+    {
+      "scenario_id": "registration.mobilelayout",
+      "obligations": [
+        {
+          "skill": "e2e-playwright",
+          "obligation_id": "registration.mobilelayout.e2e-playwright.c1",
+          "test_ids": [],
+          "evidence_ids": [],
+          "reused": false
+        }
+      ]
+    },
+    {
+      "scenario_id": "registration.webcamunsupported",
+      "obligations": [
+        {
+          "skill": "unit",
+          "obligation_id": "registration.webcamunsupported.unit.c1",
+          "test_ids": [
+            "unit:tests/unit/registration-behavior-contract#keeps-manual-entry-available-when-webcam-scanning-is-unsupported"
+          ],
+          "evidence_ids": [
+            "run-002:test-10"
+          ],
+          "reused": true,
+          "user_authored": true
+        }
+      ]
+    },
+    {
+      "scenario_id": "registration.webcamsupported",
+      "obligations": [
+        {
+          "skill": "unit",
+          "obligation_id": "registration.webcamsupported.unit.c1",
+          "test_ids": [
+            "unit:tests/unit/registration-behavior-contract#initializes-the-qr-scanner-alongside-manual-entry-controls"
+          ],
+          "evidence_ids": [
+            "run-002:test-11"
+          ],
+          "reused": true,
+          "user_authored": true
+        }
+      ]
+    },
+    {
+      "scenario_id": "registration.manualentryfallback",
+      "obligations": [
+        {
+          "skill": "unit",
+          "obligation_id": "registration.manualentryfallback.unit.c1",
+          "test_ids": [
+            "unit:tests/unit/registration-behavior-contract#processes-manual-identifier-entry-and-displays-its-outcome"
+          ],
+          "evidence_ids": [
+            "run-002:test-12"
+          ],
+          "reused": true,
+          "user_authored": true
+        }
+      ]
+    }
+  ]
+}

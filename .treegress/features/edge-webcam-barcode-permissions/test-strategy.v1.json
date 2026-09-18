@@ -1,0 +1,115 @@
+{
+  "feature_id": "edge-webcam-barcode-permissions",
+  "plan_version": 1,
+  "version": 1,
+  "status": "stale",
+  "approval": {
+    "hash": "sha256:09debd967e679b1109f13fc38c4e1a2aa8ae4159cc52dd7996be5987ec9db1f0",
+    "plan_hash": "sha256:4b68651800ccb4baac73df7152e15e1a0dd2301bd672619658e30b16c3155181",
+    "approved_at": "2026-09-17T23:58:59.711Z"
+  },
+  "scenario_strategies": [
+    {
+      "scenario_id": "camera.edgesuccess",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Registration scanner client module processes recognized barcode input and auto-populates the registration ID field",
+          "reason": "Verifies isolated client-side code parsing and form state updating upon successful scan detection"
+        },
+        {
+          "skill": "e2e-playwright",
+          "required": true,
+          "target": "Live webcam viewfinder stream displays and scanned code auto-advances registration in Microsoft Edge",
+          "reason": "Proves end-to-end camera stream presentation, barcode recognition, and registration progression in a real browser"
+        }
+      ]
+    },
+    {
+      "scenario_id": "camera.deniedfallback",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Camera permission rejection handler sets denial notice state and maintains manual entry availability",
+          "reason": "Verifies the controller properly transitions to the denied state and enables manual submission"
+        },
+        {
+          "skill": "e2e-playwright",
+          "required": true,
+          "target": "Permission denied notification is displayed and user can manually enter and submit ID in Microsoft Edge",
+          "reason": "Proves browser UI displays denial banner and permits manual fallback entry and form submission"
+        }
+      ]
+    },
+    {
+      "scenario_id": "camera.originrestricted",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Origin verification logic enforces camera stream requests originate solely from the authorized registration site origin",
+          "reason": "Validates unit security policies and permissions boundary checks against external origins"
+        },
+        {
+          "skill": "e2e-playwright",
+          "required": true,
+          "target": "Camera permissions granted to the registration origin are isolated and not accessible by secondary origins",
+          "reason": "Proves cross-origin camera isolation in a live browser context"
+        }
+      ]
+    },
+    {
+      "scenario_id": "manualentry.withactivecamera",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Manual ID submission logic accepts input and processes registration regardless of active webcam stream state",
+          "reason": "Verifies concurrent manual entry validation while video streaming listeners remain active"
+        },
+        {
+          "skill": "e2e-playwright",
+          "required": true,
+          "target": "Manual entry input field is editable and submittable during an active camera video stream",
+          "reason": "Validates user interaction where typing and submitting manual ID works seamlessly alongside a live camera viewfinder"
+        }
+      ]
+    },
+    {
+      "scenario_id": "scan.invalidbarcode",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Scan validation module generates retry error status on invalid barcode while keeping camera session active",
+          "reason": "Validates code verification logic and state preservation on invalid or unreadable scan payloads"
+        },
+        {
+          "skill": "e2e-playwright",
+          "required": true,
+          "target": "Camera viewfinder displays retry error message for invalid barcode without closing stream or disabling manual entry",
+          "reason": "Proves user-visible error messaging and persistent viewfinder state on invalid scan in the browser"
+        }
+      ]
+    },
+    {
+      "scenario_id": "camera.devicenotfound",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Device enumeration failure or NotFoundError triggers camera unavailable notice and activates manual entry default",
+          "reason": "Verifies error trapping logic when mediaDevices API reports no camera hardware"
+        },
+        {
+          "skill": "e2e-playwright",
+          "required": true,
+          "target": "Missing camera hardware notice is displayed on page load and manual ID input is focused as primary input",
+          "reason": "Proves browser presentation when no media capture hardware is available"
+        }
+      ]
+    }
+  ]
+}

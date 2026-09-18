@@ -1,0 +1,169 @@
+{
+  "feature_id": "registration-webcam-layout",
+  "plan_version": 2,
+  "strategy_version": 2,
+  "entries": [
+    {
+      "scenario_id": "registration.desktop.sizing",
+      "obligations": [
+        {
+          "skill": "e2e-playwright",
+          "obligation_id": "registration.desktop.sizing.e2e-playwright.c1",
+          "test_ids": [
+            "e2e-playwright:registration-layout#keeps-controls-readable-and-contained-on-desktop"
+          ],
+          "evidence_ids": [
+            "run-002:test-16"
+          ],
+          "reused": true,
+          "user_authored": true
+        }
+      ],
+      "review_status": "COVERED"
+    },
+    {
+      "scenario_id": "registration.mobile.sizing",
+      "obligations": [
+        {
+          "skill": "e2e-playwright",
+          "obligation_id": "registration.mobile.sizing.e2e-playwright.c1",
+          "test_ids": [
+            "e2e-playwright:registration-layout#keeps-the-manual-form-usable-on-a-narrow-viewport"
+          ],
+          "evidence_ids": [
+            "run-002:test-17"
+          ],
+          "reused": true,
+          "user_authored": true
+        }
+      ],
+      "review_status": "PARTIAL"
+    },
+    {
+      "scenario_id": "registration.webcam.scanbadge",
+      "obligations": [
+        {
+          "skill": "unit",
+          "obligation_id": "registration.webcam.scanbadge.unit.c1",
+          "test_ids": [
+            "unit:tests/unit/registration-behavior-contract#submits-the-scanned-identifier-and-renders-the-registration-success-message"
+          ],
+          "evidence_ids": [
+            "run-002:test-76"
+          ],
+          "reused": true,
+          "user_authored": true
+        }
+      ],
+      "review_status": "PARTIAL"
+    },
+    {
+      "scenario_id": "registration.webcam.invalidscan",
+      "obligations": [
+        {
+          "skill": "unit",
+          "obligation_id": "registration.webcam.invalidscan.unit.c1",
+          "test_ids": [
+            "unit:tests/unit/registration-behavior-contract#rejects-an-unrecognized-scanned-code-with-a-visible-status-message"
+          ],
+          "evidence_ids": [
+            "run-002:test-77"
+          ],
+          "reused": true,
+          "user_authored": true
+        }
+      ],
+      "review_status": "PARTIAL"
+    },
+    {
+      "scenario_id": "registration.manualentry.validid",
+      "obligations": [
+        {
+          "skill": "unit",
+          "obligation_id": "registration.manualentry.validid.unit.c1",
+          "test_ids": [
+            "unit:tests/unit/registration-behavior-contract#supports-valid-manual-identity-entry-and-prepares-the-form-after-registration"
+          ],
+          "evidence_ids": [
+            "run-002:test-78"
+          ],
+          "reused": true,
+          "user_authored": true
+        }
+      ],
+      "review_status": "PARTIAL"
+    },
+    {
+      "scenario_id": "registration.manualentry.invalidid",
+      "obligations": [
+        {
+          "skill": "unit",
+          "obligation_id": "registration.manualentry.invalidid.unit.c1",
+          "test_ids": [
+            "unit:tests/unit/registration-behavior-contract#renders-a-verification-error-for-an-unrecognized-manual-identity"
+          ],
+          "evidence_ids": [
+            "run-002:test-79"
+          ],
+          "reused": true,
+          "user_authored": true
+        }
+      ],
+      "review_status": "PARTIAL"
+    },
+    {
+      "scenario_id": "registration.manualentry.blankid",
+      "obligations": [
+        {
+          "skill": "unit",
+          "obligation_id": "registration.manualentry.blankid.unit.c1",
+          "test_ids": [
+            "unit:tests/unit/registration-behavior-contract#requires-an-identity-identifier-before-manual-submission"
+          ],
+          "evidence_ids": [
+            "run-002:test-80"
+          ],
+          "reused": true,
+          "user_authored": true
+        }
+      ],
+      "review_status": "PARTIAL"
+    },
+    {
+      "scenario_id": "registration.statusmessage.responsivelayout",
+      "obligations": [
+        {
+          "skill": "e2e-playwright",
+          "obligation_id": "registration.statusmessage.responsivelayout.e2e-playwright.c1",
+          "test_ids": [
+            "e2e-playwright:registration-layout#keeps-status-messages-within-the-responsive-layout"
+          ],
+          "evidence_ids": [
+            "run-002:test-18"
+          ],
+          "reused": true,
+          "user_authored": true
+        }
+      ],
+      "review_status": "PARTIAL"
+    },
+    {
+      "scenario_id": "registration.controls.mobileinteraction",
+      "obligations": [
+        {
+          "skill": "e2e-playwright",
+          "obligation_id": "registration.controls.mobileinteraction.e2e-playwright.c1",
+          "test_ids": [
+            "e2e-playwright:registration-layout#keeps-mobile-controls-interactive-and-contained"
+          ],
+          "evidence_ids": [
+            "run-002:test-19"
+          ],
+          "reused": true,
+          "user_authored": true
+        }
+      ],
+      "review_status": "PARTIAL"
+    }
+  ]
+}

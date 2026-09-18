@@ -1539,7 +1539,7 @@ function httpHeaders(res) {
     res.header('Referrer-Policy', 'no-referrer');
 
     // Limit access to local devices
-    res.header('Permissions-Policy', "camera=(), display-capture=(), microphone=(), geolocation=(), usb=()"); // replaces Feature-Policy
+    res.header('Permissions-Policy', "camera=(self), display-capture=(), microphone=(), geolocation=(), usb=()"); // replaces Feature-Policy
 
     return;
 }

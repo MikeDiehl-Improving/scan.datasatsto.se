@@ -1,0 +1,79 @@
+{
+  "feature_id": "edge-webcam-barcode-permissions",
+  "plan_version": 2,
+  "version": 2,
+  "status": "approved",
+  "approval": {
+    "hash": "sha256:13de29299d4259e11fe03ea46c1c30842099baf4d49c7773e20e94ac9f2da4bb",
+    "plan_hash": "sha256:4b68651800ccb4baac73df7152e15e1a0dd2301bd672619658e30b16c3155181",
+    "approved_at": "2026-09-18T00:00:31.068Z"
+  },
+  "scenario_strategies": [
+    {
+      "scenario_id": "camera.edgesuccess",
+      "obligations": [
+        {
+          "skill": "e2e-playwright",
+          "required": true,
+          "target": "Verify that in Microsoft Edge with camera permission granted, the live webcam viewfinder displays the video feed, recognizes a scanned code, populates the registration ID field, and advances registration.",
+          "reason": "Live camera stream rendering, viewfinder video feed display, and barcode recognition in Microsoft Edge are observable only end-to-end in a real browser session."
+        }
+      ]
+    },
+    {
+      "scenario_id": "camera.deniedfallback",
+      "obligations": [
+        {
+          "skill": "e2e-playwright",
+          "required": true,
+          "target": "Verify that when camera permission is denied or dismissed in Microsoft Edge, a camera unavailable notice is displayed, the manual ID field remains editable, and manual submission succeeds.",
+          "reason": "Browser permission denial states, resulting user-visible fallback notices, and interactive manual submission require an end-to-end browser session."
+        }
+      ]
+    },
+    {
+      "scenario_id": "camera.originrestricted",
+      "obligations": [
+        {
+          "skill": "e2e-playwright",
+          "required": true,
+          "target": "Verify that camera permission granted to the registration site origin in Microsoft Edge is not automatically inherited by external or third-party origins in the same browser session.",
+          "reason": "Cross-origin permission isolation and browser security boundaries across distinct origins can only be validated in an end-to-end browser session."
+        }
+      ]
+    },
+    {
+      "scenario_id": "manualentry.withactivecamera",
+      "obligations": [
+        {
+          "skill": "e2e-playwright",
+          "required": true,
+          "target": "Verify that while the webcam viewfinder is actively streaming in Microsoft Edge, manual ID entry remains interactive, accepts submission, and advances registration.",
+          "reason": "Verifying manual entry interaction and successful registration submission concurrently with an active webcam video stream requires an end-to-end browser environment."
+        }
+      ]
+    },
+    {
+      "scenario_id": "scan.invalidbarcode",
+      "obligations": [
+        {
+          "skill": "e2e-playwright",
+          "required": true,
+          "target": "Verify that presenting an invalid barcode displays a visible scan error or retry message, keeps the live webcam feed active for another attempt, and maintains manual entry access.",
+          "reason": "Asserting that an active webcam video stream remains open across failed scan attempts while displaying retry messages requires browser end-to-end testing."
+        }
+      ]
+    },
+    {
+      "scenario_id": "camera.devicenotfound",
+      "obligations": [
+        {
+          "skill": "e2e-playwright",
+          "required": true,
+          "target": "Verify that when no webcam hardware is available in Microsoft Edge, the page displays a camera not detected notice and presents manual ID entry as the primary input method.",
+          "reason": "Browser-level media device detection failure and page fallback presentation on load are observable only in an end-to-end browser environment."
+        }
+      ]
+    }
+  ]
+}

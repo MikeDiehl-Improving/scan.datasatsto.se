@@ -1,0 +1,140 @@
+{
+  "feature_id": "registration-webcam-layout",
+  "version": 2,
+  "status": "approved",
+  "approval": {
+    "hash": "sha256:8e27037f2cf557ae2943185b2e0c6654cf28a7d5dc3cc2fedace54813a5e0c54",
+    "approved_at": "2026-09-17T23:56:12.000Z"
+  },
+  "scenarios": [
+    {
+      "id": "registration.desktop.sizing",
+      "title": "Registration controls and form sizing on desktop viewport",
+      "given": [
+        "The user navigates to the Registration page on a desktop viewport"
+      ],
+      "when": "The registration page is displayed",
+      "then": [
+        "The webcam scan controls and manual identity form render with readable typography scaled appropriately to the page layout rather than inheriting oversized global site text",
+        "The webcam scan controls, input fields, and submission buttons are sized proportionally within their container without overflowing the screen"
+      ],
+      "priority": "high",
+      "negative": false
+    },
+    {
+      "id": "registration.mobile.sizing",
+      "title": "Registration controls and form responsive layout on mobile viewport",
+      "given": [
+        "The user navigates to the Registration page on a mobile viewport width"
+      ],
+      "when": "The registration page is displayed",
+      "then": [
+        "The webcam scan controls and manual identity form adapt to the narrow screen width without horizontal clipping or overflow",
+        "Typography, form inputs, and buttons remain legible, proportioned, and usable on mobile devices without inheriting oversized site typography"
+      ],
+      "priority": "high",
+      "negative": false
+    },
+    {
+      "id": "registration.webcam.scanbadge",
+      "title": "Successful badge registration via webcam scan",
+      "given": [
+        "The user is on the Registration page across either desktop or mobile viewport",
+        "The webcam scanner is active and ready"
+      ],
+      "when": "A valid attendee badge code (e.g. 'BADGE101') is presented and scanned by the webcam",
+      "then": [
+        "The scanned badge identifier is registered for the attendee",
+        "A success status message confirming the badge registration is displayed"
+      ],
+      "priority": "critical",
+      "negative": false
+    },
+    {
+      "id": "registration.webcam.invalidscan",
+      "title": "Unsuccessful badge registration from invalid webcam scan",
+      "given": [
+        "The user is on the Registration page with an active webcam scanner"
+      ],
+      "when": "An invalid or unassigned badge code (e.g. 'INVALID999') is scanned by the webcam",
+      "then": [
+        "Badge registration is not completed",
+        "An error status message indicating the badge code is invalid or unrecognized is displayed"
+      ],
+      "priority": "high",
+      "negative": true
+    },
+    {
+      "id": "registration.manualentry.validid",
+      "title": "Successful badge registration via manual ID entry",
+      "given": [
+        "The user is on the Registration page across either desktop or mobile viewport",
+        "A valid identity identifier exists (e.g. 'ID54321')"
+      ],
+      "when": "The user enters the valid identifier into the manual identity form and submits the form",
+      "then": [
+        "The badge registration is accepted",
+        "A success status message confirming the registration is displayed",
+        "The manual identity input is cleared or prepared for subsequent entry"
+      ],
+      "priority": "critical",
+      "negative": false
+    },
+    {
+      "id": "registration.manualentry.invalidid",
+      "title": "Manual registration with an unrecognized identity identifier",
+      "given": [
+        "The user is on the Registration page"
+      ],
+      "when": "The user inputs an unrecognized identity identifier (e.g. 'UNKNOWN000') into the manual identity form and submits",
+      "then": [
+        "The badge registration request is rejected",
+        "An error status message indicating the identifier could not be verified is displayed"
+      ],
+      "priority": "high",
+      "negative": true
+    },
+    {
+      "id": "registration.manualentry.blankid",
+      "title": "Manual registration submission with missing identity input",
+      "given": [
+        "The user is on the Registration page"
+      ],
+      "when": "The user submits the manual identity form with an empty identifier field",
+      "then": [
+        "The submission is prevented from registering a badge",
+        "A validation status message prompting the user to enter an identity identifier is displayed"
+      ],
+      "priority": "normal",
+      "negative": true
+    },
+    {
+      "id": "registration.statusmessage.responsivelayout",
+      "title": "Status messages render legibly across desktop and mobile viewports",
+      "given": [
+        "The user triggers a badge registration action on the Registration page"
+      ],
+      "when": "A status message (e.g. success or error feedback) is rendered on the page",
+      "then": [
+        "The status message text is fully visible within the layout bounds without horizontal overflow on both desktop and mobile viewports",
+        "The status message typography scales legibly alongside the responsive form controls"
+      ],
+      "priority": "normal",
+      "negative": false
+    },
+    {
+      "id": "registration.controls.mobileinteraction",
+      "title": "Interactive usability of webcam controls and manual input on mobile",
+      "given": [
+        "The user accesses the Registration page on a mobile device or narrow viewport"
+      ],
+      "when": "The user interacts with the webcam controls and taps into the manual identity input field",
+      "then": [
+        "Webcam scan controls respond immediately to user selection without layout displacement",
+        "The manual identity input field is focused and accessible for typing without breaking the responsive container layout"
+      ],
+      "priority": "normal",
+      "negative": false
+    }
+  ]
+}

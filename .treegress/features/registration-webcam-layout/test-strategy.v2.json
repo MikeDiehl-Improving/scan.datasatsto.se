@@ -1,0 +1,112 @@
+{
+  "feature_id": "registration-webcam-layout",
+  "plan_version": 2,
+  "version": 2,
+  "status": "approved",
+  "approval": {
+    "hash": "sha256:fc97674defdf09ee8b39e8424bc8f28e683c3d7ed67cd05c19a65a1925947e6e",
+    "plan_hash": "sha256:8e27037f2cf557ae2943185b2e0c6654cf28a7d5dc3cc2fedace54813a5e0c54",
+    "approved_at": "2026-09-17T23:56:51.978Z"
+  },
+  "scenario_strategies": [
+    {
+      "scenario_id": "registration.desktop.sizing",
+      "obligations": [
+        {
+          "skill": "e2e-playwright",
+          "required": true,
+          "target": "Verify on a desktop browser viewport that webcam scan controls, input fields, and submission buttons render with scaled typography and remain within container bounds without overflowing the screen.",
+          "reason": "Screen overflow, viewport layout proportions, and typography scaling can only be accurately observed in a real browser rendering engine."
+        }
+      ]
+    },
+    {
+      "scenario_id": "registration.mobile.sizing",
+      "obligations": [
+        {
+          "skill": "e2e-playwright",
+          "required": true,
+          "target": "Verify on a mobile viewport width that the registration controls, form inputs, and buttons adapt responsively without horizontal clipping or overflow.",
+          "reason": "Responsive adaptation to mobile screen widths and detection of horizontal clipping or container overflow require real browser rendering and viewport emulation."
+        }
+      ]
+    },
+    {
+      "scenario_id": "registration.webcam.scanbadge",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Verify that presenting a valid attendee badge code registers the attendee and returns a confirmation success status message.",
+          "reason": "Badge registration processing logic and confirmation status generation can be verified in isolation at the unit level."
+        }
+      ]
+    },
+    {
+      "scenario_id": "registration.webcam.invalidscan",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Verify that scanning an invalid or unassigned badge code prevents registration and returns an unrecognized badge error status message.",
+          "reason": "Badge validation rules and error response creation for unassigned codes can be proven directly in isolated unit tests."
+        }
+      ]
+    },
+    {
+      "scenario_id": "registration.manualentry.validid",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Verify that submitting a valid identity identifier accepts registration, generates a success status message, and resets or prepares the input field for subsequent entry.",
+          "reason": "Manual identity registration handling, success feedback, and field reset state are domain behaviors testable at the unit level."
+        }
+      ]
+    },
+    {
+      "scenario_id": "registration.manualentry.invalidid",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Verify that submitting an unrecognized identity identifier rejects registration and yields a verification error status message.",
+          "reason": "Identity verification rejection and error feedback logic can be tested in isolation at the unit level."
+        }
+      ]
+    },
+    {
+      "scenario_id": "registration.manualentry.blankid",
+      "obligations": [
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Verify that submitting the manual identity form with an empty identifier field prevents registration and generates a validation prompt message.",
+          "reason": "Form validation guard rules preventing empty identity submissions are isolated logic testable at the unit level."
+        }
+      ]
+    },
+    {
+      "scenario_id": "registration.statusmessage.responsivelayout",
+      "obligations": [
+        {
+          "skill": "e2e-playwright",
+          "required": true,
+          "target": "Verify that rendered registration status feedback messages remain fully visible within layout bounds without horizontal overflow across desktop and mobile viewports.",
+          "reason": "Visual bounds checking, viewport overflow avoidance, and responsive typography scaling across breakpoints require browser layout observation."
+        }
+      ]
+    },
+    {
+      "scenario_id": "registration.controls.mobileinteraction",
+      "obligations": [
+        {
+          "skill": "e2e-playwright",
+          "required": true,
+          "target": "Verify on mobile viewports that webcam controls respond without layout displacement and the manual input field receives focus without breaking the container layout.",
+          "reason": "Interactive element focus, lack of layout displacement, and container stability during touch interaction require real browser user interaction testing."
+        }
+      ]
+    }
+  ]
+}

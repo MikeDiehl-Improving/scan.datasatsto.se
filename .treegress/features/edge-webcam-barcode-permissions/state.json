@@ -1,0 +1,21 @@
+{
+  "feature_id": "edge-webcam-barcode-permissions",
+  "state": "FAILED",
+  "plan_version": 2,
+  "strategy_version": 2,
+  "approvals": {
+    "test_plan": {
+      "version": 2,
+      "hash": "sha256:4b68651800ccb4baac73df7152e15e1a0dd2301bd672619658e30b16c3155181",
+      "approved_at": "2026-09-17T23:59:42.781Z"
+    },
+    "test_strategy": {
+      "version": 2,
+      "hash": "sha256:13de29299d4259e11fe03ea46c1c30842099baf4d49c7773e20e94ac9f2da4bb",
+      "approved_at": "2026-09-18T00:00:31.068Z",
+      "self_approved": true
+    }
+  },
+  "last_run_id": "run-001",
+  "updated_at": "2026-09-18T00:04:41.385Z"
+}

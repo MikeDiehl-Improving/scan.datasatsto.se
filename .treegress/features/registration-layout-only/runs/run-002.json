@@ -1,0 +1,225 @@
+{
+  "run_id": "run-002",
+  "feature_id": "registration-layout-only",
+  "trigger": "rerun",
+  "started_at": "2026-09-18T00:08:11.410Z",
+  "finished_at": "2026-09-18T00:11:05.365Z",
+  "results": [
+    {
+      "evidence_id": "run-002:test-0",
+      "skill": "e2e-playwright",
+      "test_id": "e2e-playwright:api-page.smoke#displays-the-interactive-api-controls",
+      "status": "failed",
+      "exit_code": 1,
+      "duration_ms": 5509,
+      "failure": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: 'scan.datasatsto.se' })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByRole('heading', { name: 'scan.datasatsto.se' }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: 'scan.datasatsto.se' })\u001b[22m\n\n\nError: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: 'scan.datasatsto.se' })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByRole('heading', { name: 'scan.datasatsto.se' }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: 'scan.datasatsto.se' })\u001b[22m\n\n\n   6 |   await page.goto('/');\n   7 |\n>  8 |   await expect(page.getByRole('heading', { name: 'scan.datasatsto.se' })).toBeVisible();\n     |                                                                           ^\n   9 |\n  10 |   const newEventRow = page.locator('tr[data-path=\"/new/:event\"]');\n  11 |   await expect(newEventRow.getByLabel('Event')).toBeVisible();\n    at C:\\Users\\MikeDiehl\\repos\\scan.datasatsto.se\\tests\\e2e\\api-page.smoke.spec.js:8:75",
+      "artifacts": [
+        {
+          "evidence_id": "run-002:screenshot-0",
+          "kind": "screenshot",
+          "path": ".treegress/features/registration-layout-only/runs/run-002-artifacts/run-002_screenshot-0.png",
+          "sha256": "3276750f5ea0c99ed406702e81a5aff37f9bc51759fb492c5942edd602012c5e"
+        }
+      ]
+    },
+    {
+      "evidence_id": "run-002:test-1",
+      "skill": "e2e-playwright",
+      "test_id": "e2e-playwright:apidocs-run-call-navigation-e2e#navigates-a-parameterless-endpoint",
+      "status": "failed",
+      "exit_code": 1,
+      "duration_ms": 5507,
+      "failure": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: locator('tr[data-path=\"/expire\"]').locator('.api-result')\nExpected: \u001b[32m\"\"\u001b[39m\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toHaveText\" locator('tr[data-path=\"/expire\"]').locator('.api-result') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('tr[data-path=\"/expire\"]').locator('.api-result')\u001b[22m\n\n\nError: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: locator('tr[data-path=\"/expire\"]').locator('.api-result')\nExpected: \u001b[32m\"\"\u001b[39m\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toHaveText\" locator('tr[data-path=\"/expire\"]').locator('.api-result') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('tr[data-path=\"/expire\"]').locator('.api-result')\u001b[22m\n\n\n  10 |     if (['fetch', 'xhr'].includes(request.resourceType())) inlineRequests.push(request.url());\n  11 |   });\n> 12 |   await expect(row.locator('.api-result')).toHaveText('');\n     |                                            ^\n  13 |   await row.getByRole('button', { name: 'Run call' }).click();\n  14 |   await expect(page).toHaveURL(/\\/expire$/);\n  15 |   expect(inlineRequests).toHaveLength(0);\n    at C:\\Users\\MikeDiehl\\repos\\scan.datasatsto.se\\tests\\e2e\\apidocs-run-call-navigation-e2e.spec.js:12:44",
+      "artifacts": [
+        {
+          "evidence_id": "run-002:screenshot-1",
+          "kind": "screenshot",
+          "path": ".treegress/features/registration-layout-only/runs/run-002-artifacts/run-002_screenshot-1.png",
+          "sha256": "3276750f5ea0c99ed406702e81a5aff37f9bc51759fb492c5942edd602012c5e"
+        }
+      ]
+    },
+    {
+      "evidence_id": "run-002:test-2",
+      "skill": "e2e-playwright",
+      "test_id": "e2e-playwright:apidocs-run-call-navigation-e2e#navigates-to-a-parameterized-endpoint",
+      "status": "failed",
+      "exit_code": 1,
+      "duration_ms": 30067,
+      "failure": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m\n\n\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m\n\nError: locator.fill: Test timeout of 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('tr[data-path=\"/report/:event\"]').getByLabel('Event')\u001b[22m\n\n\n  25 |     if (['fetch', 'xhr'].includes(request.resourceType())) inlineRequests.push(request.url());\n  26 |   });\n> 27 |   await row.getByLabel('Event').fill('101');\n     |                                 ^\n  28 |   await expect(row.locator('.api-result')).toHaveText('');\n  29 |   await row.getByRole('button', { name: 'Run call' }).click();\n  30 |   await expect(page).toHaveURL(/\\/report\\/101$/);\n    at C:\\Users\\MikeDiehl\\repos\\scan.datasatsto.se\\tests\\e2e\\apidocs-run-call-navigation-e2e.spec.js:27:33",
+      "artifacts": [
+        {
+          "evidence_id": "run-002:screenshot-2",
+          "kind": "screenshot",
+          "path": ".treegress/features/registration-layout-only/runs/run-002-artifacts/run-002_screenshot-2.png",
+          "sha256": "3276750f5ea0c99ed406702e81a5aff37f9bc51759fb492c5942edd602012c5e"
+        }
+      ]
+    },
+    {
+      "evidence_id": "run-002:test-3",
+      "skill": "e2e-playwright",
+      "test_id": "e2e-playwright:apidocs-run-call-navigation-e2e#navigates-to-a-composite-parameterized-endpoint",
+      "status": "failed",
+      "exit_code": 1,
+      "duration_ms": 30078,
+      "failure": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m\n\n\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m\n\nError: locator.fill: Test timeout of 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('tr[data-path=\"/random/:event/:vendorCode\"]').getByLabel('Event')\u001b[22m\n\n\n  41 |     if (['fetch', 'xhr'].includes(request.resourceType())) inlineRequests.push(request.url());\n  42 |   });\n> 43 |   await row.getByLabel('Event').fill('5');\n     |                                 ^\n  44 |   await row.getByLabel('Vendor code').fill('test');\n  45 |   await expect(row.locator('.api-result')).toHaveText('');\n  46 |   await row.getByRole('button', { name: 'Run call' }).click();\n    at C:\\Users\\MikeDiehl\\repos\\scan.datasatsto.se\\tests\\e2e\\apidocs-run-call-navigation-e2e.spec.js:43:33",
+      "artifacts": [
+        {
+          "evidence_id": "run-002:screenshot-3",
+          "kind": "screenshot",
+          "path": ".treegress/features/registration-layout-only/runs/run-002-artifacts/run-002_screenshot-3.png",
+          "sha256": "3276750f5ea0c99ed406702e81a5aff37f9bc51759fb492c5942edd602012c5e"
+        }
+      ]
+    },
+    {
+      "evidence_id": "run-002:test-4",
+      "skill": "e2e-playwright",
+      "test_id": "e2e-playwright:apidocs-run-call-navigation-e2e#encodes-parameters-in-the-navigated-url",
+      "status": "failed",
+      "exit_code": 1,
+      "duration_ms": 30072,
+      "failure": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m\n\n\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m\n\nError: locator.fill: Test timeout of 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('tr[data-path=\"/report/:event\"]').getByLabel('Event')\u001b[22m\n\n\n  58 |     if (['fetch', 'xhr'].includes(request.resourceType())) inlineRequests.push(request.url());\n  59 |   });\n> 60 |   await row.getByLabel('Event').fill('badge alpha/1');\n     |                                 ^\n  61 |   await expect(row.locator('.api-result')).toHaveText('');\n  62 |   await row.getByRole('button', { name: 'Run call' }).click();\n  63 |   await expect(page).toHaveURL(/\\/report\\/badge%20alpha%2F1$/);\n    at C:\\Users\\MikeDiehl\\repos\\scan.datasatsto.se\\tests\\e2e\\apidocs-run-call-navigation-e2e.spec.js:60:33",
+      "artifacts": [
+        {
+          "evidence_id": "run-002:screenshot-4",
+          "kind": "screenshot",
+          "path": ".treegress/features/registration-layout-only/runs/run-002-artifacts/run-002_screenshot-4.png",
+          "sha256": "3276750f5ea0c99ed406702e81a5aff37f9bc51759fb492c5942edd602012c5e"
+        }
+      ]
+    },
+    {
+      "evidence_id": "run-002:test-5",
+      "skill": "e2e-playwright",
+      "test_id": "e2e-playwright:apidocs-run-call-navigation-e2e#does-not-submit-when-a-required-parameter-is-empty",
+      "status": "failed",
+      "exit_code": 1,
+      "duration_ms": 30061,
+      "failure": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m\n\n\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m\n\nError: locator.click: Test timeout of 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('tr[data-path=\"/report/:event\"]').getByRole('button', { name: 'Run call' })\u001b[22m\n\n\n  72 |   const requests = [];\n  73 |   page.on('request', request => requests.push(request.url()));\n> 74 |   await row.getByRole('button', { name: 'Run call' }).click();\n     |                                                       ^\n  75 |   await expect(page).toHaveURL(/\\/$/);\n  76 |   await expect(row.locator('.api-result')).toHaveText('');\n  77 |   expect(requests.filter(url => url.includes('/report/'))).toHaveLength(0);\n    at C:\\Users\\MikeDiehl\\repos\\scan.datasatsto.se\\tests\\e2e\\apidocs-run-call-navigation-e2e.spec.js:74:55",
+      "artifacts": [
+        {
+          "evidence_id": "run-002:screenshot-5",
+          "kind": "screenshot",
+          "path": ".treegress/features/registration-layout-only/runs/run-002-artifacts/run-002_screenshot-5.png",
+          "sha256": "3276750f5ea0c99ed406702e81a5aff37f9bc51759fb492c5942edd602012c5e"
+        }
+      ]
+    },
+    {
+      "evidence_id": "run-002:test-6",
+      "skill": "e2e-playwright",
+      "test_id": "e2e-playwright:apidocs-run-call-navigation-e2e#uses-navigation-for-endpoint-buttons",
+      "status": "failed",
+      "exit_code": 1,
+      "duration_ms": 30059,
+      "failure": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m\n\n\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m\n\nError: locator.fill: Test timeout of 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('tr[data-path=\"/new/:event\"]').first().locator('[name=\"event\"]')\u001b[22m\n\n\n   98 |       : page.locator(`tr[data-path=\"${path}\"]`).first();\n   99 |     for (const [name, value] of Object.entries(values)) {\n> 100 |       await row.locator(`[name=\"${name}\"]`).fill(value);\n      |                                             ^\n  101 |     }\n  102 |     await row.getByRole('button', { name: 'Run call' }).click();\n  103 |     await expect(page).toHaveURL(expectedUrl);\n    at C:\\Users\\MikeDiehl\\repos\\scan.datasatsto.se\\tests\\e2e\\apidocs-run-call-navigation-e2e.spec.js:100:45",
+      "artifacts": [
+        {
+          "evidence_id": "run-002:screenshot-6",
+          "kind": "screenshot",
+          "path": ".treegress/features/registration-layout-only/runs/run-002-artifacts/run-002_screenshot-6.png",
+          "sha256": "3276750f5ea0c99ed406702e81a5aff37f9bc51759fb492c5942edd602012c5e"
+        }
+      ]
+    },
+    {
+      "evidence_id": "run-002:test-7",
+      "skill": "e2e-playwright",
+      "test_id": "e2e-playwright:playwright-runnerexecution-e2e-playwright-c1#runs-the-browser-suite-against-the-started-application",
+      "status": "failed",
+      "exit_code": 1,
+      "duration_ms": 5483,
+      "failure": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mpage\u001b[39m\u001b[2m).\u001b[22mtoHaveTitle\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nExpected: \u001b[32m\"scan.datasatsto.se API\"\u001b[39m\nReceived: \u001b[31m\"An error occurred\"\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveTitle\" with timeout 5000ms\u001b[22m\n\u001b[2m    14 × locator resolved to <html>…</html>\u001b[22m\n\u001b[2m       - unexpected value \"An error occurred\"\u001b[22m\n\n\nError: \u001b[2mexpect(\u001b[22m\u001b[31mpage\u001b[39m\u001b[2m).\u001b[22mtoHaveTitle\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nExpected: \u001b[32m\"scan.datasatsto.se API\"\u001b[39m\nReceived: \u001b[31m\"An error occurred\"\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveTitle\" with timeout 5000ms\u001b[22m\n\u001b[2m    14 × locator resolved to <html>…</html>\u001b[22m\n\u001b[2m       - unexpected value \"An error occurred\"\u001b[22m\n\n\n  5 | test('runs the browser suite against the started application', async ({ page }) => {\n  6 |   await page.goto('/');\n> 7 |   await expect(page).toHaveTitle('scan.datasatsto.se API');\n    |                      ^\n  8 | });\n  9 |\n    at C:\\Users\\MikeDiehl\\repos\\scan.datasatsto.se\\tests\\e2e\\playwright-runnerexecution-e2e-playwright-c1.spec.js:7:22",
+      "artifacts": [
+        {
+          "evidence_id": "run-002:screenshot-7",
+          "kind": "screenshot",
+          "path": ".treegress/features/registration-layout-only/runs/run-002-artifacts/run-002_screenshot-7.png",
+          "sha256": "3276750f5ea0c99ed406702e81a5aff37f9bc51759fb492c5942edd602012c5e"
+        }
+      ]
+    },
+    {
+      "evidence_id": "run-002:test-8",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/eventbrite-reserved-identities#adds-deterministic-blank-identities-for-the-requested-range",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 1512
+    },
+    {
+      "evidence_id": "run-002:test-9",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/eventbrite-reserved-identities#rejects-a-reserved-range-that-collides-with-an-imported-identity",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 1293
+    },
+    {
+      "evidence_id": "run-002:test-10",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/registration-behavior-contract#keeps-manual-entry-available-when-webcam-scanning-is-unsupported",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 1
+    },
+    {
+      "evidence_id": "run-002:test-11",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/registration-behavior-contract#initializes-the-qr-scanner-alongside-manual-entry-controls",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 0
+    },
+    {
+      "evidence_id": "run-002:test-12",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/registration-behavior-contract#processes-manual-identifier-entry-and-displays-its-outcome",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 0
+    },
+    {
+      "evidence_id": "run-002:test-13",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/registration-behavior-contract#submits-the-scanned-identifier-and-renders-the-registration-success-message",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 0
+    },
+    {
+      "evidence_id": "run-002:test-14",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/registration-behavior-contract#rejects-an-unrecognized-scanned-code-with-a-visible-status-message",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 0
+    },
+    {
+      "evidence_id": "run-002:test-15",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/registration-behavior-contract#supports-valid-manual-identity-entry-and-prepares-the-form-after-registration",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 0
+    },
+    {
+      "evidence_id": "run-002:test-16",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/registration-behavior-contract#renders-a-verification-error-for-an-unrecognized-manual-identity",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 0
+    },
+    {
+      "evidence_id": "run-002:test-17",
+      "skill": "unit",
+      "test_id": "unit:tests/unit/registration-behavior-contract#requires-an-identity-identifier-before-manual-submission",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 0
+    }
+  ]
+}

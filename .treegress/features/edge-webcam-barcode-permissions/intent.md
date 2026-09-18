@@ -1,0 +1,1 @@
+Enable QR/barcode webcam scanning on the registration page in Microsoft Edge by allowing camera access for this site while preserving the existing manual ID entry fallback and restricting camera permission to the site origin.

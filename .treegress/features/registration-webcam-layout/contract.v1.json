@@ -1,0 +1,277 @@
+{
+  "feature_id": "registration-webcam-layout",
+  "version": 1,
+  "approval": {
+    "hash": "sha256:4fc8ff0190f2b3f15607a634636413ad917afed3d2298f25ac47f5ee993c4d8c",
+    "strategy_hash": "sha256:28598ef751c6409a4a1574d365036ce54b8d06e02aa7e36150b6ee7cd20f9a2a",
+    "approved_at": "2026-09-17T23:51:08.950Z"
+  },
+  "testids": [],
+  "roles": [
+    {
+      "role": "status"
+    }
+  ],
+  "strings": [
+    "@EncryptionKey nvarchar(200) = N''",
+    "@EncryptionKey nvarchar(200) = NULL",
+    "@Event varchar(50)",
+    "@EventCode uniqueidentifier",
+    "@EventID int",
+    "@EventID int = NULL",
+    "@ID bigint",
+    "@ID bigint = NULL",
+    "@Identities_blob nvarchar(max)",
+    "@Note nvarchar(max) = NULL",
+    "@ReferenceCode varchar(20) = NULL",
+    "@ScannerSecret uniqueidentifier",
+    "/:id",
+    "/:id/:vendorCode",
+    "/authorization-pdf",
+    "/expire",
+    "/new/:event",
+    "/new/:event/:id",
+    "/pdf",
+    "/random/:event",
+    "/random/:event/:vendorCode",
+    "/report/:event",
+    "/setup",
+    "&rarr;",
+    "12pt",
+    "18pt",
+    "24pt",
+    "2x2",
+    "3x3",
+    "4x4",
+    "8pt",
+    "An error occurred",
+    "Apply names and descriptions to event identities.",
+    "Avery 5392",
+    "Back to the API welcome page",
+    "Badges per sheet:",
+    "Check badge",
+    "Choose exhibitor code",
+    "Choose the sponsor or Registration code",
+    "Company/description",
+    "Configure the scanning client's vendor code, or look up the vendor codes for an ID.",
+    "Create a new event.",
+    "Create a printable QR code that authorizes sponsor representatives and Registration to scan badges for your event.",
+    "Create an identity for an event.",
+    "Database stored procedures",
+    "Description",
+    "e.g. 12345678...",
+    "Email",
+    "Encryption key (if used when generating badges)",
+    "Encryption key:",
+    "Encryption pass phrase",
+    "Enter your event code",
+    "Event",
+    "Event (required)",
+    "Event code",
+    "Event:",
+    "Evict expired events, identities, and scans.",
+    "Executive",
+    "Expire old events and remove their cached QR codes.",
+    "Fetch a random scan for an event.",
+    "Fetch all scans for an event.",
+    "Fetch an active event's scanner authorization QR secret for organizer printing.",
+    "First name",
+    "Font size:",
+    "Full name",
+    "Generate a PDF",
+    "Generate authorization PDF",
+    "Generate PDF document",
+    "GET",
+    "GET / POST",
+    "Huge",
+    "ID",
+    "ID (optional)",
+    "Identity ID",
+    "ISO A3",
+    "ISO A4",
+    "ISO A5",
+    "ISO A6",
+    "Large",
+    "Last name",
+    "Legal",
+    "Letter",
+    "List exhibitor codes for an event.",
+    "List exhibitor codes for an identity.",
+    "List identities associated with an event.",
+    "Location",
+    "Medium",
+    "Method",
+    "New vendor code",
+    "None",
+    "Note",
+    "Note (POST only)",
+    "Notes",
+    "OK",
+    "Only print badges for the above identities",
+    "Open the interactive form to generate a PDF badge/report.",
+    "Paper size:",
+    "Parameters",
+    "Paste a comma-delimited list of identities here. Column names can include",
+    "Path",
+    "Phone",
+    "POST",
+    "Print scanner authorization",
+    "Print scanner authorization QR code",
+    "Print the authorization PDF",
+    "Print the organizer scanner authorization QR code for an event.",
+    "Procedure",
+    "Purpose",
+    "QR",
+    "QR code size",
+    "Record a scan for an identity authorized for the scanner's event.",
+    "Record a scan for the given ID (no vendor code).",
+    "Record a scan for the given ID and vendor code.",
+    "Register a new identity and generate its QR code for the given event.",
+    "Register badge",
+    "Register reserved badge",
+    "Register using a specific existing ID (for integrations).",
+    "Role",
+    "Run call",
+    "Save the above identity details to the database",
+    "Save the vendor code to the session.",
+    "Scan",
+    "Scan it before badge scanning",
+    "Scan note",
+    "Scan the badge QR code or enter the human-readable identity ID.",
+    "Scan with webcam",
+    "Scan.Authorize_Scanner",
+    "scan.datasatsto.se",
+    "scan.datasatsto.se API",
+    "Scan.Expire",
+    "Scan.Get_Authorization_Code",
+    "Scan.Get_Codes",
+    "Scan.Get_Event_Codes",
+    "Scan.Get_Identities",
+    "Scan.Get_Random",
+    "Scan.Get_Scans",
+    "Scan.New_Event",
+    "Scan.New_Identity",
+    "Scan.New_Scan",
+    "Scan.Update_Identities",
+    "Scanner authorized",
+    "Scanner set up",
+    "Scanner setup",
+    "schema:",
+    "Set as default vendor code",
+    "Small",
+    "Stored procedures - scan.datasatsto.se",
+    "Submit without note",
+    "Tabloid",
+    "The code is available in your event setup details.",
+    "This application uses the following stored procedures in the",
+    "This phone is authorized to scan badges for",
+    "This service exposes the following API endpoints. Enter values and run a call directly from this page.",
+    "Tiny",
+    "Title/job title",
+    "Validate the organizer's scanner QR secret and return the active event.",
+    "Vendor code",
+    "View one random scan for an event, filtered by vendor code.",
+    "View one random scan for an event.",
+    "View the database stored procedure reference",
+    "View the scan report for an event, identified by its event ID.",
+    "Your code is used only to find the event."
+  ],
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/"
+    },
+    {
+      "method": "GET",
+      "path": "/assets/:asset"
+    },
+    {
+      "method": "GET",
+      "path": "/authorization-pdf"
+    },
+    {
+      "method": "POST",
+      "path": "/authorization-pdf"
+    },
+    {
+      "method": "GET",
+      "path": "/authorization-pdf/:eventCode"
+    },
+    {
+      "method": "GET",
+      "path": "/authorize/:scannerSecret"
+    },
+    {
+      "method": "GET",
+      "path": "/expire"
+    },
+    {
+      "method": "GET",
+      "path": "/pdf"
+    },
+    {
+      "method": "POST",
+      "path": "/pdf"
+    },
+    {
+      "method": "GET",
+      "path": "/pdf/:event"
+    },
+    {
+      "method": "GET",
+      "path": "/random/:event"
+    },
+    {
+      "method": "GET",
+      "path": "/random/:event/:vendorCode"
+    },
+    {
+      "method": "GET",
+      "path": "/registration"
+    },
+    {
+      "path": "/registration/claim"
+    },
+    {
+      "method": "POST",
+      "path": "/registration/claim"
+    },
+    {
+      "path": "/registration/status"
+    },
+    {
+      "method": "POST",
+      "path": "/registration/status"
+    },
+    {
+      "method": "GET",
+      "path": "/report/:event"
+    },
+    {
+      "method": "GET",
+      "path": "/robots933456.txt"
+    },
+    {
+      "method": "GET",
+      "path": "/setup"
+    },
+    {
+      "method": "POST",
+      "path": "/setup"
+    },
+    {
+      "method": "GET",
+      "path": "/stored-procedures"
+    }
+  ],
+  "cookies": [],
+  "statusCodes": [
+    200,
+    400,
+    401,
+    403,
+    404,
+    409,
+    500
+  ]
+}

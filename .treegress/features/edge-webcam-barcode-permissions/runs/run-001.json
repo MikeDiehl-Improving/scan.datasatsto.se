@@ -1,0 +1,281 @@
+{
+  "run_id": "run-001",
+  "feature_id": "edge-webcam-barcode-permissions",
+  "trigger": "verify",
+  "started_at": "2026-09-18T00:01:52.330Z",
+  "finished_at": "2026-09-18T00:04:41.371Z",
+  "results": [
+    {
+      "evidence_id": "run-001:test-0",
+      "skill": "e2e-playwright",
+      "test_id": "e2e-playwright:api-page.smoke#displays-the-interactive-api-controls",
+      "status": "failed",
+      "exit_code": 1,
+      "duration_ms": 5637,
+      "failure": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: 'scan.datasatsto.se' })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByRole('heading', { name: 'scan.datasatsto.se' }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: 'scan.datasatsto.se' })\u001b[22m\n\n\nError: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: 'scan.datasatsto.se' })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByRole('heading', { name: 'scan.datasatsto.se' }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: 'scan.datasatsto.se' })\u001b[22m\n\n\n   6 |   await page.goto('/');\n   7 |\n>  8 |   await expect(page.getByRole('heading', { name: 'scan.datasatsto.se' })).toBeVisible();\n     |                                                                           ^\n   9 |\n  10 |   const newEventRow = page.locator('tr[data-path=\"/new/:event\"]');\n  11 |   await expect(newEventRow.getByLabel('Event')).toBeVisible();\n    at C:\\Users\\MikeDiehl\\repos\\scan.datasatsto.se\\tests\\e2e\\api-page.smoke.spec.js:8:75",
+      "artifacts": [
+        {
+          "evidence_id": "run-001:screenshot-0",
+          "kind": "screenshot",
+          "path": ".treegress/features/edge-webcam-barcode-permissions/runs/run-001-artifacts/run-001_screenshot-0.png",
+          "sha256": "3276750f5ea0c99ed406702e81a5aff37f9bc51759fb492c5942edd602012c5e"
+        }
+      ]
+    },
+    {
+      "evidence_id": "run-001:test-1",
+      "skill": "e2e-playwright",
+      "test_id": "e2e-playwright:apidocs-run-call-navigation-e2e#navigates-a-parameterless-endpoint",
+      "status": "failed",
+      "exit_code": 1,
+      "duration_ms": 5603,
+      "failure": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: locator('tr[data-path=\"/expire\"]').locator('.api-result')\nExpected: \u001b[32m\"\"\u001b[39m\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toHaveText\" locator('tr[data-path=\"/expire\"]').locator('.api-result') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('tr[data-path=\"/expire\"]').locator('.api-result')\u001b[22m\n\n\nError: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: locator('tr[data-path=\"/expire\"]').locator('.api-result')\nExpected: \u001b[32m\"\"\u001b[39m\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toHaveText\" locator('tr[data-path=\"/expire\"]').locator('.api-result') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('tr[data-path=\"/expire\"]').locator('.api-result')\u001b[22m\n\n\n  10 |     if (['fetch', 'xhr'].includes(request.resourceType())) inlineRequests.push(request.url());\n  11 |   });\n> 12 |   await expect(row.locator('.api-result')).toHaveText('');\n     |                                            ^\n  13 |   await row.getByRole('button', { name: 'Run call' }).click();\n  14 |   await expect(page).toHaveURL(/\\/expire$/);\n  15 |   expect(inlineRequests).toHaveLength(0);\n    at C:\\Users\\MikeDiehl\\repos\\scan.datasatsto.se\\tests\\e2e\\apidocs-run-call-navigation-e2e.spec.js:12:44",
+      "artifacts": [
+        {
+          "evidence_id": "run-001:screenshot-1",
+          "kind": "screenshot",
+          "path": ".treegress/features/edge-webcam-barcode-permissions/runs/run-001-artifacts/run-001_screenshot-1.png",
+          "sha256": "3276750f5ea0c99ed406702e81a5aff37f9bc51759fb492c5942edd602012c5e"
+        }
+      ]
+    },
+    {
+      "evidence_id": "run-001:test-2",
+      "skill": "e2e-playwright",
+      "test_id": "e2e-playwright:apidocs-run-call-navigation-e2e#navigates-to-a-parameterized-endpoint",
+      "status": "failed",
+      "exit_code": 1,
+      "duration_ms": 30068,
+      "failure": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m\n\n\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m\n\nError: locator.fill: Test timeout of 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('tr[data-path=\"/report/:event\"]').getByLabel('Event')\u001b[22m\n\n\n  25 |     if (['fetch', 'xhr'].includes(request.resourceType())) inlineRequests.push(request.url());\n  26 |   });\n> 27 |   await row.getByLabel('Event').fill('101');\n     |                                 ^\n  28 |   await expect(row.locator('.api-result')).toHaveText('');\n  29 |   await row.getByRole('button', { name: 'Run call' }).click();\n  30 |   await expect(page).toHaveURL(/\\/report\\/101$/);\n    at C:\\Users\\MikeDiehl\\repos\\scan.datasatsto.se\\tests\\e2e\\apidocs-run-call-navigation-e2e.spec.js:27:33",
+      "artifacts": [
+        {
+          "evidence_id": "run-001:screenshot-2",
+          "kind": "screenshot",
+          "path": ".treegress/features/edge-webcam-barcode-permissions/runs/run-001-artifacts/run-001_screenshot-2.png",
+          "sha256": "3276750f5ea0c99ed406702e81a5aff37f9bc51759fb492c5942edd602012c5e"
+        }
+      ]
+    },
+    {
+      "evidence_id": "run-001:test-3",
+      "skill": "e2e-playwright",
+      "test_id": "e2e-playwright:apidocs-run-call-navigation-e2e#navigates-to-a-composite-parameterized-endpoint",
+      "status": "failed",
+      "exit_code": 1,
+      "duration_ms": 30061,
+      "failure": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m\n\n\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m\n\nError: locator.fill: Test timeout of 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('tr[data-path=\"/random/:event/:vendorCode\"]').getByLabel('Event')\u001b[22m\n\n\n  41 |     if (['fetch', 'xhr'].includes(request.resourceType())) inlineRequests.push(request.url());\n  42 |   });\n> 43 |   await row.getByLabel('Event').fill('5');\n     |                                 ^\n  44 |   await row.getByLabel('Vendor code').fill('test');\n  45 |   await expect(row.locator('.api-result')).toHaveText('');\n  46 |   await row.getByRole('button', { name: 'Run call' }).click();\n    at C:\\Users\\MikeDiehl\\repos\\scan.datasatsto.se\\tests\\e2e\\apidocs-run-call-navigation-e2e.spec.js:43:33",
+      "artifacts": [
+        {
+          "evidence_id": "run-001:screenshot-3",
+          "kind": "screenshot",
+          "path": ".treegress/features/edge-webcam-barcode-permissions/runs/run-001-artifacts/run-001_screenshot-3.png",
+          "sha256": "3276750f5ea0c99ed406702e81a5aff37f9bc51759fb492c5942edd602012c5e"
+        }
+      ]
+    },
+    {
+      "evidence_id": "run-001:test-4",
+      "skill": "e2e-playwright",
+      "test_id": "e2e-playwright:apidocs-run-call-navigation-e2e#encodes-parameters-in-the-navigated-url",
+      "status": "failed",
+      "exit_code": 1,
+      "duration_ms": 30065,
+      "failure": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m\n\n\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m\n\nError: locator.fill: Test timeout of 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('tr[data-path=\"/report/:event\"]').getByLabel('Event')\u001b[22m\n\n\n  58 |     if (['fetch', 'xhr'].includes(request.resourceType())) inlineRequests.push(request.url());\n  59 |   });\n> 60 |   await row.getByLabel('Event').fill('badge alpha/1');\n     |                                 ^\n  61 |   await expect(row.locator('.api-result')).toHaveText('');\n  62 |   await row.getByRole('button', { name: 'Run call' }).click();\n  63 |   await expect(page).toHaveURL(/\\/report\\/badge%20alpha%2F1$/);\n    at C:\\Users\\MikeDiehl\\repos\\scan.datasatsto.se\\tests\\e2e\\apidocs-run-call-navigation-e2e.spec.js:60:33",
+      "artifacts": [
+        {
+          "evidence_id": "run-001:screenshot-4",
+          "kind": "screenshot",
+          "path": ".treegress/features/edge-webcam-barcode-permissions/runs/run-001-artifacts/run-001_screenshot-4.png",
+          "sha256": "3276750f5ea0c99ed406702e81a5aff37f9bc51759fb492c5942edd602012c5e"
+        }
+      ]
+    },
+    {
+      "evidence_id": "run-001:test-5",
+      "skill": "e2e-playwright",
+      "test_id": "e2e-playwright:apidocs-run-call-navigation-e2e#does-not-submit-when-a-required-parameter-is-empty",
+      "status": "failed",
+      "exit_code": 1,
+      "duration_ms": 30061,
+      "failure": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m\n\n\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m\n\nError: locator.click: Test timeout of 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('tr[data-path=\"/report/:event\"]').getByRole('button', { name: 'Run call' })\u001b[22m\n\n\n  72 |   const requests = [];\n  73 |   page.on('request', request => requests.push(request.url()));\n> 74 |   await row.getByRole('button', { name: 'Run call' }).click();\n     |                                                       ^\n  75 |   await expect(page).toHaveURL(/\\/$/);\n  76 |   await expect(row.locator('.api-result')).toHaveText('');\n  77 |   expect(requests.filter(url => url.includes('/report/'))).toHaveLength(0);\n    at C:\\Users\\MikeDiehl\\repos\\scan.datasatsto.se\\tests\\e2e\\apidocs-run-call-navigation-e2e.spec.js:74:55",
+      "artifacts": [
+        {
+          "evidence_id": "run-001:screenshot-5",
+          "kind": "screenshot",
+          "path": ".treegress/features/edge-webcam-barcode-permissions/runs/run-001-artifacts/run-001_screenshot-5.png",
+          "sha256": "3276750f5ea0c99ed406702e81a5aff37f9bc51759fb492c5942edd602012c5e"
+        }
+      ]
+    },
+    {
+      "evidence_id": "run-001:test-6",
+      "skill": "e2e-playwright",
+      "test_id": "e2e-playwright:apidocs-run-call-navigation-e2e#uses-navigation-for-endpoint-buttons",
+      "status": "failed",
+      "exit_code": 1,
+      "duration_ms": 30059,
+      "failure": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m\n\n\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m\n\nError: locator.fill: Test timeout of 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('tr[data-path=\"/new/:event\"]').first().locator('[name=\"event\"]')\u001b[22m\n\n\n   98 |       : page.locator(`tr[data-path=\"${path}\"]`).first();\n   99 |     for (const [name, value] of Object.entries(values)) {\n> 100 |       await row.locator(`[name=\"${name}\"]`).fill(value);\n      |                                             ^\n  101 |     }\n  102 |     await row.getByRole('button', { name: 'Run call' }).click();\n  103 |     await expect(page).toHaveURL(expectedUrl);\n    at C:\\Users\\MikeDiehl\\repos\\scan.datasatsto.se\\tests\\e2e\\apidocs-run-call-navigation-e2e.spec.js:100:45",
+      "artifacts": [
+        {
+          "evidence_id": "run-001:screenshot-6",
+          "kind": "screenshot",
+          "path": ".treegress/features/edge-webcam-barcode-permissions/runs/run-001-artifacts/run-001_screenshot-6.png",
+          "sha256": "3276750f5ea0c99ed406702e81a5aff37f9bc51759fb492c5942edd602012c5e"
+        }
+      ]
+    },
+    {
+      "evidence_id": "run-001:test-7",
+      "skill": "e2e-playwright",
+      "test_id": "e2e-playwright:mobile-browser-rendering#renders-the-authorization-page-without-horizontal-overflow",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 696
+    },
+    {
+      "evidence_id": "run-001:test-8",
+      "skill": "e2e-playwright",
+      "test_id": "e2e-playwright:mobile-browser-rendering#renders-both-scan-submit-controls-without-overlap-or-clipping",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 865
+    },
+    {
+      "evidence_id": "run-001:test-9",
+      "skill": "e2e-playwright",
+      "test_id": "e2e-playwright:pdf-path-e2e-playwright-c2#renders-the-interactive-pdf-form",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 720
+    },
+    {
+      "evidence_id": "run-001:test-10",
+      "skill": "e2e-playwright",
+      "test_id": "e2e-playwright:pdf-path-e2e-playwright-c2#shows-a-server-error-when-submitting-an-unknown-event",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 704
+    },
+    {
+      "evidence_id": "run-001:test-11",
+      "skill": "e2e-playwright",
+      "test_id": "e2e-playwright:pdf-path-e2e-playwright-c2#submits-badge-data-through-the-browser-form-and-receives-a-pdf",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 787
+    },
+    {
+      "evidence_id": "run-001:test-12",
+      "skill": "e2e-playwright",
+      "test_id": "e2e-playwright:pdf-path-e2e-playwright-c2#submits-selected-pdf-options-from-the-browser-form",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 949
+    },
+    {
+      "evidence_id": "run-001:test-13",
+      "skill": "e2e-playwright",
+      "test_id": "e2e-playwright:pdf-path-e2e-playwright-c2#submits-the-form-without-client-side-required-data-validation",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 606
+    },
+    {
+      "evidence_id": "run-001:test-14",
+      "skill": "e2e-playwright",
+      "test_id": "e2e-playwright:pdf-path-e2e-playwright-c2#allows-malformed-data-to-reach-the-server-submission-boundary",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 493
+    },
+    {
+      "evidence_id": "run-001:test-15",
+      "skill": "e2e-playwright",
+      "test_id": "e2e-playwright:playwright-runnerexecution-e2e-playwright-c1#runs-the-browser-suite-against-the-started-application",
+      "status": "failed",
+      "exit_code": 1,
+      "duration_ms": 5625,
+      "failure": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mpage\u001b[39m\u001b[2m).\u001b[22mtoHaveTitle\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nExpected: \u001b[32m\"scan.datasatsto.se API\"\u001b[39m\nReceived: \u001b[31m\"An error occurred\"\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveTitle\" with timeout 5000ms\u001b[22m\n\u001b[2m    13 × locator resolved to <html>…</html>\u001b[22m\n\u001b[2m       - unexpected value \"An error occurred\"\u001b[22m\n\n\nError: \u001b[2mexpect(\u001b[22m\u001b[31mpage\u001b[39m\u001b[2m).\u001b[22mtoHaveTitle\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nExpected: \u001b[32m\"scan.datasatsto.se API\"\u001b[39m\nReceived: \u001b[31m\"An error occurred\"\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveTitle\" with timeout 5000ms\u001b[22m\n\u001b[2m    13 × locator resolved to <html>…</html>\u001b[22m\n\u001b[2m       - unexpected value \"An error occurred\"\u001b[22m\n\n\n  5 | test('runs the browser suite against the started application', async ({ page }) => {\n  6 |   await page.goto('/');\n> 7 |   await expect(page).toHaveTitle('scan.datasatsto.se API');\n    |                      ^\n  8 | });\n  9 |\n    at C:\\Users\\MikeDiehl\\repos\\scan.datasatsto.se\\tests\\e2e\\playwright-runnerexecution-e2e-playwright-c1.spec.js:7:22",
+      "artifacts": [
+        {
+          "evidence_id": "run-001:screenshot-7",
+          "kind": "screenshot",
+          "path": ".treegress/features/edge-webcam-barcode-permissions/runs/run-001-artifacts/run-001_screenshot-7.png",
+          "sha256": "3276750f5ea0c99ed406702e81a5aff37f9bc51759fb492c5942edd602012c5e"
+        }
+      ]
+    },
+    {
+      "evidence_id": "run-001:test-16",
+      "skill": "e2e-playwright",
+      "test_id": "e2e-playwright:registration-layout#keeps-controls-readable-and-contained-on-desktop",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 651
+    },
+    {
+      "evidence_id": "run-001:test-17",
+      "skill": "e2e-playwright",
+      "test_id": "e2e-playwright:registration-layout#keeps-the-manual-form-usable-on-a-narrow-viewport",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 694
+    },
+    {
+      "evidence_id": "run-001:test-18",
+      "skill": "e2e-playwright",
+      "test_id": "e2e-playwright:registration-layout#keeps-status-messages-within-the-responsive-layout",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 1953
+    },
+    {
+      "evidence_id": "run-001:test-19",
+      "skill": "e2e-playwright",
+      "test_id": "e2e-playwright:registration-layout#keeps-mobile-controls-interactive-and-contained",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 484
+    },
+    {
+      "evidence_id": "run-001:test-20",
+      "skill": "e2e-playwright",
+      "test_id": "e2e-playwright:screenshot-config#forces-screenshots-for-passing-tests",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 558
+    },
+    {
+      "evidence_id": "run-001:test-21",
+      "skill": "e2e-playwright",
+      "test_id": "e2e-playwright:screenshot-config#uses-the-same-screenshot-setting-for-failures",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 2
+    },
+    {
+      "evidence_id": "run-001:test-22",
+      "skill": "e2e-playwright",
+      "test_id": "e2e-playwright:screenshot-config#preserves-the-default-project-settings",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 5
+    },
+    {
+      "evidence_id": "run-001:test-23",
+      "skill": "e2e-playwright",
+      "test_id": "e2e-playwright:screenshot-config#leaves-the-default-screenshot-policy-unchanged",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 3
+    },
+    {
+      "evidence_id": "run-001:test-24",
+      "skill": "e2e-playwright",
+      "test_id": "e2e-playwright:screenshot-config#provides-a-selectable-dedicated-config-file",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_ms": 20
+    }
+  ]
+}

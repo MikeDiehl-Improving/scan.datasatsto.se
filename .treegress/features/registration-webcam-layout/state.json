@@ -1,0 +1,21 @@
+{
+  "feature_id": "registration-webcam-layout",
+  "state": "REVIEWED",
+  "plan_version": 2,
+  "strategy_version": 2,
+  "approvals": {
+    "test_plan": {
+      "version": 2,
+      "hash": "sha256:8e27037f2cf557ae2943185b2e0c6654cf28a7d5dc3cc2fedace54813a5e0c54",
+      "approved_at": "2026-09-17T23:56:12.000Z"
+    },
+    "test_strategy": {
+      "version": 2,
+      "hash": "sha256:fc97674defdf09ee8b39e8424bc8f28e683c3d7ed67cd05c19a65a1925947e6e",
+      "approved_at": "2026-09-17T23:56:51.978Z",
+      "self_approved": true
+    }
+  },
+  "last_run_id": "run-002",
+  "updated_at": "2026-09-18T00:02:04.694Z"
+}

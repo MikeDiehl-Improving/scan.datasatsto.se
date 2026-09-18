@@ -1,0 +1,173 @@
+{
+  "feature_id": "registration-webcam-layout",
+  "plan_version": 2,
+  "plan_hash": "sha256:8e27037f2cf557ae2943185b2e0c6654cf28a7d5dc3cc2fedace54813a5e0c54",
+  "strategy_version": 2,
+  "strategy_hash": "sha256:fc97674defdf09ee8b39e8424bc8f28e683c3d7ed67cd05c19a65a1925947e6e",
+  "run_id": "run-002",
+  "reviewed_at": "2026-09-18T00:02:04.682Z",
+  "scenario_verdicts": [
+    {
+      "scenario_id": "registration.desktop.sizing",
+      "status": "COVERED",
+      "then_coverage": [
+        {
+          "clause_index": 0,
+          "covered": true,
+          "test_id": "e2e-playwright:registration-layout#keeps-controls-readable-and-contained-on-desktop",
+          "evidence_id": "run-002:test-16"
+        },
+        {
+          "clause_index": 1,
+          "covered": true,
+          "test_id": "e2e-playwright:registration-layout#keeps-controls-readable-and-contained-on-desktop",
+          "evidence_id": "run-002:test-16"
+        }
+      ],
+      "rationale": "Desktop layout test passes and verifies 16px typography scaling and no horizontal screen overflow with all controls visible."
+    },
+    {
+      "scenario_id": "registration.mobile.sizing",
+      "status": "PARTIAL",
+      "then_coverage": [
+        {
+          "clause_index": 0,
+          "covered": false,
+          "note": "The test asserts that document scrollWidth does not overflow and the Identity ID input fits within the viewport, but does not assert that webcam scan controls adapt without clipping."
+        },
+        {
+          "clause_index": 1,
+          "covered": false,
+          "note": "The test does not assert mobile typography, font sizing, or button proportions."
+        }
+      ],
+      "rationale": "then-clause(s) not traced to a passing assertion: [0, 1]. The mobile layout test checks document width and manual input bounds, but omits webcam controls and does not assert mobile typography or button sizing."
+    },
+    {
+      "scenario_id": "registration.webcam.scanbadge",
+      "status": "PARTIAL",
+      "then_coverage": [
+        {
+          "clause_index": 0,
+          "covered": false,
+          "note": "The test only asserts static string containment in registration.js and does not execute registration logic or prove the badge identifier is registered."
+        },
+        {
+          "clause_index": 1,
+          "covered": false,
+          "note": "The test only asserts static string containment in registration.js and does not verify that a success status message is displayed."
+        }
+      ],
+      "rationale": "then-clause(s) not traced to a passing assertion: [0, 1]. The mapped unit test performs static source code string checks rather than executing badge registration or verifying UI display."
+    },
+    {
+      "scenario_id": "registration.webcam.invalidscan",
+      "status": "PARTIAL",
+      "then_coverage": [
+        {
+          "clause_index": 0,
+          "covered": false,
+          "note": "The test only asserts static string containment in registration.js and does not verify that badge registration is prevented for an invalid scan."
+        },
+        {
+          "clause_index": 1,
+          "covered": false,
+          "note": "The test only asserts static string containment in registration.js and does not prove that an error status message is displayed."
+        }
+      ],
+      "rationale": "then-clause(s) not traced to a passing assertion: [0, 1]. The unit test merely inspects source code strings and does not execute the invalid scan flow or assert that registration is blocked and an error displayed."
+    },
+    {
+      "scenario_id": "registration.manualentry.validid",
+      "status": "PARTIAL",
+      "then_coverage": [
+        {
+          "clause_index": 0,
+          "covered": false,
+          "note": "The test only checks static strings in HTML and JS source files and does not execute form submission or verify registration acceptance."
+        },
+        {
+          "clause_index": 1,
+          "covered": false,
+          "note": "The test asserts source code string containment and does not verify that a success status message is displayed."
+        },
+        {
+          "clause_index": 2,
+          "covered": false,
+          "note": "The test asserts static script string containment and does not verify the input field is cleared or prepared for subsequent entry in runtime."
+        }
+      ],
+      "rationale": "then-clause(s) not traced to a passing assertion: [0, 1, 2]. The test performs source file substring checks without submitting data, verifying acceptance, displaying confirmation, or clearing the input."
+    },
+    {
+      "scenario_id": "registration.manualentry.invalidid",
+      "status": "PARTIAL",
+      "then_coverage": [
+        {
+          "clause_index": 0,
+          "covered": false,
+          "note": "The test only checks static strings in registration.js and does not execute submission or verify registration rejection."
+        },
+        {
+          "clause_index": 1,
+          "covered": false,
+          "note": "The test asserts static string containment in registration.js and does not verify that an error status message is displayed."
+        }
+      ],
+      "rationale": "then-clause(s) not traced to a passing assertion: [0, 1]. The test only checks string literals in the client script rather than executing form submission with an unrecognized ID and verifying rejection feedback."
+    },
+    {
+      "scenario_id": "registration.manualentry.blankid",
+      "status": "PARTIAL",
+      "then_coverage": [
+        {
+          "clause_index": 0,
+          "covered": false,
+          "note": "The test checks markup attributes in HTML source text and does not execute form submission to verify registration is prevented."
+        },
+        {
+          "clause_index": 1,
+          "covered": false,
+          "note": "The test does not assert that a validation status message prompting the user to enter an identifier is displayed."
+        }
+      ],
+      "rationale": "then-clause(s) not traced to a passing assertion: [0, 1]. The test only asserts markup attributes in the HTML file without submitting an empty form or verifying a validation message is displayed."
+    },
+    {
+      "scenario_id": "registration.statusmessage.responsivelayout",
+      "status": "PARTIAL",
+      "then_coverage": [
+        {
+          "clause_index": 0,
+          "covered": true,
+          "test_id": "e2e-playwright:registration-layout#keeps-status-messages-within-the-responsive-layout",
+          "evidence_id": "run-002:test-18"
+        },
+        {
+          "clause_index": 1,
+          "covered": false,
+          "note": "The test verifies status message visibility and horizontal containment across breakpoints, but does not assert typography or font scaling."
+        }
+      ],
+      "rationale": "then-clause(s) not traced to a passing assertion: [1]. Status message visibility and horizontal containment are verified on both desktop and mobile viewports, but typography scaling is unasserted."
+    },
+    {
+      "scenario_id": "registration.controls.mobileinteraction",
+      "status": "PARTIAL",
+      "then_coverage": [
+        {
+          "clause_index": 0,
+          "covered": false,
+          "note": "The test asserts that clicking the webcam control updates the camera message text, but does not verify the absence of layout displacement."
+        },
+        {
+          "clause_index": 1,
+          "covered": true,
+          "test_id": "e2e-playwright:registration-layout#keeps-mobile-controls-interactive-and-contained",
+          "evidence_id": "run-002:test-19"
+        }
+      ],
+      "rationale": "then-clause(s) not traced to a passing assertion: [0]. Focusing the manual input without breaking container layout is verified on mobile, but webcam control layout displacement is unasserted."
+    }
+  ]
+}

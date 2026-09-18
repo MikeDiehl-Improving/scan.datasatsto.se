@@ -1,0 +1,1 @@
+Make the registration page scan badge QR codes in Microsoft Edge even when the BarcodeDetector API is unavailable, while retaining camera permission handling, invalid-code feedback, manual ID entry, and automatic badge status checking.

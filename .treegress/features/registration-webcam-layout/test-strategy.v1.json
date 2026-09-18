@@ -1,0 +1,166 @@
+{
+  "feature_id": "registration-webcam-layout",
+  "plan_version": 1,
+  "version": 1,
+  "status": "stale",
+  "approval": {
+    "hash": "sha256:28598ef751c6409a4a1574d365036ce54b8d06e02aa7e36150b6ee7cd20f9a2a",
+    "plan_hash": "sha256:8e27037f2cf557ae2943185b2e0c6654cf28a7d5dc3cc2fedace54813a5e0c54",
+    "approved_at": "2026-09-17T23:51:08.950Z"
+  },
+  "scenario_strategies": [
+    {
+      "scenario_id": "registration.desktop.sizing",
+      "obligations": [
+        {
+          "skill": "e2e-playwright",
+          "required": true,
+          "target": "Verify registration page controls, typography scale, container proportions, and absence of horizontal overflow on desktop viewport",
+          "reason": "Proves real browser layout, font rendering, and container boundaries on desktop viewports"
+        },
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Verify desktop CSS class bindings, typography sizing rules, and container layout style definitions",
+          "reason": "Validates isolated style rules and template declarations governing desktop sizing"
+        }
+      ]
+    },
+    {
+      "scenario_id": "registration.mobile.sizing",
+      "obligations": [
+        {
+          "skill": "e2e-playwright",
+          "required": true,
+          "target": "Verify webcam controls and manual identity form responsive adaptation without horizontal clipping or oversized typography on mobile viewport",
+          "reason": "Proves end-to-end responsive rendering, element wrapping, and text scaling inside a real mobile browser viewport"
+        },
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Verify mobile viewport media query rules and responsive styling classes for registration form elements",
+          "reason": "Ensures component styling contracts define appropriate mobile layout constraints"
+        }
+      ]
+    },
+    {
+      "scenario_id": "registration.webcam.scanbadge",
+      "obligations": [
+        {
+          "skill": "e2e-playwright",
+          "required": true,
+          "target": "Simulate webcam scan with valid badge code BADGE101 and verify successful badge registration and visible confirmation message",
+          "reason": "Proves the complete user flow in browser from scanner detection to DOM success feedback"
+        },
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Validate registration logic processing valid scanned badge identifier and returning success state",
+          "reason": "Tests the core badge registration business logic in isolation without browser overhead"
+        }
+      ]
+    },
+    {
+      "scenario_id": "registration.webcam.invalidscan",
+      "obligations": [
+        {
+          "skill": "e2e-playwright",
+          "required": true,
+          "target": "Simulate webcam scan with invalid badge code INVALID999 and verify registration rejection and visible error message",
+          "reason": "Validates user-visible error handling and scanner state handling in the browser"
+        },
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Validate registration rejection logic and error message generation for unrecognized scanned badge codes",
+          "reason": "Tests the rejection and error handling domain logic directly"
+        }
+      ]
+    },
+    {
+      "scenario_id": "registration.manualentry.validid",
+      "obligations": [
+        {
+          "skill": "e2e-playwright",
+          "required": true,
+          "target": "Submit manual identity form with valid ID ID54321 and verify success message and cleared input field",
+          "reason": "Proves end-to-end browser form entry, submission, feedback rendering, and input state reset"
+        },
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Validate manual registration submission handler with valid identifier",
+          "reason": "Tests manual registration processing and state reset logic in isolation"
+        }
+      ]
+    },
+    {
+      "scenario_id": "registration.manualentry.invalidid",
+      "obligations": [
+        {
+          "skill": "e2e-playwright",
+          "required": true,
+          "target": "Submit manual identity form with unrecognized ID UNKNOWN000 and verify error status message display",
+          "reason": "Proves user-visible rejection message and form behaviour in the browser"
+        },
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Validate manual registration handler rejection when given an unrecognized identity identifier",
+          "reason": "Ensures verification failure path is handled accurately by the registration domain logic"
+        }
+      ]
+    },
+    {
+      "scenario_id": "registration.manualentry.blankid",
+      "obligations": [
+        {
+          "skill": "e2e-playwright",
+          "required": true,
+          "target": "Submit manual identity form with empty identifier and verify submission prevention and validation prompt display",
+          "reason": "Validates client-side form validation and interactive prompt display in the browser"
+        },
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Validate input validation rule rejecting blank or whitespace-only identity submissions",
+          "reason": "Proves isolated validation rules prevent empty submissions"
+        }
+      ]
+    },
+    {
+      "scenario_id": "registration.statusmessage.responsivelayout",
+      "obligations": [
+        {
+          "skill": "e2e-playwright",
+          "required": true,
+          "target": "Render status messages across both desktop and mobile viewports and verify text visibility, layout containment, and absence of overflow",
+          "reason": "Proves real browser containment and typography scaling across multiple viewport widths"
+        },
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Validate status message CSS properties for text wrapping, overflow handling, and legible font scale",
+          "reason": "Verifies status message styling declarations maintain proper boundary constraints"
+        }
+      ]
+    },
+    {
+      "scenario_id": "registration.controls.mobileinteraction",
+      "obligations": [
+        {
+          "skill": "e2e-playwright",
+          "required": true,
+          "target": "Interact with webcam controls and focus manual identity input on mobile viewport to verify responsiveness and layout stability",
+          "reason": "Proves user interaction flow, tap response, focus states, and layout stability in a mobile browser environment"
+        },
+        {
+          "skill": "unit",
+          "required": true,
+          "target": "Validate event listeners and UI state transitions for webcam controls and manual input focus",
+          "reason": "Ensures isolated UI handlers and state transitions execute without breaking layout bindings"
+        }
+      ]
+    }
+  ]
+}

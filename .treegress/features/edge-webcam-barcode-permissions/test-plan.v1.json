@@ -1,0 +1,102 @@
+{
+  "feature_id": "edge-webcam-barcode-permissions",
+  "version": 1,
+  "status": "approved",
+  "approval": {
+    "hash": "sha256:4b68651800ccb4baac73df7152e15e1a0dd2301bd672619658e30b16c3155181",
+    "approved_at": "2026-09-17T23:58:40.048Z"
+  },
+  "scenarios": [
+    {
+      "id": "camera.edgesuccess",
+      "title": "Successful QR or barcode scan in Microsoft Edge with camera permission granted",
+      "given": [
+        "The user opens the registration page using Microsoft Edge on a device with an available webcam",
+        "Camera permission has been allowed for the site origin"
+      ],
+      "when": "The user presents a valid code (e.g. 'REG12345') to the webcam viewfinder",
+      "then": [
+        "The live camera viewfinder displays the video feed",
+        "The code is recognized and automatically populates the registration ID field",
+        "Registration advances with the scanned ID"
+      ],
+      "priority": "critical",
+      "negative": false
+    },
+    {
+      "id": "camera.deniedfallback",
+      "title": "Fallback to manual ID entry when camera permission is denied in Microsoft Edge",
+      "given": [
+        "The user opens the registration page in Microsoft Edge",
+        "Camera permission prompt is dismissed or explicitly denied for the site"
+      ],
+      "when": "The user interacts with the registration page",
+      "then": [
+        "A notification indicating camera access is unavailable or denied is visible to the user",
+        "The manual ID entry field remains clearly accessible and editable",
+        "The user can type a registration ID (e.g. 'MANUAL987') and submit successfully"
+      ],
+      "priority": "high",
+      "negative": true
+    },
+    {
+      "id": "camera.originrestricted",
+      "title": "Camera access permission is restricted strictly to the site origin",
+      "given": [
+        "Camera permission has been granted for the registration site origin in Microsoft Edge"
+      ],
+      "when": "A different origin or third-party context attempts to access the camera on the same browser session",
+      "then": [
+        "Camera permission is not automatically inherited by the other origin",
+        "The browser requires a distinct permission prompt or prevents unauthorized camera access for the external origin"
+      ],
+      "priority": "high",
+      "negative": false
+    },
+    {
+      "id": "manualentry.withactivecamera",
+      "title": "Manual ID entry remains available while camera scanner is actively streaming",
+      "given": [
+        "The user is on the registration page in Microsoft Edge",
+        "The webcam viewfinder is actively streaming"
+      ],
+      "when": "The user types an ID (e.g. 'BACKUP456') directly into the manual entry field and submits",
+      "then": [
+        "The manual entry submission is accepted",
+        "The registration continues using the manually entered ID"
+      ],
+      "priority": "normal",
+      "negative": false
+    },
+    {
+      "id": "scan.invalidbarcode",
+      "title": "Unreadable or invalid barcode presented to the camera scanner",
+      "given": [
+        "The registration page webcam scanner is active in Microsoft Edge"
+      ],
+      "when": "An unreadable or unrecognized barcode (e.g. 'INVALID000') is shown to the camera",
+      "then": [
+        "A visible scan error or retry message is displayed to the user",
+        "The webcam feed remains open to allow another scanning attempt",
+        "The manual ID input field remains accessible for manual entry"
+      ],
+      "priority": "normal",
+      "negative": true
+    },
+    {
+      "id": "camera.devicenotfound",
+      "title": "Registration page handling when no webcam hardware is available",
+      "given": [
+        "The user accesses the registration page in Microsoft Edge",
+        "No webcam hardware is connected or detected on the device"
+      ],
+      "when": "The registration page finishes loading",
+      "then": [
+        "A notice is shown stating no camera could be detected",
+        "The manual ID entry input is presented as the primary input method for the user"
+      ],
+      "priority": "normal",
+      "negative": true
+    }
+  ]
+}
