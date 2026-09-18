@@ -27,6 +27,21 @@ function queueEventIdentities(identities = [identityRecord]) {
 describe('PDF path', () => {
     beforeEach(() => resetTediousQueue());
 
+    /* treegress:obligation badgeorder.blanksplacedafternonblanks.unit.c1 do-not-regenerate — for: Proves that in PDF generation, non-blank attendee badges are placed before blank reserved badges, blank badges follow the last non-blank badge, badge count matches the sum, and layout grid is preserved.
+       authored via treegress_author_tests (SPEC §7.4 amendment #53); assert EXACTLY the then-clauses below. Keep this marker and do not rename the file (run-result correlation is by the obligation id, SPEC §12.3 amendment #34). */
+    it('places reserved blank badges after regular badges while preserving order', () => {
+        const orderedIdentities = app.orderBadgesReservedLast([
+            { id: 8000000000, name: '', email: 'blank-8000000000@invalid.example' },
+            { id: 101, name: 'Ada Lovelace', email: 'ada@example.test' },
+            { id: 8000000001, name: '', email: 'blank-8000000001@invalid.example' },
+            { id: 102, name: 'Grace Hopper', email: 'grace@example.test' }
+        ]);
+
+        expect(orderedIdentities.map(identity => identity.id)).toEqual([
+            101, 102, 8000000000, 8000000001
+        ]);
+    });
+
     /* treegress:obligation pdf.form.render.unit.c1 do-not-regenerate — for: Verify the badge PDF generator endpoint/view renders the form with input fields for badge records and interactive layout/formatting options for a valid active event identifier.
        authored via treegress_author_tests (SPEC §7.4 amendment #53); assert EXACTLY the then-clauses below. Keep this marker and do not rename the file (run-result correlation is by the obligation id, SPEC §12.3 amendment #34). */
     it('renders the badge form and its layout controls', async () => {

@@ -1,20 +1,20 @@
 {
-  "version": 6,
+  "version": 7,
   "status": "approved",
   "approval": {
-    "hash": "sha256:cf17461374dba4baa23eacf25a757d7522603f3a34582014ca9aa85d1c6daa29",
-    "approved_at": "2026-09-14T20:40:00.341Z"
+    "hash": "sha256:9d979f50ba48b98dd5067f29002c10381ffe725cc04bfe6ed7fed3a232ceb155",
+    "approved_at": "2026-09-18T02:34:15.084Z"
   },
   "interactionSegments": [
     {
-      "id": "FLOW-2032e07dc0de",
+      "id": "FLOW-051fdf455f95",
       "entrypoint": {
         "kind": "http_route",
         "method": "GET",
-        "path": "/random/{}/{}",
-        "handler": "randomScan",
+        "path": "/registration",
+        "handler": null,
         "source": "server.js",
-        "line": 498,
+        "line": 352,
         "surface": "service"
       },
       "guards": {
@@ -24,11 +24,116 @@
       },
       "operations": [
         {
-          "id": "OP-907f4fc5006b",
+          "id": "OP-74a317b242be",
+          "kind": "trigger",
+          "confidence": "observed",
+          "symbol": "<entrypoint>",
+          "line": 352
+        },
+        {
+          "id": "OP-97d3bb0088e4",
+          "kind": "decide",
+          "confidence": "candidate",
+          "symbol": "<anonymous>",
+          "line": 354,
+          "evidence": "if (!requireScannerAuthorization(req, res)) {"
+        },
+        {
+          "id": "OP-e131613919bf",
+          "kind": "decide",
+          "confidence": "candidate",
+          "symbol": "<anonymous>",
+          "line": 361,
+          "evidence": "if (!requireScannerAuthorization(req, res)) {"
+        },
+        {
+          "id": "OP-73c191882413",
+          "kind": "decide",
+          "confidence": "candidate",
+          "symbol": "<anonymous>",
+          "line": 366,
+          "evidence": "if (identityId === null) {"
+        },
+        {
+          "id": "OP-1e16249d7a0f",
+          "kind": "decide",
+          "confidence": "candidate",
+          "symbol": "<anonymous>",
+          "line": 379,
+          "evidence": "if (!result) {"
+        },
+        {
+          "id": "OP-527644cb9139",
+          "kind": "decide",
+          "confidence": "candidate",
+          "symbol": "<anonymous>",
+          "line": 383,
+          "evidence": "if (result.Status === 'NotFound') {"
+        }
+      ],
+      "operationRelations": [
+        {
+          "fromOperationId": "OP-74a317b242be",
+          "toOperationId": "OP-97d3bb0088e4",
+          "kind": "dispatches_to_handler"
+        },
+        {
+          "fromOperationId": "OP-97d3bb0088e4",
+          "toOperationId": "OP-e131613919bf",
+          "kind": "lexical_order"
+        },
+        {
+          "fromOperationId": "OP-e131613919bf",
+          "toOperationId": "OP-73c191882413",
+          "kind": "lexical_order"
+        },
+        {
+          "fromOperationId": "OP-73c191882413",
+          "toOperationId": "OP-1e16249d7a0f",
+          "kind": "lexical_order"
+        },
+        {
+          "fromOperationId": "OP-1e16249d7a0f",
+          "toOperationId": "OP-527644cb9139",
+          "kind": "lexical_order"
+        }
+      ],
+      "trace": {
+        "status": "bounded_to_observed_operations",
+        "maxHops": 0,
+        "limitations": [
+          "bounded_window"
+        ]
+      },
+      "label": {
+        "title": "GET /registration",
+        "description": ""
+      },
+      "confidence": "high"
+    },
+    {
+      "id": "FLOW-2032e07dc0de",
+      "entrypoint": {
+        "kind": "http_route",
+        "method": "GET",
+        "path": "/random/{}/{}",
+        "handler": "randomScan",
+        "source": "server.js",
+        "line": 663,
+        "surface": "service"
+      },
+      "guards": {
+        "auth": "not_observed",
+        "permission": "not_observed",
+        "markers": []
+      },
+      "operations": [
+        {
+          "id": "OP-b27604249b5a",
           "kind": "trigger",
           "confidence": "observed",
           "symbol": "randomScan",
-          "line": 498
+          "line": 663
         }
       ],
       "operationRelations": [],
@@ -44,14 +149,14 @@
       "confidence": "high"
     },
     {
-      "id": "FLOW-330492c5b72a",
+      "id": "FLOW-23ac9a90e3ce",
       "entrypoint": {
         "kind": "http_route",
-        "method": "GET",
-        "path": "/authorize/{}",
+        "method": "POST",
+        "path": "/registration/claim",
         "handler": null,
         "source": "server.js",
-        "line": 148,
+        "line": 394,
         "surface": "service"
       },
       "guards": {
@@ -61,25 +166,117 @@
       },
       "operations": [
         {
-          "id": "OP-40c85d85b22c",
+          "id": "OP-053a4ea45632",
           "kind": "trigger",
           "confidence": "observed",
           "symbol": "<entrypoint>",
-          "line": 148
+          "line": 394
         },
         {
-          "id": "OP-35a0d39cc3c1",
+          "id": "OP-d1ba472f464b",
           "kind": "decide",
           "confidence": "candidate",
           "symbol": "<anonymous>",
-          "line": 154,
+          "line": 395,
+          "evidence": "if (!requireScannerAuthorization(req, res)) {"
+        },
+        {
+          "id": "OP-a778902bef53",
+          "kind": "decide",
+          "confidence": "candidate",
+          "symbol": "<anonymous>",
+          "line": 401,
+          "evidence": "if (identityId === null || fields.some(field => typeof req.b"
+        },
+        {
+          "id": "OP-4ba25d1c1002",
+          "kind": "decide",
+          "confidence": "candidate",
+          "symbol": "<anonymous>",
+          "line": 423,
+          "evidence": "if (!result || result.Claimed !== 1) {"
+        },
+        {
+          "id": "OP-9c6a86a0794f",
+          "kind": "decide",
+          "confidence": "candidate",
+          "symbol": "<anonymous>",
+          "line": 432,
+          "evidence": "if (typeof value !== 'string' && typeof value !== 'number') "
+        }
+      ],
+      "operationRelations": [
+        {
+          "fromOperationId": "OP-053a4ea45632",
+          "toOperationId": "OP-d1ba472f464b",
+          "kind": "dispatches_to_handler"
+        },
+        {
+          "fromOperationId": "OP-d1ba472f464b",
+          "toOperationId": "OP-a778902bef53",
+          "kind": "lexical_order"
+        },
+        {
+          "fromOperationId": "OP-a778902bef53",
+          "toOperationId": "OP-4ba25d1c1002",
+          "kind": "lexical_order"
+        },
+        {
+          "fromOperationId": "OP-4ba25d1c1002",
+          "toOperationId": "OP-9c6a86a0794f",
+          "kind": "lexical_order"
+        }
+      ],
+      "trace": {
+        "status": "bounded_to_observed_operations",
+        "maxHops": 0,
+        "limitations": [
+          "bounded_window"
+        ]
+      },
+      "label": {
+        "title": "POST /registration/claim",
+        "description": ""
+      },
+      "confidence": "high"
+    },
+    {
+      "id": "FLOW-330492c5b72a",
+      "entrypoint": {
+        "kind": "http_route",
+        "method": "GET",
+        "path": "/authorize/{}",
+        "handler": null,
+        "source": "server.js",
+        "line": 149,
+        "surface": "service"
+      },
+      "guards": {
+        "auth": "not_observed",
+        "permission": "not_observed",
+        "markers": []
+      },
+      "operations": [
+        {
+          "id": "OP-7bc3d9aab62f",
+          "kind": "trigger",
+          "confidence": "observed",
+          "symbol": "<entrypoint>",
+          "line": 149
+        },
+        {
+          "id": "OP-a0fb1f7586a4",
+          "kind": "decide",
+          "confidence": "candidate",
+          "symbol": "<anonymous>",
+          "line": 155,
           "evidence": "if (!recordset || recordset.length !== 1) {"
         }
       ],
       "operationRelations": [
         {
-          "fromOperationId": "OP-40c85d85b22c",
-          "toOperationId": "OP-35a0d39cc3c1",
+          "fromOperationId": "OP-7bc3d9aab62f",
+          "toOperationId": "OP-a0fb1f7586a4",
           "kind": "dispatches_to_handler"
         }
       ],
@@ -104,7 +301,7 @@
         "path": "/pdf",
         "handler": null,
         "source": "server.js",
-        "line": 622,
+        "line": 797,
         "surface": "service"
       },
       "guards": {
@@ -114,11 +311,11 @@
       },
       "operations": [
         {
-          "id": "OP-07e467830ae0",
+          "id": "OP-47edb10ec62c",
           "kind": "trigger",
           "confidence": "observed",
           "symbol": "<entrypoint>",
-          "line": 622
+          "line": 797
         }
       ],
       "operationRelations": [],
@@ -143,7 +340,7 @@
         "path": "/robots933456.txt",
         "handler": null,
         "source": "server.js",
-        "line": 139,
+        "line": 140,
         "surface": "service"
       },
       "guards": {
@@ -153,25 +350,25 @@
       },
       "operations": [
         {
-          "id": "OP-3df3a900427f",
+          "id": "OP-08e08fa4bb7c",
           "kind": "trigger",
           "confidence": "observed",
           "symbol": "<entrypoint>",
-          "line": 139
+          "line": 140
         },
         {
-          "id": "OP-b6ed2fe06941",
+          "id": "OP-049850412822",
           "kind": "decide",
           "confidence": "candidate",
           "symbol": "<anonymous>",
-          "line": 154,
+          "line": 155,
           "evidence": "if (!recordset || recordset.length !== 1) {"
         }
       ],
       "operationRelations": [
         {
-          "fromOperationId": "OP-3df3a900427f",
-          "toOperationId": "OP-b6ed2fe06941",
+          "fromOperationId": "OP-08e08fa4bb7c",
+          "toOperationId": "OP-049850412822",
           "kind": "dispatches_to_handler"
         }
       ],
@@ -196,7 +393,7 @@
         "path": "/stored-procedures",
         "handler": null,
         "source": "server.js",
-        "line": 114,
+        "line": 115,
         "surface": "service"
       },
       "guards": {
@@ -206,25 +403,25 @@
       },
       "operations": [
         {
-          "id": "OP-dfe2c361c69e",
+          "id": "OP-5f0faaf2d61f",
           "kind": "trigger",
           "confidence": "observed",
           "symbol": "<entrypoint>",
-          "line": 114
+          "line": 115
         },
         {
-          "id": "OP-f2eb0da9ec92",
+          "id": "OP-de9ad719a0cc",
           "kind": "decide",
           "confidence": "candidate",
           "symbol": "<anonymous>",
-          "line": 154,
+          "line": 155,
           "evidence": "if (!recordset || recordset.length !== 1) {"
         }
       ],
       "operationRelations": [
         {
-          "fromOperationId": "OP-dfe2c361c69e",
-          "toOperationId": "OP-f2eb0da9ec92",
+          "fromOperationId": "OP-5f0faaf2d61f",
+          "toOperationId": "OP-de9ad719a0cc",
           "kind": "dispatches_to_handler"
         }
       ],
@@ -249,7 +446,7 @@
         "path": "/authorization-pdf",
         "handler": null,
         "source": "server.js",
-        "line": 563,
+        "line": 728,
         "surface": "service"
       },
       "guards": {
@@ -259,38 +456,38 @@
       },
       "operations": [
         {
-          "id": "OP-d51b804b63f3",
+          "id": "OP-a0743b29f4dd",
           "kind": "trigger",
           "confidence": "observed",
           "symbol": "<entrypoint>",
-          "line": 563
+          "line": 728
         },
         {
-          "id": "OP-9b2fe1cc2e6d",
+          "id": "OP-1db23aa70154",
           "kind": "decide",
           "confidence": "candidate",
           "symbol": "<anonymous>",
-          "line": 568,
+          "line": 733,
           "evidence": "if (!eventCode) {"
         },
         {
-          "id": "OP-c198b93a6b45",
+          "id": "OP-8b0e7fb07194",
           "kind": "decide",
           "confidence": "candidate",
           "symbol": "<anonymous>",
-          "line": 577,
+          "line": 742,
           "evidence": "if (!recordset || recordset.length !== 1) {"
         }
       ],
       "operationRelations": [
         {
-          "fromOperationId": "OP-d51b804b63f3",
-          "toOperationId": "OP-9b2fe1cc2e6d",
+          "fromOperationId": "OP-a0743b29f4dd",
+          "toOperationId": "OP-1db23aa70154",
           "kind": "dispatches_to_handler"
         },
         {
-          "fromOperationId": "OP-9b2fe1cc2e6d",
-          "toOperationId": "OP-c198b93a6b45",
+          "fromOperationId": "OP-1db23aa70154",
+          "toOperationId": "OP-8b0e7fb07194",
           "kind": "lexical_order"
         }
       ],
@@ -315,7 +512,7 @@
         "path": "/report/{}",
         "handler": null,
         "source": "server.js",
-        "line": 465,
+        "line": 630,
         "surface": "service"
       },
       "guards": {
@@ -325,25 +522,25 @@
       },
       "operations": [
         {
-          "id": "OP-39ea717427ab",
+          "id": "OP-88fccd106a84",
           "kind": "trigger",
           "confidence": "observed",
           "symbol": "<entrypoint>",
-          "line": 465
+          "line": 630
         },
         {
-          "id": "OP-d7de9eddc779",
+          "id": "OP-254bc4eab870",
           "kind": "decide",
           "confidence": "candidate",
           "symbol": "<anonymous>",
-          "line": 476,
+          "line": 641,
           "evidence": "if (!recordset || recordset.length === 0) {"
         }
       ],
       "operationRelations": [
         {
-          "fromOperationId": "OP-39ea717427ab",
-          "toOperationId": "OP-d7de9eddc779",
+          "fromOperationId": "OP-88fccd106a84",
+          "toOperationId": "OP-254bc4eab870",
           "kind": "dispatches_to_handler"
         }
       ],
@@ -368,7 +565,7 @@
         "path": "/pdf",
         "handler": "pdfForm",
         "source": "server.js",
-        "line": 545,
+        "line": 710,
         "surface": "service"
       },
       "guards": {
@@ -378,11 +575,11 @@
       },
       "operations": [
         {
-          "id": "OP-582fed32efdd",
+          "id": "OP-9311063f9edd",
           "kind": "trigger",
           "confidence": "observed",
           "symbol": "pdfForm",
-          "line": 545
+          "line": 710
         }
       ],
       "operationRelations": [],
@@ -405,7 +602,7 @@
         "path": "/random/{}",
         "handler": "randomScan",
         "source": "server.js",
-        "line": 499,
+        "line": 664,
         "surface": "service"
       },
       "guards": {
@@ -415,11 +612,11 @@
       },
       "operations": [
         {
-          "id": "OP-47295a888d65",
+          "id": "OP-bc84267c7917",
           "kind": "trigger",
           "confidence": "observed",
           "symbol": "randomScan",
-          "line": 499
+          "line": 664
         }
       ],
       "operationRelations": [],
@@ -435,14 +632,14 @@
       "confidence": "high"
     },
     {
-      "id": "FLOW-96d311b39198",
+      "id": "FLOW-94eebf4b6c7a",
       "entrypoint": {
         "kind": "http_route",
-        "method": "GET",
-        "path": "/authorization-pdf",
-        "handler": "authorizationPdfForm",
+        "method": "POST",
+        "path": "/registration/status",
+        "handler": null,
         "source": "server.js",
-        "line": 553,
+        "line": 360,
         "surface": "service"
       },
       "guards": {
@@ -452,38 +649,143 @@
       },
       "operations": [
         {
-          "id": "OP-02998c714197",
+          "id": "OP-7d952cd485c5",
+          "kind": "trigger",
+          "confidence": "observed",
+          "symbol": "<entrypoint>",
+          "line": 360
+        },
+        {
+          "id": "OP-0c574693659a",
+          "kind": "decide",
+          "confidence": "candidate",
+          "symbol": "<anonymous>",
+          "line": 361,
+          "evidence": "if (!requireScannerAuthorization(req, res)) {"
+        },
+        {
+          "id": "OP-4c5dac6da450",
+          "kind": "decide",
+          "confidence": "candidate",
+          "symbol": "<anonymous>",
+          "line": 366,
+          "evidence": "if (identityId === null) {"
+        },
+        {
+          "id": "OP-6fe71dd57e8a",
+          "kind": "decide",
+          "confidence": "candidate",
+          "symbol": "<anonymous>",
+          "line": 379,
+          "evidence": "if (!result) {"
+        },
+        {
+          "id": "OP-74d525dea9aa",
+          "kind": "decide",
+          "confidence": "candidate",
+          "symbol": "<anonymous>",
+          "line": 383,
+          "evidence": "if (result.Status === 'NotFound') {"
+        },
+        {
+          "id": "OP-a02b32ede7fd",
+          "kind": "decide",
+          "confidence": "candidate",
+          "symbol": "<anonymous>",
+          "line": 395,
+          "evidence": "if (!requireScannerAuthorization(req, res)) {"
+        }
+      ],
+      "operationRelations": [
+        {
+          "fromOperationId": "OP-7d952cd485c5",
+          "toOperationId": "OP-0c574693659a",
+          "kind": "dispatches_to_handler"
+        },
+        {
+          "fromOperationId": "OP-0c574693659a",
+          "toOperationId": "OP-4c5dac6da450",
+          "kind": "lexical_order"
+        },
+        {
+          "fromOperationId": "OP-4c5dac6da450",
+          "toOperationId": "OP-6fe71dd57e8a",
+          "kind": "lexical_order"
+        },
+        {
+          "fromOperationId": "OP-6fe71dd57e8a",
+          "toOperationId": "OP-74d525dea9aa",
+          "kind": "lexical_order"
+        },
+        {
+          "fromOperationId": "OP-74d525dea9aa",
+          "toOperationId": "OP-a02b32ede7fd",
+          "kind": "lexical_order"
+        }
+      ],
+      "trace": {
+        "status": "bounded_to_observed_operations",
+        "maxHops": 0,
+        "limitations": [
+          "bounded_window"
+        ]
+      },
+      "label": {
+        "title": "POST /registration/status",
+        "description": ""
+      },
+      "confidence": "high"
+    },
+    {
+      "id": "FLOW-96d311b39198",
+      "entrypoint": {
+        "kind": "http_route",
+        "method": "GET",
+        "path": "/authorization-pdf",
+        "handler": "authorizationPdfForm",
+        "source": "server.js",
+        "line": 718,
+        "surface": "service"
+      },
+      "guards": {
+        "auth": "not_observed",
+        "permission": "not_observed",
+        "markers": []
+      },
+      "operations": [
+        {
+          "id": "OP-dc38bb25b014",
           "kind": "trigger",
           "confidence": "observed",
           "symbol": "authorizationPdfForm",
-          "line": 553
+          "line": 718
         },
         {
-          "id": "OP-c6fdfbe4d6ed",
+          "id": "OP-b3d24fd3184d",
           "kind": "decide",
           "confidence": "candidate",
           "symbol": "authorizationPdfForm",
-          "line": 568,
+          "line": 733,
           "evidence": "if (!eventCode) {"
         },
         {
-          "id": "OP-68a47f951bd8",
+          "id": "OP-886aa932a603",
           "kind": "decide",
           "confidence": "candidate",
           "symbol": "authorizationPdfForm",
-          "line": 577,
+          "line": 742,
           "evidence": "if (!recordset || recordset.length !== 1) {"
         }
       ],
       "operationRelations": [
         {
-          "fromOperationId": "OP-02998c714197",
-          "toOperationId": "OP-c6fdfbe4d6ed",
+          "fromOperationId": "OP-dc38bb25b014",
+          "toOperationId": "OP-b3d24fd3184d",
           "kind": "dispatches_to_handler"
         },
         {
-          "fromOperationId": "OP-c6fdfbe4d6ed",
-          "toOperationId": "OP-68a47f951bd8",
+          "fromOperationId": "OP-b3d24fd3184d",
+          "toOperationId": "OP-886aa932a603",
           "kind": "lexical_order"
         }
       ],
@@ -506,7 +808,7 @@
         "path": "/pdf/{}",
         "handler": "pdfForm",
         "source": "server.js",
-        "line": 546,
+        "line": 711,
         "surface": "service"
       },
       "guards": {
@@ -516,11 +818,11 @@
       },
       "operations": [
         {
-          "id": "OP-5d0cf24949a3",
+          "id": "OP-4d7aa2443b94",
           "kind": "trigger",
           "confidence": "observed",
           "symbol": "pdfForm",
-          "line": 546
+          "line": 711
         }
       ],
       "operationRelations": [],
@@ -543,7 +845,7 @@
         "path": "/",
         "handler": null,
         "source": "server.js",
-        "line": 97,
+        "line": 98,
         "surface": "service"
       },
       "guards": {
@@ -553,25 +855,25 @@
       },
       "operations": [
         {
-          "id": "OP-3385cea57177",
+          "id": "OP-464ebddf661f",
           "kind": "trigger",
           "confidence": "observed",
           "symbol": "<entrypoint>",
-          "line": 97
+          "line": 98
         },
         {
-          "id": "OP-4185630ce467",
+          "id": "OP-8bf913f040fc",
           "kind": "decide",
           "confidence": "candidate",
           "symbol": "<anonymous>",
-          "line": 101,
+          "line": 102,
           "evidence": "if (!requireScannerAuthorization(req, res)) {"
         }
       ],
       "operationRelations": [
         {
-          "fromOperationId": "OP-3385cea57177",
-          "toOperationId": "OP-4185630ce467",
+          "fromOperationId": "OP-464ebddf661f",
+          "toOperationId": "OP-8bf913f040fc",
           "kind": "dispatches_to_handler"
         }
       ],
@@ -596,7 +898,7 @@
         "path": "/setup",
         "handler": null,
         "source": "server.js",
-        "line": 290,
+        "line": 291,
         "surface": "service"
       },
       "guards": {
@@ -606,64 +908,51 @@
       },
       "operations": [
         {
-          "id": "OP-effd733e895d",
+          "id": "OP-5553f4529f39",
           "kind": "trigger",
           "confidence": "observed",
           "symbol": "<entrypoint>",
-          "line": 290
+          "line": 291
         },
         {
-          "id": "OP-d40007ecaa19",
+          "id": "OP-74cda411a857",
           "kind": "decide",
           "confidence": "candidate",
           "symbol": "<anonymous>",
-          "line": 294,
+          "line": 295,
           "evidence": "if (!requireScannerAuthorization(req, res)) {"
         },
         {
-          "id": "OP-65ef1c130625",
+          "id": "OP-fe6f25f131a5",
           "kind": "decide",
           "confidence": "candidate",
           "symbol": "<anonymous>",
-          "line": 298,
+          "line": 299,
           "evidence": "if (req.query.id) {"
         },
         {
-          "id": "OP-301f640b5ed3",
+          "id": "OP-0fb893390399",
           "kind": "decide",
           "confidence": "candidate",
           "symbol": "<anonymous>",
-          "line": 308,
+          "line": 309,
           "evidence": "if (!codes) {"
-        },
-        {
-          "id": "OP-d7c5031cf034",
-          "kind": "decide",
-          "confidence": "candidate",
-          "symbol": "<anonymous>",
-          "line": 328,
-          "evidence": "if (!requireScannerAuthorization(req, res)) {"
         }
       ],
       "operationRelations": [
         {
-          "fromOperationId": "OP-effd733e895d",
-          "toOperationId": "OP-d40007ecaa19",
+          "fromOperationId": "OP-5553f4529f39",
+          "toOperationId": "OP-74cda411a857",
           "kind": "dispatches_to_handler"
         },
         {
-          "fromOperationId": "OP-d40007ecaa19",
-          "toOperationId": "OP-65ef1c130625",
+          "fromOperationId": "OP-74cda411a857",
+          "toOperationId": "OP-fe6f25f131a5",
           "kind": "lexical_order"
         },
         {
-          "fromOperationId": "OP-65ef1c130625",
-          "toOperationId": "OP-301f640b5ed3",
-          "kind": "lexical_order"
-        },
-        {
-          "fromOperationId": "OP-301f640b5ed3",
-          "toOperationId": "OP-d7c5031cf034",
+          "fromOperationId": "OP-fe6f25f131a5",
+          "toOperationId": "OP-0fb893390399",
           "kind": "lexical_order"
         }
       ],
@@ -688,7 +977,7 @@
         "path": "/expire",
         "handler": null,
         "source": "server.js",
-        "line": 1088,
+        "line": 1308,
         "surface": "service"
       },
       "guards": {
@@ -698,51 +987,51 @@
       },
       "operations": [
         {
-          "id": "OP-f5fe072690a2",
+          "id": "OP-66f817d02ef9",
           "kind": "trigger",
           "confidence": "observed",
           "symbol": "<entrypoint>",
-          "line": 1088
+          "line": 1308
         },
         {
-          "id": "OP-b9fbcf62cd41",
+          "id": "OP-d2057844d43f",
           "kind": "decide",
           "confidence": "candidate",
           "symbol": "<anonymous>",
-          "line": 1099,
+          "line": 1319,
           "evidence": "if (recordset) {"
         },
         {
-          "id": "OP-76e167d87d90",
+          "id": "OP-2ad09499c1a1",
           "kind": "decide",
           "confidence": "candidate",
           "symbol": "<anonymous>",
-          "line": 1121,
+          "line": 1341,
           "evidence": "if (fs.existsSync(path)) {"
         },
         {
-          "id": "OP-8d134761663c",
+          "id": "OP-4890da1443ae",
           "kind": "decide",
           "confidence": "candidate",
           "symbol": "<anonymous>",
-          "line": 1125,
+          "line": 1345,
           "evidence": "if (fs.statSync(path + \"/\" + filename).isDirectory()) {"
         }
       ],
       "operationRelations": [
         {
-          "fromOperationId": "OP-f5fe072690a2",
-          "toOperationId": "OP-b9fbcf62cd41",
+          "fromOperationId": "OP-66f817d02ef9",
+          "toOperationId": "OP-d2057844d43f",
           "kind": "dispatches_to_handler"
         },
         {
-          "fromOperationId": "OP-b9fbcf62cd41",
-          "toOperationId": "OP-76e167d87d90",
+          "fromOperationId": "OP-d2057844d43f",
+          "toOperationId": "OP-2ad09499c1a1",
           "kind": "lexical_order"
         },
         {
-          "fromOperationId": "OP-76e167d87d90",
-          "toOperationId": "OP-8d134761663c",
+          "fromOperationId": "OP-2ad09499c1a1",
+          "toOperationId": "OP-4890da1443ae",
           "kind": "lexical_order"
         }
       ],
@@ -767,7 +1056,7 @@
         "path": "/assets/{}",
         "handler": null,
         "source": "server.js",
-        "line": 1145,
+        "line": 1365,
         "surface": "service"
       },
       "guards": {
@@ -777,25 +1066,25 @@
       },
       "operations": [
         {
-          "id": "OP-73945a27f720",
+          "id": "OP-c70376c295c3",
           "kind": "trigger",
           "confidence": "observed",
           "symbol": "<entrypoint>",
-          "line": 1145
+          "line": 1365
         },
         {
-          "id": "OP-a6dd1ad8842e",
+          "id": "OP-6ee912a7e7a2",
           "kind": "decide",
           "confidence": "candidate",
           "symbol": "<anonymous>",
-          "line": 1160,
+          "line": 1380,
           "evidence": "if (err) {"
         }
       ],
       "operationRelations": [
         {
-          "fromOperationId": "OP-73945a27f720",
-          "toOperationId": "OP-a6dd1ad8842e",
+          "fromOperationId": "OP-c70376c295c3",
+          "toOperationId": "OP-6ee912a7e7a2",
           "kind": "dispatches_to_handler"
         }
       ],
@@ -820,7 +1109,7 @@
         "path": "/setup",
         "handler": null,
         "source": "server.js",
-        "line": 326,
+        "line": 332,
         "surface": "service"
       },
       "guards": {
@@ -830,64 +1119,77 @@
       },
       "operations": [
         {
-          "id": "OP-0a92ac46ef7c",
+          "id": "OP-922147eb3127",
           "kind": "trigger",
           "confidence": "observed",
           "symbol": "<entrypoint>",
-          "line": 326
+          "line": 332
         },
         {
-          "id": "OP-480e0c014517",
+          "id": "OP-d1d6f867fc8a",
           "kind": "decide",
           "confidence": "candidate",
           "symbol": "<anonymous>",
-          "line": 328,
+          "line": 334,
           "evidence": "if (!requireScannerAuthorization(req, res)) {"
         },
         {
-          "id": "OP-d000e9d8ef87",
+          "id": "OP-953ae6caee24",
           "kind": "decide",
           "confidence": "candidate",
           "symbol": "<anonymous>",
-          "line": 357,
+          "line": 339,
+          "evidence": "if (!vendorCode) {"
+        },
+        {
+          "id": "OP-2d9c4a05b3c4",
+          "kind": "decide",
+          "confidence": "candidate",
+          "symbol": "<anonymous>",
+          "line": 354,
           "evidence": "if (!requireScannerAuthorization(req, res)) {"
         },
         {
-          "id": "OP-8f5502031378",
+          "id": "OP-2f9c4de23e9e",
           "kind": "decide",
           "confidence": "candidate",
           "symbol": "<anonymous>",
-          "line": 364,
-          "evidence": "if (vendorCode) {"
+          "line": 361,
+          "evidence": "if (!requireScannerAuthorization(req, res)) {"
         },
         {
-          "id": "OP-464fbdb99307",
+          "id": "OP-19eb8d67f977",
           "kind": "decide",
           "confidence": "candidate",
           "symbol": "<anonymous>",
-          "line": 365,
-          "evidence": "if (vendorCode.includes('favicon')) {"
+          "line": 366,
+          "evidence": "if (identityId === null) {"
         }
       ],
       "operationRelations": [
         {
-          "fromOperationId": "OP-0a92ac46ef7c",
-          "toOperationId": "OP-480e0c014517",
+          "fromOperationId": "OP-922147eb3127",
+          "toOperationId": "OP-d1d6f867fc8a",
           "kind": "dispatches_to_handler"
         },
         {
-          "fromOperationId": "OP-480e0c014517",
-          "toOperationId": "OP-d000e9d8ef87",
+          "fromOperationId": "OP-d1d6f867fc8a",
+          "toOperationId": "OP-953ae6caee24",
           "kind": "lexical_order"
         },
         {
-          "fromOperationId": "OP-d000e9d8ef87",
-          "toOperationId": "OP-8f5502031378",
+          "fromOperationId": "OP-953ae6caee24",
+          "toOperationId": "OP-2d9c4a05b3c4",
           "kind": "lexical_order"
         },
         {
-          "fromOperationId": "OP-8f5502031378",
-          "toOperationId": "OP-464fbdb99307",
+          "fromOperationId": "OP-2d9c4a05b3c4",
+          "toOperationId": "OP-2f9c4de23e9e",
+          "kind": "lexical_order"
+        },
+        {
+          "fromOperationId": "OP-2f9c4de23e9e",
+          "toOperationId": "OP-19eb8d67f977",
           "kind": "lexical_order"
         }
       ],
@@ -912,7 +1214,7 @@
         "path": "/authorization-pdf/{}",
         "handler": "authorizationPdfForm",
         "source": "server.js",
-        "line": 554,
+        "line": 719,
         "surface": "service"
       },
       "guards": {
@@ -922,38 +1224,38 @@
       },
       "operations": [
         {
-          "id": "OP-2b72674f582b",
+          "id": "OP-53a0ef926d2d",
           "kind": "trigger",
           "confidence": "observed",
           "symbol": "authorizationPdfForm",
-          "line": 554
+          "line": 719
         },
         {
-          "id": "OP-a964224c7098",
+          "id": "OP-7e0f562dbde9",
           "kind": "decide",
           "confidence": "candidate",
           "symbol": "authorizationPdfForm",
-          "line": 568,
+          "line": 733,
           "evidence": "if (!eventCode) {"
         },
         {
-          "id": "OP-39639fbe43f4",
+          "id": "OP-6d99b0b5807b",
           "kind": "decide",
           "confidence": "candidate",
           "symbol": "authorizationPdfForm",
-          "line": 577,
+          "line": 742,
           "evidence": "if (!recordset || recordset.length !== 1) {"
         }
       ],
       "operationRelations": [
         {
-          "fromOperationId": "OP-2b72674f582b",
-          "toOperationId": "OP-a964224c7098",
+          "fromOperationId": "OP-53a0ef926d2d",
+          "toOperationId": "OP-7e0f562dbde9",
           "kind": "dispatches_to_handler"
         },
         {
-          "fromOperationId": "OP-a964224c7098",
-          "toOperationId": "OP-39639fbe43f4",
+          "fromOperationId": "OP-7e0f562dbde9",
+          "toOperationId": "OP-6d99b0b5807b",
           "kind": "lexical_order"
         }
       ],
@@ -1063,6 +1365,30 @@
       "label": {
         "name": "Authorize scanning device",
         "description": "Authorizing a device to scan badges using an event scanner secret."
+      },
+      "confidence": "high"
+    },
+    {
+      "id": "BFLOW-6b57709214f3",
+      "coverageStatus": "isolated_segment",
+      "isCausallyComposed": false,
+      "verifiedEdgeCount": 0,
+      "segmentRefs": [
+        "FLOW-23ac9a90e3ce"
+      ],
+      "entrySegmentRefs": [
+        "FLOW-23ac9a90e3ce"
+      ],
+      "terminalSegmentRefs": [
+        "FLOW-23ac9a90e3ce"
+      ],
+      "edges": [],
+      "surfaces": [
+        "service"
+      ],
+      "label": {
+        "name": "POST /registration/claim",
+        "description": ""
       },
       "confidence": "high"
     },
@@ -1211,6 +1537,30 @@
       "confidence": "high"
     },
     {
+      "id": "BFLOW-ada43fa0cdd8",
+      "coverageStatus": "isolated_segment",
+      "isCausallyComposed": false,
+      "verifiedEdgeCount": 0,
+      "segmentRefs": [
+        "FLOW-94eebf4b6c7a"
+      ],
+      "entrySegmentRefs": [
+        "FLOW-94eebf4b6c7a"
+      ],
+      "terminalSegmentRefs": [
+        "FLOW-94eebf4b6c7a"
+      ],
+      "edges": [],
+      "surfaces": [
+        "service"
+      ],
+      "label": {
+        "name": "POST /registration/status",
+        "description": ""
+      },
+      "confidence": "high"
+    },
+    {
       "id": "BFLOW-b8d14498561c",
       "coverageStatus": "isolated_segment",
       "isCausallyComposed": false,
@@ -1255,6 +1605,30 @@
       "label": {
         "name": "Access Root Page",
         "description": "Visiting the root path of the scanning service."
+      },
+      "confidence": "high"
+    },
+    {
+      "id": "BFLOW-bd90233eb2c7",
+      "coverageStatus": "isolated_segment",
+      "isCausallyComposed": false,
+      "verifiedEdgeCount": 0,
+      "segmentRefs": [
+        "FLOW-051fdf455f95"
+      ],
+      "entrySegmentRefs": [
+        "FLOW-051fdf455f95"
+      ],
+      "terminalSegmentRefs": [
+        "FLOW-051fdf455f95"
+      ],
+      "edges": [],
+      "surfaces": [
+        "service"
+      ],
+      "label": {
+        "name": "GET /registration",
+        "description": ""
       },
       "confidence": "high"
     },

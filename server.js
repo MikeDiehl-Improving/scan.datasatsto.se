@@ -86,6 +86,7 @@ if (require.main === module) {
 }
 
 module.exports = app;
+module.exports.orderBadgesReservedLast = orderBadgesReservedLast;
 
 
 
@@ -951,8 +952,9 @@ app.post('/pdf', async function (req, res, next) {
 
 
                 if (blob.identities!==undefined) {
+                    const orderedIdentities = orderBadgesReservedLast(blob.identities);
                     console.log('Loaded identities:',
-                        JSON.stringify(blob.identities.map(identity =>
+                        JSON.stringify(orderedIdentities.map(identity =>
                             ({ id: identity.id, name: identity.name }))));
 
                     // Create the event directory if it doesn't already exist
@@ -988,7 +990,7 @@ app.post('/pdf', async function (req, res, next) {
                         hasAveryZones: Boolean(pdfConfig.avery)
                     });
 
-                    for (const member of blob.identities) {
+                    for (const member of orderedIdentities) {
 
                         if (badgeCounter>0 && badgeCounter%(pdfConfig.badgeHorizontalCount*pdfConfig.badgeVerticalCount)==0) {
                             pdf.addPage(pdfConfig.pageSettings);
@@ -1168,6 +1170,29 @@ function validateAveryElement(averyConfig, elementName, x, y, width, height) {
         throw new Error('Avery element "'+elementName+
             '" intersects a reserved zone.');
     }
+}
+
+function orderBadgesReservedLast(identities) {
+    const regularBadges = [];
+    const reservedBlankBadges = [];
+
+    for (const identity of identities) {
+        if (isReservedBlankBadge(identity)) {
+            reservedBlankBadges.push(identity);
+        } else {
+            regularBadges.push(identity);
+        }
+    }
+
+    return regularBadges.concat(reservedBlankBadges);
+}
+
+function isReservedBlankBadge(identity) {
+    return typeof identity.email === 'string' &&
+        /^blank-\d+@invalid\.example$/i.test(identity.email) &&
+        !identity.firstName &&
+        !identity.lastName &&
+        !identity.name;
 }
 
 

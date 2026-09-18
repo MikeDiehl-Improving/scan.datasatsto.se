@@ -1,7 +1,22 @@
 {
   "feature_id": "edge-webcam-qr-decoder-fallback",
-  "state": "PLANNING",
-  "plan_version": 0,
-  "strategy_version": 0,
-  "updated_at": "2026-09-18T00:48:13.788Z"
+  "state": "FAILED",
+  "plan_version": 1,
+  "strategy_version": 1,
+  "approvals": {
+    "test_plan": {
+      "version": 1,
+      "hash": "sha256:60f6a2053ed5fcc08471572282db56793c94ad6384734d1111d6cfc6c1a56d45",
+      "approved_at": "2026-09-18T00:48:40.981Z",
+      "self_approved": true
+    },
+    "test_strategy": {
+      "version": 1,
+      "hash": "sha256:2e2c588f0140687290b41a0ef96bd009b83a46d00cb654794a81b6410c93acef",
+      "approved_at": "2026-09-18T00:49:29.119Z",
+      "self_approved": true
+    }
+  },
+  "last_run_id": "run-001",
+  "updated_at": "2026-09-18T00:51:21.587Z"
 }

@@ -3,6 +3,7 @@
 
 # Application-specific
 qr/
+.treegress/
 
 # Logs
 logs

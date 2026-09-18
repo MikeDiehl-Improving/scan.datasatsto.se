@@ -19,6 +19,9 @@ async function checkBadge() {
     });
     const result = await response.json();
     if (result.status === 'available') {
+        details.querySelectorAll('input').forEach(input => {
+            input.value = '';
+        });
         statusMessage.textContent = 'Badge is available.';
         details.hidden = false;
         return;
@@ -86,6 +89,7 @@ function stopCamera() {
 form.addEventListener('submit', async event => {
     event.preventDefault();
     const body = Object.fromEntries(new FormData(form));
+    body.name = [body.firstName, body.lastName].filter(Boolean).join(' ');
     const response = await fetch('/registration/claim', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
