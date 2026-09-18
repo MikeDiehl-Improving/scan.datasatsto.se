@@ -89,6 +89,7 @@ IF OBJECT_ID(N'Scan.Identities', N'U') IS NULL BEGIN
         EventID     int NOT NULL,
         ID          bigint NOT NULL,
         Created     datetime2(3) NOT NULL,
+        Updated     datetime2(3) NULL,
         [Name]      varbinary(250) NULL,
         [FirstName] varbinary(250) NULL,
         [LastName]  varbinary(250) NULL,
@@ -114,6 +115,8 @@ ELSE BEGIN
         ALTER TABLE Scan.Identities ADD [LastName] varbinary(250) NULL;
     IF COL_LENGTH(N'Scan.Identities', N'Role') IS NULL
         ALTER TABLE Scan.Identities ADD [Role] varbinary(100) NULL;
+    IF COL_LENGTH(N'Scan.Identities', N'Updated') IS NULL
+        ALTER TABLE Scan.Identities ADD [Updated] datetime2(3) NULL;
     ELSE
         ALTER TABLE Scan.Identities ALTER COLUMN [Role] varbinary(100) NULL;
     PRINT N'[3/15] Upgraded Scan.Identities.';
@@ -370,13 +373,16 @@ GO
 --- 1. If provided with an encryption key, only identities with names are returned
 --- 2. If no encryption key is provided, all items are provided, and the caller
 ---    will need to assign names to the identities.
+--- 3. If provided, @UpdatedAfter limits results to identities changed after
+---    the supplied timestamp.
 ---
 -------------------------------------------------------------------------------
 
 CREATE OR ALTER PROCEDURE Scan.Get_Identities
     @EventCode uniqueidentifier,
     @EncryptionKey nvarchar(200)=NULL,
-    @IdentityIDs nvarchar(max)=NULL
+    @IdentityIDs nvarchar(max)=NULL,
+    @UpdatedAfter datetime2(3)=NULL
 AS
 SELECT (
     SELECT TOP (1)
@@ -394,6 +400,7 @@ SELECT (
                 CONVERT(nvarchar(50), DECRYPTBYPASSPHRASE(@EncryptionKey, [Role])) AS [role]
             FROM Scan.Identities AS i
             WHERE i.EventID=e.EventID
+              AND (@UpdatedAfter IS NULL OR COALESCE(i.Updated, i.Created) > @UpdatedAfter)
               AND (
                   @IdentityIDs IS NULL
                   OR EXISTS (
@@ -568,6 +575,8 @@ GO
 ---
 --- NB: Attributes are case sensitive.
 ---
+--- Existing non-empty identity fields are preserved on repeat imports.
+---
 -------------------------------------------------------------------------------
 
 CREATE OR ALTER PROCEDURE Scan.Update_Identities
@@ -626,7 +635,8 @@ SET target.[Name] = COALESCE(target.[Name], ENCRYPTBYPASSPHRASE(@EncryptionKey, 
     target.Phone = COALESCE(target.Phone, ENCRYPTBYPASSPHRASE(@EncryptionKey, NULLIF(source.Phone, N''))),
     target.Email = COALESCE(target.Email, ENCRYPTBYPASSPHRASE(@EncryptionKey, NULLIF(LOWER(source.Email), N''))),
     target.[Location] = COALESCE(target.[Location], ENCRYPTBYPASSPHRASE(@EncryptionKey, NULLIF(source.[Location], N''))),
-    target.[Role] = COALESCE(target.[Role], ENCRYPTBYPASSPHRASE(@EncryptionKey, NULLIF(source.[Role], N'')))
+    target.[Role] = COALESCE(target.[Role], ENCRYPTBYPASSPHRASE(@EncryptionKey, NULLIF(source.[Role], N''))),
+    target.Updated = SYSDATETIME()
 FROM Scan.Identities AS target
 INNER JOIN @sourceRows AS source
     ON source.ID = target.ID
@@ -634,7 +644,7 @@ WHERE target.EventID = @EventID;
 
 INSERT INTO Scan.Identities (
     EventID, ID, [Name], [FirstName], [LastName], [Description],
-    JobTitle, Email, Phone, [Location], [Role], Created
+    JobTitle, Email, Phone, [Location], [Role], Created, Updated
 )
 SELECT
     @EventID,
@@ -648,6 +658,7 @@ SELECT
     ENCRYPTBYPASSPHRASE(@EncryptionKey, NULLIF(source.Phone, N'')),
     ENCRYPTBYPASSPHRASE(@EncryptionKey, NULLIF(source.[Location], N'')),
     ENCRYPTBYPASSPHRASE(@EncryptionKey, NULLIF(source.[Role], N'')),
+    SYSDATETIME(),
     SYSDATETIME()
 FROM @sourceRows AS source
 WHERE source.ID IS NOT NULL

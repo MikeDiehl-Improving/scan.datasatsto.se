@@ -714,6 +714,31 @@ function pdfForm (req, res, next) {
     res.status(200).send(createHTML('assets/pdf.html', { "Event": (decodeURI(req.params.event) || '') }));
 }
 
+function parseDateTimeLocal(value) {
+    const match = /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2})(?::(\d{2})(?:\.(\d{1,3}))?)?$/.exec(value);
+    if (!match) return null;
+
+    const milliseconds = (match[7] || '').padEnd(3, '0');
+    const date = new Date(Date.UTC(
+        Number(match[1]),
+        Number(match[2]) - 1,
+        Number(match[3]),
+        Number(match[4]),
+        Number(match[5]),
+        Number(match[6] || 0),
+        Number(milliseconds || 0)
+    ));
+
+    return date.getUTCFullYear() === Number(match[1]) &&
+        date.getUTCMonth() === Number(match[2]) - 1 &&
+        date.getUTCDate() === Number(match[3]) &&
+        date.getUTCHours() === Number(match[4]) &&
+        date.getUTCMinutes() === Number(match[5]) &&
+        date.getUTCSeconds() === Number(match[6] || 0)
+        ? date
+        : null;
+}
+
 // Input form to generate the organizer authorization QR code PDF:
 app.get('/authorization-pdf', authorizationPdfForm);
 app.get('/authorization-pdf/:eventCode', authorizationPdfForm);
@@ -905,6 +930,13 @@ app.post('/pdf', async function (req, res, next) {
 
         const shouldUpdateIdentities=req.body.updateidentities === 'on';
         const shouldOnlyPrintIdentities=req.body.onlyprintidentities === 'on';
+        const updatedAfter = req.body.updatedAfter
+            ? parseDateTimeLocal(req.body.updatedAfter)
+            : null;
+        if (req.body.updatedAfter && !updatedAfter) {
+            res.status(400).send('Updated after must be a valid date and time.');
+            return;
+        }
         if (selectedIdentities.length > 0 && selectedIdentities.some(identity =>
             !Number.isInteger(identity.id))) {
             res.status(400).send('Each submitted identity must have a valid id.');
@@ -936,11 +968,12 @@ app.post('/pdf', async function (req, res, next) {
             : null;
 
         sqlQuery(connectionString, getIdentities+
-                                   'EXECUTE Scan.Get_Identities @EventCode=@EventCode, @EncryptionKey=@EncryptionKey, @IdentityIDs=@IdentityIDs;',
+                                   'EXECUTE Scan.Get_Identities @EventCode=@EventCode, @EncryptionKey=@EncryptionKey, @IdentityIDs=@IdentityIDs, @UpdatedAfter=@UpdatedAfter;',
             [   { "name": 'EventCode', "type": Types.UniqueIdentifier, "value": req.body.event },
                 { "name": 'EncryptionKey', "type": Types.NVarChar, "value": req.body.encryptionKey },
                 { "name": 'blob', "type": Types.NVarChar, "value": JSON.stringify(selectedIdentities) },
-                { "name": 'IdentityIDs', "type": Types.NVarChar, "value": identityIDs }],
+                { "name": 'IdentityIDs', "type": Types.NVarChar, "value": identityIDs },
+                { "name": 'UpdatedAfter', "type": Types.DateTime2, "value": updatedAfter } ],
 
             async function(recordset) {
                 if (!recordset || !recordset[0]) {

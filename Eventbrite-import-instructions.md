@@ -79,9 +79,15 @@ added when a matching row is found. Only report rows with `Ticket Type` equal to
 The generator validates both CSVs and reports the number of identities written to
 the SQL file. Review the generated file, fill in `@EventCode`, and execute it
 against the database. The SQL calls `Scan.Update_Identities` with the combined
-identity payload. All identity columns accept nulls. When rerun after a
+identity payload. Each imported or newly inserted identity receives an
+`Updated` timestamp. All identity columns accept nulls. When rerun after a
 walk-up is registered, the database procedure preserves each populated field
 and fills only fields that are still null.
+
+The badge PDF form has an optional **Updated after** field. Set it to a time
+after the previous import to print only identities touched by the later import;
+leaving it blank preserves the existing behavior of printing all identities
+(unless the submitted-identity filter is enabled).
 
 For an attendee export without a separate report, omit `-ReportCsvPath`; the
 `description` and `jobTitle` fields will remain empty.

@@ -21,6 +21,9 @@
                     <td><input type="text" name="event" placeholder="Event (required)" value="<%=Event%>"></td></tr>
                 <tr><td>Encryption key:</td>
                     <td><input type="text" name="encryptionKey" placeholder="Encryption pass phrase"></td></tr>
+                <tr><td>Updated after:</td>
+                    <td><input type="datetime-local" name="updatedAfter">
+                        <small>Optional; only print identities changed after this time.</small></td></tr>
                 <tr><td>Paper size:</td>
                     <td><select name="paperSize">
                         <option value="A3">ISO A3</option>

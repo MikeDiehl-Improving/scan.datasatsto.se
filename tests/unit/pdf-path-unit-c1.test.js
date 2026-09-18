@@ -54,6 +54,7 @@ describe('PDF path', () => {
         expect(response.text).toContain('name="qrSize"');
         expect(response.text).toContain('name="badgeCount"');
         expect(response.text).toContain('name="fontSize"');
+        expect(response.text).toContain('name="updatedAfter"');
     });
 
     /* treegress:obligation pdf.form.unknownevent.unit.c1 do-not-regenerate — for: Validate route handler rejects non-existent event identifiers and returns an error response
@@ -123,6 +124,17 @@ describe('PDF path', () => {
 
         expect(response.status).toBe(400);
         expect(response.text).toBe('Each submitted identity must have a valid id.');
+        expect(response.headers['content-type']).not.toMatch(/application\/pdf/);
+    });
+
+    it('rejects an invalid updated-after timestamp', async () => {
+        const response = await request(app).post('/pdf').type('form').send({
+            event: 'EVENT101',
+            updatedAfter: 'not-a-date'
+        });
+
+        expect(response.status).toBe(400);
+        expect(response.text).toBe('Updated after must be a valid date and time.');
         expect(response.headers['content-type']).not.toMatch(/application\/pdf/);
     });
 });
